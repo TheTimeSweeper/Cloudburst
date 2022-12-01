@@ -21,7 +21,7 @@ namespace Cloudburst
         {
             Log.Init(Logger);
 
-            Log.LogInfo(nameof(Awake) + " done.");
+            Log.Info(nameof(Awake) + " done.");
         }
     }
 }
