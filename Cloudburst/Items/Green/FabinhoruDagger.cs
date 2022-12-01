@@ -25,7 +25,8 @@ namespace Cloudburst.Items.Green
             fabinhorusBuff = ScriptableObject.CreateInstance<BuffDef>();
             fabinhorusBuff.canStack = true;
             fabinhorusBuff.isDebuff = true;
-            fabinhorusBuff.buffColor = Color.red;
+            fabinhorusBuff.iconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBuffBleedCripple");
+            fabinhorusBuff.buffColor = Color.white;
             fabinhorusDaggerItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             ContentAddition.AddBuffDef(fabinhorusBuff);
