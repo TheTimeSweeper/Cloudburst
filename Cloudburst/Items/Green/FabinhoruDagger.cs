@@ -51,7 +51,7 @@ namespace Cloudburst.Items.Green
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
             if (victimBody)
             {
-                if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding))
+                if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 5);
                 }
