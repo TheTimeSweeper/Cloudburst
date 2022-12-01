@@ -34,6 +34,19 @@ namespace Cloudburst.Items.Green
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+        }
+
+        private static void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        {
+            orig(self);
+            if (self.inventory)
+            {
+                if (self.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
+                {
+                    self.bleedChance += 5;
+                }
+            }
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -43,6 +56,7 @@ namespace Cloudburst.Items.Green
             {
                 args.armorAdd -= buffCount * 15 + 15;
             }
+            
         }
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
