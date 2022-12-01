@@ -30,11 +30,15 @@ namespace Cloudburst.Items
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            int itemCount = sender.inventory.GetItemCount(bismuthEarringsItem);
-            if(itemCount > 0)
+            if(sender.inventory)
             {
-                args.critAdd += 5;
+                int itemCount = sender.inventory.GetItemCount(bismuthEarringsItem);
+                if (itemCount > 0)
+                {
+                    args.critAdd += 5;
+                }
             }
+            
         }
 
         private static void GlobalEventManager_OnCrit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo damageInfo, CharacterMaster master, float procCoefficient, ProcChainMask procChainMask)
