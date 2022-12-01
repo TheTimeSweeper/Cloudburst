@@ -25,10 +25,12 @@ namespace Cloudburst.Items
             //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
+            
         }
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
+            orig(self, damageInfo, victim);
             if (damageInfo.attacker)
             {
                 CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
@@ -37,7 +39,7 @@ namespace Cloudburst.Items
                     int harvesterCount = body.inventory.GetItemCount(glassHarvesterItem);
                     if (harvesterCount > 0)
                     {
-                        int expAmount = 3 + (harvesterCount * 2);
+                        int expAmount = 3 + ((harvesterCount - 1) * 2);
                         TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)expAmount);
                     }
                 }
