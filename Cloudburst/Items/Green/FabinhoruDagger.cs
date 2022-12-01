@@ -5,7 +5,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Green
 {
     internal class FabinhoruDagger
     {
@@ -33,15 +33,15 @@ namespace Cloudburst.Items
             //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
-            R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
             int buffCount = sender.GetBuffCount(fabinhorusBuff);
-            if(buffCount > 0)
+            if (buffCount > 0)
             {
-                args.armorAdd -= (buffCount * 15) + 15;
+                args.armorAdd -= buffCount * 15 + 15;
             }
         }
 
@@ -51,7 +51,7 @@ namespace Cloudburst.Items
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
             if (victimBody)
             {
-                if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding))
+                if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 5);
                 }

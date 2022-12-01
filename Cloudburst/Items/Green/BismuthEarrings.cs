@@ -5,7 +5,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Green
 {
     internal class BismuthEarrings
     {
@@ -25,12 +25,12 @@ namespace Cloudburst.Items
             //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
-            R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if(sender.inventory)
+            if (sender.inventory)
             {
                 int itemCount = sender.inventory.GetItemCount(bismuthEarringsItem);
                 if (itemCount > 0)
@@ -38,18 +38,18 @@ namespace Cloudburst.Items
                     args.critAdd += 5;
                 }
             }
-            
+
         }
 
         private static void GlobalEventManager_OnCrit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo damageInfo, CharacterMaster master, float procCoefficient, ProcChainMask procChainMask)
         {
             orig(self, body, damageInfo, master, procCoefficient, procChainMask);
-            if(body.inventory)
+            if (body.inventory)
             {
                 int earringCount = body.inventory.GetItemCount(bismuthEarringsItem);
-                if(earringCount > 0)
+                if (earringCount > 0)
                 {
-                    body.healthComponent.AddBarrier(5 + ((earringCount - 1) * 3));
+                    body.healthComponent.AddBarrier(5 + (earringCount - 1) * 3);
                 }
             }
         }

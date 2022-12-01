@@ -5,7 +5,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Green
 {
     internal class JapesCloak
     {
@@ -29,6 +29,7 @@ namespace Cloudburst.Items
 
             japesBuff = ScriptableObject.CreateInstance<BuffDef>();
             japesBuff.canStack = true;
+
             ContentAddition.AddBuffDef(japesBuff);
 
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -40,14 +41,14 @@ namespace Cloudburst.Items
             int buffCount = self.body.GetBuffCount(japesBuff);
             if (buffCount > 0)
             {
-                amount *= (1.3f * buffCount);
+                amount *= 1.3f * buffCount;
             }
             return orig(self, amount, procChainMask, nonRegen);
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if(sender.HasBuff(japesBuff))
+            if (sender.HasBuff(japesBuff))
             {
                 args.armorAdd += 5;
             }
@@ -57,10 +58,10 @@ namespace Cloudburst.Items
         {
             orig(self, body);
             int itemCount = body.inventory.GetItemCount(japesCloakItem);
-            if(itemCount > 0)
+            if (itemCount > 0)
             {
                 int buffCount = body.GetBuffCount(japesBuff);
-                if (buffCount < (itemCount * 2) + 1)
+                if (buffCount < itemCount * 2 + 1)
                 {
                     body.AddBuff(japesBuff);
                 }

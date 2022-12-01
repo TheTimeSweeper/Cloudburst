@@ -6,7 +6,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Gray.RiftBubble
 {
     internal class RiftBubble
     {
@@ -49,7 +49,7 @@ namespace Cloudburst.Items
             buffWard.shape = BuffWard.BuffWardShape.Sphere;
             riftBubbleIndicator.AddComponent<TeamFilter>();
 
-            riftBubbleMaterial = GameObject.Instantiate<Material>(riftBubbleMaterial);
+            riftBubbleMaterial = UnityEngine.Object.Instantiate(riftBubbleMaterial);
             riftBubbleMaterial.SetColor("_TintColor", new Color(0.02f, 0.01f, 0.3f, 1f));
             riftBubbleMaterial.SetFloat("_Boost", 2);
             riftBubbleMaterial.SetFloat("_RimPower", 2);
@@ -59,7 +59,7 @@ namespace Cloudburst.Items
 
             riftBubbleIndicator.transform.GetChild(0).GetComponent<Renderer>().material = riftBubbleMaterial;
 
-            riftBubbleSecondaryMaterial = GameObject.Instantiate<Material>(riftBubbleSecondaryMaterial);
+            riftBubbleSecondaryMaterial = UnityEngine.Object.Instantiate(riftBubbleSecondaryMaterial);
             riftBubbleSecondaryMaterial.SetColor("_TintColor", new Color(0.02f, 0.01f, 0.3f, 1f));
             riftBubbleIndicator.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = riftBubbleSecondaryMaterial;
 
@@ -70,7 +70,7 @@ namespace Cloudburst.Items
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if(sender.HasBuff(riftBuff))
+            if (sender.HasBuff(riftBuff))
             {
                 args.attackSpeedMultAdd -= 0.5f;
                 args.moveSpeedMultAdd -= 0.33f;
@@ -79,7 +79,7 @@ namespace Cloudburst.Items
 
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            
+
             self.AddItemBehavior<RiftBehaviour>(self.inventory.GetItemCount(riftBubbleItem));
             orig(self);
         }

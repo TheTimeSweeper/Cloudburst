@@ -4,7 +4,7 @@ using System.Text;
 using RoR2;
 using UnityEngine;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Gray.RiftBubble
 {
     internal class RiftBehaviour : CharacterBody.ItemBehavior
     {
@@ -12,8 +12,8 @@ namespace Cloudburst.Items
         public BuffWard ward;
         public void OnEnable()
         {
-            indicatorInstance = GameObject.Instantiate<GameObject>(RiftBubble.riftBubbleIndicator, transform);
-            if(indicatorInstance != null)
+            indicatorInstance = Instantiate(RiftBubble.riftBubbleIndicator, transform);
+            if (indicatorInstance != null)
             {
                 ward = indicatorInstance.GetComponent<BuffWard>();
                 ward.teamFilter.teamIndex = TeamComponent.GetObjectTeam(gameObject);
@@ -22,7 +22,7 @@ namespace Cloudburst.Items
 
         public void FixedUpdate()
         {
-            if(ward != null)
+            if (ward != null)
             {
                 ward.radius = stack * 5;
             }
@@ -30,9 +30,9 @@ namespace Cloudburst.Items
 
         public void OnDisable()
         {
-            if(indicatorInstance != null)
+            if (indicatorInstance != null)
             {
-                GameObject.Destroy(indicatorInstance);
+                Destroy(indicatorInstance);
             }
         }
     }

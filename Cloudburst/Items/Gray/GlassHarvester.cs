@@ -5,7 +5,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace Cloudburst.Items
+namespace Cloudburst.Items.Gray
 {
     internal class GlassHarvester
     {
@@ -18,14 +18,14 @@ namespace Cloudburst.Items
             glassHarvesterItem.nameToken = "ITEM_EXPONHIT_NAME";
             glassHarvesterItem.descriptionToken = "ITEM_EXPONHIT_DESCRIPTION";
             glassHarvesterItem.loreToken = "ITEM_EXPONHIT_LORE";
-
+            glassHarvesterItem.pickupModelPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("mdlItemExpOnHit");
             ContentAddition.AddItemDef(glassHarvesterItem);
 
             LanguageAPI.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
             //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
-            
+
         }
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
@@ -39,7 +39,7 @@ namespace Cloudburst.Items
                     int harvesterCount = body.inventory.GetItemCount(glassHarvesterItem);
                     if (harvesterCount > 0)
                     {
-                        int expAmount = 3 + ((harvesterCount - 1) * 2);
+                        int expAmount = 3 + (harvesterCount - 1) * 2;
                         TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)(expAmount * Run.instance.compensatedDifficultyCoefficient));
                     }
                 }
