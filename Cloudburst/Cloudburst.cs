@@ -22,7 +22,7 @@ namespace Cloudburst
         public const string PluginName = "Cloudburst";
         public const string PluginVersion = "0.0.0";
 
-        private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset	RoR2.ExpansionManagement.ExpansionDef").WaitForCompletion();
+        private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
         public static AssetBundle CloudburstAssets;
         public static ExpansionDef cloudburstExpansion;
