@@ -19,10 +19,11 @@ namespace Cloudburst.Items.Gray
             glassHarvesterItem.descriptionToken = "ITEM_EXPONHIT_DESCRIPTION";
             glassHarvesterItem.loreToken = "ITEM_EXPONHIT_LORE";
             glassHarvesterItem.pickupModelPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("mdlItemExpOnHit");
+            glassHarvesterItem.requiredExpansion = Cloudburst.cloudburstExpansion;
+            
             ContentAddition.AddItemDef(glassHarvesterItem);
 
             LanguageAPI.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
-            //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
 

@@ -24,6 +24,7 @@ namespace Cloudburst.Items.Gray.RiftBubble
             riftBubbleItem.nameToken = "ITEM_SLOWRADIUS_NAME";
             riftBubbleItem.descriptionToken = "ITEM_SLOWRADIUS_DESCRIPTION";
             riftBubbleItem.loreToken = "ITEM_SLOWRADIUS_LORE";
+            riftBubbleItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             ContentAddition.AddItemDef(riftBubbleItem);
 
@@ -36,7 +37,6 @@ namespace Cloudburst.Items.Gray.RiftBubble
 
             LanguageAPI.Add("ITEM_SLOWRADIUS_NAME", "Rift Bubble");
             LanguageAPI.Add("ITEM_SLOWRADIUS_DESCRIPTION", "Rift Bubble");
-            //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             riftBubbleIndicator = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("RiftBubbleIndicator");
             BuffWard buffWard = riftBubbleIndicator.AddComponent<BuffWard>();

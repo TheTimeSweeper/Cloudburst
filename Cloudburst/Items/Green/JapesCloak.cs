@@ -19,11 +19,11 @@ namespace Cloudburst.Items.Green
             japesCloakItem.nameToken = "ITEM_PICKUPBUFF_NAME";
             japesCloakItem.descriptionToken = "ITEM_PICKUPBUFF_DESCRIPTION";
             japesCloakItem.loreToken = "ITEM_PICKUPBUFF_LORE";
+            japesCloakItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             ContentAddition.AddItemDef(japesCloakItem);
 
             LanguageAPI.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");
-            //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GenericPickupController.AttemptGrant += GenericPickupController_AttemptGrant;
 

@@ -26,11 +26,11 @@ namespace Cloudburst.Items.Green
             fabinhorusBuff.canStack = true;
             fabinhorusBuff.isDebuff = true;
             fabinhorusBuff.buffColor = Color.red;
+            fabinhorusDaggerItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             ContentAddition.AddBuffDef(fabinhorusBuff);
 
             LanguageAPI.Add("ITEM_BLEEDCRIPPLE_NAME", "Fabinhoru's Dagger");
-            //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;

@@ -18,11 +18,11 @@ namespace Cloudburst.Items.Green
             bismuthEarringsItem.nameToken = "ITEM_BARRIERONCRIT_NAME";
             bismuthEarringsItem.descriptionToken = "ITEM_BARRIERONCRIT_DESCRIPTION";
             bismuthEarringsItem.loreToken = "ITEM_BARRIERONCRIT_LORE";
+            bismuthEarringsItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             ContentAddition.AddItemDef(bismuthEarringsItem);
 
             LanguageAPI.Add("ITEM_BARRIERONCRIT_NAME", "Bismuth Earrings");
-            //LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3d ");
 
             On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
