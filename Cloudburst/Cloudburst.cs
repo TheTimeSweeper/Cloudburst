@@ -6,9 +6,13 @@ using R2API;
 using R2API.Utils;
 using RoR2;
 using RoR2.ExpansionManagement;
+using RoR2.UI;
+using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Cloudburst
 {
@@ -44,10 +48,28 @@ namespace Cloudburst
             LanguageAPI.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
             LanguageAPI.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the 'Cloudburst' mod to the game.");
 
+            SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
             SetupItems();
            
 
             Log.Info(nameof(Awake) + " done.");
+        }
+
+        private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+        {
+            if (arg1 != default && arg1.name == "title")
+            {
+                var menu = GameObject.Find("MainMenu");
+                var title = menu.transform.Find("MENU: Title/TitleMenu/SafeZone/ImagePanel (JUICED)/LogoImage");
+                var indicator = menu.transform.Find("MENU: Title/TitleMenu/MiscInfo/Copyright/Copyright (1)");
+
+                var build = indicator.GetComponent<HGTextMeshProUGUI>();
+
+                build.fontSize += 4;
+                build.text = build.text + Environment.NewLine + $"Cloudburst Version: " + PluginVersion;
+
+                title.GetComponent<Image>().sprite = CloudburstAssets.LoadAsset<Sprite>("texCloudburstLogo");
+            }
         }
 
         public void SetupItems()
