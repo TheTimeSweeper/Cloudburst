@@ -29,9 +29,10 @@ namespace Cloudburst.Items.Gray.RiftBubble
             ContentAddition.AddItemDef(riftBubbleItem);
 
             riftBuff = ScriptableObject.CreateInstance<BuffDef>();
-            riftBuff.canStack = true;
+            riftBuff.canStack = false;
             riftBuff.isDebuff = true;
-            riftBuff.buffColor = Color.blue;
+            riftBuff.iconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBuffSlowRadius");
+            riftBuff.buffColor = Color.white;
 
             ContentAddition.AddBuffDef(riftBuff);
 
