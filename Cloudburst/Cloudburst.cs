@@ -1,4 +1,5 @@
 using BepInEx;
+using Cloudburst.Items;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -21,7 +22,14 @@ namespace Cloudburst
         {
             Log.Init(Logger);
 
+            SetupItems();
+
             Log.Info(nameof(Awake) + " done.");
+        }
+
+        public void SetupItems()
+        {
+            GlassHarvester.Setup();
         }
     }
 }
