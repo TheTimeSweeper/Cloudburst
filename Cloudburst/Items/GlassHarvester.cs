@@ -40,7 +40,7 @@ namespace Cloudburst.Items
                     if (harvesterCount > 0)
                     {
                         int expAmount = 3 + ((harvesterCount - 1) * 2);
-                        TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)expAmount);
+                        TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)(expAmount * Run.instance.compensatedDifficultyCoefficient));
                     }
                 }
             }
