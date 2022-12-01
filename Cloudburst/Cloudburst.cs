@@ -23,6 +23,7 @@ namespace Cloudburst
             Log.Init(Logger);
 
             SetupItems();
+            BismuthEarrings.Setup();
 
             Log.Info(nameof(Awake) + " done.");
         }
