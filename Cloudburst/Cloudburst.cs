@@ -31,6 +31,7 @@ namespace Cloudburst
         public void SetupItems()
         {
             BismuthEarrings.Setup();
+            FabinhoruDagger.Setup();
             GlassHarvester.Setup();
             JapesCloak.Setup();
         }
