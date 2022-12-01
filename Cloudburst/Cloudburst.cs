@@ -23,14 +23,16 @@ namespace Cloudburst
             Log.Init(Logger);
 
             SetupItems();
-            BismuthEarrings.Setup();
+           
 
             Log.Info(nameof(Awake) + " done.");
         }
 
         public void SetupItems()
         {
+            BismuthEarrings.Setup();
             GlassHarvester.Setup();
+            JapesCloak.Setup();
         }
     }
 }
