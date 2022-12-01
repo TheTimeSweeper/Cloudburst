@@ -15,6 +15,7 @@ namespace Cloudburst.Items
 
         public static GameObject riftBubbleIndicator;
         public static Material riftBubbleMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/CritOnUse/matFullCrit.mat").WaitForCompletion();
+        public static Material riftBubbleSecondaryMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/NearbyDamageBonus/matNearbyDamageBonusRangeIndicator.mat").WaitForCompletion();
         public static void Setup()
         {
             riftBubbleItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -57,6 +58,11 @@ namespace Cloudburst.Items
             riftBubbleMaterial.SetFloat("_Cull", 1f);
 
             riftBubbleIndicator.transform.GetChild(0).GetComponent<Renderer>().material = riftBubbleMaterial;
+
+            riftBubbleSecondaryMaterial = GameObject.Instantiate<Material>(riftBubbleSecondaryMaterial);
+            riftBubbleSecondaryMaterial.SetColor("_TintColor", new Color(0.02f, 0.01f, 0.3f, 1f));
+            riftBubbleIndicator.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = riftBubbleSecondaryMaterial;
+
 
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
