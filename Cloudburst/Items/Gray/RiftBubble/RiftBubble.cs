@@ -65,9 +65,9 @@ namespace Cloudburst.Items.Gray.RiftBubble
             attributes.vfxIntensity = VFXAttributes.VFXIntensity.Medium;
             attributes.secondaryParticleSystem = new ParticleSystem[]
             {
-                riftBubbleIndicator.transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>(),
-                riftBubbleIndicator.transform.GetChild(0).GetChild(2).GetComponent<ParticleSystem>(),
-                riftBubbleIndicator.transform.GetChild(0).GetChild(3).GetComponent<ParticleSystem>()
+                riftBubbleIndicator.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<ParticleSystem>(),
+                riftBubbleIndicator.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<ParticleSystem>(),
+                riftBubbleIndicator.transform.GetChild(0).GetChild(2).GetChild(2).GetComponent<ParticleSystem>()
             };
 
             riftBubbleIndicator.transform.GetChild(0).GetChild(1).GetComponent<Renderer>().material = riftBubbleMaterial;
@@ -78,8 +78,11 @@ namespace Cloudburst.Items.Gray.RiftBubble
 
 
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
+            
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
+
+
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
