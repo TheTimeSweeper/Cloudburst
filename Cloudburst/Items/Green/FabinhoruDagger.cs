@@ -4,6 +4,7 @@ using System.Text;
 using R2API;
 using RoR2;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Cloudburst.Items.Green
 {
@@ -14,6 +15,8 @@ namespace Cloudburst.Items.Green
 
         public static GameObject FabProc;
         public static Material matFabCripple;
+
+        public static Shader standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
         public static void Setup()
         {
             fabinhorusDaggerItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -22,6 +25,20 @@ namespace Cloudburst.Items.Green
             fabinhorusDaggerItem.nameToken = "ITEM_BLEEDCRIPPLE_NAME";
             fabinhorusDaggerItem.descriptionToken = "ITEM_BLEEDCRIPPLE_DESCRIPTION";
             fabinhorusDaggerItem.loreToken = "ITEM_BLEEDCRIPPLE_LORE";
+            fabinhorusDaggerItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texFabDagger");
+            fabinhorusDaggerItem.unlockableDef = new UnlockableDef();
+
+            GameObject PickupPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerPickup");
+            Material mat = PickupPrefab.GetComponentInChildren<Renderer>().material;
+            mat.shader = standard;
+            mat.SetTexture("_NormalTex", Cloudburst.CloudburstAssets.LoadAsset<Texture>("fabdagger_normal"));
+            mat.SetFloat("_NormalStrength", 1.6f);
+            mat.SetFloat("_Smoothness", 0.25f);
+            mat.SetFloat("_ForceSpecOn", 1);
+            mat.SetFloat("_SpecularStrength", 1);
+            mat.SetFloat("_SpecularExponent", 9);
+
+            fabinhorusDaggerItem.pickupModelPrefab = PickupPrefab;
 
             ContentAddition.AddItemDef(fabinhorusDaggerItem);
 
@@ -37,6 +54,10 @@ namespace Cloudburst.Items.Green
             LanguageAPI.Add("ITEM_BLEEDCRIPPLE_NAME", "Fabinhoru's Dagger");
 
             FabProc = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerIndicator");
+            LightIntensityCurve curve = FabProc.transform.GetChild(1).gameObject.AddComponent<LightIntensityCurve>();
+            curve.curve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+            curve.timeMax = 0.75f;
+            
             FabProc.AddComponent<DestroyOnParticleEnd>().ps = FabProc.transform.GetChild(0).GetComponent<ParticleSystem>();
             EffectComponent effect = FabProc.AddComponent<EffectComponent>();
             ContentAddition.AddEffect(FabProc);
