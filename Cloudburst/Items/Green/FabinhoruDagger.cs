@@ -11,6 +11,9 @@ namespace Cloudburst.Items.Green
     {
         public static ItemDef fabinhorusDaggerItem;
         public static BuffDef fabinhorusBuff;
+
+        public static GameObject FabProc;
+        public static Material matFabCripple;
         public static void Setup()
         {
             fabinhorusDaggerItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -33,11 +36,43 @@ namespace Cloudburst.Items.Green
 
             LanguageAPI.Add("ITEM_BLEEDCRIPPLE_NAME", "Fabinhoru's Dagger");
 
+            FabProc = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerIndicator");
+            FabProc.AddComponent<DestroyOnParticleEnd>().ps = FabProc.transform.GetChild(0).GetComponent<ParticleSystem>();
+            EffectComponent effect = FabProc.AddComponent<EffectComponent>();
+            ContentAddition.AddEffect(FabProc);
+
+            matFabCripple = Cloudburst.CloudburstAssets.LoadAsset<Material>("matFabCripple");
+
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+            On.RoR2.CharacterModel.UpdateOverlays += CharacterModel_UpdateOverlays;
         }
 
+        private static void CharacterModel_UpdateOverlays(On.RoR2.CharacterModel.orig_UpdateOverlays orig, CharacterModel self)
+        {
+            orig(self);
+            if (self.body)
+            {
+                AddOverlay(self, matFabCripple, self.body.HasBuff(fabinhorusBuff));
+            }
+        }
+
+        private static void AddOverlay(CharacterModel model, Material overlayMaterial, bool condition)
+        {
+            if (model.activeOverlayCount >= CharacterModel.maxOverlays)
+
+            {
+                return;
+            }
+            if (condition)
+            {
+                Material[] array = model.currentOverlays;
+                int num = model.activeOverlayCount;
+                model.activeOverlayCount = num + 1;
+                array[num] = overlayMaterial;
+            }
+        }
         private static void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
         {
             orig(self);
@@ -69,6 +104,10 @@ namespace Cloudburst.Items.Green
                 if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 5);
+                    EffectManager.SpawnEffect(FabProc, new EffectData()
+                    {
+                        origin = damageInfo.position
+                    }, false);
                 }
             }
         }
