@@ -53,7 +53,7 @@ namespace Cloudburst.Items.Gray.RiftBubble
             riftBubbleMaterial = UnityEngine.Object.Instantiate(riftBubbleMaterial);
             riftBubbleMaterial.SetColor("_TintColor", new Color(1f, 1f, 1f, 1f));
             riftBubbleMaterial.SetTexture("_RemapTex", Cloudburst.CloudburstAssets.LoadAsset<Texture>("texRampRiftBubble2"));
-            riftBubbleMaterial.SetFloat("_Boost", 0.5f);
+            riftBubbleMaterial.SetFloat("_Boost", 0.1f);
             riftBubbleMaterial.SetFloat("_RimPower", 1);
             riftBubbleMaterial.SetFloat("_RimStrength", 1f);
             riftBubbleMaterial.SetFloat("_IntersectionStrength", 1.2f);
@@ -70,7 +70,7 @@ namespace Cloudburst.Items.Gray.RiftBubble
                 riftBubbleIndicator.transform.GetChild(0).GetChild(3).GetComponent<ParticleSystem>()
             };
 
-            riftBubbleIndicator.transform.GetChild(0).GetComponent<Renderer>().material = riftBubbleMaterial;
+            riftBubbleIndicator.transform.GetChild(0).GetChild(1).GetComponent<Renderer>().material = riftBubbleMaterial;
 
             riftBubbleSecondaryMaterial = UnityEngine.Object.Instantiate(riftBubbleSecondaryMaterial);
             riftBubbleSecondaryMaterial.SetColor("_TintColor", new Color(0.02f, 0.01f, 0.3f, 1f));
