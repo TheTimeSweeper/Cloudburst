@@ -60,6 +60,16 @@ namespace Cloudburst.Items.Gray.RiftBubble
             riftBubbleMaterial.SetFloat("_Cull", 1f);
 
 
+            VFXAttributes attributes = riftBubbleIndicator.AddComponent<VFXAttributes>();
+            attributes.vfxPriority = VFXAttributes.VFXPriority.Always;
+            attributes.vfxIntensity = VFXAttributes.VFXIntensity.Medium;
+            attributes.secondaryParticleSystem = new ParticleSystem[]
+            {
+                riftBubbleIndicator.transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>(),
+                riftBubbleIndicator.transform.GetChild(0).GetChild(2).GetComponent<ParticleSystem>(),
+                riftBubbleIndicator.transform.GetChild(0).GetChild(3).GetComponent<ParticleSystem>()
+            };
+
             riftBubbleIndicator.transform.GetChild(0).GetComponent<Renderer>().material = riftBubbleMaterial;
 
             riftBubbleSecondaryMaterial = UnityEngine.Object.Instantiate(riftBubbleSecondaryMaterial);
