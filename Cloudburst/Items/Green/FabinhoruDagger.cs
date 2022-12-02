@@ -20,13 +20,13 @@ namespace Cloudburst.Items.Green
         public static void Setup()
         {
             fabinhorusDaggerItem = ScriptableObject.CreateInstance<ItemDef>();
-            fabinhorusDaggerItem.tier = ItemTier.Tier1;
+            fabinhorusDaggerItem.tier = ItemTier.Tier2;
             fabinhorusDaggerItem.name = "itembleedcripple";
             fabinhorusDaggerItem.nameToken = "ITEM_BLEEDCRIPPLE_NAME";
+            fabinhorusDaggerItem.pickupToken = "ITEM_BLEEDCRIPPLE_PICKUP";
             fabinhorusDaggerItem.descriptionToken = "ITEM_BLEEDCRIPPLE_DESCRIPTION";
             fabinhorusDaggerItem.loreToken = "ITEM_BLEEDCRIPPLE_LORE";
             fabinhorusDaggerItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texFabDagger");
-            fabinhorusDaggerItem.unlockableDef = new UnlockableDef();
 
             GameObject PickupPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerPickup");
             Material mat = PickupPrefab.GetComponentInChildren<Renderer>().material;
@@ -37,6 +37,7 @@ namespace Cloudburst.Items.Green
             mat.SetFloat("_ForceSpecOn", 1);
             mat.SetFloat("_SpecularStrength", 1);
             mat.SetFloat("_SpecularExponent", 9);
+            mat.EnableKeyword("FORCE_SPEC");
 
             fabinhorusDaggerItem.pickupModelPrefab = PickupPrefab;
 
@@ -52,8 +53,12 @@ namespace Cloudburst.Items.Green
             ContentAddition.AddBuffDef(fabinhorusBuff);
 
             LanguageAPI.Add("ITEM_BLEEDCRIPPLE_NAME", "Fabinhoru's Dagger");
+            LanguageAPI.Add("ITEM_BLEEDCRIPPLE_PICKUP", "Striking bleeding enemies reduces their armor.");
+            LanguageAPI.Add("ITEM_BLEEDCRIPPLE_DESCRIPTION",
+                "<style=cIsDamage>Striking</style> enemies while they are <style=cIsDamage>bleeding</style> reduces their <style=cIsDamage>armor</style> by <style=cIsDamage>30</style> <style=cStack>(+15 per stack)</style>. Also gain <style=cIsDamage>5%</style> chance to <style=cIsDamage>bleed</style> an enemy on hit.");
+            LanguageAPI.Add("ITEM_BLEEDCRIPPLE_LORE", "");
 
-            FabProc = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerIndicator");
+           FabProc = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerIndicator");
             LightIntensityCurve curve = FabProc.transform.GetChild(1).gameObject.AddComponent<LightIntensityCurve>();
             curve.curve = AnimationCurve.EaseInOut(0, 1, 1, 0);
             curve.timeMax = 0.75f;
