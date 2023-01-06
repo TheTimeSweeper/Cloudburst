@@ -86,16 +86,15 @@ namespace Cloudburst.Items.Green
 
         private static void AddOverlay(CharacterModel model, Material overlayMaterial, bool condition)
         {
-            if (model.activeOverlayCount >= CharacterModel.maxOverlays)
-
+            int num = model.activeOverlayCount;
+            if (num >= CharacterModel.maxOverlays)
             {
                 return;
             }
             if (condition)
             {
                 Material[] array = model.currentOverlays;
-                int num = model.activeOverlayCount;
-                model.activeOverlayCount = num + 1;
+                num += 1;
                 array[num] = overlayMaterial;
             }
         }
