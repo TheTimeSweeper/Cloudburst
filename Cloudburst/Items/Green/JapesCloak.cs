@@ -20,6 +20,8 @@ namespace Cloudburst.Items.Green
             japesCloakItem.descriptionToken = "ITEM_PICKUPBUFF_DESCRIPTION";
             japesCloakItem.loreToken = "ITEM_PICKUPBUFF_LORE";
             japesCloakItem.requiredExpansion = Cloudburst.cloudburstExpansion;
+            japesCloakItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texJapesCloak");
+
 
             ContentAddition.AddItemDef(japesCloakItem);
 
@@ -29,6 +31,8 @@ namespace Cloudburst.Items.Green
 
             japesBuff = ScriptableObject.CreateInstance<BuffDef>();
             japesBuff.canStack = true;
+            japesBuff.buffColor = new Color(1f, 0.7882353f, 0.05490196f);
+            japesBuff.iconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBuffJapesCloak");
 
             ContentAddition.AddBuffDef(japesBuff);
 
@@ -63,7 +67,7 @@ namespace Cloudburst.Items.Green
                 int buffCount = body.GetBuffCount(japesBuff);
                 if (buffCount < itemCount * 2 + 1)
                 {
-                    body.AddBuff(japesBuff);
+                    body.AddTimedBuff(japesBuff, 10);
                 }
             }
         }
