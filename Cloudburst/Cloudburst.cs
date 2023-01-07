@@ -1,5 +1,6 @@
 using BepInEx;
 using Cloudburst.Items.Gray;
+using Cloudburst.Items.Gray.BlastBoot;
 using Cloudburst.Items.Gray.RiftBubble;
 using Cloudburst.Items.Green;
 using R2API;
@@ -74,6 +75,7 @@ namespace Cloudburst
 
         public void SetupItems()
         {
+            BlastBoot.Setup();
             BismuthEarrings.Setup();
             FabinhoruDagger.Setup();
             GlassHarvester.Setup();
