@@ -126,13 +126,17 @@ namespace Cloudburst.Items.Green
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
             if (victimBody)
             {
-                if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
+                if(victimBody.inventory && victimBody.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
                 {
-                    victimBody.AddTimedBuff(fabinhorusBuff, 5);
-                    EffectManager.SpawnEffect(FabProc, new EffectData()
+                    int itemCount = victimBody.inventory.GetItemCount(fabinhorusDaggerItem);
+                    if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                     {
-                        origin = damageInfo.position
-                    }, false);
+                        victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
+                        EffectManager.SpawnEffect(FabProc, new EffectData()
+                        {
+                            origin = damageInfo.position
+                        }, false);
+                    }
                 }
             }
         }
