@@ -20,7 +20,7 @@ namespace Cloudburst.Items.Green
         public static void Setup()
         {
             fabinhorusDaggerItem = ScriptableObject.CreateInstance<ItemDef>();
-            fabinhorusDaggerItem.tier = ItemTier.Tier2;
+            fabinhorusDaggerItem.deprecatedTier = ItemTier.Tier2;
             fabinhorusDaggerItem.name = "itembleedcripple";
             fabinhorusDaggerItem.nameToken = "ITEM_BLEEDCRIPPLE_NAME";
             fabinhorusDaggerItem.pickupToken = "ITEM_BLEEDCRIPPLE_PICKUP";
