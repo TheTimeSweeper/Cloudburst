@@ -109,9 +109,68 @@ namespace Cloudburst
             if (CloudburstAssets != null)
             {
                 Log.Info("Successfully loaded Asset Bundle");
+                ConvertMaterialsIfItWasIncrediblyUnoptimizedAndIDidntCareToImproveEnigmasCode();
             } else
             {
                 Log.Error("AAAAAA");
+            }
+        }
+
+        public static Shader hgs = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
+        public static Shader hgicr = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGIntersectionCloudRemap.shader").WaitForCompletion();
+        public static Shader hgcr = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
+        public static Shader hgsp = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGSolidParallax.shader").WaitForCompletion();
+        public static Shader hgdw = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGDistantWater.shader").WaitForCompletion();
+        public static Shader hgocr = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGOpaqueCloudRemap.shader").WaitForCompletion();
+        public void ConvertMaterialsIfItWasIncrediblyUnoptimizedAndIDidntCareToImproveEnigmasCode()
+        {
+            var materials = OldCloudburstAssets.LoadAllAssets<Material>();
+
+            //It may be shitty, but it works. Therefore, it is perfect.
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i].shader.name == "Standard")
+                {
+                    materials[i].shader = hgs;
+                }
+                if (materials[i].name.Contains("GLASS"))
+                {
+                    materials[i].shader = hgicr;
+                }
+                switch (materials[i].shader.name)
+                {
+
+                    case "Hopoo Games/FX/Cloud Remap Proxy":
+                        //LogCore.LogI("material");
+                        materials[i].shader = hgcr;
+                        //LogCore.LogI(materials[i].shader.name);
+                        break;
+
+                    case "stubbed_Hopoo Games/FX/Cloud Remap Proxy":
+                        materials[i].shader = hgcr;
+                        break;
+
+                    case "stubbed_Hopoo Games/Deferred/Standard Proxy":
+                        materials[i].shader = hgs;
+                        break;
+
+                    case "Hopoo Games/Deferred/Standard Proxy":
+                        materials[i].shader = hgs;
+                        break;
+
+                    case "stubbed_Hopoo Games/FX/Solid Parallax Proxy":
+                        materials[i].shader = hgsp;
+                        break;
+                    case "stubbed_Hopoo Games/Environment/Distant Water Proxy":
+                        materials[i].shader = hgdw;
+                        break;
+                    case "Hopoo Games/FX/Cloud Intersection Remap Proxy":
+                        materials[i].shader = hgicr;
+                        break;
+                    case "Hopoo Games/FX/Cloud Opaque Cloud Remap Proxy":
+                        materials[i].shader = hgocr;
+                        break;
+                }
             }
         }
     }
