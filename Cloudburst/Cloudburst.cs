@@ -79,6 +79,7 @@ namespace Cloudburst
         {
             //BlastBoot.Setup();
             BismuthEarrings.Setup();
+            EnigmaticKeycard.Setup();
             FabinhoruDagger.Setup();
             GlassHarvester.Setup();
             JapesCloak.Setup();
