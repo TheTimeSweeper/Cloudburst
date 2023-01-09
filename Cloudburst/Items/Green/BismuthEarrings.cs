@@ -10,6 +10,8 @@ namespace Cloudburst.Items.Green
     internal class BismuthEarrings
     {
         public static ItemDef bismuthEarringsItem;
+
+        //public static Material
         public static void Setup()
         {
             bismuthEarringsItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -19,6 +21,8 @@ namespace Cloudburst.Items.Green
             bismuthEarringsItem.descriptionToken = "ITEM_BARRIERONCRIT_DESCRIPTION";
             bismuthEarringsItem.loreToken = "ITEM_BARRIERONCRIT_LORE";
             bismuthEarringsItem.requiredExpansion = Cloudburst.cloudburstExpansion;
+            bismuthEarringsItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLBismuthRings");
+            bismuthEarringsItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBismuthEarring");
 
             ContentAddition.AddItemDef(bismuthEarringsItem);
 
