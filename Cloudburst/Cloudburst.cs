@@ -30,6 +30,8 @@ namespace Cloudburst
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
         public static AssetBundle CloudburstAssets;
+        public static AssetBundle OldCloudburstAssets;
+
         public static ExpansionDef cloudburstExpansion;
 
         public void Awake()
@@ -75,7 +77,7 @@ namespace Cloudburst
 
         public void SetupItems()
         {
-            BlastBoot.Setup();
+            //BlastBoot.Setup();
             BismuthEarrings.Setup();
             FabinhoruDagger.Setup();
             GlassHarvester.Setup();
@@ -83,7 +85,6 @@ namespace Cloudburst
             RiftBubble.Setup();
         }
 
-        //Stripped from SomewhereElse
         public void GetBundle()
         {
             if (CloudburstAssets == null)
@@ -93,6 +94,10 @@ namespace Cloudburst
                     using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.cloudburst"))
                     {
                         CloudburstAssets = AssetBundle.LoadFromStream(assetStream);
+                    }
+                    using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.oldcloudburst"))
+                    {
+                        OldCloudburstAssets = AssetBundle.LoadFromStream(assetStream);
                     }
                 }
                 catch

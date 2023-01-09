@@ -14,10 +14,12 @@
 
   <ItemGroup>
     <None Remove="Assets\cloudburst" />
+    <None Remove="Assets\oldcloudburst" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\cloudburst" />
+    <EmbeddedResource Include="Assets\oldcloudburst" />
   </ItemGroup>
 
   <ItemGroup>
