@@ -20,7 +20,7 @@ namespace Cloudburst.Items.Gray
             glassHarvesterItem.descriptionToken = "ITEM_EXPONHIT_DESCRIPTION";
             glassHarvesterItem.loreToken = "ITEM_EXPONHIT_LORE";
             glassHarvesterItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texGlassHarvester");
-            glassHarvesterItem.pickupModelPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("GlassHarvesterPickup");
+            glassHarvesterItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLHarvester");
             glassHarvesterItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             
             ContentAddition.AddItemDef(glassHarvesterItem);
@@ -30,7 +30,6 @@ namespace Cloudburst.Items.Gray
             LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
-
         }
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
