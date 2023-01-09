@@ -21,9 +21,9 @@ namespace Cloudburst.Items.Green
             japesCloakItem.loreToken = "ITEM_PICKUPBUFF_LORE";
             japesCloakItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             japesCloakItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texJapesCloak");
+            japesCloakItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLCloak");
 
-
-            ContentAddition.AddItemDef(japesCloakItem);
+            //ContentAddition.AddItemDef(japesCloakItem);
 
             LanguageAPI.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");
 
