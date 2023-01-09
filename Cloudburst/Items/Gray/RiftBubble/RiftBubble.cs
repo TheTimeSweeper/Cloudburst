@@ -37,7 +37,8 @@ namespace Cloudburst.Items.Gray.RiftBubble
             ContentAddition.AddBuffDef(riftBuff);
 
             LanguageAPI.Add("ITEM_SLOWRADIUS_NAME", "Rift Bubble");
-            LanguageAPI.Add("ITEM_SLOWRADIUS_DESCRIPTION", "Rift Bubble");
+            LanguageAPI.Add("ITEM_SLOWRADIUS_PICKUP", "Reduce incoming knockback and weaken nearby enemies.");
+            LanguageAPI.Add("ITEM_SLOWRADIUS_DESCRIPTION", "In a radius of 5(+5 per stack), weaken nearby enemies. Reduce incoming knockback by 50%");
 
             riftBubbleIndicator = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("RiftBubbleIndicator");
             BuffWard buffWard = riftBubbleIndicator.AddComponent<BuffWard>();
