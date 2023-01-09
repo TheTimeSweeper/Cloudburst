@@ -16,6 +16,7 @@ namespace Cloudburst.Items.Gray
             glassHarvesterItem.tier = ItemTier.Tier1;
             glassHarvesterItem.name = "itemexponhit";
             glassHarvesterItem.nameToken = "ITEM_EXPONHIT_NAME";
+            glassHarvesterItem.pickupToken = "ITEM_EXPONHIT_PICKUP";
             glassHarvesterItem.descriptionToken = "ITEM_EXPONHIT_DESCRIPTION";
             glassHarvesterItem.loreToken = "ITEM_EXPONHIT_LORE";
             glassHarvesterItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texGlassHarvester");
