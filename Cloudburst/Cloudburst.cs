@@ -1,4 +1,5 @@
 using BepInEx;
+using Cloudburst.Characters;
 using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
 using Cloudburst.Items.Gray.RiftBubble;
@@ -9,6 +10,7 @@ using RoR2;
 using RoR2.ExpansionManagement;
 using RoR2.UI;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -31,6 +33,9 @@ namespace Cloudburst
 
         public static AssetBundle CloudburstAssets;
         public static AssetBundle OldCloudburstAssets;
+        public static AssetBundle WyattAssetBundle;
+
+        public static List<AssetBundle> AssetBundles = new List<AssetBundle>();
 
         public static ExpansionDef cloudburstExpansion;
 
@@ -53,7 +58,11 @@ namespace Cloudburst
 
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
             SetupItems();
-           
+
+            Modules.ItemDisplays.PopulateDisplays();
+            Cores.Effects.OnLoaded();
+
+            new WyattSurvivor().Initialize();
 
             Log.Info(nameof(Awake) + " done.");
         }
@@ -65,9 +74,9 @@ namespace Cloudburst
                 var menu = GameObject.Find("MainMenu");
                 var title = menu.transform.Find("MENU: Title/TitleMenu/SafeZone/ImagePanel (JUICED)/LogoImage");
                 var indicator = menu.transform.Find("MENU: Title/TitleMenu/MiscInfo/Copyright/Copyright (1)");
-
+                
                 var build = indicator.GetComponent<HGTextMeshProUGUI>();
-
+                
                 build.fontSize += 4;
                 build.text = build.text + Environment.NewLine + $"Cloudburst Version: " + PluginVersion;
 
@@ -92,14 +101,9 @@ namespace Cloudburst
             {
                 try
                 {
-                    using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.cloudburst"))
-                    {
-                        CloudburstAssets = AssetBundle.LoadFromStream(assetStream);
-                    }
-                    using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.oldcloudburst"))
-                    {
-                        OldCloudburstAssets = AssetBundle.LoadFromStream(assetStream);
-                    }
+                    CloudburstAssets = LoadAssetBundle("Cloudburst.Assets.cloudburst");
+                    WyattAssetBundle = LoadAssetBundle("Cloudburst.Assets.wyatt");
+                    OldCloudburstAssets = LoadAssetBundle("Cloudburst.Assets.oldcloudburst");
                 }
                 catch
                 {
@@ -114,6 +118,19 @@ namespace Cloudburst
             {
                 Log.Error("AAAAAA");
             }
+        }
+
+        private static AssetBundle LoadAssetBundle(string name)
+        {
+            AssetBundle assetBundle;
+            using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name))
+            {
+                assetBundle = AssetBundle.LoadFromStream(assetStream);
+            }
+
+            AssetBundles.Add(assetBundle);
+
+            return assetBundle;
         }
 
         public static Shader hgs = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
