@@ -163,32 +163,32 @@ She'll love this, I know.
             SetStateOnHurt setStateOnHurt = bodyPrefab.GetComponent<SetStateOnHurt>();
             NetworkStateMachine networkStateMachine = bodyPrefab.GetComponent<NetworkStateMachine>();
 
-            EntityStateMachine machine = bodyPrefab.AddComponent<EntityStateMachine>();
-            machine.customName = "MAID";
-            machine.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
-            machine.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            EntityStateMachine maidMachine = bodyPrefab.AddComponent<EntityStateMachine>();
+            maidMachine.customName = "MAID";
+            maidMachine.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            maidMachine.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
 
-            int l = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, l + 1);
-            setStateOnHurt.idleStateMachine[l] = machine;
+            int idleLength = setStateOnHurt.idleStateMachine.Length;
+            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            setStateOnHurt.idleStateMachine[idleLength] = maidMachine;
 
-            int l2 = networkStateMachine.stateMachines.Length;
-            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, l2 + 1);
-            networkStateMachine.stateMachines[l2] = machine;
+            int networkStateMachinesLength = networkStateMachine.stateMachines.Length;
+            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            networkStateMachine.stateMachines[networkStateMachinesLength] = maidMachine;
 
 
-            EntityStateMachine machine2 = bodyPrefab.AddComponent<EntityStateMachine>();
-            machine2.customName = "SuperMarioJump";
-            machine2.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
-            machine2.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            EntityStateMachine marioJumpMachine = bodyPrefab.AddComponent<EntityStateMachine>();
+            marioJumpMachine.customName = "SuperMarioJump";
+            marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
 
-            l = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, l + 1);
-            setStateOnHurt.idleStateMachine[l] = machine2;
+            idleLength = setStateOnHurt.idleStateMachine.Length;
+            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            setStateOnHurt.idleStateMachine[idleLength] = marioJumpMachine;
 
-            l2 = networkStateMachine.stateMachines.Length;
-            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, l2 + 1);
-            networkStateMachine.stateMachines[l2] = machine2;
+            networkStateMachinesLength = networkStateMachine.stateMachines.Length;
+            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            networkStateMachine.stateMachines[networkStateMachinesLength] = marioJumpMachine;
         }
 
         public override void InitializeUnlockables()

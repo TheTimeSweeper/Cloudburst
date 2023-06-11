@@ -81,6 +81,9 @@ ModelImporter:
   - first:
       74: 738959313175021686
     second: WyattRig|pelv
+  - first:
+      74: 2577767997696830990
+    second: WyattRig|idleIn (1)
   externalObjects: {}
   materials:
     materialImportMode: 1

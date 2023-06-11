@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2870572924
+CRC: 1369276741
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0af2cefdf12e42505e704ff875e628a8
+    Hash: 39c839fc9bb456911a09598ad2bc5e68
   TypeTreeHash:
     serializedVersion: 2
     Hash: 37a3b5036dff4e3c67ec33ccfb2bf23a
@@ -57,20 +57,23 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2_broom.png
+- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2DefaultBroom.png
 - Assets/Survivors/Wyatt/WyattBundle/Materials/matWyattDefault.mat
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattSpecial.png
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattSpecial2.png
+- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2DefaultBroom_Normal.png
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattPrimary.png
 - Assets/Survivors/Wyatt/WyattBundle/Anim/animWyatt.controller
 - Assets/Survivors/Wyatt/WyattBundle/mdlWyatt.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattUtility.png
+- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2Default_Normal.png
 - Assets/Survivors/Wyatt/WyattBundle/WyattDisplay.prefab
+- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2DefaultBroom_Emission.png
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattPassive.png
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyatt.png
 - Assets/Survivors/Wyatt/WyattBundle/Anim/animWyattDisplay.controller
 - Assets/Survivors/Wyatt/WyattBundle/Materials/matWyattDefault_Broom.mat
 - Assets/Survivors/Wyatt/WyattBundle/Anim/maskWyattGesture.mask
-- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2.png
+- Assets/Survivors/Wyatt/WyattBundle/Textures/texWyatt2Default.png
 - Assets/Survivors/Wyatt/WyattBundle/Icons/texIconWyattSecondary.png
 Dependencies: []

@@ -81,7 +81,7 @@ namespace Cloudburst.Wyatt.Components
                     }
                 }
             }
-
+            
         }
 
         [Server]
@@ -90,7 +90,7 @@ namespace Cloudburst.Wyatt.Components
             var cap = 9 + stacks;
             if (characterBody && characterBody.GetBuffCount(WyattSurvivor.instance.wyattCombatBuffDef) < cap)
             {
-
+                
                 grooveEffect2.Play();
                 grooveEffect.Play();
                 /*EffectManager.SpawnEffect(Effects.wyattGrooveEffect, new EffectData()
