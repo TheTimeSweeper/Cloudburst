@@ -150,7 +150,7 @@ namespace Cloudburst.Wyatt.Components
                 modelAnimator.Update(0f);
                 modelAnimator.PlayInFixedTime("kick", layerIndex, 0f);
                 //base.PlayAnimation("Fullbody, Override", "kick");
-                maid.GetComponent<MAID>().FullStop();
+                maid.GetComponent<MAIDProjectileController>().FullStop();
                 //Destroy(maid);
             }
         }

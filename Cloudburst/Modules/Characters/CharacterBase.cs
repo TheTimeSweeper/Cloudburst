@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cloudburst.Modules.Characters
 {
-    internal abstract class CharacterBase<T> where T : CharacterBase<T>
+    public abstract class CharacterBase<T> where T : CharacterBase<T>
     {
         public static T instance;
 
@@ -106,7 +106,7 @@ namespace Cloudburst.Modules.Characters
     }
 
     // for simplifying characterbody creation
-    internal class BodyInfo
+    public class BodyInfo
     {
         #region Character
         public string bodyName = "";

@@ -8,7 +8,7 @@ using RoR2.Skills;
 
 namespace Cloudburst.Modules.Survivors
 {
-    internal abstract class SurvivorBase<T> : CharacterBase<T> where T : CharacterBase<T>
+    public abstract class SurvivorBase<T> : CharacterBase<T> where T : CharacterBase<T>
     {
         public abstract string survivorTokenPrefix { get; }
         

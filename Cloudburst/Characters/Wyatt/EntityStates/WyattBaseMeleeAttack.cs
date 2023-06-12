@@ -15,7 +15,7 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public int step = 0;
         public static float recoilAmplitude = 0.7f;
-        public static float baseDurationBeforeInterruptable = 0.5f;
+        public static float percentDurationBeforeInterruptable = 0.5f;
         public float bloom = 1f;
         //public static float comboFinisherBaseDuration = 0.5f;
         //public static float comboFinisherhitPauseDuration = 0.15f;
@@ -49,13 +49,15 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             //this.hitBoxGroupName = "TempHitbox";
             this.hitBoxGroupName = "TempHitboxLarge";
-            this.mecanimHitboxActiveParameter = "BroomSwing.shittybasicmeleeattackparameter";
-            this.baseDuration = 0.7f;
+            this.mecanimHitboxActiveParameter = "BroomSwing.active";
+            this.baseDuration = 0.8f;
             this.duration = this.baseDuration / base.attackSpeedStat;
-            this.hitPauseDuration = 0.1f;
+            this.hitPauseDuration = 0.05f;
             this.damageCoefficient = 2f;
             //this.damageCoefficient = (2f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * 0.1f));
             this.procCoefficient = 1f;
+            this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
+            this.shorthopVelocityFromHit = 5;
 
             spawnEffect = false;
             //swingEffectPrefab = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/GrandparentGroundSwipeTrailEffect");
@@ -93,7 +95,12 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.characterMotor.ApplyForce(GetAimRay().direction * 100, true, false);
 
 
-            this.durationBeforeInterruptable = baseDurationBeforeInterruptable * duration;
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            StartAimMode();
         }
 
 
@@ -113,7 +120,6 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public override void OnExit()
         {
-            Log.Warning($"onexit hitresults: {hitResults != null}, OAt:{overlapAttack != null}");
             base.OnExit();
 
         }
@@ -168,11 +174,10 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            //why is it interrupting itself lol
-            //if (base.fixedAge >= this.durationBeforeInterruptable)
-            //{
-            //    return InterruptPriority.Any;
-            //}
+            if (base.fixedAge >= this.durationBeforeInterruptable)
+            {
+                return InterruptPriority.Any;
+            }
             return InterruptPriority.Skill;
         }
 
@@ -188,10 +193,9 @@ namespace Cloudburst.CEntityStates.Wyatt
             this.step = (int)reader.ReadByte();
         }
 
-        //skip combo shit until animations are fixed
         void SteppedSkillDef.IStepSetter.SetStep(int i)
         {
-            this.step = 0;
+            this.step = i;
         }
     }
 }

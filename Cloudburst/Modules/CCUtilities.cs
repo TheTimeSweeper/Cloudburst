@@ -233,4 +233,50 @@ public static class CCUtilities
         }
         return new Color32(r, g, b, a);
     }
+
+    /// <summary>
+    /// Safely removes a buff from the target character body
+    /// </summary>
+    /// <param name="buffToRemove">The buff you want to safely remove</param>
+    /// <param name="body">The body you safely want to remove a buff from.</param>
+    public static void SafeRemoveBuff(BuffDef buffToRemove, CharacterBody body)
+    {
+        if (body && body.HasBuff(buffToRemove))
+        {
+            body.RemoveBuff(buffToRemove);
+        }
+    }
+    /// <summary>
+    /// Safely removes buffs from the target character body
+    /// </summary>
+    /// <param name="buffToRemove">The buff you want to safely remove</param>
+    /// <param name="body">The body you safely want to remove buffs from.</param>
+    public static void SafeRemoveBuffs(BuffDef buffToRemove, CharacterBody body, int stacksToRemove)
+    {
+        if (body)
+        {
+            for (int i = 0; i < stacksToRemove; i++)
+            {
+                SafeRemoveBuff(buffToRemove, body);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Safely removes ALL of target buff from the target character body
+    /// </summary>
+    /// <param name="buffToRemove">The buff you want to safely remove all of</param>
+    /// <param name="body">The body you safely want to remove buffs from.</param>
+    public static void SafeRemoveAllOfBuff(BuffDef buffToRemove, CharacterBody body)
+    {
+        if (body)
+        {
+            int stacks = body.GetBuffCount(buffToRemove);
+            for (int i = 0; i < stacks; i++)
+            {
+                body.RemoveBuff(buffToRemove);
+            }
+
+        }
+    }
 }

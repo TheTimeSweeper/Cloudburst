@@ -28,6 +28,8 @@ namespace Cloudburst.Cores
         public static GameObject ericAndreMoment;
         public static GameObject tiredOfTheDingDingDing;
 
+        public static GameObject bigZapEffectPrefabArea;
+
         public static void OnLoaded()
         {
             CreateNewEffects();
@@ -39,6 +41,8 @@ namespace Cloudburst.Cores
             ericAndreMoment = CreateEffect("WyattHitEffect");
             tiredOfTheDingDingDing = CreateEffect("WyattSpikeEffect");
             //fabinin = CreateEffect("fabin");
+
+            bigZapEffectPrefabArea = RoR2.LegacyResourcesAPI.Load<GameObject>("prefabs/effects/lightningstakenova");
         }
 
         private static void CreateMAIDCleanseEffect()

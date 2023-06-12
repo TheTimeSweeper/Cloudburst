@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 namespace Cloudburst.Wyatt.Components
 {
-    public class CustodianWalkmanBehavior : NetworkBehaviour, IOnDamageDealtServerReceiver
+    public class WyattWalkmanBehavior : NetworkBehaviour, IOnDamageDealtServerReceiver
     {
         private CharacterBody characterBody;
         private ParticleSystem grooveEffect;
@@ -34,6 +34,44 @@ namespace Cloudburst.Wyatt.Components
             flowEffect = childLocator.FindChild("MusicEffect3").GetComponent<ParticleSystem>();
         }
 
+        //now I know why playing effects on the body is retared
+        #region network Effects
+        private void PlayGrooveEffectServer()
+        {
+            grooveEffect2.Play();
+            grooveEffect.Play();
+            RPCPlayGrooveEFfect();
+        }
+        [ClientRpc]
+        private void RPCPlayGrooveEFfect()
+        {
+            grooveEffect2.Play();
+            grooveEffect.Play();
+        }
+
+        private void PlayFlowEffectServer()
+        {
+            flowEffect.Play();
+            RPCPlayFlowEFfect();
+        }
+        [ClientRpc]
+        private void RPCPlayFlowEFfect()
+        {
+            flowEffect.Play();
+        }
+
+        private void StopFlowEffectServer()
+        {
+            flowEffect.Stop();
+            RPCPStopFlowEFfect();
+        }
+        [ClientRpc]
+        private void RPCPStopFlowEFfect()
+        {
+            flowEffect.Stop();
+        }
+        #endregion
+
         private void Start()
         {
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
@@ -48,12 +86,11 @@ namespace Cloudburst.Wyatt.Components
             if (flowing && NetworkServer.active && characterBody == self)
             {
                 //flowing has stopped
-                //CCUtilities.SafeRemoveAllOfBuff(Custodian.instance.wyattCombatDef, characterBody);
+                CCUtilities.SafeRemoveAllOfBuff(WyattSurvivor.instance.wyattCombatBuffDef, characterBody);
                 flowing = false;
-
-                flowEffect.Stop();
+                StopFlowEffectServer();
             }
-                orig(self, buffDef);
+            orig(self, buffDef);
         }
 
         public void FixedUpdate()
@@ -76,7 +113,7 @@ namespace Cloudburst.Wyatt.Components
                     drainTimer += Time.fixedDeltaTime;
                     if (drainTimer >= 0.5f)
                     {
-                      //  CCUtilities.SafeRemoveBuffs(Custodian.instance.wyattCombatDef, characterBody, 2);
+                        CCUtilities.SafeRemoveBuffs(WyattSurvivor.instance.wyattCombatBuffDef, characterBody, 2);
                         drainTimer = 0;
                     }
                 }
@@ -90,9 +127,7 @@ namespace Cloudburst.Wyatt.Components
             var cap = 9 + stacks;
             if (characterBody && characterBody.GetBuffCount(WyattSurvivor.instance.wyattCombatBuffDef) < cap)
             {
-                
-                grooveEffect2.Play();
-                grooveEffect.Play();
+                PlayGrooveEffectServer();
                 /*EffectManager.SpawnEffect(Effects.wyattGrooveEffect, new EffectData()
                 {
                     scale = 1,
@@ -140,7 +175,7 @@ namespace Cloudburst.Wyatt.Components
             characterBody.AddTimedBuff(WyattSurvivor.instance.wyattFlowBuffDef, duration);
             flowing = true;
 
-            flowEffect.Play();
+            PlayFlowEffectServer();
         }
 
         public void OnDamageDealtServer(DamageReport damageReport)

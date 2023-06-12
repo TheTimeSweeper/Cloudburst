@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Cloudburst.Characters;
+using JetBrains.Annotations;
 using RoR2;
 using RoR2.Skills;
 using UnityEngine;
@@ -34,8 +35,7 @@ namespace Cloudburst.Wyatt.Components
                 }
                 if (!mm.maid)
                 {
-                    MAID =
-                     MAIDState.Idle;
+                    MAID = MAIDState.Idle;
                 }
                 if (mm.startReel)
                 {
@@ -49,13 +49,13 @@ namespace Cloudburst.Wyatt.Components
             switch (MAID)
             {
                 case MAIDState.Deployed:
-                    return null;
+                    return WyattSurvivor.instance.MaidSprite2;
                 //    return AssetsCore.wyattSpecial2;
                 case MAIDState.Reeling:
-                    return null;
+                    return WyattSurvivor.instance.MaidSpriteTempWhatIsThis;
 
                 case MAIDState.Idle:
-                    return null;
+                    return WyattSurvivor.instance.MaidSprite1;
                     //    return AssetsCore.wyattSpecial;
             }
             return base.GetCurrentIcon(skillSlot);

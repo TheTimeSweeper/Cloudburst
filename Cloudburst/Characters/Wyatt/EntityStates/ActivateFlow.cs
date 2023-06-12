@@ -8,12 +8,12 @@ namespace Cloudburst.CEntityStates.Wyatt
     class ActivateFlow : BaseSkillState
     {
         public static float baseDuration = 0.1f;
-        private CustodianWalkmanBehavior walkman;
+        private WyattWalkmanBehavior walkman;
         public override void OnEnter()
         {
             base.OnEnter();
 
-            walkman = GetComponent<CustodianWalkmanBehavior>();
+            walkman = GetComponent<WyattWalkmanBehavior>();
             if (walkman.flowing == false)
             {
                 walkman.ActivateFlowAuthority();

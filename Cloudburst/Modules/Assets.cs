@@ -103,22 +103,22 @@ namespace Cloudburst.Modules
             return RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/" + crosshairName + "Crosshair");
         }
 
-        private static GameObject LoadEffect(string resourceName)
+        public static GameObject LoadEffect(string resourceName)
         {
             return LoadEffect(resourceName, "", false);
         }
 
-        private static GameObject LoadEffect(string resourceName, string soundName)
+        public static GameObject LoadEffect(string resourceName, string soundName)
         {
             return LoadEffect(resourceName, soundName, false);
         }
 
-        private static GameObject LoadEffect(string resourceName, bool parentToTransform)
+        public static GameObject LoadEffect(string resourceName, bool parentToTransform)
         {
             return LoadEffect(resourceName, "", parentToTransform);
         }
 
-        private static GameObject LoadEffect(string resourceName, string soundName, bool parentToTransform)
+        public static GameObject LoadEffect(string resourceName, string soundName, bool parentToTransform)
         {
             GameObject newEffect = Assets.LoadAsset<GameObject>(resourceName);
 
@@ -143,12 +143,12 @@ namespace Cloudburst.Modules
             return newEffect;
         }
 
-        private static void AddNewEffectDef(GameObject effectPrefab)
+        public static void AddNewEffectDef(GameObject effectPrefab)
         {
             AddNewEffectDef(effectPrefab, "");
         }
 
-        private static void AddNewEffectDef(GameObject effectPrefab, string soundName)
+        public static void AddNewEffectDef(GameObject effectPrefab, string soundName)
         {
             R2API.ContentAddition.AddEffect(effectPrefab);
             //EffectDef newEffectDef = new EffectDef();

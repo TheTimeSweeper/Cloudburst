@@ -50,9 +50,9 @@ namespace Cloudburst.CEntityStates.Wyatt
             if (base.IsKeyDownAuthority() && stopped == false)
             {
                 base.characterMotor.useGravity = true;
-                if (base.gameObject.GetComponent<CustodianRocket>() == null)
+                if (base.gameObject.GetComponent<WyattRocket>() == null)
                 {
-                    CustodianRocket based = base.gameObject.AddComponent<CustodianRocket>();
+                    WyattRocket based = base.gameObject.AddComponent<WyattRocket>();
                     based.interval = 1f;
                     //LogCore.LogI(dis);
                 }
@@ -62,7 +62,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                 //yield return true
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0);// 0.5f);
 
             base.characterMotor.velocity = new Vector3(0, 0, 0);
 
@@ -71,9 +71,9 @@ namespace Cloudburst.CEntityStates.Wyatt
                 base.characterMotor.velocity = new Vector3(0, 0, 0);
 
 
-                if (base.gameObject.GetComponent<CustodianRocket>() == null)
+                if (base.gameObject.GetComponent<WyattRocket>() == null)
                 {
-                    CustodianRocket based = base.gameObject.AddComponent<CustodianRocket>();
+                    WyattRocket based = base.gameObject.AddComponent<WyattRocket>();
                     based.interval = 1f;
                     //LogCore.LogI(dis);
                 }
@@ -88,11 +88,11 @@ namespace Cloudburst.CEntityStates.Wyatt
             solarEclipse = true;
             if (!nat)
             {
-                base.activatorSkillSlot.finalRechargeInterval = 5;
+                base.activatorSkillSlot.rechargeStopwatch = (0.5f * base.activatorSkillSlot.finalRechargeInterval);
             }
             else
             {
-                base.activatorSkillSlot.finalRechargeInterval = 10;
+                //base.activatorSkillSlot.finalRechargeInterval = 10;
                 //who cares about underlying issues in my code
                 //no one's gonna read it anyways :^]]
 
@@ -113,13 +113,14 @@ namespace Cloudburst.CEntityStates.Wyatt
             {
                 crit = RollCrit(),
                 //damage = (5f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * damageStat,
+                damage = damageStat * 5,
                 damageColorIndex = RoR2.DamageColorIndex.Default,
                 damageTypeOverride = DamageType.Generic,
                 force = 0,
                 owner = gameObject,
                 position = aimRay.origin,
                 procChainMask = default,
-                //projectilePrefab = ProjectileCore.wyattMaidBubble,
+                projectilePrefab = Characters.WyattAssets.wyattMaidBubble,
                 rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
                 target = null,
                 useFuseOverride = false,

@@ -14,7 +14,8 @@ using Cloudburst.CEntityStates.Wyatt;
 
 namespace Cloudburst.Characters
 {
-    internal class WyattSurvivor : SurvivorBase<WyattSurvivor>
+
+    public class WyattSurvivor : SurvivorBase<WyattSurvivor>
     {
         public override string prefabBodyName => "Wyatt";
 
@@ -65,7 +66,9 @@ namespace Cloudburst.Characters
         public BuffDef wyattCombatBuffDef;
         public BuffDef wyattFlowBuffDef;
 
-        public static SkillDef throwPrimarySkillDef;
+        public Sprite MaidSprite1;
+        public Sprite MaidSprite2;
+        public Sprite MaidSpriteTempWhatIsThis;
 
         public static SerializableEntityStateType RetrieveMaidState = new SerializableEntityStateType(typeof(RetrieveMaid));
         public static SerializableEntityStateType DeployMaidState = new SerializableEntityStateType(typeof(DeployMaid));
@@ -77,6 +80,8 @@ namespace Cloudburst.Characters
 
             CreateBuffs();
 
+            WyattAssets.InitAss();
+
             AddBodyLanguageTokens();
 
             MAIDManager janniePower = bodyPrefab.AddComponent<MAIDManager>();
@@ -87,7 +92,7 @@ namespace Cloudburst.Characters
             sfxLocator.landingSound = "play_char_land";
 
             //CharacterDeathBehavior characterDeathBehavior = wyattBody.GetComponent<CharacterDeathBehavior>();
-            bodyPrefab.AddComponent<CustodianWalkmanBehavior>();
+            bodyPrefab.AddComponent<WyattWalkmanBehavior>();
             //kil
             //Cloudburst.Content.ContentHandler.Loadouts.RegisterEntityState(typeof(DeathState));
             //characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(DeathState));
@@ -106,6 +111,37 @@ namespace Cloudburst.Characters
 
             AlterStatemachines();
 
+            SetHooks();
+        }
+
+        private void SetHooks()
+        {
+            R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+        }
+
+        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        {
+            orig(self);
+
+            if (self && self.HasBuff(wyattFlowBuffDef))
+            {
+                self.maxJumpCount++;
+            }
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, R2API.RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender.HasBuff(wyattCombatBuffDef))
+            {
+                args.moveSpeedMultAdd += 0.3f * sender.GetBuffCount(wyattCombatBuffDef);
+                //args.armorAdd += 20;
+            }
+
+            if (sender.HasBuff(wyattFlowBuffDef))
+            {
+                args.cooldownMultAdd -= 0.3f;
+            }
         }
 
         private static void AddBodyLanguageTokens()
@@ -204,6 +240,7 @@ She'll love this, I know.
             Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitbox"), "TempHitbox");
             Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLarge"), "TempHitboxLarge");
             Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxSquish"), "TempHitboxSquish");
+            Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
         }
 
         public override void InitializeSkills()
@@ -260,7 +297,7 @@ She'll love this, I know.
             primarySkillDef.stepGraceDuration = 1;
 
             R2API.LanguageAPI.Add(primarySkillDef.skillNameToken, "G22 Grav-Broom");
-            R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, "<style=cIsUtility>Agile</style>. Swing in front for X% damage. [NOT IMPLEMENTED] Every 4th hit <style=cIsDamage>Spikes</style>.");
+            R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, "<style=cIsUtility>Agile</style>. Swing in front for X% damage.");
             //R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Weightless</style><style=cSub>Slows and removes gravity from target.</style>");
             R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[2], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain.</style>");
 
@@ -291,11 +328,11 @@ She'll love this, I know.
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_SPIKED" }
+                //keywordTokens = new string[] { "KEYWORD_SPIKED" }
             });
 
             R2API.LanguageAPI.Add(secondarySkillDef.skillNameToken, "Trash Out");
-            R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "Deploy a winch that reels you towards an enemy, and <style=cIsDamage>Spike</style> for <style=cIsDamage>X%</style>.");
+            R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "Deploy a winch that lets you reel towards an enemy, and Hit them for for <style=cIsDamage>X%</style> damage.");
             
             Modules.Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
         }
@@ -324,13 +361,11 @@ She'll love this, I know.
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] {
-                 "KEYWORD_RUPTURE",
-                }
+                //keywordTokens = new string[] { "KEYWORD_RUPTURE", }
             });
 
             R2API.LanguageAPI.Add(utilitySkillDef.skillNameToken, "Flow");
-            R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Idk if this even works rn tbh.\nActivate Flow for 4 seconds (0.4s for each stack of Groove, max 8 seconds). During flow, you are unable to lose or gain Groove. After Flow ends, lose all stacks groove.");
+            R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Activate Flow for 4 seconds + 0.4s for each stack of Groove. Gaining a double jump and +30% cooldown reduction. During flow, you are unable to lose or gain Groove. After Flow ends, lose all stacks groove.");
             R2API.LanguageAPI.Add("KEYWORD_RUPTURE", "<style=cKeywordName>Flow</style><style=cSub> Gives you a double jump. +30% cooldown reduction.</style>");
 
             Modules.Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef);
@@ -368,8 +403,6 @@ She'll love this, I know.
 
             R2API.LanguageAPI.Add(specialSkillDef.skillNameToken, "M88 MAID");
             R2API.LanguageAPI.Add(specialSkillDef.skillDescriptionToken, "Send your MAID unit barreling through enemies for 500% damage before stopping briefly and returning to you, able to hit enemies on the way back. Using this skill again while MAID is deployed reels you to the MAID and rebounds you off of her, bashing into an enemy for X% damage.");
-
-            throwPrimarySkillDef = specialSkillDef;
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, specialSkillDef);
         }
