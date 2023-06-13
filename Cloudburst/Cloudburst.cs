@@ -1,5 +1,6 @@
 using BepInEx;
 using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
 using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
 using Cloudburst.Items.Gray.RiftBubble;
@@ -60,7 +61,6 @@ namespace Cloudburst
             SetupItems();
 
             Modules.ItemDisplays.PopulateDisplays();
-            Cores.Effects.OnLoaded();
 
             new WyattSurvivor().Initialize();
 

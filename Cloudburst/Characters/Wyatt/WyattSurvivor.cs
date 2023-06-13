@@ -12,9 +12,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cloudburst.CEntityStates.Wyatt;
 
-namespace Cloudburst.Characters
+namespace Cloudburst.Characters.Wyatt
 {
-
     public class WyattSurvivor : SurvivorBase<WyattSurvivor>
     {
         public override string prefabBodyName => "Wyatt";
@@ -27,12 +26,12 @@ namespace Cloudburst.Characters
             bodyName = "WyattBody",
             bodyNameToken = WYATT_PREFIX + "NAME",
             subtitleNameToken = WYATT_PREFIX + "SUBTITLE",
-            
+
             characterPortrait = Assets.LoadAsset<Texture>("texIconWyatt"),
             bodyColor = Color.white,
 
-            crosshair = Modules.Assets.LoadCrosshair("Standard"),
-            podPrefab = RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
+            crosshair = Assets.LoadCrosshair("Standard"),
+            podPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
 
             maxHealth = 110f,
             healthRegen = 1.5f,
@@ -41,7 +40,7 @@ namespace Cloudburst.Characters
             jumpCount = 1,
         };
 
-        public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[] 
+        public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[]
         {
                 new CustomRendererInfo
                 {
@@ -55,7 +54,7 @@ namespace Cloudburst.Characters
 
         public override UnlockableDef characterUnlockableDef => null;
 
-        public override Type characterMainState => typeof(EntityStates.GenericCharacterMain);
+        public override Type characterMainState => typeof(GenericCharacterMain);
 
         public override ItemDisplaysBase itemDisplays => new WyattItemDisplays();
 
@@ -65,6 +64,7 @@ namespace Cloudburst.Characters
 
         public BuffDef wyattCombatBuffDef;
         public BuffDef wyattFlowBuffDef;
+        public BuffDef wyattAntiGravBuffDef;
 
         public Sprite MaidSprite1;
         public Sprite MaidSprite2;
@@ -78,11 +78,13 @@ namespace Cloudburst.Characters
         {
             base.Initialize();
 
+            WyattEffects.OnLoaded();
+            WyattAssets.InitAss();
+            WyattDamageTypes.InitDamageTypes();
+            WyattLanguageTokens.AddLanguageTokens(WYATT_PREFIX);
             CreateBuffs();
 
-            WyattAssets.InitAss();
-
-            AddBodyLanguageTokens();
+            WyattEntityStates.AddEntityStates();
 
             MAIDManager janniePower = bodyPrefab.AddComponent<MAIDManager>();
 
@@ -101,7 +103,7 @@ namespace Cloudburst.Characters
 
             GameObject indicatorPrefab = R2API.PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/EngiShieldRetractIndicator"), "WyattTrackerIndicator", false);
             SpriteRenderer indicator = indicatorPrefab.transform.Find("Holder").GetComponent<SpriteRenderer>(); //
-            indicator.sprite = Modules.Assets.LoadAsset<Sprite>("texWyattIndicator");
+            indicator.sprite = Assets.LoadAsset<Sprite>("texWyattIndicator");
             indicator.color = CCUtilities.HexToColor("00A86B");
 
             tracker.maxTrackingAngle = 20;
@@ -118,15 +120,18 @@ namespace Cloudburst.Characters
         {
             R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+
+            On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
+            On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
+            On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
         }
 
-        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
-            orig(self);
-
-            if (self && self.HasBuff(wyattFlowBuffDef))
+            orig(self, damageInfo);
+            if(R2API.DamageAPI.HasModdedDamageType(damageInfo, WyattDamageTypes.antiGravDamage))
             {
-                self.maxJumpCount++;
+                self.body.AddTimedBuff(wyattAntiGravBuffDef, 1);
             }
         }
 
@@ -142,56 +147,78 @@ namespace Cloudburst.Characters
             {
                 args.cooldownMultAdd -= 0.3f;
             }
+
+            if (sender.HasBuff(wyattAntiGravBuffDef))
+            {
+                args.attackSpeedMultAdd -= 0.5f;
+                args.moveSpeedMultAdd -= 0.5f;
+            }
         }
 
-        private static void AddBodyLanguageTokens()
+        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
         {
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "NAME", "Custodian");
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "SUBTITLE", "Lean, Mean, Cleaning Machines");
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "OUTRO_FLAVOR", "...and so they left, a job well done");
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "OUTRO_FAILURE", "...and so they vanished, leaving a bigger mess than when they started");
+            orig(self);
 
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "DESCRIPTION", 
-                "The Custodian is a master of janitorial warfare who uses his MAID to control the battlefield<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine
-                + "< ! > Send enemies upwards with the MAID, and spike them downwads with Trash Out for major damage." + Environment.NewLine + Environment.NewLine
-                + "< ! > The MAID slows projectiles within her radius, use this to your advantage in combat!" + Environment.NewLine + Environment.NewLine
-                + "< ! > this skill no longer exists" + Environment.NewLine + Environment.NewLine
-                + "< ! > The key to success is realizing that staying away from the ground helps you stay alive longer." + Environment.NewLine + Environment.NewLine);
+            if (self && self.HasBuff(wyattFlowBuffDef))
+            {
+                self.maxJumpCount++;
+            }
 
-            R2API.LanguageAPI.Add(WYATT_PREFIX + "LORE", @"Can't stop now. Can't stop now. Every step I take is a step I can't take back. Come hell or high water I will find it.
+            if (self & self.HasBuff(wyattAntiGravBuffDef))
+            {
+                if (self.characterMotor)
+                {
+                    self.characterMotor.useGravity = false;
+                }
+            }
+        }
 
-It's all a rhythm, just a rhythm. Every time I step out of line is a punishment. I will obey the groove. Nothing can stop me now.
+        private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
+        {
+            orig(self, buffDef);
+            if (buffDef == wyattAntiGravBuffDef)
+            {
+                if (self.characterMotor)
+                {
+                    self.characterMotor.useGravity = true;
+                }
+            }
+        }
 
-Every scar is worth it. I can feel it, I am coming closer to it. I will have it, and it will be mine.
-
-No matter the blood, it's worth it. I will find what I want, and I will come home.
-
-No matter how many I slaughter, it will be mine... It can't hide from me from me forever.
-
-It's here, I can feel it. This security chest, it has it. I crack it open, and I find it.
-
-It's... finally mine. I hold it in my bruised hands. Has it really been years? 
-
-She'll love this, I know.
-
-");
+        private void CharacterBody_OnBuffFirstStackGained(On.RoR2.CharacterBody.orig_OnBuffFirstStackGained orig, CharacterBody self, BuffDef buffDef)
+        {
+            orig(self, buffDef);
+            if (buffDef == wyattAntiGravBuffDef)
+            {
+                if (self.characterMotor)
+                {
+                    self.characterMotor.useGravity = false;
+                }
+            }
         }
 
         private void CreateBuffs()
         {
-            wyattCombatBuffDef = Modules.Buffs.AddNewBuff(
+            wyattCombatBuffDef = Buffs.AddNewBuff(
                 "CloudburstWyattCombatBuff",
-                Modules.Assets.LoadAsset<Sprite>("WyattVelocity"),
+                Assets.LoadAsset<Sprite>("WyattVelocity"),
                 new Color(1f, 0.7882353f, 0.05490196f),
                 true,
                 false);
 
-            wyattFlowBuffDef = Modules.Buffs.AddNewBuff(
+            wyattFlowBuffDef = Buffs.AddNewBuff(
                 "CloudburstWyattFlowBuff",
-                Modules.Assets.LoadAsset<Sprite>("WyattVelocity"),
+                Assets.LoadAsset<Sprite>("WyattVelocity"),
                 CCUtilities.HexToColor("#37323e"),
                 false,
                 false);
+
+            wyattAntiGravBuffDef = Buffs.AddNewBuff(
+                "CloudburstWyattAntiGravBuff",
+                Assets.LoadAsset<Sprite>("texIconBuffAntiGrav"),
+                new Color(0.6784314f, 0.6117647f, 0.4117647f),
+                false,
+                true);
         }
 
         public void AlterStatemachines()
@@ -201,29 +228,29 @@ She'll love this, I know.
 
             EntityStateMachine maidMachine = bodyPrefab.AddComponent<EntityStateMachine>();
             maidMachine.customName = "MAID";
-            maidMachine.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
-            maidMachine.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            maidMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
+            maidMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
 
             int idleLength = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
             setStateOnHurt.idleStateMachine[idleLength] = maidMachine;
 
             int networkStateMachinesLength = networkStateMachine.stateMachines.Length;
-            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
             networkStateMachine.stateMachines[networkStateMachinesLength] = maidMachine;
 
 
             EntityStateMachine marioJumpMachine = bodyPrefab.AddComponent<EntityStateMachine>();
             marioJumpMachine.customName = "SuperMarioJump";
-            marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
-            marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(EntityStates.Idle));
+            marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
+            marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
 
             idleLength = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize<EntityStateMachine>(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
             setStateOnHurt.idleStateMachine[idleLength] = marioJumpMachine;
 
             networkStateMachinesLength = networkStateMachine.stateMachines.Length;
-            Array.Resize<EntityStateMachine>(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
             networkStateMachine.stateMachines[networkStateMachinesLength] = marioJumpMachine;
         }
 
@@ -237,15 +264,15 @@ She'll love this, I know.
         {
             ChildLocator childLocator = bodyPrefab.GetComponentInChildren<ChildLocator>();
 
-            Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitbox"), "TempHitbox");
-            Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLarge"), "TempHitboxLarge");
-            Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxSquish"), "TempHitboxSquish");
-            Modules.Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
+            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitbox"), "TempHitbox");
+            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLarge"), "TempHitboxLarge");
+            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxSquish"), "TempHitboxSquish");
+            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
         }
 
         public override void InitializeSkills()
         {
-            Modules.Skills.CreateSkillFamilies(bodyPrefab);
+            Skills.CreateSkillFamilies(bodyPrefab);
 
             InitializePassive();
 
@@ -265,13 +292,13 @@ She'll love this, I know.
                 enabled = true,
                 skillNameToken = "WYATT_PASSIVE_NAME",
                 skillDescriptionToken = "WYATT_PASSIVE_DESCRIPTION",
-                keywordToken = "KEYWORD_VELOCITY",
-                icon = Modules.Assets.LoadAsset<Sprite>("texIconWyattPassive")
+                //keywordToken = "KEYWORD_VELOCITY",
+                icon = Assets.LoadAsset<Sprite>("texIconWyattPassive")
             };
 
-            R2API.LanguageAPI.Add(passive.keywordToken, "<style=cKeywordName>Groove</style><style=cSub>Increases movement speed by X%.</style>");
+            //R2API.LanguageAPI.Add(passive.keywordToken, "<style=cKeywordName>Groove</style><style=cSub>Increases movement speed by X%.</style>");
             R2API.LanguageAPI.Add(passive.skillNameToken, "Walkman");
-            R2API.LanguageAPI.Add(passive.skillDescriptionToken, "On hit, gain a stack Groove. Lose 2 stacks of Groove every 0.5 seconds after being out of combat for 3 seconds. Groove grants 30% move speed and 25% damage.");
+            R2API.LanguageAPI.Add(passive.skillDescriptionToken, "On hit, gain a stack of <style=cIsUtility>Groove</style>, granting <style=cIsUtility>30% move speed</style> per stack. Diminishes out of combat.");
 
             bodyPrefab.GetComponent<SkillLocator>().passiveSkill = passive;
         }
@@ -279,40 +306,40 @@ She'll love this, I know.
         private void InitializePrimarySkills()
         {
             //Creates a skilldef for a typical primary 
-            SteppedSkillDef primarySkillDef = Modules.Skills.CreateSkillDef<SteppedSkillDef>(
+            SteppedSkillDef primarySkillDef = Skills.CreateSkillDef<SteppedSkillDef>(
                 new SkillDefInfo(
                     "wyatt_primary_combo",
                     WYATT_PREFIX + "PRIMARY_COMBO_NAME",
                     WYATT_PREFIX + "PRIMARY_COMBO_DESCRIPTION",
-                    Modules.Assets.LoadAsset<Sprite>("texIconWyattPrimary"),
-                    new EntityStates.SerializableEntityStateType(typeof(WyattBaseMeleeAttack)),
+                    Assets.LoadAsset<Sprite>("texIconWyattPrimary"),
+                    new SerializableEntityStateType(typeof(WyattBaseMeleeAttack)),
                     "Weapon",
                     true));
             primarySkillDef.keywordTokens = new string[] {
                  "KEYWORD_AGILE",
-                 "KEYWORD_WEIGHTLESS",
+                 //"KEYWORD_WEIGHTLESS",
                  "KEYWORD_SPIKED",
             };
-            primarySkillDef.stepCount = 2;
-            primarySkillDef.stepGraceDuration = 1;
+            primarySkillDef.stepCount = 3;
+            primarySkillDef.stepGraceDuration = 0.5f;
 
             R2API.LanguageAPI.Add(primarySkillDef.skillNameToken, "G22 Grav-Broom");
             R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, "<style=cIsUtility>Agile</style>. Swing in front for X% damage.");
             //R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Weightless</style><style=cSub>Slows and removes gravity from target.</style>");
-            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[2], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain.</style>");
+            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain.</style>");
 
-            Modules.Skills.AddPrimarySkills(bodyPrefab, primarySkillDef);
+            Skills.AddPrimarySkills(bodyPrefab, primarySkillDef);
         }
 
         private void InitializeSecondarySkills()
         {
-            GCETSkillDef secondarySkillDef = Modules.Skills.CreateSkillDef<GCETSkillDef>(new SkillDefInfo
+            GCETSkillDef secondarySkillDef = Skills.CreateSkillDef<GCETSkillDef>(new SkillDefInfo
             {
                 skillName = "wyatt_secondary_trashout",
                 skillNameToken = WYATT_PREFIX + "SECONDARY_TRASHOUT_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "SECONDARY_TRASHOUT_DESCRIPTION",
-                skillIcon = Modules.Assets.LoadAsset<Sprite>("texIconWyattSecondary"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(TrashOut)),
+                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattSecondary"),
+                activationState = new SerializableEntityStateType(typeof(TrashOut)),
                 activationStateMachineName = "Weapon",
                 baseMaxStock = 2,
                 baseRechargeInterval = 3f,
@@ -320,7 +347,7 @@ She'll love this, I know.
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = false,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
+                interruptPriority = InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = true,
@@ -333,19 +360,19 @@ She'll love this, I know.
 
             R2API.LanguageAPI.Add(secondarySkillDef.skillNameToken, "Trash Out");
             R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "Deploy a winch that lets you reel towards an enemy, and Hit them for for <style=cIsDamage>X%</style> damage.");
-            
-            Modules.Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
+
+            Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
         }
 
         private void InitializeUtilitySkills()
         {
-            SkillDef utilitySkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            SkillDef utilitySkillDef = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "wyatt_utility_flow",
                 skillNameToken = WYATT_PREFIX + "UTILITY_FLOW_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "UTILITY_FLOW_DESCRIPTION",
-                skillIcon = Modules.Assets.LoadAsset<Sprite>("texIconWyattUtility"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(ActivateFlow)),
+                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattUtility"),
+                activationState = new SerializableEntityStateType(typeof(ActivateFlow)),
                 activationStateMachineName = "SuperMarioJump",
                 baseMaxStock = 1,
                 baseRechargeInterval = 4f,
@@ -353,7 +380,7 @@ She'll love this, I know.
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = false,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
+                interruptPriority = InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = false,
@@ -368,17 +395,17 @@ She'll love this, I know.
             R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Activate Flow for 4 seconds + 0.4s for each stack of Groove. Gaining a double jump and +30% cooldown reduction. During flow, you are unable to lose or gain Groove. After Flow ends, lose all stacks groove.");
             R2API.LanguageAPI.Add("KEYWORD_RUPTURE", "<style=cKeywordName>Flow</style><style=cSub> Gives you a double jump. +30% cooldown reduction.</style>");
 
-            Modules.Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef);
+            Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef);
         }
 
         private void InitializeSpecialSkills()
         {
-            WyattMAIDSkillDef specialSkillDef = Modules.Skills.CreateSkillDef<WyattMAIDSkillDef>(new SkillDefInfo
+            WyattMAIDSkillDef specialSkillDef = Skills.CreateSkillDef<WyattMAIDSkillDef>(new SkillDefInfo
             {
                 skillName = "wyatt_special_maid",
                 skillNameToken = WYATT_PREFIX + "SPECIAL_MAID_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "SPECIAL_MAID_DESCRIPTION",
-                skillIcon = Modules.Assets.LoadAsset<Sprite>("texIconWyattSpecial"),
+                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattSpecial"),
                 activationState = DeployMaidState,
                 activationStateMachineName = "MAID",
                 baseMaxStock = 1,
@@ -387,7 +414,7 @@ She'll love this, I know.
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
+                interruptPriority = InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
                 isCombatSkill = true,
                 mustKeyPress = true,
@@ -404,7 +431,7 @@ She'll love this, I know.
             R2API.LanguageAPI.Add(specialSkillDef.skillNameToken, "M88 MAID");
             R2API.LanguageAPI.Add(specialSkillDef.skillDescriptionToken, "Send your MAID unit barreling through enemies for 500% damage before stopping briefly and returning to you, able to hit enemies on the way back. Using this skill again while MAID is deployed reels you to the MAID and rebounds you off of her, bashing into an enemy for X% damage.");
 
-            Modules.Skills.AddSpecialSkills(bodyPrefab, specialSkillDef);
+            Skills.AddSpecialSkills(bodyPrefab, specialSkillDef);
         }
 
         public override void InitializeSkins()
@@ -418,7 +445,7 @@ She'll love this, I know.
 
             #region DefaultSkin
             //this creates a SkinDef with all default fields
-            SkinDef defaultSkin = Modules.Skins.CreateSkinDef(WYATT_PREFIX + "DEFAULT_SKIN_NAME",
+            SkinDef defaultSkin = Skins.CreateSkinDef("DEFAULT_SKIN",
                 Assets.LoadAsset<Sprite>("texIconWyattSkinDefault"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject);
@@ -433,7 +460,7 @@ She'll love this, I know.
             //add new skindef to our list of skindefs. this is what we'll be passing to the SkinController
             skins.Add(defaultSkin);
             #endregion
-            
+
             //uncomment this when you have a mastery skin
             #region MasterySkin
             /*

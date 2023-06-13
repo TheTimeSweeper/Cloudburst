@@ -1,4 +1,5 @@
-﻿using Cloudburst.Cores;
+﻿using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
 using EntityStates.Merc;
 using RoR2;
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine.Networking;
 
 namespace Cloudburst.Wyatt.Components
 {
-
     public class SpikingComponent : MonoBehaviour
     {
         public CharacterBody spikerBody;
@@ -26,71 +26,90 @@ namespace Cloudburst.Wyatt.Components
             {
                 useRigidBody = true;
                 rigidMotor = base.gameObject.GetComponent<RigidbodyMotor>();
+                rigidMotor.moveVector = Vector3.zero;
             }
             spikerBody = originalSpiker.GetComponent<CharacterBody>();
             direction = Vector3.down;
             if (characterMotor)
             {
+                characterMotor.velocity = Vector3.zero;
                 characterMotor.disableAirControlUntilCollision = true;
 
                 characterMotor.onHitGroundServer += Motor_onHitGround;
             }
         }
 
+        void OnCollisionEnter(Collision collision)
+        {
+            Log.Warning("collided with " + LayerMask.LayerToName(collision.collider.gameObject.layer));
+            Log.Warning("moveVector " + rigidMotor.moveVector);
+        }
+
         void Motor_onHitGround(ref CharacterMotor.HitGroundInfo hitGroundInfo)
         {
 
-            EffectManager.SpawnEffect(Effects.tiredOfTheDingDingDing, new EffectData
-            {
-                scale = 10,
-                rotation = Quaternion.identity,
-                origin = hitGroundInfo.position,
-            }, true);
+            Vector3 position = hitGroundInfo.position;
 
-            new BlastAttack
-            {
-                position = hitGroundInfo.position,
-                //baseForce = 3000,
-                attacker = originalSpiker,
-                inflictor = originalSpiker,
-                teamIndex = spikerBody.teamComponent.teamIndex,
-                baseDamage = spikerBody.damage * 5,
-                attackerFiltering = AttackerFiltering.NeverHitSelf,
-                //bonusForce = new Vector3(0, -3000, 0),
-                damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
-                crit = spikerBody.RollCrit(),
-                damageColorIndex = DamageColorIndex.WeakPoint,
-                falloffModel = BlastAttack.FalloffModel.None,
-                //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
-                procCoefficient = 0,
-                radius = 15
-            }.Fire();
-
-            var sphere = Physics.OverlapSphere(transform.position, 10);
-            foreach (var body in sphere)
-            {
-                var cb = body.gameObject.GetComponentInParent<CharacterBody>();
-                if (cb)
-                {
-                    bool cannotHit = false;
-                    if (cb.isChampion)
-                    {
-                        cannotHit = true;
-                    }
-                    if (cb.baseNameToken == "BROTHER_BODY_NAME")
-                    {
-                        cannotHit = false;
-                    }
-                    if (cb.characterMotor && cb != characterMotor.body && cannotHit == false && !(cb.gameObject == originalSpiker))
-                    {
-                        CCUtilities.AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 25, transform.position, 25, 5, false);
-                    }
-                }
-            }
+            bigSlam(position);
 
             characterMotor.onHitGroundServer -= Motor_onHitGround;
 
             Destroy(this);
+        }
+
+        private void bigSlam(Vector3 position)
+        {
+            if (NetworkServer.active)
+            {
+                EffectManager.SpawnEffect(WyattEffects.tiredOfTheDingDingDing, new EffectData
+                {
+                    scale = 10,
+                    rotation = Quaternion.identity,
+                    origin = position,
+                }, true);
+
+                new BlastAttack
+                {
+                    position = position,
+                    //baseForce = 3000,
+                    attacker = originalSpiker,
+                    inflictor = originalSpiker,
+                    teamIndex = spikerBody.teamComponent.teamIndex,
+                    baseDamage = spikerBody.damage * 5,
+                    attackerFiltering = AttackerFiltering.NeverHitSelf,
+                    //bonusForce = new Vector3(0, -3000, 0),
+                    damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
+                    crit = spikerBody.RollCrit(),
+                    damageColorIndex = DamageColorIndex.WeakPoint,
+                    falloffModel = BlastAttack.FalloffModel.None,
+                    //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
+                    procCoefficient = 0,
+                    radius = 15
+                }.Fire();
+
+            }
+
+            Collider[] sphereColliders = Physics.OverlapSphere(transform.position, 10);
+            foreach (Collider body in sphereColliders)
+            {
+                CharacterBody characterBody = body.gameObject.GetComponentInParent<CharacterBody>();
+                if (characterBody)
+                {
+                    bool cannotHit = false;
+                    if (characterBody.isChampion)
+                    {
+                        cannotHit = true;
+                    }
+                    if (characterBody.baseNameToken == "BROTHER_BODY_NAME")
+                    {
+                        cannotHit = false;
+                    }
+                    if (characterBody.characterMotor && characterBody != characterMotor.body && cannotHit == false && !(characterBody.gameObject == originalSpiker))
+                    {
+                        CCUtilities.AddExplosionForce(characterBody.characterMotor, characterBody.characterMotor.mass * 25, transform.position, 25, 5, false);
+                    }
+                }
+            }
         }
 
         public void OnDestroy()
@@ -131,7 +150,7 @@ namespace Cloudburst.Wyatt.Components
                 }
                 else
                 {
-                    rigidMotor.rootMotion += wow;
+                    rigidMotor.AddDisplacement(wow);
                 }
             }
         }

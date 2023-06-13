@@ -1,4 +1,4 @@
-﻿using Cloudburst.Characters;
+﻿using Cloudburst.Characters.Wyatt;
 using JetBrains.Annotations;
 using RoR2;
 using RoR2.Skills;

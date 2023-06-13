@@ -1,4 +1,5 @@
-﻿using Cloudburst.Cores;
+﻿using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
 using Cloudburst.GlobalComponents;
 using RoR2;
 using RoR2.Projectile;
@@ -73,7 +74,7 @@ namespace Cloudburst.Wyatt.Components
                     //pls god
                     start = component.transform.position
                 };
-                EffectManager.SpawnEffect(Effects.maidTouchEffect, effectData, true);
+                EffectManager.SpawnEffect(WyattEffects.maidTouchEffect, effectData, true);
 
                 EffectData nads = new EffectData
                 {
@@ -81,7 +82,7 @@ namespace Cloudburst.Wyatt.Components
                     scale = 1,
                     //pls vs
                 };
-                EffectManager.SpawnEffect(Effects.maidCleanseEffect, nads, true);
+                EffectManager.SpawnEffect(WyattEffects.maidCleanseEffect, nads, true);
 
                 Util.PlaySound("step_land_shallow_water_01", component.gameObject);
 
@@ -89,8 +90,8 @@ namespace Cloudburst.Wyatt.Components
                 cing.maxVelocityMagnitude = 3;
                 cing.antiGravity = 1;
 
-                var effect = controller.gameObject.AddComponent<ProjectileEffectManager>();
-                effect.effect = Modules.Assets.LoadAsset<GameObject>("MAIDTriggerEffect");
+                //var effect = controller.gameObject.AddComponent<ProjectileEffectManager>();
+                //effect.effect = WyattEffects.maidTriggerEffect;
             }
         }
 

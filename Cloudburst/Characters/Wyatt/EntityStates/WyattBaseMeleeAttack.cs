@@ -1,4 +1,7 @@
 ﻿using System;
+using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
+using Cloudburst.Wyatt.Components;
 using EntityStates;
 using RoR2;
 using RoR2.Skills;
@@ -15,7 +18,7 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public int step = 0;
         public static float recoilAmplitude = 0.7f;
-        public static float percentDurationBeforeInterruptable = 0.5f;
+        public static float percentDurationBeforeInterruptable = 0.6f;
         public float bloom = 1f;
         //public static float comboFinisherBaseDuration = 0.5f;
         //public static float comboFinisherhitPauseDuration = 0.15f;
@@ -31,7 +34,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                 return this.step == 2;
             }
         }
-
+        
         private bool spawnEffect = false;
         private string animationStateName;
 
@@ -49,7 +52,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             //this.hitBoxGroupName = "TempHitbox";
             this.hitBoxGroupName = "TempHitboxLarge";
-            this.mecanimHitboxActiveParameter = "BroomSwing.active";
+            this.mecanimHitboxActiveParameter = GetMecanimActiveParameter();
             this.baseDuration = 0.8f;
             this.duration = this.baseDuration / base.attackSpeedStat;
             this.hitPauseDuration = 0.05f;
@@ -82,7 +85,10 @@ namespace Cloudburst.CEntityStates.Wyatt
             {
                 // LogCore.LogW("finisher");
                 this.hitBoxGroupName = "TempHitbox";
-                forceVector = new Vector3(0, 1000, 0);
+                if (isGrounded)
+                {
+                    forceVector = new Vector3(0, 1000, 0);
+                }
                 //this.baseDuration = 1f;
                 //this.duration = this.baseDuration / base.attackSpeedStat;
                 this.hitPauseDuration = 0.2f;
@@ -95,6 +101,20 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.characterMotor.ApplyForce(GetAimRay().direction * 100, true, false);
 
 
+        }
+
+        private string GetMecanimActiveParameter()
+        {
+            switch (step)
+            {
+                default:
+                case 0:
+                    return "BroomSwing1.active";
+                case 1:
+                    return "BroomSwing2.active";
+                case 2:
+                    return "BroomSwing3.active";
+            }
         }
 
         public override void FixedUpdate()
@@ -127,12 +147,14 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void AuthorityModifyOverlapAttack(OverlapAttack overlapAttack)
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
-            if (this.isComboFinisher)
+            if (this.isComboFinisher && isGrounded)
             {
                 //overlapAttack.damageType = DamageTypeCore.antiGrav | DamageType.Generic;
-                //R2API.DamageAPI.AddModdedDamageType(overlapAttack, DamageTypeCore.antiGrav);
+                R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage); 
             }
         }
+
+        
 
         public override void PlayAnimation()
         {
@@ -152,7 +174,13 @@ namespace Cloudburst.CEntityStates.Wyatt
                     this.animationStateName = "Swing2";
                     break;
                 case 2:
-                    this.animationStateName = "Swing3";
+                    if (base.isGrounded)
+                    {
+                        this.animationStateName = "Swing3";
+                    } else
+                    {
+                        animationStateName = "Swing3-2";
+                    }
                     break;
             }
             //bool moving = this.animator.GetBool("isMoving");
@@ -163,13 +191,27 @@ namespace Cloudburst.CEntityStates.Wyatt
             //    base.PlayCrossfade("FullBody, Override", this.animationStateName, "BroomSwing.playbackRate", this.duration, 0.05f);
             //}
 
-            base.PlayCrossfade("Gesture, Override", this.animationStateName, "BroomSwing.playbackRate", this.duration, 0.1f);
+            base.PlayCrossfade("Gesture, Override", this.animationStateName, "BroomSwing.playbackRate", this.duration, 0.05f);
         }
 
         public override void OnMeleeHitAuthority()
         {
             base.OnMeleeHitAuthority();
             base.characterBody.AddSpreadBloom(this.bloom);
+            if (isComboFinisher)
+            {
+                if (!base.isGrounded)
+                {
+                    for (int i = 0; i < hitResults.Count; i++)
+                    {
+                        HurtBox hurtBox = hitResults[i];
+
+                        SpikingComponent cringe = hurtBox.healthComponent.body.gameObject.AddComponent<SpikingComponent>();
+                        cringe.interval = 1f;
+                        cringe.originalSpiker = this.gameObject;
+                    }
+                }
+            }
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

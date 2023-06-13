@@ -1,4 +1,5 @@
-﻿using Cloudburst.Cores;
+﻿using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
 using EntityStates.Merc;
 using EntityStates.Toolbot;
 using RoR2;
@@ -90,10 +91,10 @@ namespace Cloudburst.Wyatt.Components
         {
             SetToEmpty();
 
-            EffectManager.SpawnEffect(Effects.bigZapEffectPrefabArea,// Effects.wyattSlam, 
+            EffectManager.SpawnEffect(WyattEffects.bigZapEffectPrefabArea,// Effects.wyattSlam, 
                                       new EffectData
                                       {
-                                          scale = 10,
+                                          scale = 30,
                                           rotation = Quaternion.identity,
                                           origin = position,
                                       },
@@ -128,10 +129,10 @@ namespace Cloudburst.Wyatt.Components
                 falloffModel = BlastAttack.FalloffModel.None,
                 //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
                 procCoefficient = 0,
-                radius = 15
+                radius = 30
             }.Fire();
 
-            Collider[] sphere = Physics.OverlapSphere(transform.position, 10);
+            Collider[] sphere = Physics.OverlapSphere(transform.position, 30);
             foreach (Collider body in sphere)
             {
                 var cb = body.gameObject.GetComponentInParent<CharacterBody>();
@@ -169,7 +170,7 @@ namespace Cloudburst.Wyatt.Components
                 baseForce = dir.normalized * explosionForce;
             }
             //baseForce.z = 0;
-            body.ApplyForce(baseForce);
+            //body.ApplyForce(baseForce);
 
             //if (upliftModifier != 0)
             //{
@@ -211,7 +212,7 @@ namespace Cloudburst.Wyatt.Components
                 {
                     motor.Motor.ForceUnground();
                     characterBody.healthComponent.TakeDamageForce(direction * -5000, true, false);
-                    EffectManager.SpawnEffect(Effects.ericAndreMoment, new EffectData
+                    EffectManager.SpawnEffect(WyattEffects.ericAndreMoment, new EffectData
                     {
                         scale = 2,
                         rotation = Quaternion.identity,

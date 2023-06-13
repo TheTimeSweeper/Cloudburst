@@ -1491,7 +1491,7 @@ GameObject:
   - component: {fileID: 1666864959}
   - component: {fileID: 1666864960}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: UnattachedAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1534,6 +1534,14 @@ MonoBehaviour:
     - animations:
       - animationState: Swing2
         layer: 2
+    comboTimer: 0
+    comboStep: 0
+  - name: secondary
+    keyCode: 324
+    comboAnimations:
+    - animations:
+      - animationState: kickSwing
+        layer: 3
     comboTimer: 0
     comboStep: 0
   aimPitch: 0.5
@@ -1628,21 +1636,6 @@ PrefabInstance:
     - target: {fileID: 6668611719735250672, guid: a7ee40a99bde94b40b6a69ea785832f9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6668611719735250672, guid: a7ee40a99bde94b40b6a69ea785832f9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6668611719735250672, guid: a7ee40a99bde94b40b6a69ea785832f9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6668611719735250672, guid: a7ee40a99bde94b40b6a69ea785832f9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857892365819727463, guid: a7ee40a99bde94b40b6a69ea785832f9,

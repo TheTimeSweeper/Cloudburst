@@ -5,7 +5,7 @@ using RoR2.Projectile;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Cloudburst.Characters
+namespace Cloudburst.Characters.Wyatt
 {
     public class WyattAssets
     {
@@ -16,7 +16,6 @@ namespace Cloudburst.Characters
         public static void InitAss()
         {
             CreateProjectiles();
-
         }
 
         private static void CreateProjectiles()
@@ -68,18 +67,23 @@ namespace Cloudburst.Characters
             orb.enabled = false;
 
             var goost = Modules.Assets.LoadAsset<GameObject>("WyattMaidBoomerangProjectile");
+            MaterialSwapper.RunSwappers(goost);
 
             goost.AddComponent<ProjectileGhostController>();
 
             prefab.GetComponent<ProjectileController>().ghostPrefab = goost;
             prefab.GetComponent<ProjectileController>().procCoefficient = 1;
             prefab.GetComponent<ProjectileDotZone>().fireFrequency = 0.5f; ;
-            prefab.GetComponent<BoomerangProjectile>().distanceMultiplier = 0.2f;
+            BoomerangProjectile boomerangProjectile = prefab.GetComponent<BoomerangProjectile>();
+            boomerangProjectile.distanceMultiplier = 0.2f;
+            boomerangProjectile.canHitWorld = false;
+            prefab.GetComponent<ProjectileOverlapAttack>().damageCoefficient = 1;
             prefab.AddComponent<MAIDProjectileController>();
             awful.AddComponent<SphereCollider>().radius = 3;
             awful.GetComponent<SphereCollider>().isTrigger = true;
+            prefab.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
-            GameObject maidCleanEffect = Modules.Assets.LoadAsset<GameObject>("MAIDCleanEffect"); //Modules.Assets.OldEffectCore_CreateEffect("MAIDCleanEffect", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
+            GameObject maidCleanEffect = WyattEffects.maidCleanseEffect;
 
             Modules.Assets.AddNewEffectDef(maidCleanEffect);
 

@@ -126,7 +126,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                                 attacker = base.gameObject,
                                 inflictor = base.gameObject,
                                 teamIndex = base.GetTeam(),
-                                baseDamage = 3,//(3 + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * this.damageStat,
+                                baseDamage = 3 * damageStat,//(3 + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * this.damageStat,
                                 attackerFiltering = AttackerFiltering.NeverHitSelf,
                                 // bonusForce = new Vector3(0, -3000, 0),
                                 damageType = DamageType.Stun1s,// | DamageTypeCore.spiked,

@@ -1,5 +1,5 @@
 ﻿using System;
-using Cloudburst.Characters;
+using Cloudburst.Characters.Wyatt;
 using RoR2;
 using RoR2.Stats;
 using UnityEngine;
@@ -40,22 +40,22 @@ namespace Cloudburst.Wyatt.Components
         {
             grooveEffect2.Play();
             grooveEffect.Play();
-            RPCPlayGrooveEFfect();
+            RpcPlayGrooveEFfect();
         }
         [ClientRpc]
-        private void RPCPlayGrooveEFfect()
+        private void RpcPlayGrooveEFfect()
         {
             grooveEffect2.Play();
             grooveEffect.Play();
         }
-
+        
         private void PlayFlowEffectServer()
         {
             flowEffect.Play();
-            RPCPlayFlowEFfect();
+            RpcPlayFlowEFfect();
         }
         [ClientRpc]
-        private void RPCPlayFlowEFfect()
+        private void RpcPlayFlowEFfect()
         {
             flowEffect.Play();
         }
@@ -63,10 +63,10 @@ namespace Cloudburst.Wyatt.Components
         private void StopFlowEffectServer()
         {
             flowEffect.Stop();
-            RPCPStopFlowEFfect();
+            RpcPStopFlowEFfect();
         }
         [ClientRpc]
-        private void RPCPStopFlowEFfect()
+        private void RpcPStopFlowEFfect()
         {
             flowEffect.Stop();
         }

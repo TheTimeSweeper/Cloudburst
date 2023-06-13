@@ -15,7 +15,7 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         private bool unstable = false;
 
-        private MAIDManager blaseball = null;
+        private MAIDManager blaseballManager = null;
      
         private bool solarEclipse = false;
 
@@ -24,8 +24,8 @@ namespace Cloudburst.CEntityStates.Wyatt
             // base.activatorSkillSlot.skillDef.baseRechargeInterval = 5;
 
             base.OnEnter();
-            blaseball = GetComponent<MAIDManager>();
-            blaseball.OnRetrival += Blaseball_OnRetrival;
+            blaseballManager = GetComponent<MAIDManager>();
+            blaseballManager.OnRetrival += BlaseballManager_OnRetrival;
             // blaseball.sunset += Blaseball_sunset;
             if (base.isAuthority)
             {
@@ -46,6 +46,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             bool stopped = false;
             // suspend execution for 5 seconds
 
+            base.StartAimMode();
 
             if (base.IsKeyDownAuthority() && stopped == false)
             {
@@ -62,6 +63,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                 //yield return true
             }
 
+            //no more wait. instant explode
             yield return new WaitForSeconds(0);// 0.5f);
 
             base.characterMotor.velocity = new Vector3(0, 0, 0);
@@ -83,7 +85,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             }
         }
 
-        private void Blaseball_OnRetrival(bool nat, GenericSkill arg2, Vector3 dis)
+        private void BlaseballManager_OnRetrival(bool nat, GenericSkill arg2, Vector3 dis)
         {
             solarEclipse = true;
             if (!nat)
@@ -120,7 +122,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                 owner = gameObject,
                 position = aimRay.origin,
                 procChainMask = default,
-                projectilePrefab = Characters.WyattAssets.wyattMaidBubble,
+                projectilePrefab = Characters.Wyatt.WyattAssets.wyattMaidBubble,
                 rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
                 target = null,
                 useFuseOverride = false,
@@ -136,7 +138,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             theDevilHasSomeHardToReadFinePrint += Time.fixedDeltaTime;
             if (base.isAuthority && base.IsKeyDownAuthority() && solarEclipse == false && unstable == false && theDevilHasSomeHardToReadFinePrint > 0.3f)
             {
-                blaseball.RetrieveMAIDAuthority();
+                blaseballManager.RetrieveMAIDAuthority();
                 unstable = true;
             }
 
