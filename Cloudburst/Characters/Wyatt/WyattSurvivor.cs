@@ -38,6 +38,8 @@ namespace Cloudburst.Characters.Wyatt
             armor = 0f,
 
             jumpCount = 1,
+
+            cameraParamsDepth = -10,
         };
 
         public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[]
@@ -86,7 +88,8 @@ namespace Cloudburst.Characters.Wyatt
 
             WyattEntityStates.AddEntityStates();
 
-            MAIDManager janniePower = bodyPrefab.AddComponent<MAIDManager>();
+            bodyPrefab.AddComponent<MAIDManager>();
+            bodyPrefab.AddComponent<NetworkSpiker>();
 
             SfxLocator sfxLocator = bodyPrefab.GetComponent<SfxLocator>();
             //sfx
@@ -124,6 +127,14 @@ namespace Cloudburst.Characters.Wyatt
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
             On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
+
+            On.RoR2.Projectile.BoomerangProjectile.FixedUpdate += BoomerangProjectile_FixedUpdate;
+        }
+
+        private void BoomerangProjectile_FixedUpdate(On.RoR2.Projectile.BoomerangProjectile.orig_FixedUpdate orig, RoR2.Projectile.BoomerangProjectile self)
+        {
+            orig(self);
+            //Log.Warning($"state: {self.boomerangState} newtork: {self.NetworkboomerangState}");
         }
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
@@ -164,13 +175,13 @@ namespace Cloudburst.Characters.Wyatt
                 self.maxJumpCount++;
             }
 
-            if (self & self.HasBuff(wyattAntiGravBuffDef))
-            {
-                if (self.characterMotor)
-                {
-                    self.characterMotor.useGravity = false;
-                }
-            }
+            //if (self & self.HasBuff(wyattAntiGravBuffDef))
+            //{
+            //    if (self.characterMotor)
+            //    {
+            //        self.characterMotor.useGravity = false;
+            //    }
+            //}
         }
 
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)

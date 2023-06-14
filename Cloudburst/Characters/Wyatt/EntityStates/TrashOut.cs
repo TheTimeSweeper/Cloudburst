@@ -140,22 +140,14 @@ namespace Cloudburst.CEntityStates.Wyatt
 
                             if (target.healthComponent.body && !target.healthComponent.body.isChampion)
                             {
-                                Log.Info($"Check1: {NetworkServer.active}"); //
                                 if ((target.healthComponent.GetComponent<CharacterMotor>() && !target.healthComponent.body.characterMotor.isGrounded) && !target.healthComponent.GetComponent<SpikingComponent>())
                                 {
-                                    Log.Info($"Check2: {NetworkServer.active}");
-
-                                    SpikingComponent based = target.healthComponent.gameObject.AddComponent<SpikingComponent>();
-                                    based.interval = 1f;
-                                    based.originalSpiker = this.gameObject;
+                                    GetComponent<NetworkSpiker>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1);
                                 }
 
                                 else if (target.healthComponent.GetComponent<RigidbodyMotor>() && !target.healthComponent.GetComponent<SpikingComponent>())
                                 {
-                                    Log.Info($"Check3: {NetworkServer.active}");
-                                    SpikingComponent based = target.healthComponent.gameObject.AddComponent<SpikingComponent>();
-                                    based.interval = 1.5f;
-                                    based.originalSpiker = this.gameObject;
+                                    GetComponent<NetworkSpiker>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1.5f);
                                 }
                             }
 

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 5455389
+CRC: 1285205587
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 34d10f48ff5738aaf6b2d4233d1b9350
+    Hash: 389481341c6de7c49139e8775e3f5579
   TypeTreeHash:
     serializedVersion: 2
     Hash: 157035d66400e9759fb955e2ca878927
@@ -76,6 +76,7 @@ Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSpecial.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSpecial2.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/NewWyattSpikeEffect.prefab
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/maskWyattGroovy.mask
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconBuffAntiGrav.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattPrimary.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/animWyatt.controller

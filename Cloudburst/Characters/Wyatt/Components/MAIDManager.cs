@@ -19,7 +19,7 @@ namespace Cloudburst.Wyatt.Components
         private float _stopwatch = 0;
 
         public event Action<bool, GenericSkill, Vector3> OnRetrival;
-        public event Action<GenericSkill> OnDeploy;
+        //public event Action<GenericSkill> OnDeploy;
         public event Action sunset;
 
         private SkillLocator skillLocator;
@@ -48,7 +48,6 @@ namespace Cloudburst.Wyatt.Components
         {
             if (startReel == true && maid && Util.HasEffectiveAuthority(gameObject))
             {
-                Log.Info("goin");
                 body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
                 Vector3 lossyScale = maid.transform.lossyScale;
                 var volume = lossyScale.x * 2f * (lossyScale.y * 2f) * (lossyScale.z * 2f);
@@ -63,7 +62,7 @@ namespace Cloudburst.Wyatt.Components
 
                 if (_stopwatch > 5)
                 {
-                    Destroy(maid);
+                    DestroymaidAuthority();
                     Destroy(winch);
                     body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
                     characterMotor.velocity = Vector3.zero;
@@ -76,8 +75,7 @@ namespace Cloudburst.Wyatt.Components
                 if (distance <= 1.185805)
                 {
                     body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
-
-                    Destroy(maid);
+                    DestroymaidAuthority();
                     Destroy(winch);
                     characterMotor.velocity = Vector3.up * 30f;
                     startReel = false;
@@ -85,17 +83,66 @@ namespace Cloudburst.Wyatt.Components
                 }
             }
         }
+
+        private void DestroymaidAuthority()
+        {
+            if (NetworkServer.active)
+            {
+                NetworkServer.Destroy(maid);
+            }
+            else
+            {
+                CmdDestroymaid();
+            }
+        }
+
+        [Command]
+        private void CmdDestroymaid()
+        {
+            NetworkServer.Destroy(maid);
+        }
         #region Deployment
         public void DeployMAIDAuthority(GameObject maid)
         {
             if (NetworkServer.active)
             {
                 DeployMAIDInternal(maid);
+                //RpcDeployMAID(maid);
                 return;
             }
-            CmdDeployMAIDInternal(maid);
+            //CmdDeployMAID(maid);
         }
 
+        [ClientRpc]
+        private void RpcDeployMAID(GameObject maid)
+        {
+            DeployMAIDInternal(maid);
+        }
+
+        [Command]
+        private void CmdDeployMAID(GameObject maid)
+        {
+            DeployMAIDInternal(maid);
+            //RpcDeployMAID(maid);
+        }
+
+        private void DeployMAIDInternal(GameObject maid)
+        {
+            //      CloudburstPlugin.Destroy(this.maid);
+            //    CloudburstPlugin.Destroy(winch);
+            //  CCUtilities.LogI("Deployed maid!");
+
+            this.maid = maid;
+            //RpcSetRetrieve();
+        }
+
+        public void GetMAID()
+        {
+            // OnRetrival.Invoke(true, skillLocator.special);
+            //Destroy(winch);
+
+        }
+        
         public GameObject GetWinch(GameObject winch)
         {
             if (this.winch)
@@ -107,40 +154,15 @@ namespace Cloudburst.Wyatt.Components
 
             return maid;
         }
-
-        public void GetMAID()
-        {
-            // OnRetrival.Invoke(true, skillLocator.special);
-            //Destroy(winch);
-
-        }
-
-        [Server]
-        private void DeployMAIDInternal(GameObject maid)
-        {
-            //      CloudburstPlugin.Destroy(this.maid);
-            //    CloudburstPlugin.Destroy(winch);
-            //  CCUtilities.LogI("Deployed maid!");
-            this.maid = maid;
-            RpcSetRetrieve();
-        }
-
-        [Command]
-        private void CmdDeployMAIDInternal(GameObject maid)
-        {
-            DeployMAIDInternal(maid);
-        }
         #endregion
 
         #region Retrival
-        [Server]
+
         private void RetrieveMAIDInternal()
         {
-            Log.Info("Retrieved maid!");
             if (maid)
             {
 
-                Log.Info("maid exists");
                 _stopwatch = 0;
                 startReel = true;
 
@@ -155,20 +177,24 @@ namespace Cloudburst.Wyatt.Components
             }
         }
 
-        [Command]
-        private void CmdRetrieveMAIDInternal()
-        {
-            RetrieveMAIDInternal();
-        }
-
         public void RetrieveMAIDAuthority()
         {
             if (NetworkServer.active)
             {
-                RetrieveMAIDInternal();
+                RpcRetrieveMAID();
                 return;
             }
             CmdRetrieveMAIDInternal();
+        }
+        [ClientRpc]
+        private void RpcRetrieveMAID()
+        {
+            RetrieveMAIDInternal();
+        }
+        [Command]
+        private void CmdRetrieveMAIDInternal()
+        {
+            RpcRetrieveMAID();
         }
         #endregion
 
@@ -181,10 +207,10 @@ namespace Cloudburst.Wyatt.Components
             //  skillLocator.special.UnsetSkillOverride(this, Custodian.throwPrimary, GenericSkill.SkillOverridePriority.Replacement);
             //skillLocator.special.SetSkillOverride(this, Custodian.throwPrimary, GenericSkill.SkillOverridePriority.Replacement);
         }
-        [ClientRpc]
-        private void RpcSetRetrieve()
-        {
-            OnDeploy?.Invoke(skillLocator.special);
-        }
+        //[ClientRpc]
+        //private void RpcSetRetrieve()
+        //{
+        //    OnDeploy?.Invoke(skillLocator.special);
+        //}
     }
 }

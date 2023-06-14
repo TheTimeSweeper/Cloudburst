@@ -122,11 +122,11 @@ namespace Cloudburst.CEntityStates.Wyatt
                 owner = gameObject,
                 position = aimRay.origin,
                 procChainMask = default,
-                projectilePrefab = Characters.Wyatt.WyattAssets.wyattMaidBubble,
+                projectilePrefab = Characters.Wyatt.WyattAssets.wyattMaidBoomerang,
                 rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
                 target = null,
                 useFuseOverride = false,
-                useSpeedOverride = false
+                useSpeedOverride = false,
             };
             ProjectileManager.instance.FireProjectile(info);
         }

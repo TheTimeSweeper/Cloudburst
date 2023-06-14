@@ -41,8 +41,11 @@ namespace Cloudburst.Wyatt.Components
 
         void OnCollisionEnter(Collision collision)
         {
-            Log.Warning("collided with " + LayerMask.LayerToName(collision.collider.gameObject.layer));
-            Log.Warning("moveVector " + rigidMotor.moveVector);
+            if(collision.collider.gameObject.layer == LayerIndex.world.intVal)
+            {
+                bigSlam(collision.contacts[0].point);
+                Destroy(this);
+            }
         }
 
         void Motor_onHitGround(ref CharacterMotor.HitGroundInfo hitGroundInfo)

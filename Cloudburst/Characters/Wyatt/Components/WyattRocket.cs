@@ -26,12 +26,15 @@ namespace Cloudburst.Wyatt.Components
         private List<HurtBox> victimsStruck = new List<HurtBox>();
 
         private float hitStopwatch = 0;
+        private TeamComponent teamComponent;
+
         public void Start()
         {
             characterBody = GetComponent<CharacterBody>();
             direction = characterBody.inputBank.aimDirection;
             motor = characterBody.characterMotor;
             characterDirection = GetComponent<CharacterDirection>();
+            teamComponent = GetComponent<TeamComponent>();
 
             attack = new OverlapAttack()
             {
@@ -113,7 +116,7 @@ namespace Cloudburst.Wyatt.Components
                 origin = hitGroundInfo.position,
             }, true);*/
 
-            new BlastAttack
+            BlastAttack blast = new BlastAttack
             {
                 position = position,
                 //baseForce = 3000,
@@ -130,7 +133,9 @@ namespace Cloudburst.Wyatt.Components
                 //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
                 procCoefficient = 0,
                 radius = 30
-            }.Fire();
+            };
+            R2API.DamageAPI.AddModdedDamageType(blast, WyattDamageTypes.antiGravDamage);
+
 
             Collider[] sphere = Physics.OverlapSphere(transform.position, 30);
             foreach (Collider body in sphere)
@@ -138,16 +143,14 @@ namespace Cloudburst.Wyatt.Components
                 var cb = body.gameObject.GetComponentInParent<CharacterBody>();
                 if (cb)
                 {
-                    bool cannotHit = false;
-                    if (cb.isChampion)
-                    {
-                        cannotHit = true;
-                    }
-                    if (cb.baseNameToken == "BROTHER_BODY_NAME")
-                    {
-                        cannotHit = false;
-                    }
-                    if (cb.characterMotor && cb != characterBody && cannotHit == false)
+                    //if (cb.isChampion)
+                    //    continue;
+                    //if (cb.baseNameToken == "BROTHER_BODY_NAME")
+                    //    continue;
+                    //fuck it. float all
+                    if (cb.teamComponent.teamIndex == teamComponent.teamIndex)
+                        continue;
+                    if (cb.characterMotor && cb != characterBody)
                     {
                         AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 25, transform.position, 25, 5, false);
                     }
@@ -191,7 +194,6 @@ namespace Cloudburst.Wyatt.Components
                 if (stopwatch >= (interval - 0.001f) && hit == false)
                 {
                     hit = true;
-                    Log.Info("force applied at end");
                     motor.ApplyForce((direction * 125 * Assaulter2.speedCoefficient), true, false);
                     characterDirection.forward = motor.rootMotion.normalized;
                 }

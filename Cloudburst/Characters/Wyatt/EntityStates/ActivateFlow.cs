@@ -18,6 +18,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             {
                 walkman.ActivateFlowAuthority();
             }
+            PlayAnimation("LeftArm, Override", "Groovy");
         }
 
  

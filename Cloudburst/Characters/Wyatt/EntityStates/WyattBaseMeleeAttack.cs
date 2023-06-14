@@ -37,6 +37,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         
         private bool spawnEffect = false;
         private string animationStateName;
+        private bool isUppercut;
 
         public override bool allowExitFire
         {
@@ -46,61 +47,46 @@ namespace Cloudburst.CEntityStates.Wyatt
             }
         }
 
- 
-
         public override void OnEnter()
         {
             //this.hitBoxGroupName = "TempHitbox";
             this.hitBoxGroupName = "TempHitboxLarge";
+            if (isComboFinisher) this.hitBoxGroupName = "TempHitbox";
             this.mecanimHitboxActiveParameter = GetMecanimActiveParameter();
-            this.baseDuration = 0.8f;
+            this.baseDuration = 0.5f;
+            if (isComboFinisher) baseDuration = 0.8f;
             this.duration = this.baseDuration / base.attackSpeedStat;
-            this.hitPauseDuration = 0.05f;
-            this.damageCoefficient = 2f;
+            this.hitPauseDuration = 0.01f;
+            if (isComboFinisher) hitPauseDuration = 0.05f;
+            this.damageCoefficient = 1f;
+            if (isComboFinisher) damageCoefficient = 2f;
             //this.damageCoefficient = (2f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * 0.1f));
             this.procCoefficient = 1f;
             this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
-            this.shorthopVelocityFromHit = 5;
+            this.shorthopVelocityFromHit = 3;
+            if (isComboFinisher) shorthopVelocityFromHit = 5f;
+            isUppercut = base.isGrounded;
 
             spawnEffect = false;
             //swingEffectPrefab = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/GrandparentGroundSwipeTrailEffect");
             hitEffectPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/omnieffect/omniimpactvfxmedium");
             //swingEffectMuzzleString = "WinchHole";//"//SwingTrail";
 
-            /*var obj = CloudburstPlugin.Instantiate<GameObject>(AssetsCore.mainAssetBundle.LoadAsset<GameObject>("mdlSpitter"), new Vector3(201f, -128.8f, 143f), Quaternion.Euler(new Vector3(0, -43.019f, 0)));
-
-            obj.layer = LayerIndex.world.intVal;
-            obj.transform.position = base.transform.position;
-            obj.transform.localScale = new Vector3(10, 10, 10);
-            NetworkServer.Spawn(obj);*/
-
             /*EffectManager.SpawnEffect(Effects.shaderEffect, new EffectData()
             {
                 origin = base.transform.position,
             }, false);*/
 
-            //LogCore.LogW(step);
-
             if (isComboFinisher)
             {
-                // LogCore.LogW("finisher");
                 this.hitBoxGroupName = "TempHitbox";
-                if (isGrounded)
-                {
-                    forceVector = new Vector3(0, 1000, 0);
-                }
-                //this.baseDuration = 1f;
-                //this.duration = this.baseDuration / base.attackSpeedStat;
-                this.hitPauseDuration = 0.2f;
-                this.damageCoefficient = 4f;
+                //if (isUppercut)
+                //{
+                //    forceVector = new Vector3(0, 1000, 0);
+                //}
             }
-            //else { LogCore.LogW("not finisher"); }
 
             base.OnEnter();
-            base.characterDirection.forward = base.GetAimRay().direction;
-            base.characterMotor.ApplyForce(GetAimRay().direction * 100, true, false);
-
-
         }
 
         private string GetMecanimActiveParameter()
@@ -147,7 +133,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void AuthorityModifyOverlapAttack(OverlapAttack overlapAttack)
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
-            if (this.isComboFinisher && isGrounded)
+            if (this.isComboFinisher && isUppercut)
             {
                 //overlapAttack.damageType = DamageTypeCore.antiGrav | DamageType.Generic;
                 R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage); 
@@ -174,7 +160,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                     this.animationStateName = "Swing2";
                     break;
                 case 2:
-                    if (base.isGrounded)
+                    if (isUppercut)
                     {
                         this.animationStateName = "Swing3";
                     } else
@@ -200,15 +186,20 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.characterBody.AddSpreadBloom(this.bloom);
             if (isComboFinisher)
             {
-                if (!base.isGrounded)
+                for (int i = 0; i < hitResults.Count; i++)
                 {
-                    for (int i = 0; i < hitResults.Count; i++)
-                    {
-                        HurtBox hurtBox = hitResults[i];
+                    HurtBox hurtBox = hitResults[i];
 
-                        SpikingComponent cringe = hurtBox.healthComponent.body.gameObject.AddComponent<SpikingComponent>();
-                        cringe.interval = 1f;
-                        cringe.originalSpiker = this.gameObject;
+                    if (!isUppercut)
+                    {
+                        GetComponent<NetworkSpiker>().ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 1);
+                    } else
+                    {
+                        CharacterMotor hitMotor = hurtBox.healthComponent.body.GetComponent<CharacterMotor>();
+                        if (hitMotor)
+                        {
+                            hitMotor.ApplyForce(Vector3.up * hitMotor.mass * 10, true, true);
+                        }
                     }
                 }
             }

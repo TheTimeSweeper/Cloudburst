@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Cloudburst.Wyatt.Components
 {
@@ -38,10 +39,12 @@ namespace Cloudburst.Wyatt.Components
 
         public void Start()
         {
-            owner = controller.owner;
             //I AM VIOLATING MVC PLEAS FORGIV
             animator = controller.ghost.GetComponent<Animator>();
             animator.Play("Zoom");
+            
+            owner = controller.owner;
+
             owner.gameObject.GetComponent<MAIDManager>().DeployMAIDAuthority(base.gameObject);
             boomer.onFlyBack.AddListener(OnHit);
         }
@@ -97,11 +100,8 @@ namespace Cloudburst.Wyatt.Components
 
         public void FixedUpdate()
         {
-
-            //CCUtilities.LogI($"fixed update 1{triggered}");
-            if (boomer.stopwatch >= boomer.maxFlyStopwatch && triggered == false)
+            if (boomer.boomerangState == BoomerangProjectile.BoomerangState.Transition && triggered == false)
             {
-                Log.Info("pause & trigger");
                 triggered = true;
                 pause = true;
                 base.GetComponent<ProjectileProximityBeamController>().enabled = true;
@@ -131,7 +131,6 @@ namespace Cloudburst.Wyatt.Components
             {
                 Destroying = true;
                 owner.gameObject?.GetComponent<MAIDManager>()?.GetMAID();
-                Log.Info(stop);
 
                 owner.gameObject.GetComponent<MAIDManager>().Invoke(stop, distance);
 
