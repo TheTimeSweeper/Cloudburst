@@ -37,16 +37,16 @@ namespace Cloudburst.Characters.Wyatt
 
             //blackHoleIncisionEffect = CreateAsset("UniversalIncison", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
             //wyattSlam = CreateEffect("DebugEffect");//, false, false,      true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Medium);
-            //maidTouchEffect = CreateEffect("TracerCaptainDefenseMatrix");
+            maidTouchEffect = CreateEffect("TracerCaptainDefenseMatrix");
             //wyattGrooveEffect = CreateEffect("WyattGrooveEffect");
-            ericAndreMoment = CreateEffect("NewWyattHitEffect");
-            tiredOfTheDingDingDing = CreateEffect("NewWyattSpikeEffect");
+            ericAndreMoment = CreateEffect("WyattHitEffect");
+            tiredOfTheDingDingDing = CreateEffect("WyattSpikeEffect");
             //fabinin = CreateEffect("fabin");
 
             bigZapEffectPrefabArea = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/lightningstakenova");
-            
+
             //maidTriggerEffect = CreateEffect("MAIDTriggerEffect");
-            maidCleanseEffect = CreateAsset("NewMAIDCleanEffect", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
+            maidCleanseEffect = CreateAsset("MAIDCleanEffect", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
 
         }
 

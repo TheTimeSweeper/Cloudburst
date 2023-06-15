@@ -2,6 +2,7 @@
 using Cloudburst.Characters.Wyatt;
 using EntityStates.Merc;
 using RoR2;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -16,6 +17,7 @@ namespace Cloudburst.Wyatt.Components
         private RigidbodyMotor rigidMotor;
         private bool useRigidBody = false;
         public GameObject originalSpiker;
+        private WyattNetworkCombat networkCombat;
 
         public float interval = 0;
         private float stopwatch;
@@ -29,6 +31,7 @@ namespace Cloudburst.Wyatt.Components
                 rigidMotor.moveVector = Vector3.zero;
             }
             spikerBody = originalSpiker.GetComponent<CharacterBody>();
+            networkCombat = originalSpiker.GetComponent<WyattNetworkCombat>();
             direction = Vector3.down;
             if (characterMotor)
             {
@@ -50,7 +53,6 @@ namespace Cloudburst.Wyatt.Components
 
         void Motor_onHitGround(ref CharacterMotor.HitGroundInfo hitGroundInfo)
         {
-
             Vector3 position = hitGroundInfo.position;
 
             bigSlam(position);
@@ -71,14 +73,14 @@ namespace Cloudburst.Wyatt.Components
                     origin = position,
                 }, true);
 
-                new BlastAttack
+                BlastAttack blastAttack = new BlastAttack
                 {
                     position = position,
                     //baseForce = 3000,
                     attacker = originalSpiker,
                     inflictor = originalSpiker,
                     teamIndex = spikerBody.teamComponent.teamIndex,
-                    baseDamage = spikerBody.damage * 5,
+                    baseDamage = spikerBody.damage * WyattConfig.SpikeDamage.Value, //3,
                     attackerFiltering = AttackerFiltering.NeverHitSelf,
                     //bonusForce = new Vector3(0, -3000, 0),
                     damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
@@ -87,32 +89,29 @@ namespace Cloudburst.Wyatt.Components
                     falloffModel = BlastAttack.FalloffModel.None,
                     //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
                     procCoefficient = 0,
-                    radius = 15
-                }.Fire();
+                    radius = 10
+                };
+                //R2API.DamageAPI.AddModdedDamageType(blastAttack, WyattDamageTypes.antiGravDamage);
+                blastAttack.Fire();
 
             }
 
-            Collider[] sphereColliders = Physics.OverlapSphere(transform.position, 10);
-            foreach (Collider body in sphereColliders)
+            List<CharacterBody> hitBodies = HG.CollectionPool<CharacterBody, List<CharacterBody>>.RentCollection();
+            CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, 10, LayerIndex.CommonMasks.bullet);
+
+            for (int i = 0; i < hitBodies.Count; i++)
             {
-                CharacterBody characterBody = body.gameObject.GetComponentInParent<CharacterBody>();
-                if (characterBody)
+                CharacterBody characterBody = hitBodies[i];
+
+                bool canHit = CCUtilities.ShouldKnockup(characterBody, spikerBody.teamComponent.teamIndex);
+                if (canHit && characterBody != characterMotor.body && characterBody.gameObject != originalSpiker)
                 {
-                    bool cannotHit = false;
-                    if (characterBody.isChampion)
-                    {
-                        cannotHit = true;
-                    }
-                    if (characterBody.baseNameToken == "BROTHER_BODY_NAME")
-                    {
-                        cannotHit = false;
-                    }
-                    if (characterBody.characterMotor && characterBody != characterMotor.body && cannotHit == false && !(characterBody.gameObject == originalSpiker))
-                    {
-                        CCUtilities.AddExplosionForce(characterBody.characterMotor, characterBody.characterMotor.mass * 25, transform.position, 25, 5, false);
-                    }
+                    networkCombat.ApplyKnockupAuthority(characterBody.gameObject, WyattConfig.SpikeImpactLiftForce.Value);// 10);
+                    //CCUtilities.AddExplosionForce(characterBody.characterMotor, characterBody.characterMotor.mass * 25, transform.position, 25, 5, false);
+                    //CCUtilities.AddUpwardForceToBody(characterBody.gameObject, 10);                    
                 }
             }
+            HG.CollectionPool<CharacterBody, List<CharacterBody>>.ReturnCollection(hitBodies);
         }
 
         public void OnDestroy()
@@ -126,6 +125,10 @@ namespace Cloudburst.Wyatt.Components
         public void FixedUpdate()
         {
             stopwatch += Time.fixedDeltaTime;
+
+            if (characterMotor == null && rigidMotor == null)
+                Destroy(this);
+
             if (NetworkServer.active)
             {
                 if (stopwatch >= (interval - 0.001f))
@@ -139,13 +142,6 @@ namespace Cloudburst.Wyatt.Components
                         //rigidMotor.rigid.AddForce((direction * 62.5f * Assaulter2.speedCoefficient), ForceMode.VelocityChange);
                     }
                 }
-
-                if (stopwatch >= interval)
-                {
-                    //		protected void PlayCrossfade(string layerName, string animationStateName, float crossfadeDuration)
-                    Destroy(this);
-                    //base.PlayCrossfade("Fullbody, Override", "BufferEmpty", 0.5f);
-                }
                 var wow = (direction * 2 * Assaulter2.speedCoefficient) * Time.fixedDeltaTime;
                 if (useRigidBody == false)
                 {
@@ -155,6 +151,13 @@ namespace Cloudburst.Wyatt.Components
                 {
                     rigidMotor.AddDisplacement(wow);
                 }
+            }
+
+            if (stopwatch >= interval)
+            {
+                //		protected void PlayCrossfade(string layerName, string animationStateName, float crossfadeDuration)
+                Destroy(this);
+                //base.PlayCrossfade("Fullbody, Override", "BufferEmpty", 0.5f);
             }
         }
     }

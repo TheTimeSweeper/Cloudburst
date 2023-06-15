@@ -1,0 +1,2251 @@
+fileFormatVersion: 2
+guid: 04780bc371ce7164c953077cbfe615bd
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: -2178996702021708778
+    second: WyattRig|Ascend
+  - first:
+      74: 2838511060414773497
+    second: WyattRig|CSS_Idle
+  - first:
+      74: 4395563248599591109
+    second: WyattRig|Descend
+  - first:
+      74: 1954196474990052818
+    second: WyattRig|Idle01
+  - first:
+      74: 5449094616528758041
+    second: WyattRig|JogE
+  - first:
+      74: 8354300216157661964
+    second: WyattRig|JogN
+  - first:
+      74: -4671612661176183061
+    second: WyattRig|JogS
+  - first:
+      74: 2822290392230342542
+    second: WyattRig|JogW
+  - first:
+      74: -6948864694081461727
+    second: WyattRig|Jump
+  - first:
+      74: -4657775486350407777
+    second: WyattRig|Land
+  - first:
+      74: -1517932460360996755
+    second: WyattRig|M1Swing
+  - first:
+      74: -6105208371895449437
+    second: WyattRig|M1Swing01
+  - first:
+      74: -6140900696929656775
+    second: WyattRig|M1Swing02
+  - first:
+      74: -4106322662175490060
+    second: WyattRig|M1Swing03
+  - first:
+      74: -3232268209221935066
+    second: WyattRig|M2_Idle
+  - first:
+      74: -812374244306802122
+    second: WyattRig|M2Swing01
+  - first:
+      74: 2866833939086224097
+    second: WyattRig|M3End
+  - first:
+      74: -4792201578937258734
+    second: WyattRig|M3Idle
+  - first:
+      74: -8344731881239333729
+    second: WyattRig|M3Start
+  - first:
+      74: -422283892986823356
+    second: WyattRig|M4
+  - first:
+      74: -6952746632105599662
+    second: WyattRig|Pitch
+  - first:
+      74: -4107043455755202960
+    second: WyattRig|Run
+  - first:
+      74: -3851348205918815791
+    second: WyattRig|Yaw
+  - first:
+      74: -1132248678070424499
+    second: WyattRig|JogIdle
+  - first:
+      74: 6421005022762746427
+    second: WyattRig|idleIn
+  - first:
+      74: 738959313175021686
+    second: WyattRig|pelv
+  - first:
+      74: 2577767997696830990
+    second: WyattRig|idleIn (1)
+  - first:
+      74: 4580596136712078792
+    second: WyattRig|RunE
+  - first:
+      74: -3269929970619684293
+    second: WyattRig|RunW
+  - first:
+      74: 557046473811060909
+    second: WyattRig|M1Swing03Frankenstein
+  - first:
+      74: 7819342134555375020
+    second: WyattRig|Icon
+  - first:
+      74: -6897234530930244474
+    second: WyattRig|Groovy
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'WyattRig|Ascend' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'WyattRig|Descend'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'WyattRig|Groovy' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Thumb1.L'
+      has translation animation that will be discarded.\n\nClip 'WyattRig|Icon' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Collar.L' has
+      translation animation that will be discarded.\n\t'Ring1.L' has translation
+      animation that will be discarded.\n\t'P1.L' has translation animation that
+      will be discarded.\n\t'Collar.R' has translation animation that will be discarded.\n\nClip
+      'WyattRig|Idle01' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.R'
+      has translation animation that will be discarded.\n\t'Hips' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|idleIn'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thumb1.L'
+      has translation animation that will be discarded.\n\t'Index1.L' has translation
+      animation that will be discarded.\n\t'Mid1.L' has translation animation that
+      will be discarded.\n\t'Ring1.L' has translation animation that will be discarded.\n\t'P1.L'
+      has translation animation that will be discarded.\n\t'Collar.R' has translation
+      animation that will be discarded.\n\t'Index1.R' has translation animation that
+      will be discarded.\n\t'Mid1.R' has translation animation that will be discarded.\n\t'Ring1.R'
+      has translation animation that will be discarded.\n\t'P1.R' has translation
+      animation that will be discarded.\n\nClip 'WyattRig|JogIdle' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Hips' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|JogW'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperLeg.R'
+      has translation animation that will be discarded.\n\nClip 'WyattRig|M1Swing'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
+      has translation animation that will be discarded.\n\t'Hips' has translation
+      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M1Swing01'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'WyattRig|M1Swing02' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LowerBody'
+      has translation animation that will be discarded.\n\t'UpperBody' has translation
+      animation that will be discarded.\n\t'Hips' has translation animation that
+      will be discarded.\n\t'Hips' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'WyattRig|M1Swing03Frankenstein'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'LowerBody'
+      has translation animation that will be discarded.\n\t'Collar.R' has translation
+      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M2Swing01'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.R'
+      has translation animation that will be discarded.\n\t'Hips' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|M3End'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
+      has translation animation that will be discarded.\n\t'Index1.L' has translation
+      animation that will be discarded.\n\t'Mid1.L' has translation animation that
+      will be discarded.\n\t'Ring1.L' has translation animation that will be discarded.\n\t'P1.L'
+      has translation animation that will be discarded.\n\t'Collar.R' has translation
+      animation that will be discarded.\n\t'Index1.R' has translation animation that
+      will be discarded.\n\t'Mid1.R' has translation animation that will be discarded.\n\t'Ring1.R'
+      has translation animation that will be discarded.\n\t'P1.R' has translation
+      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M3Idle'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Index1.R'
+      has translation animation that will be discarded.\n\t'Mid1.R' has translation
+      animation that will be discarded.\n\t'Ring1.R' has translation animation that
+      will be discarded.\n\t'P1.R' has translation animation that will be discarded.\n\t'Hips'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'WyattRig|M3Start' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
+      has translation animation that will be discarded.\n\t'Collar.L' has translation
+      animation that will be discarded.\n\t'Collar.R' has translation animation that
+      will be discarded.\n\t'Hips' has translation animation that will be discarded.\n\t'Hips'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'WyattRig|M4' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.L'
+      has translation animation that will be discarded.\n\t'Ring1.L' has translation
+      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'WyattRig|pelv'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'WyattRig|RunE' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
+      has translation animation that will be discarded.\n\nClip 'WyattRig|RunW' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Hips' has translation
+      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WyattRig|Ascend
+      takeName: WyattRig|Ascend
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|CSS_Idle
+      takeName: WyattRig|CSS_Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Descend
+      takeName: WyattRig|Descend
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 56
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Idle01
+      takeName: WyattRig|Idle01
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|JogE
+      takeName: WyattRig|JogE
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.16494845
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.57719135
+        functionName: FootR
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|JogN
+      takeName: WyattRig|JogN
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.10309278
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5292096
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|JogS
+      takeName: WyattRig|JogS
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.09965636
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.56013745
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|JogW
+      takeName: WyattRig|JogW
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.13745704
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.56013745
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Jump
+      takeName: WyattRig|Jump
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Land
+      takeName: WyattRig|Land
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M1Swing
+      takeName: WyattRig|M1Swing
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 111
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M1Swing01
+      takeName: WyattRig|M1Swing01
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: BroomSwing1.active
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.27069175
+            value: 1
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.47226423
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M1Swing02
+      takeName: WyattRig|M1Swing02
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: BroomSwing2.active
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.27069175
+            value: 1
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.46640486
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M1Swing03
+      takeName: WyattRig|M1Swing03
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: BroomSwing3.active
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.27069175
+            value: 1
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.46640486
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M2_Idle
+      takeName: WyattRig|M2_Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M2Swing01
+      takeName: WyattRig|M2Swing01
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M3End
+      takeName: WyattRig|M3End
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 93
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M3Idle
+      takeName: WyattRig|M3Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M3Start
+      takeName: WyattRig|M3Start
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M4
+      takeName: WyattRig|M4
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Pitch
+      takeName: WyattRig|Pitch
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: WyattRig|Run
+      takeName: WyattRig|Run
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.07560138
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.57731956
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Yaw
+      takeName: WyattRig|Yaw
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: WyattRig|JogIdle
+      takeName: WyattRig|JogIdle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|idleIn
+      takeName: WyattRig|idleIn
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|pelv
+      takeName: WyattRig|pelv
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 5
+    - serializedVersion: 16
+      name: WyattRig|RunE
+      takeName: WyattRig|RunE
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.10996563
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.56357384
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 5
+    - serializedVersion: 16
+      name: WyattRig|RunW
+      takeName: WyattRig|RunW
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.13402063
+        functionName: Footstep
+        data: FootL
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.580756
+        functionName: Footstep
+        data: FootR
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|M1Swing03Frankenstein
+      takeName: WyattRig|M1Swing03Frankenstein
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: BroomSwing3.active
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.27069175
+            value: 1
+            inSlope: 0
+            outSlope: Infinity
+            tangentMode: 97
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.46640486
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Icon
+      takeName: WyattRig|Icon
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WyattRig|Groovy
+      takeName: WyattRig|Groovy
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: UpperLeg.L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: UpperLeg.R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LowerLeg.L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LowerLeg.R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Foot.L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Foot.R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LowerBody
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: UpperBody
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Collar.L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Collar.R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: UpperArm.L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: UpperArm.R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LowerArm.L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LowerArm.R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hand.L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hand.R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Toe.L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Toe.R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb1.L
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb2.L
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb3.L
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index1.L
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index2.L
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index3.L
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid1.L
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid2.L
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid3.L
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring1.L
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring2.L
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring3.L
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P1.L
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P2.L
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P3.L
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb1.R
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb2.R
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Thumb3.R
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index1.R
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index2.R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Index3.R
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid1.R
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid2.R
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mid3.R
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring1.R
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring2.R
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ring3.R
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P1.R
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P2.R
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: P3.R
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: wyattmeme(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: WyattBroom
+      parentName: wyattmeme(Clone)
+      position: {x: 3.8452568, y: 3.6118898, z: -0.51666754}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: WyattMesh
+      parentName: wyattmeme(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: WyattRig
+      parentName: wyattmeme(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone
+      parentName: WyattRig
+      position: {x: 0.000000053085387, y: 0.5818503, z: -0.033374533}
+      rotation: {x: 0.70710665, y: -0, z: 0.7071069, w: 0}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+    - name: Pelvis
+      parentName: Bone
+      position: {x: 4.425141, y: 0.10713352, z: -0.010174535}
+      rotation: {x: 0.5142887, y: -0.48529074, z: 0.5142888, w: 0.48529065}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000004}
+    - name: LowerBody
+      parentName: Pelvis
+      position: {x: -0.0000000027939677, y: -0.00000058218524, z: 0.0000000987784}
+      rotation: {x: -0.9971369, y: 0.000000089406974, z: -0.000000044703487, w: -0.07561732}
+      scale: {x: 0.99999994, y: 1.0000005, z: 1.0000062}
+    - name: UpperBody
+      parentName: LowerBody
+      position: {x: 0.000000003259629, y: 0.79662365, z: -0.000000029656803}
+      rotation: {x: -0.058984574, y: 0.00000012777211, z: -0.000000037630596, w: 0.9982589}
+      scale: {x: 0.9999998, y: 1.0000002, z: 0.99999946}
+    - name: Neck
+      parentName: UpperBody
+      position: {x: 0.0000000055879354, y: 0.8961981, z: 0.0000000018626451}
+      rotation: {x: 0.16657878, y: -0.00000011422508, z: 0.00000002774088, w: 0.9860282}
+      scale: {x: 0.9999999, y: 1.0000007, z: 0.9999991}
+    - name: Head
+      parentName: Neck
+      position: {x: -0.000000040978193, y: 0.47192106, z: 0.0000006314367}
+      rotation: {x: 0.0000000024443243, y: 0.7493306, z: 0.6621961, w: 0.00000008425827}
+      scale: {x: 0.99999964, y: 0.99999934, z: 1.0000054}
+    - name: Zipper
+      parentName: UpperBody
+      position: {x: 0.0065336544, y: 0.09546877, z: 0.51707315}
+      rotation: {x: 0.99989146, y: -0.0000001276748, z: 0.00000014742493, w: 0.014736271}
+      scale: {x: 1, y: 1.0000006, z: 1.0000008}
+    - name: Collar.L
+      parentName: UpperBody
+      position: {x: -0.31474856, y: 0.6309693, z: 0.20387594}
+      rotation: {x: -0.5511674, y: 0.32728323, z: 0.50860953, w: 0.57481873}
+      scale: {x: 0.99999946, y: 1.0000002, z: 1.0000004}
+    - name: UpperArm.L
+      parentName: Collar.L
+      position: {x: 0.00000016391277, y: 0.6370722, z: -0.00000017881393}
+      rotation: {x: 0.090972014, y: -0.053920947, z: 0.13073434, w: 0.9857612}
+      scale: {x: 0.9999973, y: 0.9999998, z: 1.0000027}
+    - name: LowerArm.L
+      parentName: UpperArm.L
+      position: {x: 0.00000029802322, y: 1.1440909, z: 0.0000002682209}
+      rotation: {x: 0.0112870345, y: -0.005347014, z: 0.035833295, w: 0.99927974}
+      scale: {x: 1.0000015, y: 0.99999744, z: 1.0000004}
+    - name: Hand.L
+      parentName: LowerArm.L
+      position: {x: 0.00000019744039, y: 1.0162857, z: -0.00000013038516}
+      rotation: {x: -0.11927871, y: 0.004440461, z: -0.20664583, w: 0.97110784}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000044}
+    - name: Thumb1.L
+      parentName: Hand.L
+      position: {x: -0.2538542, y: 0.3651979, z: -0.06462842}
+      rotation: {x: 0.026409924, y: -0.110969014, z: -0.4834476, w: -0.86790943}
+      scale: {x: 0.99999803, y: 1.0000057, z: 1}
+    - name: Thumb2.L
+      parentName: Thumb1.L
+      position: {x: -0.00000013411045, y: 0.14263758, z: 0.000000029802322}
+      rotation: {x: 0.033858817, y: -0.015104866, z: -0.010378541, w: 0.9992586}
+      scale: {x: 0.9999998, y: 1.0000046, z: 0.99999636}
+    - name: Thumb3.L
+      parentName: Thumb2.L
+      position: {x: 0.000000059604645, y: 0.14259565, z: -0.000000007450581}
+      rotation: {x: -0.09555513, y: 0.0013734427, z: 0.04437046, w: -0.9944338}
+      scale: {x: 1.0000005, y: 1.000003, z: 0.9999984}
+    - name: Index1.L
+      parentName: Hand.L
+      position: {x: -0.2934865, y: 0.5778213, z: 0.08974019}
+      rotation: {x: 0.0562594, y: -0.719688, z: -0.08756395, w: -0.6864522}
+      scale: {x: 0.999996, y: 1.0000075, z: 0.99999875}
+    - name: Index2.L
+      parentName: Index1.L
+      position: {x: 0.000000044703484, y: 0.14279187, z: -0.00000008940697}
+      rotation: {x: -0.011167995, y: -0.0039226706, z: -0.03743606, w: 0.9992289}
+      scale: {x: 1.0000017, y: 0.999999, z: 1.0000005}
+    - name: Index3.L
+      parentName: Index2.L
+      position: {x: 0.000000052154064, y: 0.13581237, z: -0.000000044703484}
+      rotation: {x: 0.016132249, y: -0.0069085974, z: -0.047924712, w: 0.9986968}
+      scale: {x: 0.99999994, y: 1.0000014, z: 1.000001}
+    - name: Mid1.L
+      parentName: Hand.L
+      position: {x: -0.19920829, y: 0.60299534, z: 0.0792945}
+      rotation: {x: 0.10761835, y: -0.7157866, z: -0.080762476, w: -0.6852338}
+      scale: {x: 0.99999565, y: 1.000009, z: 0.9999996}
+    - name: Mid2.L
+      parentName: Mid1.L
+      position: {x: -0.000000055879354, y: 0.14983273, z: -0.00000010430813}
+      rotation: {x: 0.0006447285, y: -0.0006478428, z: -0.04132617, w: 0.99914527}
+      scale: {x: 1.0000031, y: 0.9999967, z: 1.0000001}
+    - name: Mid3.L
+      parentName: Mid2.L
+      position: {x: -0.00000025331974, y: 0.14119105, z: 0.00000008195639}
+      rotation: {x: 0.030300373, y: 0.0013455808, z: -0.083929375, w: 0.99601007}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000004}
+    - name: Ring1.L
+      parentName: Hand.L
+      position: {x: -0.11305166, y: 0.6338612, z: 0.06977287}
+      rotation: {x: 0.08336685, y: -0.71738803, z: -0.07328699, w: -0.68777424}
+      scale: {x: 0.99999565, y: 1.0000079, z: 0.9999992}
+    - name: Ring2.L
+      parentName: Ring1.L
+      position: {x: -0.000000037252903, y: 0.15293676, z: 0.000000059604645}
+      rotation: {x: -0.000774011, y: 0.004700244, z: -0.0399463, w: 0.9991905}
+      scale: {x: 1.0000031, y: 0.9999977, z: 1.0000011}
+    - name: Ring3.L
+      parentName: Ring2.L
+      position: {x: -0.00000023841858, y: 0.11040935, z: 0.00000011920929}
+      rotation: {x: 0.0050558937, y: -0.0035772058, z: -0.046504818, w: 0.9988989}
+      scale: {x: 0.9999996, y: 1.0000019, z: 1.0000004}
+    - name: P1.L
+      parentName: Hand.L
+      position: {x: -0.01296813, y: 0.6394634, z: 0.07767767}
+      rotation: {x: 0.090671904, y: -0.717426, z: -0.07472641, w: -0.6866547}
+      scale: {x: 0.9999961, y: 1.0000075, z: 0.99999875}
+    - name: P2.L
+      parentName: P1.L
+      position: {x: -0.000000074505806, y: 0.12930554, z: -0.00000008940697}
+      rotation: {x: -0.0154223405, y: 0.0052548037, z: -0.036216438, w: 0.9992112}
+      scale: {x: 1.0000026, y: 0.99999875, z: 1.0000008}
+    - name: P3.L
+      parentName: P2.L
+      position: {x: 0.000000044703484, y: 0.10716829, z: 0}
+      rotation: {x: 0.0055263215, y: -0.00065481226, z: -0.038683016, w: 0.99923605}
+      scale: {x: 1.0000002, y: 1.000001, z: 1.0000007}
+    - name: Collar.R
+      parentName: UpperBody
+      position: {x: 0.3147268, y: 0.6309786, z: 0.20395465}
+      rotation: {x: -0.55212855, y: -0.32871372, z: -0.5074805, w: 0.5740775}
+      scale: {x: 0.99999946, y: 0.99999994, z: 1.0000002}
+    - name: UpperArm.R
+      parentName: Collar.R
+      position: {x: -0.000000346452, y: 0.62035596, z: -0.00000068359077}
+      rotation: {x: -0.09080704, y: -0.059273873, z: 0.13048327, w: -0.9855023}
+      scale: {x: 0.99999493, y: 0.99999946, z: 1.0000038}
+    - name: LowerArm.R
+      parentName: UpperArm.R
+      position: {x: -0.00000029057264, y: 1.1440904, z: -0.00000032037497}
+      rotation: {x: 0.013888666, y: 0.014751183, z: -0.035471067, w: 0.9991653}
+      scale: {x: 1.0000048, y: 0.9999954, z: 1.0000004}
+    - name: Hand.R
+      parentName: LowerArm.R
+      position: {x: 0.00000010430813, y: 1.0202998, z: 0.00000016391277}
+      rotation: {x: -0.12970617, y: -0.012946374, z: 0.20446858, w: 0.97015536}
+      scale: {x: 0.99999756, y: 1.0000122, z: 0.9999979}
+    - name: Thumb1.R
+      parentName: Hand.R
+      position: {x: 0.25864124, y: 0.3636235, z: -0.06267232}
+      rotation: {x: -0.019925803, y: -0.115890466, z: -0.50184375, w: 0.8569279}
+      scale: {x: 0.9999942, y: 0.9999977, z: 1.0000083}
+    - name: Thumb2.R
+      parentName: Thumb1.R
+      position: {x: -0.00000008940697, y: 0.14263809, z: 0.00000010430813}
+      rotation: {x: 0.03385428, y: 0.015104046, z: 0.010377554, w: 0.99925876}
+      scale: {x: 1.0000021, y: 0.9999977, z: 1.0000014}
+    - name: Thumb3.R
+      parentName: Thumb2.R
+      position: {x: -0.0000002682209, y: 0.14259607, z: 0.0000002682209}
+      rotation: {x: 0.09555946, y: 0.0013735984, z: 0.044370536, w: 0.99443346}
+      scale: {x: 1.0000024, y: 0.99999744, z: 1.0000015}
+    - name: Index1.R
+      parentName: Hand.R
+      position: {x: 0.30336037, y: 0.53548217, z: 0.101189196}
+      rotation: {x: -0.058170915, y: -0.7192332, z: -0.09679328, w: 0.6855297}
+      scale: {x: 1.0000019, y: 1.0000017, z: 0.99999744}
+    - name: Index2.R
+      parentName: Index1.R
+      position: {x: -0.00000023841858, y: 0.14279199, z: -0.000000059604645}
+      rotation: {x: -0.011167235, y: 0.003923237, z: 0.037436217, w: 0.99922895}
+      scale: {x: 1.0000035, y: 0.99999887, z: 1}
+    - name: Index3.R
+      parentName: Index2.R
+      position: {x: -0.000000014901161, y: 0.13581268, z: -0.00000028312206}
+      rotation: {x: 0.016132304, y: 0.0069085583, z: 0.047924604, w: 0.99869686}
+      scale: {x: 1.0000008, y: 0.9999991, z: 1.000001}
+    - name: Mid1.R
+      parentName: Hand.R
+      position: {x: 0.20954594, y: 0.56272316, z: 0.091893345}
+      rotation: {x: -0.10302401, y: -0.71664315, z: -0.10090389, w: 0.6823688}
+      scale: {x: 1.000004, y: 1.0000008, z: 0.9999977}
+    - name: Mid2.R
+      parentName: Mid1.R
+      position: {x: -0.0000004172325, y: 0.14983201, z: 0.00000014901161}
+      rotation: {x: 0.000644855, y: 0.0006479023, z: 0.04132368, w: 0.9991454}
+      scale: {x: 1.0000013, y: 0.9999985, z: 0.9999998}
+    - name: Mid3.R
+      parentName: Mid2.R
+      position: {x: -0.00000011920929, y: 0.14119084, z: 0.0000001937151}
+      rotation: {x: 0.03030046, y: -0.0013455701, z: 0.08392942, w: 0.99601}
+      scale: {x: 1.0000007, y: 0.9999979, z: 1.0000015}
+    - name: Ring1.R
+      parentName: Hand.R
+      position: {x: 0.12464169, y: 0.5920235, z: 0.07534091}
+      rotation: {x: -0.08221734, y: -0.7174486, z: -0.096508704, w: 0.6849773}
+      scale: {x: 1.0000032, y: 1.0000002, z: 0.99999756}
+    - name: Ring2.R
+      parentName: Ring1.R
+      position: {x: -0, y: 0.15293676, z: -0.0000003874302}
+      rotation: {x: -0.0007736236, y: -0.004700095, z: 0.039943483, w: 0.9991906}
+      scale: {x: 1.0000017, y: 0.999999, z: 1.0000005}
+    - name: Ring3.R
+      parentName: Ring2.R
+      position: {x: 0.00000016391277, y: 0.11040883, z: 0.00000008940697}
+      rotation: {x: 0.0050557987, y: 0.003576974, z: 0.04650498, w: 0.9988989}
+      scale: {x: 1.0000008, y: 0.9999996, z: 1.0000007}
+    - name: P1.R
+      parentName: Hand.R
+      position: {x: 0.022830486, y: 0.5934042, z: 0.09127541}
+      rotation: {x: -0.09464092, y: -0.7166911, z: -0.057483044, w: 0.688544}
+      scale: {x: 1.0000024, y: 1.000001, z: 0.9999973}
+    - name: P2.R
+      parentName: P1.R
+      position: {x: 0.000000029802322, y: 0.12930629, z: 0.00000029802322}
+      rotation: {x: -0.03334038, y: -0.0052399337, z: 0.07829991, w: 0.9963585}
+      scale: {x: 1.0000025, y: 1.0000001, z: 0.9999996}
+    - name: P3.R
+      parentName: P2.R
+      position: {x: -0.000000020489097, y: 0.107168004, z: -0.000000074505806}
+      rotation: {x: 0.005526247, y: 0.0006549338, z: 0.038683254, w: 0.9992361}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000008}
+    - name: Broom1
+      parentName: Hand.R
+      position: {x: -0.21274361, y: 0.67676544, z: -0.043705136}
+      rotation: {x: -0.070683375, y: -0.07560907, z: 0.97335196, w: 0.20462924}
+      scale: {x: 1.0000087, y: 0.9999966, z: 0.99999475}
+    - name: Smear1
+      parentName: Broom1
+      position: {x: 0.08786495, y: -3.0489318, z: 0.00000051781535}
+      rotation: {x: 0.00000641495, y: 0.000002026558, z: -0.9998963, w: 0.014405035}
+      scale: {x: 1.0000004, y: 1.0000005, z: 0.99999994}
+    - name: Smear2
+      parentName: Smear1
+      position: {x: 0.000000029802322, y: 2.8648148, z: 0.0000003501773}
+      rotation: {x: -0, y: -0, z: -4.440892e-16, w: 1}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: Smear3
+      parentName: Smear2
+      position: {x: 0.000000014901161, y: 1.9919341, z: -0.000000074505806}
+      rotation: {x: 0.000000044800334, y: -0.0052322447, z: -0.000000022585889, w: 0.99998635}
+      scale: {x: 1.0000002, y: 1.000001, z: 1.0000008}
+    - name: broom4
+      parentName: Smear2
+      position: {x: -0.049153253, y: 4.7732997, z: -0.25166023}
+      rotation: {x: 0.000000022448601, y: -0.005232215, z: -0.00000008591582, w: 0.99998635}
+      scale: {x: 1.0000955, y: 0.71126485, z: 1.0000149}
+    - name: HeadFront
+      parentName: broom4
+      position: {x: -0.90506995, y: 0.45000595, z: 0.30018014}
+      rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
+      scale: {x: 1.0000006, y: 0.99999976, z: 1}
+    - name: HeadMiddle1
+      parentName: broom4
+      position: {x: -0.09250052, y: 0.45000708, z: 0.29167604}
+      rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1.0000001}
+    - name: HeadMiddle2
+      parentName: broom4
+      position: {x: 0.20357502, y: 0.4500062, z: 0.28857785}
+      rotation: {x: -0.00000005221153, y: 0.0052321553, z: 0.000000093522225, w: 0.99998635}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1.0000001}
+    - name: HeadMiddle3
+      parentName: broom4
+      position: {x: 0.48665357, y: 0.45000595, z: 0.2856161}
+      rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1}
+    - name: HeadBack
+      parentName: broom4
+      position: {x: 0.742798, y: 0.45000616, z: 0.28293526}
+      rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
+      scale: {x: 1.0000006, y: 0.99999994, z: 1}
+    - name: IK-Hand.L
+      parentName: Pelvis
+      position: {x: -1.2503451, y: 0.1622995, z: -0.6729486}
+      rotation: {x: 0.065888904, y: 0.7180566, z: -0.068622656, w: -0.68945223}
+      scale: {x: 0.9999998, y: 1.0000006, z: 1.0000004}
+    - name: Elbow.L
+      parentName: IK-Hand.L
+      position: {x: 0.8394866, y: -1.0875623, z: -0.25479645}
+      rotation: {x: 0.032172993, y: 0.054883175, z: -0.75169575, w: 0.6564345}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1.0000006}
+    - name: MAID_Handle
+      parentName: IK-Hand.L
+      position: {x: 0.049288966, y: 0.36997414, z: -0.0020040572}
+      rotation: {x: -0.000000063329935, y: -0.00000023841858, z: 0.00000016018748,
+        w: 1}
+      scale: {x: -0, y: 0, z: 0}
+    - name: IK-Hand.R
+      parentName: Pelvis
+      position: {x: 1.3000095, y: -0.48441508, z: -0.9324228}
+      rotation: {x: -0.06588913, y: 0.7180566, z: -0.06862255, w: 0.68945223}
+      scale: {x: 0.99999994, y: 1.000001, z: 0.99999994}
+    - name: Elbow.R
+      parentName: IK-Hand.R
+      position: {x: 0.014201514, y: -0.40962952, z: 0.4209234}
+      rotation: {x: -0.03217292, y: 0.054883093, z: -0.75169593, w: -0.6564343}
+      scale: {x: 0.99999994, y: 0.9999997, z: 1.0000004}
+    - name: Hips
+      parentName: Pelvis
+      position: {x: -0.0000000018626451, y: -0.0046572904, z: -0.08018555}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: UpperLeg.L
+      parentName: Hips
+      position: {x: -0.40715227, y: 0.8164631, z: 0.23237744}
+      rotation: {x: -0.034079324, y: -0.70246464, z: 0.07074097, w: 0.7073738}
+      scale: {x: 0.99999994, y: 1, z: 1.0000004}
+    - name: LowerLeg.L
+      parentName: UpperLeg.L
+      position: {x: -0.00000016391277, y: 1.6496369, z: -0.000000007450581}
+      rotation: {x: -0.015096232, y: -0.00451392, z: -0.12319837, w: 0.992257}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000007}
+    - name: Foot.L
+      parentName: LowerLeg.L
+      position: {x: -0.000000059604645, y: 1.4964423, z: 0.00000007171184}
+      rotation: {x: 0.004699556, y: 0.0069651045, z: -0.45763195, w: -0.88910204}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1}
+    - name: Toe.L
+      parentName: Foot.L
+      position: {x: -0.000000029802322, y: 0.52970433, z: -0.000000022351742}
+      rotation: {x: 0.007970056, y: 0.0000004768373, z: 0.3403739, w: 0.9402564}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: UpperLeg.R
+      parentName: Hips
+      position: {x: 0.38932997, y: 0.8164633, z: 0.2323776}
+      rotation: {x: -0.034079522, y: 0.7024647, z: -0.070740804, w: 0.70737386}
+      scale: {x: 1, y: 1.0000001, z: 1.0000006}
+    - name: LowerLeg.R
+      parentName: UpperLeg.R
+      position: {x: 0.00000020861626, y: 1.6496372, z: 0.00000008195639}
+      rotation: {x: -0.015096055, y: 0.0045140386, z: 0.12319839, w: 0.992257}
+      scale: {x: 1.0000002, y: 1.0000007, z: 1.0000002}
+    - name: Foot.R
+      parentName: LowerLeg.R
+      position: {x: 0.00000023469329, y: 1.4964422, z: 0.000000074505806}
+      rotation: {x: -0.0046997014, y: 0.006964966, z: -0.45763204, w: 0.88910204}
+      scale: {x: 1.0000008, y: 1.0000002, z: 1.0000005}
+    - name: Toe.R
+      parentName: Foot.R
+      position: {x: 0.000000052154064, y: 0.5297042, z: -0.000000044703484}
+      rotation: {x: 0.007969994, y: -0.00000061001623, z: -0.340374, w: 0.94025636}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1}
+    - name: IK-Leg.L
+      parentName: Bone
+      position: {x: 1.6780887, y: 0.67053777, z: -0.7606554}
+      rotation: {x: 0.71203893, y: -0.7021228, z: 0.0034982562, w: 0.00344643}
+      scale: {x: 1.0000006, y: 1.0000013, z: 1.0000008}
+    - name: Knee.L
+      parentName: IK-Leg.L
+      position: {x: -1.0266249, y: -1.2362229, z: -0.5648776}
+      rotation: {x: -0.0048164083, y: 0.011752466, z: -0.7074458, w: -0.70665354}
+      scale: {x: 0.9999998, y: 0.9999997, z: 1}
+    - name: IK-Leg.R
+      parentName: Bone
+      position: {x: 2.2678304, y: -0.1084333, z: 0.6138044}
+      rotation: {x: 0.0034950676, y: -0.0034496784, z: 0.71203905, w: 0.7021227}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: Knee.R
+      parentName: IK-Leg.R
+      position: {x: 1.100871, y: -1.4237232, z: -0.67901874}
+      rotation: {x: 0.0048193624, y: 0.01175544, z: -0.7074458, w: 0.7066534}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000002}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -109,8 +109,67 @@ public static class CCUtilities
         copier.skillSlot = beingCopiedFrom.skillSlot;
 
     }
+
+    public static bool FriendlyFire_ShouldKnockupProceed(CharacterBody victimBody, TeamIndex attackerTeamIndex)
+    {
+        return victimBody.teamComponent.teamIndex != attackerTeamIndex || FriendlyFireManager.friendlyFireMode != FriendlyFireManager.FriendlyFireMode.Off || attackerTeamIndex == TeamIndex.None;
+    }
+
+    public static bool ShouldKnockup(CharacterBody victimBody, TeamIndex attackerTeamIndex)
+    {
+        bool canHit = true;
+        //if (victimBody.isChampion)
+        //{
+        //    canHit = false;
+        //}
+        //if (victimBody.baseNameToken == "BROTHER_BODY_NAME")
+        //{
+        //    canHit = true;
+        //}
+        //knockup all fuck it
+        if (!FriendlyFire_ShouldKnockupProceed(victimBody, attackerTeamIndex))
+        {
+            canHit = false;
+        }
+
+        return canHit;
+    }
+
     #endregion
     #region UNITY2ROR2
+    //ref here so we can pass in a rented collection from HG.CollectionPool
+    public static void CharacterOverlapSphereAll(ref List<CharacterBody> hitBodies, Vector3 position, float radius, LayerMask layerMask)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, radius, layerMask);
+        foreach (Collider collider in colliders)
+        {
+            HurtBox hurtBox = collider.gameObject.GetComponent<HurtBox>();
+            if (hurtBox)
+            {
+                CharacterBody characterBody = hurtBox.healthComponent.body;
+                if (characterBody && !hitBodies.Contains(characterBody))
+                {
+                    hitBodies.Add(characterBody);
+                }
+            }
+        }
+    }
+
+
+    public static void AddUpwardForceToBody(GameObject victimBody, float acceleration)
+    {
+        CharacterMotor hitMotor = victimBody.GetComponent<CharacterMotor>();
+        if (hitMotor)
+        {
+            hitMotor.ApplyForce(Vector3.up * hitMotor.mass * acceleration, true, true);
+        }
+        RigidbodyMotor rigidMotor = victimBody.GetComponent<RigidbodyMotor>();
+        if (rigidMotor)
+        {
+            rigidMotor.rigid.AddForce(Vector3.up * rigidMotor.mass * acceleration, ForceMode.Impulse);
+        }
+    }
+
     public static void AddExplosionForce(CharacterMotor body, float explosionForce, Vector3 explosionPosition, float explosionRadius, float upliftModifier = 0, bool useWearoff = false)
     {
         var dir = (body.transform.position - explosionPosition);

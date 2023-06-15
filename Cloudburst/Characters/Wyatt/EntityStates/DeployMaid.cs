@@ -5,6 +5,7 @@ using RoR2.Projectile;
 using Cloudburst.Wyatt.Components;
 using RoR2;
 using System.Collections;
+using Cloudburst.Characters.Wyatt;
 
 namespace Cloudburst.CEntityStates.Wyatt
 {
@@ -15,7 +16,7 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         private bool unstable = false;
 
-        private MAIDManager blaseballManager = null;
+        private WyattMAIDManager blaseballManager = null;
      
         private bool solarEclipse = false;
 
@@ -24,7 +25,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             // base.activatorSkillSlot.skillDef.baseRechargeInterval = 5;
 
             base.OnEnter();
-            blaseballManager = GetComponent<MAIDManager>();
+            blaseballManager = GetComponent<WyattMAIDManager>();
             blaseballManager.OnRetrival += BlaseballManager_OnRetrival;
             // blaseball.sunset += Blaseball_sunset;
             if (base.isAuthority)
@@ -42,35 +43,35 @@ namespace Cloudburst.CEntityStates.Wyatt
         IEnumerator Wait()
         {
             base.characterMotor.useGravity = false;
-            base.characterMotor.velocity = new Vector3(0, 0, 0);
+            base.characterMotor.velocity = new Vector3(0, 18, 0);
             bool stopped = false;
-            // suspend execution for 5 seconds
 
             base.StartAimMode();
+            //todo remove comments and move wyattrocket bullshit into here
+            //and get rid of coroutine lol
+            //if (base.IsKeyDownAuthority() && stopped == false)
+            //{
+            //    base.characterMotor.useGravity = true;
+            //    if (base.gameObject.GetComponent<WyattRocket>() == null)
+            //    {
+            //        WyattRocket based = base.gameObject.AddComponent<WyattRocket>();
+            //        based.interval = 1f;
+            //        //LogCore.LogI(dis);
+            //    }
+            //    base.PlayAnimation("Fullbody, Override", "kick");
+            //    stopped = true;
 
-            if (base.IsKeyDownAuthority() && stopped == false)
-            {
-                base.characterMotor.useGravity = true;
-                if (base.gameObject.GetComponent<WyattRocket>() == null)
-                {
-                    WyattRocket based = base.gameObject.AddComponent<WyattRocket>();
-                    based.interval = 1f;
-                    //LogCore.LogI(dis);
-                }
-                base.PlayAnimation("Fullbody, Override", "kick");
-                stopped = true;
-
-                //yield return true
-            }
+            //    //yield return true
+            //}
 
             //no more wait. instant explode
             yield return new WaitForSeconds(0);// 0.5f);
 
-            base.characterMotor.velocity = new Vector3(0, 0, 0);
+            //base.characterMotor.velocity = new Vector3(0, 0, 0);
 
             if (stopped != true)
             {
-                base.characterMotor.velocity = new Vector3(0, 0, 0);
+                base.characterMotor.velocity = new Vector3(0, 18, 0);
 
 
                 if (base.gameObject.GetComponent<WyattRocket>() == null)
@@ -115,7 +116,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             {
                 crit = RollCrit(),
                 //damage = (5f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * damageStat,
-                damage = damageStat * 5,
+                damage = damageStat * WyattConfig.M4MaidProjectileDamage.Value,
                 damageColorIndex = RoR2.DamageColorIndex.Default,
                 damageTypeOverride = DamageType.Generic,
                 force = 0,
@@ -138,6 +139,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             theDevilHasSomeHardToReadFinePrint += Time.fixedDeltaTime;
             if (base.isAuthority && base.IsKeyDownAuthority() && solarEclipse == false && unstable == false && theDevilHasSomeHardToReadFinePrint > 0.3f)
             {
+                characterBody.isSprinting = true;
                 blaseballManager.RetrieveMAIDAuthority();
                 unstable = true;
             }

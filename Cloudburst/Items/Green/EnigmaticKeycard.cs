@@ -111,6 +111,7 @@ namespace Cloudburst.Items.Green
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
+            orig(self, damageInfo, victim);
             if(damageInfo.attacker && victim)
             {
                 CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();

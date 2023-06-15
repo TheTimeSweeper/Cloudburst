@@ -1,4 +1,5 @@
-﻿using Cloudburst.Wyatt.Components;
+﻿using Cloudburst.Modules;
+using Cloudburst.Wyatt.Components;
 using R2API;
 using RoR2;
 using RoR2.Projectile;
@@ -9,6 +10,10 @@ namespace Cloudburst.Characters.Wyatt
 {
     public class WyattAssets
     {
+        public static Sprite MaidSprite1;
+        public static Sprite MaidSprite2;
+        public static Sprite MaidSpriteTempWhatIsThis;
+
         public static GameObject wyattMaidBoomerang;
         private static GameObject winchGhost;
         public static GameObject winch;
@@ -16,6 +21,7 @@ namespace Cloudburst.Characters.Wyatt
         public static void InitAss()
         {
             CreateProjectiles();
+            MaidSprite2 = Assets.LoadAsset<Sprite>("texIconWyattSpecial2");
         }
 
         private static void CreateProjectiles()
@@ -51,21 +57,26 @@ namespace Cloudburst.Characters.Wyatt
 
             awful.layer = LayerIndex.entityPrecise.intVal;
 
-            var orb = maidProjectilePrefab.AddComponent<ProjectileProximityBeamController>();
-            orb.attackFireCount = 2;
-            orb.attackInterval = 1;
-            orb.listClearInterval = 0.1f;
-            orb.attackRange = 25;
-            orb.minAngleFilter = 0;
-            orb.maxAngleFilter = 180;
-            orb.procCoefficient = 1f;
-            orb.damageCoefficient = 0.5f;
-            orb.bounces = 0;
-            orb.inheritDamageType = false;
-            orb.lightningType = RoR2.Orbs.LightningOrb.LightningType.Ukulele;
-            orb.enabled = false;
+            float beams = WyattConfig.M4MaidBeamsAmount.Value;
+            if (beams != 0)
+            {
+                var orb = maidProjectilePrefab.AddComponent<ProjectileProximityBeamController>();
+                orb.attackFireCount = 20;
+                orb.attackInterval = 2 / beams;
+                orb.listClearInterval = 0.1f;
+                orb.attackRange = 25;
+                orb.minAngleFilter = 0;
+                orb.maxAngleFilter = 180;
+                orb.procCoefficient = 1f;
+                orb.damageCoefficient = WyattConfig.M4MaidBeamsDamageMultiplier.Value;// 0.5f;
+                orb.bounces = 0;
+                orb.inheritDamageType = false;
+                orb.lightningType = RoR2.Orbs.LightningOrb.LightningType.Ukulele;
+                orb.enabled = false;
+            }
 
-            var goost = Modules.Assets.LoadAsset<GameObject>("WyattMaidBoomerangProjectile");
+
+            var goost = Modules.Assets.LoadAsset<GameObject>("WyattMaidGhost");
             Modules.Assets.ConvertAllRenderersToHopooShader(maidProjectilePrefab);
             //MaterialSwapper.RunSwappers(goost);
 
@@ -79,7 +90,7 @@ namespace Cloudburst.Characters.Wyatt
             BoomerangProjectile boomerangProjectile = maidProjectilePrefab.GetComponent<BoomerangProjectile>();
             boomerangProjectile.distanceMultiplier = 0.5f;
             boomerangProjectile.canHitWorld = false;
-            maidProjectilePrefab.GetComponent<ProjectileOverlapAttack>().damageCoefficient = 1;
+            maidProjectilePrefab.GetComponent<ProjectileOverlapAttack>().damageCoefficient = WyattConfig.M4MaidImpactDamageMultiplier.Value;
             maidProjectilePrefab.AddComponent<MAIDProjectileController>();
             awful.AddComponent<SphereCollider>().radius = 3;
             awful.GetComponent<SphereCollider>().isTrigger = true;

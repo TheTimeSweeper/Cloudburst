@@ -10,7 +10,6 @@ namespace Cloudburst.Characters.Wyatt
             R2API.ContentAddition.AddEntityState<TrashOut>(out _);
             R2API.ContentAddition.AddEntityState<ActivateFlow>(out _);
             R2API.ContentAddition.AddEntityState<DeployMaid>(out _);
-            R2API.ContentAddition.AddEntityState<RetrieveMaid>(out _);
         }
     }
 }

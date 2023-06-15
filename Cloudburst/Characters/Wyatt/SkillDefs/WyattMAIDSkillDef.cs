@@ -26,18 +26,19 @@ namespace Cloudburst.Wyatt.Components
             //FUCK HOPOO
             //FUCK YOUR WACK ASS SKILL SYSTEM
             var data = (InstanceData)skillSlot.skillInstanceData;
-            MAIDManager mm = data.manager;
-            if (mm)
+            WyattMAIDManager maidManager = data.manager;
+            if (maidManager)
             {
-                if (mm.maid)
+                Log.Warning("maid " + maidManager.maid);
+                if (maidManager.maid)
                 {
                     MAID = MAIDState.Deployed;
                 }
-                if (!mm.maid)
+                if (!maidManager.maid)
                 {
                     MAID = MAIDState.Idle;
                 }
-                if (mm.startReel)
+                if (maidManager.startReel)
                 {
                     MAID = MAIDState.Reeling;
                 }
@@ -49,14 +50,10 @@ namespace Cloudburst.Wyatt.Components
             switch (MAID)
             {
                 case MAIDState.Deployed:
-                    return WyattSurvivor.instance.MaidSprite2;
-                //    return AssetsCore.wyattSpecial2;
-                case MAIDState.Reeling:
-                    return WyattSurvivor.instance.MaidSpriteTempWhatIsThis;
-
+                    return WyattAssets.MaidSprite2;
                 case MAIDState.Idle:
-                    return WyattSurvivor.instance.MaidSprite1;
-                    //    return AssetsCore.wyattSpecial;
+                case MAIDState.Reeling:
+                    return base.GetCurrentIcon(skillSlot);
             }
             return base.GetCurrentIcon(skillSlot);
         }
@@ -65,7 +62,7 @@ namespace Cloudburst.Wyatt.Components
         {
             return new WyattMAIDSkillDef.InstanceData
             {
-                manager = skillSlot.GetComponent<MAIDManager>(),
+                manager = skillSlot.GetComponent<WyattMAIDManager>(),
                 subbed = false
             };
         }
@@ -96,7 +93,7 @@ namespace Cloudburst.Wyatt.Components
             public InstanceData()
             {
             }
-            public MAIDManager manager;
+            public WyattMAIDManager manager;
             /// <summary>
             /// ay yo what's up #logang today we're going to be heading in the #japanesesuicideforest here in japan, 
             /// but first of all make sure to smash that like button, share this video, and subscribe for more vlogs like this one right here, 

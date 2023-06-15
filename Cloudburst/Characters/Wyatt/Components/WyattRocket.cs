@@ -25,8 +25,9 @@ namespace Cloudburst.Wyatt.Components
 
         private List<HurtBox> victimsStruck = new List<HurtBox>();
 
+        private WyattNetworkCombat networkCombat;
+
         private float hitStopwatch = 0;
-        private TeamComponent teamComponent;
 
         public void Start()
         {
@@ -34,7 +35,7 @@ namespace Cloudburst.Wyatt.Components
             direction = characterBody.inputBank.aimDirection;
             motor = characterBody.characterMotor;
             characterDirection = GetComponent<CharacterDirection>();
-            teamComponent = GetComponent<TeamComponent>();
+            networkCombat = GetComponent<WyattNetworkCombat>();
 
             attack = new OverlapAttack()
             {
@@ -62,7 +63,6 @@ namespace Cloudburst.Wyatt.Components
             //just explode and that's it
             //component over. move this to entitystate cause it's probably not networked?
             BigExplode(transform.position);
-
         }
 
         public void OnDestroy()
@@ -123,7 +123,7 @@ namespace Cloudburst.Wyatt.Components
                 attacker = base.gameObject,
                 inflictor = gameObject,
                 teamIndex = characterBody.teamComponent.teamIndex,
-                baseDamage = characterBody.damage * 8,
+                baseDamage = characterBody.damage * WyattConfig.M4SlamDamage.Value,
                 attackerFiltering = default,
                 //bonusForce = new Vector3(0, -3000, 0),
                 damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
@@ -134,28 +134,25 @@ namespace Cloudburst.Wyatt.Components
                 procCoefficient = 0,
                 radius = 30
             };
-            R2API.DamageAPI.AddModdedDamageType(blast, WyattDamageTypes.antiGravDamage);
+            R2API.DamageAPI.AddModdedDamageType(blast, WyattDamageTypes.antiGravDamage2);
+            blast.Fire();
 
-
-            Collider[] sphere = Physics.OverlapSphere(transform.position, 30);
-            foreach (Collider body in sphere)
+            List<CharacterBody> hitBodies = HG.CollectionPool<CharacterBody, List<CharacterBody>>.RentCollection();
+            CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, 30, LayerIndex.CommonMasks.bullet);
+            
+            for (int i = 0; i < hitBodies.Count; i++)
             {
-                var cb = body.gameObject.GetComponentInParent<CharacterBody>();
-                if (cb)
+                CharacterBody cb = hitBodies[i];
+
+                bool canHit = CCUtilities.ShouldKnockup(cb, characterBody.teamComponent.teamIndex);
+                if (canHit && cb != characterBody)
                 {
-                    //if (cb.isChampion)
-                    //    continue;
-                    //if (cb.baseNameToken == "BROTHER_BODY_NAME")
-                    //    continue;
-                    //fuck it. float all
-                    if (cb.teamComponent.teamIndex == teamComponent.teamIndex)
-                        continue;
-                    if (cb.characterMotor && cb != characterBody)
-                    {
-                        AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 25, transform.position, 25, 5, false);
-                    }
+                    networkCombat.ApplyKnockupAuthority(cb.gameObject, WyattConfig.M4SlamLiftForce.Value);
+                    //AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 10, transform.position, 25, 5, false);
+                    //CCUtilities.AddUpwardForceToBody(cb.gameObject, 10);
                 }
             }
+            HG.CollectionPool<CharacterBody, List<CharacterBody>>.ReturnCollection(hitBodies);
 
             Destroy(this);
         }

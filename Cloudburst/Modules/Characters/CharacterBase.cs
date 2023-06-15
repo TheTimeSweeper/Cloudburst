@@ -46,7 +46,11 @@ namespace Cloudburst.Modules.Characters
             InitializeItemDisplays();
 
             InitializeDoppelganger("Merc");
+
+            OnCharacterInitialized();
         }
+
+        protected virtual void OnCharacterInitialized() { }
 
         protected virtual void InitializeCharacterBodyAndModel()
         {

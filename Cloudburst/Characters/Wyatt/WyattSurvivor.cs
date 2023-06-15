@@ -35,11 +35,12 @@ namespace Cloudburst.Characters.Wyatt
 
             maxHealth = 110f,
             healthRegen = 1.5f,
-            armor = 0f,
+            armor = 20f,
 
             jumpCount = 1,
 
             cameraParamsDepth = -10,
+            cameraPivotPosition = new Vector3(0, 1, 0)
         };
 
         public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[]
@@ -60,26 +61,31 @@ namespace Cloudburst.Characters.Wyatt
 
         public override ItemDisplaysBase itemDisplays => new WyattItemDisplays();
 
-        public override ConfigEntry<bool> characterEnabledConfig => null; //Modules.Config.CharacterEnableConfig(bodyName);
-
         private static UnlockableDef masterySkinUnlockableDef;
 
-        public BuffDef wyattCombatBuffDef;
+        public BuffDef wyattGrooveBuffDef;
         public BuffDef wyattFlowBuffDef;
         public BuffDef wyattAntiGravBuffDef;
 
-        public Sprite MaidSprite1;
-        public Sprite MaidSprite2;
-        public Sprite MaidSpriteTempWhatIsThis;
-
-        public static SerializableEntityStateType RetrieveMaidState = new SerializableEntityStateType(typeof(RetrieveMaid));
         public static SerializableEntityStateType DeployMaidState = new SerializableEntityStateType(typeof(DeployMaid));
 
 
         public override void Initialize()
         {
-            base.Initialize();
+            characterEnabledConfig =
+                Config.BindAndOptions(
+                    "Survivors",
+                    "Enable Custodian",
+                    true,
+                    "Set false to disable Custodian and as much of his content/code as possible",
+                    true);
 
+            base.Initialize();
+        }
+        
+        protected override void OnCharacterInitialized()
+        {
+            WyattConfig.Init();
             WyattEffects.OnLoaded();
             WyattAssets.InitAss();
             WyattDamageTypes.InitDamageTypes();
@@ -88,8 +94,8 @@ namespace Cloudburst.Characters.Wyatt
 
             WyattEntityStates.AddEntityStates();
 
-            bodyPrefab.AddComponent<MAIDManager>();
-            bodyPrefab.AddComponent<NetworkSpiker>();
+            bodyPrefab.AddComponent<WyattMAIDManager>();
+            bodyPrefab.AddComponent<WyattNetworkCombat>();
 
             SfxLocator sfxLocator = bodyPrefab.GetComponent<SfxLocator>();
             //sfx
@@ -119,6 +125,7 @@ namespace Cloudburst.Characters.Wyatt
             SetHooks();
         }
 
+        #region hooks
         private void SetHooks()
         {
             R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -142,21 +149,26 @@ namespace Cloudburst.Characters.Wyatt
             orig(self, damageInfo);
             if(R2API.DamageAPI.HasModdedDamageType(damageInfo, WyattDamageTypes.antiGravDamage))
             {
-                self.body.AddTimedBuff(wyattAntiGravBuffDef, 1);
+                self.body.AddTimedBuff(wyattAntiGravBuffDef, WyattConfig.M1AntiGravDuration.Value);// 1.5f);
+            }
+            if (R2API.DamageAPI.HasModdedDamageType(damageInfo, WyattDamageTypes.antiGravDamage2))
+            {
+                self.body.AddTimedBuff(wyattAntiGravBuffDef, WyattConfig.M4SlamAntiGravDuration.Value);// 3f);
             }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, R2API.RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (sender.HasBuff(wyattCombatBuffDef))
+            if (sender.HasBuff(wyattGrooveBuffDef))
             {
-                args.moveSpeedMultAdd += 0.3f * sender.GetBuffCount(wyattCombatBuffDef);
+                args.moveSpeedMultAdd += /*0.3f*/WyattConfig.M3GrooveSpeedMultiplierPerStack.Value * sender.GetBuffCount(wyattGrooveBuffDef);
                 //args.armorAdd += 20;
             }
 
             if (sender.HasBuff(wyattFlowBuffDef))
             {
-                args.cooldownMultAdd -= 0.3f;
+                args.cooldownMultAdd -= WyattConfig.M3FlowCDR.Value;// 0.3f;
+                args.armorAdd += WyattConfig.M3FlowArmorBase.Value + WyattConfig.M3FlowArmorPerStack.Value * sender.GetBuffCount(wyattGrooveBuffDef);
             }
 
             if (sender.HasBuff(wyattAntiGravBuffDef))
@@ -172,7 +184,7 @@ namespace Cloudburst.Characters.Wyatt
 
             if (self && self.HasBuff(wyattFlowBuffDef))
             {
-                self.maxJumpCount++;
+                self.maxJumpCount+= WyattConfig.M3FlowExtraJumps.Value;
             }
 
             //if (self & self.HasBuff(wyattAntiGravBuffDef))
@@ -207,10 +219,11 @@ namespace Cloudburst.Characters.Wyatt
                 }
             }
         }
+#endregion hooks
 
         private void CreateBuffs()
         {
-            wyattCombatBuffDef = Buffs.AddNewBuff(
+            wyattGrooveBuffDef = Buffs.AddNewBuff(
                 "CloudburstWyattCombatBuff",
                 Assets.LoadAsset<Sprite>("WyattVelocity"),
                 new Color(1f, 0.7882353f, 0.05490196f),
@@ -281,6 +294,7 @@ namespace Cloudburst.Characters.Wyatt
             Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
         }
 
+        #region skills
         public override void InitializeSkills()
         {
             Skills.CreateSkillFamilies(bodyPrefab);
@@ -328,16 +342,19 @@ namespace Cloudburst.Characters.Wyatt
                     true));
             primarySkillDef.keywordTokens = new string[] {
                  "KEYWORD_AGILE",
-                 //"KEYWORD_WEIGHTLESS",
+                 "KEYWORD_WEIGHTLESS",
                  "KEYWORD_SPIKED",
             };
             primarySkillDef.stepCount = 3;
-            primarySkillDef.stepGraceDuration = 0.5f;
+            primarySkillDef.stepGraceDuration = 0.2f;
 
             R2API.LanguageAPI.Add(primarySkillDef.skillNameToken, "G22 Grav-Broom");
-            R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, "<style=cIsUtility>Agile</style>. Swing in front for X% damage.");
-            //R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Weightless</style><style=cSub>Slows and removes gravity from target.</style>");
-            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain.</style>");
+            R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, 
+                "<style=cIsUtility>Agile</style>. Swing twice for <style=cIsDamage>2x90% damage</style>, and finish for <style=cIsDamage>120% damage</style>." +
+                "\nWhile on ground, finisher applies <style=cIsUtility>Weightless</style>." +
+                "\nwhile in the air, finisher <style=cIsDamage>Spikes</style>");
+            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Weightless</style><style=cSub>Slows and removes gravity from target.</style>");
+            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[2], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain, dealing <style=cIsDamage>300% damage</style>.</style>");
 
             Skills.AddPrimarySkills(bodyPrefab, primarySkillDef);
         }
@@ -353,10 +370,10 @@ namespace Cloudburst.Characters.Wyatt
                 activationState = new SerializableEntityStateType(typeof(TrashOut)),
                 activationStateMachineName = "Weapon",
                 baseMaxStock = 2,
-                baseRechargeInterval = 3f,
+                baseRechargeInterval = 5f,
                 beginSkillCooldownOnSkillEnd = true,
                 canceledFromSprinting = false,
-                forceSprintDuringState = false,
+                forceSprintDuringState = true,
                 fullRestockOnAssign = false,
                 interruptPriority = InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
@@ -366,11 +383,11 @@ namespace Cloudburst.Characters.Wyatt
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                //keywordTokens = new string[] { "KEYWORD_SPIKED" }
+                keywordTokens = new string[] { "KEYWORD_SPIKED" }
             });
 
             R2API.LanguageAPI.Add(secondarySkillDef.skillNameToken, "Trash Out");
-            R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "Deploy a winch that lets you reel towards an enemy, and Hit them for for <style=cIsDamage>X%</style> damage.");
+            R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "<s>Deploy a winch</s> Magically fly towards an enemy, and <style=cIsDamage>Spike</style> them for for <style=cIsDamage>300%</style> damage.");
 
             Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
         }
@@ -386,7 +403,7 @@ namespace Cloudburst.Characters.Wyatt
                 activationState = new SerializableEntityStateType(typeof(ActivateFlow)),
                 activationStateMachineName = "SuperMarioJump",
                 baseMaxStock = 1,
-                baseRechargeInterval = 4f,
+                baseRechargeInterval = 14f,
                 beginSkillCooldownOnSkillEnd = true,
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
@@ -399,12 +416,12 @@ namespace Cloudburst.Characters.Wyatt
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                //keywordTokens = new string[] { "KEYWORD_RUPTURE", }
+                keywordTokens = new string[] { "KEYWORD_FLOW", }
             });
 
             R2API.LanguageAPI.Add(utilitySkillDef.skillNameToken, "Flow");
-            R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Activate Flow for 4 seconds + 0.4s for each stack of Groove. Gaining a double jump and +30% cooldown reduction. During flow, you are unable to lose or gain Groove. After Flow ends, lose all stacks groove.");
-            R2API.LanguageAPI.Add("KEYWORD_RUPTURE", "<style=cKeywordName>Flow</style><style=cSub> Gives you a double jump. +30% cooldown reduction.</style>");
+            R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Activate <style=cIsDamage>Flow</style> for 4 seconds + 0.4s for each stack of <style=cIsUtility>Groove</style>, gaining <style=cIsDamage>Armor, a Double Jump, and Cooldown Reduction</style>. During <style=cIsDamage>Flow</style>, you are unable to lose or gain <style=cIsUtility>Groove</style>. After <style=cIsDamage>Flow</style> ends, lose all stacks <style=cIsUtility>Groove</style>.");
+            R2API.LanguageAPI.Add("KEYWORD_FLOW", "<style=cKeywordName>Flow</style><style=cSub>Gain <style=cIsDamage>30 Armor + 5</style> for each stack of <style=cIsUtility>Groove</style>.\nGain a <style=cIsUtility>Double Jump</style>.\nGain <style=cIsUtility>+30% Cooldown Reduction.</style></style>");
 
             Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef);
         }
@@ -420,8 +437,8 @@ namespace Cloudburst.Characters.Wyatt
                 activationState = DeployMaidState,
                 activationStateMachineName = "MAID",
                 baseMaxStock = 1,
-                baseRechargeInterval = 5f,
-                beginSkillCooldownOnSkillEnd = false,
+                baseRechargeInterval = 8f,
+                beginSkillCooldownOnSkillEnd = true,
                 canceledFromSprinting = false,
                 forceSprintDuringState = false,
                 fullRestockOnAssign = true,
@@ -433,18 +450,18 @@ namespace Cloudburst.Characters.Wyatt
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 0,
-                //keywordTokens = new string[]
-                //{
-                //    "KEYWORD_WEIGHTLESS"
-                //}
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_WEIGHTLESS"
+                }
             });
 
             R2API.LanguageAPI.Add(specialSkillDef.skillNameToken, "M88 MAID");
-            R2API.LanguageAPI.Add(specialSkillDef.skillDescriptionToken, "Send your MAID unit barreling through enemies for 500% damage before stopping briefly and returning to you, able to hit enemies on the way back. Using this skill again while MAID is deployed reels you to the MAID and rebounds you off of her, bashing into an enemy for X% damage.");
+            R2API.LanguageAPI.Add(specialSkillDef.skillDescriptionToken, "<style=cIsUtility>Weightless</style>. Send your <style=cIsUtility>MAID</style> unit barreling through enemies for <style=cIsDamage>300% damage</style> before stopping briefly and returning to you. Activate again to reel toward the <style=cIsUtility>MAID</style> and explode for <style=cIsDamage>500% damage</style>.");
 
             Skills.AddSpecialSkills(bodyPrefab, specialSkillDef);
         }
-
+        #endregion skills
         public override void InitializeSkins()
         {
             ModelSkinController skinController = prefabCharacterModel.gameObject.AddComponent<ModelSkinController>();

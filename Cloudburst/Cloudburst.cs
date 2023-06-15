@@ -22,6 +22,8 @@ namespace Cloudburst
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
+    [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
     [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI))]
     public class Cloudburst : BaseUnityPlugin
     {
@@ -40,11 +42,17 @@ namespace Cloudburst
 
         public static ExpansionDef cloudburstExpansion;
 
+        public static Cloudburst instance;
+
         public void Awake()
         {
+            instance = this;
+
             Log.Init(Logger);
 
             GetBundle();
+
+            Modules.Compat.Init();
 
             cloudburstExpansion = ScriptableObject.CreateInstance<ExpansionDef>();
             cloudburstExpansion.nameToken = "EXPANSION_CLOUDBURST_NAME";
@@ -57,7 +65,6 @@ namespace Cloudburst
             LanguageAPI.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
             LanguageAPI.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the 'Cloudburst' mod to the game.");
 
-            SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
             SetupItems();
 
             Modules.ItemDisplays.PopulateDisplays();
@@ -65,23 +72,6 @@ namespace Cloudburst
             new WyattSurvivor().Initialize();
 
             Log.Info(nameof(Awake) + " done.");
-        }
-
-        private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
-        {
-            if (arg1 != default && arg1.name == "title")
-            {
-                var menu = GameObject.Find("MainMenu");
-                var title = menu.transform.Find("MENU: Title/TitleMenu/SafeZone/ImagePanel (JUICED)/LogoImage");
-                var indicator = menu.transform.Find("MENU: Title/TitleMenu/MiscInfo/Copyright/Copyright (1)");
-                
-                var build = indicator.GetComponent<HGTextMeshProUGUI>();
-                
-                build.fontSize += 4;
-                build.text = build.text + Environment.NewLine + $"Cloudburst Version: " + PluginVersion;
-
-                title.GetComponent<Image>().sprite = CloudburstAssets.LoadAsset<Sprite>("texCloudburstLogo");
-            }
         }
 
         public void SetupItems()

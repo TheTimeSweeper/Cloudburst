@@ -45,6 +45,11 @@ public class MaterialSwapper : MonoBehaviour
 
     public void SwapMaterial()
     {
-        GetComponent<Renderer>().material = Addressables.LoadAssetAsync<Material>(nameToAddressable[materialName]).WaitForCompletion();
+        string address = materialName;
+        if (nameToAddressable.ContainsKey(materialName))
+        {
+            address = nameToAddressable[materialName];
+        }
+        GetComponent<Renderer>().material = Addressables.LoadAssetAsync<Material>(address).WaitForCompletion();
     }
 }

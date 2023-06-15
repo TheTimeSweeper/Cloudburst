@@ -23,6 +23,7 @@ namespace Cloudburst.Wyatt.Components
         private bool pause = false;
         private Rigidbody body;
         private GameObject owner = null;
+        ProjectileProximityBeamController beamer;
         private BoomerangProjectile boomer;
         private List<Rigidbody> bodies;
         private Vector3 distance;
@@ -33,6 +34,7 @@ namespace Cloudburst.Wyatt.Components
             bodies = new List<Rigidbody>();
             controller = base.gameObject.GetComponent<ProjectileController>();
             boomer = base.gameObject.GetComponent<BoomerangProjectile>();
+            beamer = GetComponent<ProjectileProximityBeamController>();
             body = GetComponent<Rigidbody>();
             stop = false;
         }
@@ -45,7 +47,7 @@ namespace Cloudburst.Wyatt.Components
             
             owner = controller.owner;
 
-            owner.gameObject.GetComponent<MAIDManager>().DeployMAIDAuthority(base.gameObject);
+            owner.gameObject.GetComponent<WyattMAIDManager>().DeployMAIDAuthority(base.gameObject);
             boomer.onFlyBack.AddListener(OnHit);
         }
 
@@ -104,8 +106,9 @@ namespace Cloudburst.Wyatt.Components
             {
                 triggered = true;
                 pause = true;
-                base.GetComponent<ProjectileProximityBeamController>().enabled = true;
-                base.GetComponent<BoomerangProjectile>().enabled = false;
+                if(beamer)
+                    beamer.enabled = true;
+                boomer.enabled = false;
                 animator.Play("Idle");
                 return;
             }
@@ -130,9 +133,9 @@ namespace Cloudburst.Wyatt.Components
             if (Destroying == false)
             {
                 Destroying = true;
-                owner.gameObject?.GetComponent<MAIDManager>()?.GetMAID();
+                owner.gameObject?.GetComponent<WyattMAIDManager>()?.GetMAID();
 
-                owner.gameObject.GetComponent<MAIDManager>().Invoke(stop, distance);
+                owner.gameObject.GetComponent<WyattMAIDManager>().Invoke(stop, distance);
 
                 //owner.gameObject?.GetComponent<SkillLocator>()?.special?.SetSkillOverride(this, Custodian.throwPrimary, GenericSkill.SkillOverridePriority.Contextual); ; }
             }
@@ -141,8 +144,9 @@ namespace Cloudburst.Wyatt.Components
         {
             pause = false;
 
-            base.GetComponent<ProjectileProximityBeamController>().enabled = false;
-            base.GetComponent<BoomerangProjectile>().enabled = true;
+            if (beamer)
+                beamer.enabled = false;
+            boomer.enabled = true;
 
             animator.Play("Zoom");
             transform.LookAt(controller.owner.transform);
@@ -152,7 +156,7 @@ namespace Cloudburst.Wyatt.Components
         {
             stop = true;
             distance = (base.transform.position - owner.gameObject.transform.position).normalized;// * 120f;
-            base.GetComponent<BoomerangProjectile>().enabled = false;
+            boomer.enabled = false;
         }
     }
 

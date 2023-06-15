@@ -49,17 +49,19 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public override void OnEnter()
         {
-            //this.hitBoxGroupName = "TempHitbox";
             this.hitBoxGroupName = "TempHitboxLarge";
             if (isComboFinisher) this.hitBoxGroupName = "TempHitbox";
             this.mecanimHitboxActiveParameter = GetMecanimActiveParameter();
-            this.baseDuration = 0.5f;
-            if (isComboFinisher) baseDuration = 0.8f;
+
+            this.baseDuration = WyattConfig.M1AttackDuration.Value;// 0.5f;
+            if (isComboFinisher) baseDuration = WyattConfig.M1AttackDurationFinisher.Value;// 0.8f;
             this.duration = this.baseDuration / base.attackSpeedStat;
-            this.hitPauseDuration = 0.01f;
-            if (isComboFinisher) hitPauseDuration = 0.05f;
-            this.damageCoefficient = 1f;
-            if (isComboFinisher) damageCoefficient = 2f;
+
+            this.hitPauseDuration = 0.02f;
+            if (isComboFinisher) hitPauseDuration = 0.1f;
+
+            this.damageCoefficient = WyattConfig.M1Damage.Value; //1;
+            if (isComboFinisher) damageCoefficient = WyattConfig.M1DamageFinisher.Value;// 2f;
             //this.damageCoefficient = (2f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * 0.1f));
             this.procCoefficient = 1f;
             this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
@@ -133,14 +135,16 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void AuthorityModifyOverlapAttack(OverlapAttack overlapAttack)
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
-            if (this.isComboFinisher && isUppercut)
+            //despite what the animation is playing, decided I want to decide when it lands what the hit does
+            if (this.isComboFinisher && base.isGrounded)
             {
                 //overlapAttack.damageType = DamageTypeCore.antiGrav | DamageType.Generic;
                 R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage); 
+            } else
+            {
+                R2API.DamageAPI.RemoveModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage);
             }
-        }
-
-        
+        }        
 
         public override void PlayAnimation()
         {
@@ -186,19 +190,24 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.characterBody.AddSpreadBloom(this.bloom);
             if (isComboFinisher)
             {
+                WyattNetworkCombat networkCombat = GetComponent<WyattNetworkCombat>();
                 for (int i = 0; i < hitResults.Count; i++)
                 {
                     HurtBox hurtBox = hitResults[i];
+                    if(hurtBox.healthComponent.gameObject == null)
+                        continue;
 
-                    if (!isUppercut)
+                    //despite what the animation is playing, decided I want to decide when it lands what the hit does
+                    if (/*isUppercut*/base.isGrounded)
                     {
-                        GetComponent<NetworkSpiker>().ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 1);
-                    } else
+                        networkCombat.ApplyKnockupAuthority(hurtBox.healthComponent.body.gameObject, WyattConfig.M1UpwardsLiftForce.Value);
+                    }
+                    else
                     {
-                        CharacterMotor hitMotor = hurtBox.healthComponent.body.GetComponent<CharacterMotor>();
-                        if (hitMotor)
+                        CharacterMotor motor = hurtBox.healthComponent.body.characterMotor;
+                        if (!motor || (motor && !motor.isGrounded))
                         {
-                            hitMotor.ApplyForce(Vector3.up * hitMotor.mass * 10, true, true);
+                            networkCombat.ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 1);
                         }
                     }
                 }

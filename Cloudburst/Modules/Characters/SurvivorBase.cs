@@ -14,7 +14,7 @@ namespace Cloudburst.Modules.Survivors
         
         public abstract UnlockableDef characterUnlockableDef { get; }
 
-        public virtual ConfigEntry<bool> characterEnabledConfig { get; }
+        public virtual ConfigEntry<bool> characterEnabledConfig { get; set; }
 
         public virtual GameObject displayPrefab { get; set; }
 
