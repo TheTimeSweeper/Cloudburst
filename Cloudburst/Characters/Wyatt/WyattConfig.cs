@@ -10,6 +10,7 @@ namespace Cloudburst.Characters.Wyatt
         public static ConfigEntry<float> M1AttackDuration;
         public static ConfigEntry<float> M1AttackDurationFinisher;
         public static ConfigEntry<float> M1UpwardsLiftForce;
+        public static ConfigEntry<float> M1KnockbackForce;
         public static ConfigEntry<float> M1AntiGravDuration;
 
         public static ConfigEntry<float> M2Damage;
@@ -35,7 +36,10 @@ namespace Cloudburst.Characters.Wyatt
         public static ConfigEntry<float> M4SlamAntiGravDuration;
 
         public static ConfigEntry<float> SpikeDamage;
+        public static ConfigEntry<float> SpikeDamagePerMeterFell;
         public static ConfigEntry<float> SpikeImpactLiftForce;
+        public static ConfigEntry<float> SpikeInitialSpeed;
+        public static ConfigEntry<float> SpikeSpeedGrowth;
 
         public static void Init()
         {
@@ -87,9 +91,17 @@ namespace Cloudburst.Characters.Wyatt
                 0,
                 50,
                 false);
+            M1KnockbackForce = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M1 - M1KnockbackForce",
+                5f,
+                "value",
+                0,
+                50,
+                false);
             M1AntiGravDuration = Config.BindAndOptionsSlider(
                 sectionWyatt,
-                "Misc - M1AntiGravDuration",
+                "M1 - M1AntiGravDuration",
                 1.5f,
                 "value",
                 0,
@@ -233,10 +245,36 @@ namespace Cloudburst.Characters.Wyatt
                 0,
                 10,
                 false);
+            SpikeDamagePerMeterFell = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "Misc - SpikeDamagePerMeterFell",
+                0.5f,
+                "value",
+                0,
+                10,
+                false);
             SpikeImpactLiftForce = Config.BindAndOptionsSlider(
                 sectionWyatt,
                 "Misc - SpikeImpactLiftForce",
                 0f,
+                "value",
+                0,
+                100,
+                false);
+
+            SpikeInitialSpeed = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "Misc - SpikeInitialSpeed",
+                20f,
+                "value",
+                0,
+                200,
+                false);
+
+            SpikeSpeedGrowth = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "Misc - SpikeSpeedGrowth",
+                10f,
                 "value",
                 0,
                 100,

@@ -8,6 +8,7 @@ namespace Cloudburst.Characters.Wyatt
         {
             R2API.ContentAddition.AddEntityState<WyattBaseMeleeAttack>(out _);
             R2API.ContentAddition.AddEntityState<TrashOut>(out _);
+            R2API.ContentAddition.AddEntityState<TrashOutHit>(out _);
             R2API.ContentAddition.AddEntityState<ActivateFlow>(out _);
             R2API.ContentAddition.AddEntityState<DeployMaid>(out _);
         }

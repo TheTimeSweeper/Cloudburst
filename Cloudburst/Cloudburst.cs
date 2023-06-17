@@ -24,7 +24,7 @@ namespace Cloudburst
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI))]
+    //[R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI))]
     public class Cloudburst : BaseUnityPlugin
     {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
@@ -51,6 +51,7 @@ namespace Cloudburst
             Log.Init(Logger);
 
             GetBundle();
+            GetSoundBank();
 
             Modules.Compat.Init();
 
@@ -72,6 +73,16 @@ namespace Cloudburst
             new WyattSurvivor().Initialize();
 
             Log.Info(nameof(Awake) + " done.");
+        }
+
+        private void GetSoundBank()
+        {
+            using (var manifestResourceStream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.WyattBank.bnk"))
+            {
+                byte[] array = new byte[manifestResourceStream2.Length];
+                manifestResourceStream2.Read(array, 0, array.Length);
+                SoundAPI.SoundBanks.Add(array);
+            }
         }
 
         public void SetupItems()

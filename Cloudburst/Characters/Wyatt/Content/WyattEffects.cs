@@ -7,6 +7,8 @@ using RoR2.UI;
 using UnityEngine.Rendering.PostProcessing;
 using System.Linq;
 using R2API;
+using System;
+using Cloudburst.Modules;
 
 namespace Cloudburst.Characters.Wyatt
 {
@@ -31,6 +33,9 @@ namespace Cloudburst.Characters.Wyatt
 
         public static GameObject bigZapEffectPrefabArea;
 
+        public static GameObject notMercSlashEffect;
+        public static GameObject notMercSlashEffectThicc;
+
         public static void OnLoaded()
         {
             CreateNewEffects();
@@ -48,6 +53,18 @@ namespace Cloudburst.Characters.Wyatt
             //maidTriggerEffect = CreateEffect("MAIDTriggerEffect");
             maidCleanseEffect = CreateAsset("MAIDCleanEffect", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
 
+            createMercSlashesIMean();
+        }
+
+        private static void createMercSlashesIMean()
+        {
+            notMercSlashEffect = Assets.CloneAndColorEffect("RoR2/Base/Merc/MercSwordSlash.prefab", new Color(1, 0.015f, 0), "OrangeWyattMercSwordSlash");
+            notMercSlashEffect.transform.Find("SwingTrail").localScale = new Vector3(1.5f, 1.7f, 3);
+            ContentAddition.AddEffect(notMercSlashEffect);
+
+            notMercSlashEffectThicc = PrefabAPI.InstantiateClone(notMercSlashEffect, "OrangeWyattMercSwordSlashThicc", false);
+            notMercSlashEffectThicc.transform.Find("SwingTrail").localScale = new Vector3(2, 2, 10);
+            ContentAddition.AddEffect(notMercSlashEffectThicc);
         }
 
         protected static void CreateNewEffects()

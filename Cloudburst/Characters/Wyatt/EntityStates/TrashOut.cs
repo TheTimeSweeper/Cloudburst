@@ -8,6 +8,7 @@ using Cloudburst.Characters.Wyatt;
 
 namespace Cloudburst.CEntityStates.Wyatt
 {
+
     //https://i.redd.it/w8n9ovbtr0p51.jpg
     public class TrashOut : BaseSkillState
     {
@@ -84,7 +85,6 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            //Log.Info("Stage: " + stage.ToString());
             _stopwatch += Time.deltaTime;
 
             if (stage == ActionStage.FoundTarget)
@@ -99,109 +99,94 @@ namespace Cloudburst.CEntityStates.Wyatt
                         base.characterDirection.forward = base.characterMotor.velocity.normalized;
                         float distance = Util.SphereVolumeToRadius(target.volume);
 
-                        if (Vector3.Distance(base.transform.position, target.transform.position) < distance + 5f && target)
-                        {
-                            base.PlayAnimation("Fullbody, Override", "kickSwing");
-                        }
-
                         if (_stopwatch > 2)
                         {
-                            //Log.Info(stopwatch);
                             this.activatorSkillSlot.AddOneStock();
-                            Object.Destroy(_winch);
-                            characterMotor.velocity = Vector3.zero;
-                            //CCUtilities.LogW("Can't reach target, skill refunded!");
                             this.outer.SetNextStateToMain();
                         }
 
-
                         if (Vector3.Distance(base.transform.position, target.transform.position) < distance + 5f && target)
                         {
-                            //base.PlayAnimation("Fullbody, Override", "kickSwing");
-
-
-                            new BlastAttack
-                            {
-                                position = target.transform.position,
-                                baseForce = 3000,
-                                attacker = base.gameObject,
-                                inflictor = base.gameObject,
-                                teamIndex = base.GetTeam(),
-                                baseDamage = damageStat * WyattConfig.M2Damage.Value,//(3 + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * this.damageStat,
-                                attackerFiltering = AttackerFiltering.NeverHitSelf,
-                                // bonusForce = new Vector3(0, -3000, 0),
-                                damageType = DamageType.Stun1s,// | DamageTypeCore.spiked,
-                                crit = RollCrit(),
-                                damageColorIndex = DamageColorIndex.Default,
-                                falloffModel = BlastAttack.FalloffModel.None,
-                                //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
-                                procCoefficient = 1f,
-                                radius = 5
-                            }.Fire();
-
-                            if (target.healthComponent.body /*&& !target.healthComponent.body.isChampion*/)
-                            {
-                                if ((target.healthComponent.GetComponent<CharacterMotor>() && !target.healthComponent.body.characterMotor.isGrounded))
-                                {
-                                    GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1);
-                                }
-
-                                else if (target.healthComponent.GetComponent<RigidbodyMotor>())
-                                {
-                                    GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1.5f);
-                                }
-                            }
-
-                            //Log.Info("called onhit!!!");
-                            Object.Destroy(_winch);
-
-                            EffectData effectData = new EffectData
-                            {
-                                rotation = Quaternion.identity,
-                                scale = 20f,
-                                //start = base.transform.position,
-                                origin = target.transform.position
-                            };
-
-                            //hmm, today, i will stream :]
-                            //  EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/MaulingRockImpact"), effectData, true);
-                            //   EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/ExplosionSolarFlare"), effectData, true);
-
-                            base.characterMotor.velocity = Vector3.up * 18f;
-                            //characterMotor.ApplyForce(-(GetAimRay().direction * (-characterMotor.mass * 10)), true, false);
                             stage = ActionStage.HitTarget;
 
+                            //moving to entity state
+                            //ApplyBlastAuthority();
 
-                            //Log.Info("Stage: " + stage.ToString());
+                            //if (target.healthComponent.body /*&& !target.healthComponent.body.isChampion*/)
+                            //{
+                            //    if ((target.healthComponent.GetComponent<CharacterMotor>() && !target.healthComponent.body.characterMotor.isGrounded))
+                            //    {
+                            //        GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1);
+                            //    }
 
-                            this.outer.SetNextStateToMain();
+                            //    else if (target.healthComponent.GetComponent<RigidbodyMotor>())
+                            //    {
+                            //        GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1.5f);
+                            //    }
+                            //}
+
+                            this.outer.SetNextState(new TrashOutHit());
                         }
                     }
                     else
                     {
-                        Object.Destroy(_winch);
-                        characterMotor.velocity = Vector3.zero;
                         outer.SetNextStateToMain();
-                        PlayAnimation("BufferEmpty", "FullBody, Override");
                         return;
                     }
                 }
             }
             else
             {
-                //CCUtilities.LogE("Something is seriously fucked. Stage: " + stage.ToString());
-
-                characterMotor.velocity = Vector3.zero;
                 this.outer.SetNextStateToMain();
-
                 return;
             }
+        }
+
+        //moving to entity state
+        private void ApplyBlastAuthority()
+        {
+            new BlastAttack
+            {
+                position = target.transform.position,
+                baseForce = 0,
+                attacker = base.gameObject,
+                inflictor = base.gameObject,
+                teamIndex = base.GetTeam(),
+                baseDamage = damageStat * WyattConfig.M2Damage.Value,//(3 + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * this.damageStat,
+                attackerFiltering = AttackerFiltering.NeverHitSelf,
+                // bonusForce = new Vector3(0, -3000, 0),
+                damageType = DamageType.Stun1s,// | DamageTypeCore.spiked,
+                crit = RollCrit(),
+                damageColorIndex = DamageColorIndex.Default,
+                falloffModel = BlastAttack.FalloffModel.None,
+                //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
+                procCoefficient = 1f,
+                radius = 5
+            }.Fire();
+
+
+            EffectData effectData = new EffectData
+            {
+                rotation = Quaternion.identity,
+                scale = 20f,
+                //start = base.transform.position,
+                origin = target.transform.position
+            };
+
+            //hmm, today, i will stream :]
+            //  EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/MaulingRockImpact"), effectData, true);
+            //   EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/ExplosionSolarFlare"), effectData, true);
         }
 
         public override void OnExit()
         {
             base.OnExit();
             Object.Destroy(_winch);
+            characterMotor.velocity = Vector3.zero;
+            if(stage != ActionStage.HitTarget)
+            {
+                PlayAnimation("BufferEmpty", "FullBody, Override");
+            }
             base.characterBody.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
         }
 

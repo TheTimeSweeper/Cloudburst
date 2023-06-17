@@ -75,9 +75,9 @@ namespace Cloudburst.Wyatt.Components
             {
                 EffectData effectData = new EffectData
                 {
-                    origin = base.transform.position,
+                    origin = component.transform.position,
                     //pls god
-                    start = component.transform.position
+                    start = base.transform.position
                 };
                 EffectManager.SpawnEffect(WyattEffects.maidTouchEffect, effectData, true);
 

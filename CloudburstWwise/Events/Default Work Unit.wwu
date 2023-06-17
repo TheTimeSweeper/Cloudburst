@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{496F3381-490E-4E05-BB51-D11A9D28012C}" SchemaVersion="97">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{496F3381-490E-4E05-BB51-D11A9D28012C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Events" ID="{B5887BEF-116F-46D3-B0EB-83FBB0757C20}" ShortID="271086073">
+					<ChildrenList>
+						<Event Name="Play_Wyatt_Hit" ID="{15A33A1B-926A-4631-B3D6-849E8EAFBC4D}">
+							<ChildrenList>
+								<Action Name="" ID="{FC7C55FD-0736-49E1-BC66-FA4F64D9256B}" ShortID="2423497">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="HitRandom" ID="{26D0367A-6B2D-4331-AFE7-72453A67A78D}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Whip" ID="{59922EB3-B2B2-473B-B7FA-547FA9D6E233}">
+							<ChildrenList>
+								<Action Name="" ID="{B5A70C7C-08CC-49F1-B829-CDED8446A912}" ShortID="201561662">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WhipMix" ID="{0E052E7A-EB03-4965-ABAA-23EA43D3E3AE}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Whoosh" ID="{3E12A6D6-DE3E-485E-9187-32203A6792E3}">
+							<ChildrenList>
+								<Action Name="" ID="{C712AB3B-BA44-4B0D-8AEF-D2F886CA6AAA}" ShortID="160972063">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WhooshRandom" ID="{0DDFE2FC-8988-4846-A290-7B4636B85572}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

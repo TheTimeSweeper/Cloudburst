@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using RoR2.UI;
 using System;
+using UnityEngine.AddressableAssets;
 
 namespace Cloudburst.Modules
 {
@@ -25,7 +26,7 @@ namespace Cloudburst.Modules
             return null;
         }
 
-        private static GameObject CreateTracer(string originalTracerName, string newTracerName)
+        public static GameObject CreateTracer(string originalTracerName, string newTracerName)
         {
             if (RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/Tracers/" + originalTracerName) == null) return null;
 
@@ -41,6 +42,47 @@ namespace Cloudburst.Modules
             AddNewEffectDef(newTracer);
 
             return newTracer;
+        }
+
+        public static GameObject CloneAndColorEffect(string addressablesPath, Color color, string name)
+        {
+
+            GameObject MercSwordSlash = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(addressablesPath).WaitForCompletion(), name);
+
+            recolorEffects(color, MercSwordSlash);
+
+            return MercSwordSlash;
+        }
+
+        public static GameObject CloneAndColorEffectLegacy(string legacyPath, Color color, string name)
+        {
+
+            GameObject MercSwordSlash = PrefabAPI.InstantiateClone(RoR2.LegacyResourcesAPI.Load<GameObject>(legacyPath), name);
+
+            recolorEffects(color, MercSwordSlash);
+
+            return MercSwordSlash;
+        }
+
+        public static void recolorEffects(Color color, GameObject MercSwordSlash)
+        {
+            ParticleSystemRenderer[] rends = MercSwordSlash.GetComponentsInChildren<ParticleSystemRenderer>();
+
+            foreach (ParticleSystemRenderer rend in rends)
+            {
+                rend.material.SetColor("_MainColor", color);
+                rend.material.SetColor("_Color", color);
+                rend.material.SetColor("_TintColor", color);
+            }
+
+            //didn't work so saving the processing
+            //ParticleSystem[] particles = MercSwordSlash.GetComponentsInChildren<ParticleSystem>();
+
+            //foreach (ParticleSystem particleSystem in particles) {
+
+            //    ParticleSystem.MainModule main = particleSystem.main;
+            //    main.startColor = color;
+            //}
         }
 
         internal static NetworkSoundEventDef CreateNetworkSoundEventDef(string eventName)

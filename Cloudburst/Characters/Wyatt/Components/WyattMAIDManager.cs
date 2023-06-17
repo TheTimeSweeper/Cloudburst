@@ -67,7 +67,6 @@ namespace Cloudburst.Wyatt.Components
                     Destroy(winch);
                     body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
                     characterMotor.velocity = Vector3.zero;
-                    startReel = false;
                     sunset.Invoke();
                     //RpcSetDeploy(true);
 
@@ -75,11 +74,10 @@ namespace Cloudburst.Wyatt.Components
                 float distance = Vector3.Distance(base.transform.position, maid.transform.position);
                 if (distance <= 1.185805)
                 {
-                    body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
                     DestroymaidAuthority();
                     Destroy(winch);
+                    body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
                     characterMotor.velocity = Vector3.up * 30f;
-                    startReel = false;
                     // RpcSetDeploy(false);
                 }
             }
@@ -90,6 +88,7 @@ namespace Cloudburst.Wyatt.Components
             if (NetworkServer.active)
             {
                 NetworkServer.Destroy(maid);
+                startReel = false;
             }
             else
             {
@@ -101,6 +100,7 @@ namespace Cloudburst.Wyatt.Components
         private void CmdDestroymaid()
         {
             NetworkServer.Destroy(maid);
+            startReel = false;
         }
 
         #region Deployment

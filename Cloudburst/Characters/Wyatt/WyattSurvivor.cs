@@ -286,12 +286,14 @@ namespace Cloudburst.Characters.Wyatt
 
         public override void InitializeHitboxes()
         {
-            ChildLocator childLocator = bodyPrefab.GetComponentInChildren<ChildLocator>();
+            //set up on model
 
-            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitbox"), "TempHitbox");
-            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLarge"), "TempHitboxLarge");
-            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxSquish"), "TempHitboxSquish");
-            Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
+            //ChildLocator childLocator = bodyPrefab.GetComponentInChildren<ChildLocator>();
+
+            //Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitbox"), "TempHitbox");
+            //Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLarge"), "TempHitboxLarge");
+            //Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxSquish"), "TempHitboxSquish");
+            //Prefabs.SetupHitbox(prefabCharacterModel.gameObject, childLocator.FindChild("TempHitboxLunge"), "TempHitboxLunge");
         }
 
         #region skills

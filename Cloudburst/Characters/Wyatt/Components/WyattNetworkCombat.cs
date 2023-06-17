@@ -42,7 +42,7 @@ namespace Cloudburst.Wyatt.Components
         {
             if (NetworkServer.active)
             {
-                CCUtilities.AddUpwardForceToBody(victimBody, acceleration);
+                ApplyKnockupInternal(victimBody, acceleration);
             }
             else
             {
@@ -52,7 +52,35 @@ namespace Cloudburst.Wyatt.Components
         [Command]
         private void CmdApplyKnockup(GameObject victimBody, float acceleration)
         {
-            CCUtilities.AddUpwardForceToBody(victimBody, acceleration);
+            ApplyKnockupInternal(victimBody, acceleration);
+        }
+
+        private static void ApplyKnockupInternal(GameObject victimBody, float acceleration)
+        {
+            CCUtilities.AddUpwardImpulseToBody(victimBody, acceleration);
+        }
+
+
+        public void ApplyKnockbackAuthority(GameObject victimBody, Vector3 directionAuthority, float acceleration)
+        {
+            if (NetworkServer.active)
+            {
+                ApplyKnockbackInternal(victimBody, directionAuthority, acceleration);
+            }
+            else
+            {
+                CmdApplyKnockback(victimBody, directionAuthority, acceleration);
+            }
+        }
+        [Command]
+        private void CmdApplyKnockback(GameObject victimBody, Vector3 directionAuthority, float acceleration)
+        {
+            ApplyKnockbackInternal(victimBody, directionAuthority, acceleration);
+        }
+
+        private static void ApplyKnockbackInternal(GameObject victimBody, Vector3 directionAuthority, float acceleration)
+        {
+            CCUtilities.AddForwardImpulseToBody(victimBody, directionAuthority, acceleration);
         }
     }
 }

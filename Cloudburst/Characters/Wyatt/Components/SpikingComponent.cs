@@ -11,28 +11,36 @@ namespace Cloudburst.Wyatt.Components
     public class SpikingComponent : MonoBehaviour
     {
         public CharacterBody spikerBody;
+        public GameObject originalSpiker;
+        public float interval = 0;
         private Vector3 direction;
 
         private CharacterMotor characterMotor;
         private RigidbodyMotor rigidMotor;
-        private bool useRigidBody = false;
-        public GameObject originalSpiker;
         private WyattNetworkCombat networkCombat;
 
-        public float interval = 0;
+        private bool useRigidBody = false;
         private float stopwatch;
+        private float initialPositionY;
+        private float currentSpeed;
+        private float speedGrowth;
+        private bool hitGround;
+
         public void Start()
         {
+            spikerBody = originalSpiker.GetComponent<CharacterBody>();
+            networkCombat = originalSpiker.GetComponent<WyattNetworkCombat>();
+            direction = Vector3.down;
+            currentSpeed = WyattConfig.SpikeInitialSpeed.Value;
+            speedGrowth = WyattConfig.SpikeSpeedGrowth.Value;
+
             characterMotor = base.gameObject.GetComponent<CharacterMotor>();
-            if (characterMotor == null && useRigidBody == false)
+            if (characterMotor == null)
             {
                 useRigidBody = true;
                 rigidMotor = base.gameObject.GetComponent<RigidbodyMotor>();
                 rigidMotor.moveVector = Vector3.zero;
             }
-            spikerBody = originalSpiker.GetComponent<CharacterBody>();
-            networkCombat = originalSpiker.GetComponent<WyattNetworkCombat>();
-            direction = Vector3.down;
             if (characterMotor)
             {
                 characterMotor.velocity = Vector3.zero;
@@ -40,15 +48,32 @@ namespace Cloudburst.Wyatt.Components
 
                 characterMotor.onHitGroundServer += Motor_onHitGround;
             }
+
+            initialPositionY = transform.position.y;
         }
 
-        void OnCollisionEnter(Collision collision)
+        public void OnDestroy()
         {
-            if(collision.collider.gameObject.layer == LayerIndex.world.intVal)
+            if (characterMotor)
             {
-                bigSlam(collision.contacts[0].point);
-                Destroy(this);
+                characterMotor.onHitGroundServer -= Motor_onHitGround;
             }
+        }
+
+        void OnCollisionStay(Collision collision)
+        {
+            if(collision.collider.gameObject.layer == LayerIndex.world.intVal && !hitGround)
+            {
+                Vector3 point = collision.contacts[0].point;
+                RigidBodyHitGround(point);
+            }
+        }
+
+        private void RigidBodyHitGround(Vector3 point)
+        {
+            hitGround = true;
+            bigSlam(point);
+            Destroy(this);
         }
 
         void Motor_onHitGround(ref CharacterMotor.HitGroundInfo hitGroundInfo)
@@ -64,11 +89,16 @@ namespace Cloudburst.Wyatt.Components
 
         private void bigSlam(Vector3 position)
         {
+            float blastRadius = 10;
             if (NetworkServer.active)
             {
+                float amountFell = initialPositionY - transform.position.y;
+                float blastDamage = WyattConfig.SpikeDamage.Value + amountFell * WyattConfig.SpikeDamagePerMeterFell.Value;
+                Log.Warning("amountFell: " + amountFell + "damage: " + blastDamage);
+
                 EffectManager.SpawnEffect(WyattEffects.tiredOfTheDingDingDing, new EffectData
                 {
-                    scale = 10,
+                    scale = blastRadius,
                     rotation = Quaternion.identity,
                     origin = position,
                 }, true);
@@ -80,7 +110,7 @@ namespace Cloudburst.Wyatt.Components
                     attacker = originalSpiker,
                     inflictor = originalSpiker,
                     teamIndex = spikerBody.teamComponent.teamIndex,
-                    baseDamage = spikerBody.damage * WyattConfig.SpikeDamage.Value, //3,
+                    baseDamage = spikerBody.damage * blastDamage, //3,
                     attackerFiltering = AttackerFiltering.NeverHitSelf,
                     //bonusForce = new Vector3(0, -3000, 0),
                     damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
@@ -88,23 +118,24 @@ namespace Cloudburst.Wyatt.Components
                     damageColorIndex = DamageColorIndex.WeakPoint,
                     falloffModel = BlastAttack.FalloffModel.None,
                     //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
-                    procCoefficient = 0,
-                    radius = 10
+                    procCoefficient = 1,
+                    radius = blastRadius
                 };
                 //R2API.DamageAPI.AddModdedDamageType(blastAttack, WyattDamageTypes.antiGravDamage);
                 blastAttack.Fire();
-
             }
 
+            Util.PlaySound("Play_grandParent_attack1_boulderLarge_impact",gameObject);
+
             List<CharacterBody> hitBodies = HG.CollectionPool<CharacterBody, List<CharacterBody>>.RentCollection();
-            CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, 10, LayerIndex.CommonMasks.bullet);
+            CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, blastRadius, LayerIndex.CommonMasks.bullet);
 
             for (int i = 0; i < hitBodies.Count; i++)
             {
                 CharacterBody characterBody = hitBodies[i];
 
                 bool canHit = CCUtilities.ShouldKnockup(characterBody, spikerBody.teamComponent.teamIndex);
-                if (canHit && characterBody != characterMotor.body && characterBody.gameObject != originalSpiker)
+                if (canHit && characterBody.gameObject != gameObject && characterBody.gameObject != originalSpiker)
                 {
                     networkCombat.ApplyKnockupAuthority(characterBody.gameObject, WyattConfig.SpikeImpactLiftForce.Value);// 10);
                     //CCUtilities.AddExplosionForce(characterBody.characterMotor, characterBody.characterMotor.mass * 25, transform.position, 25, 5, false);
@@ -112,14 +143,6 @@ namespace Cloudburst.Wyatt.Components
                 }
             }
             HG.CollectionPool<CharacterBody, List<CharacterBody>>.ReturnCollection(hitBodies);
-        }
-
-        public void OnDestroy()
-        {
-            if (characterMotor)
-            {
-                characterMotor.onHitGroundServer -= Motor_onHitGround;
-            }
         }
 
         public void FixedUpdate()
@@ -131,25 +154,38 @@ namespace Cloudburst.Wyatt.Components
 
             if (NetworkServer.active)
             {
-                if (stopwatch >= (interval - 0.001f))
+                currentSpeed += speedGrowth * Time.fixedDeltaTime;
+                //if (stopwatch >= (interval - 0.001f))
+                //{
+                //    if (useRigidBody == false)
+                //    {
+                //        characterMotor.ApplyForce((direction * 62.5f * currentSpeed), true, false);
+                //    }
+                //    else
+                //    {
+                //        //rigidMotor.rigid.AddForce((direction * 62.5f * Assaulter2.speedCoefficient), ForceMode.VelocityChange);
+                //    }
+                //}
+
+                if (!hitGround)
                 {
+                    Vector3 wow = (direction * 2 * currentSpeed) * Time.fixedDeltaTime;
                     if (useRigidBody == false)
                     {
-                        characterMotor.ApplyForce((direction * 62.5f * Assaulter2.speedCoefficient), true, false);
+                        characterMotor.rootMotion += wow;
                     }
                     else
                     {
-                        //rigidMotor.rigid.AddForce((direction * 62.5f * Assaulter2.speedCoefficient), ForceMode.VelocityChange);
+                        RaycastHit hitInfo;
+                        if (Physics.Raycast(transform.position, wow, out hitInfo, wow.magnitude * 2, LayerIndex.world.mask))
+                        {
+                            RigidBodyHitGround(hitInfo.point);
+                        }
+                        else
+                        {
+                            rigidMotor.AddDisplacement(wow);
+                        }
                     }
-                }
-                var wow = (direction * 2 * Assaulter2.speedCoefficient) * Time.fixedDeltaTime;
-                if (useRigidBody == false)
-                {
-                    characterMotor.rootMotion += wow;
-                }
-                else
-                {
-                    rigidMotor.AddDisplacement(wow);
                 }
             }
 

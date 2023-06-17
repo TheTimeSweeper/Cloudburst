@@ -16,12 +16,14 @@
     <None Remove="Assets\cloudburst" />
     <None Remove="Assets\oldcloudburst" />
     <None Remove="Assets\wyatt" />
+    <None Remove="Assets\WyattBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\cloudburst" />
     <EmbeddedResource Include="Assets\oldcloudburst" />
     <EmbeddedResource Include="Assets\wyatt" />
+    <EmbeddedResource Include="Assets\WyattBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,7 +90,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)Assets&quot;" />
+    <Exec Command="copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)Assets&quot;&#xD;&#xA;copy /y &quot;$(ProjectDir)..\CloudburstWwise\GeneratedSoundBanks\Windows\WyattBank.bnk&quot; &quot;$(ProjectDir)Assets&quot;" />
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

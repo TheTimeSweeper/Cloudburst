@@ -156,17 +156,39 @@ public static class CCUtilities
     }
 
 
-    public static void AddUpwardForceToBody(GameObject victimBody, float acceleration)
+    public static void AddUpwardImpulseToBody(GameObject victimBody, float upwardImpulseAmount)
     {
+        Vector3 upwardImpulse = Vector3.up * upwardImpulseAmount;
         CharacterMotor hitMotor = victimBody.GetComponent<CharacterMotor>();
         if (hitMotor)
         {
-            hitMotor.ApplyForce(Vector3.up * hitMotor.mass * acceleration, true, true);
+            hitMotor.velocity = Vector3.zero;
+            hitMotor.ApplyForce(upwardImpulse * hitMotor.mass, true, true);
+            return;
         }
         RigidbodyMotor rigidMotor = victimBody.GetComponent<RigidbodyMotor>();
         if (rigidMotor)
         {
-            rigidMotor.rigid.AddForce(Vector3.up * rigidMotor.mass * acceleration, ForceMode.Impulse);
+            rigidMotor.rigid.velocity = Vector3.zero;
+            rigidMotor.rigid.AddForce(upwardImpulse * rigidMotor.mass, ForceMode.Impulse);
+        }
+    }
+    public static void AddForwardImpulseToBody(GameObject victimBody, Vector3 directionAuthority, float forwardImpulseAmount)
+    {
+        Vector3 Impulse = directionAuthority;
+        Impulse.y = 0;
+        Impulse = Impulse.normalized * forwardImpulseAmount;
+
+        CharacterMotor hitMotor = victimBody.GetComponent<CharacterMotor>();
+        if (hitMotor)
+        {
+            hitMotor.ApplyForce(Impulse * hitMotor.mass, true, true);
+            return;
+        }
+        RigidbodyMotor rigidMotor = victimBody.GetComponent<RigidbodyMotor>();
+        if (rigidMotor)
+        {
+            rigidMotor.rigid.AddForce(Impulse * rigidMotor.mass, ForceMode.Impulse);
         }
     }
 

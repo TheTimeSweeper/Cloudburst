@@ -17,11 +17,15 @@ namespace Cloudburst.Characters.Wyatt
         public static GameObject wyattMaidBoomerang;
         private static GameObject winchGhost;
         public static GameObject winch;
+        internal static NetworkSoundEventDef hitSound;
+        internal static NetworkSoundEventDef hitWhipSound;
 
         public static void InitAss()
         {
             CreateProjectiles();
             MaidSprite2 = Assets.LoadAsset<Sprite>("texIconWyattSpecial2");
+            hitSound = Assets.CreateNetworkSoundEventDef("Play_Wyatt_Hit");
+            hitWhipSound = Assets.CreateNetworkSoundEventDef("Play_Wyatt_Whip");
         }
 
         private static void CreateProjectiles()

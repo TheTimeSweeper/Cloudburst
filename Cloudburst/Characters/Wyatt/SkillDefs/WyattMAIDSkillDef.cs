@@ -29,7 +29,6 @@ namespace Cloudburst.Wyatt.Components
             WyattMAIDManager maidManager = data.manager;
             if (maidManager)
             {
-                Log.Warning("maid " + maidManager.maid);
                 if (maidManager.maid)
                 {
                     MAID = MAIDState.Deployed;
@@ -65,6 +64,11 @@ namespace Cloudburst.Wyatt.Components
                 manager = skillSlot.GetComponent<WyattMAIDManager>(),
                 subbed = false
             };
+        }
+        public override void OnUnassigned([NotNull] GenericSkill skillSlot)
+        {
+            base.OnUnassigned(skillSlot);
+            ((InstanceData)skillSlot.skillInstanceData).manager = null;
         }
 
         public bool DetermineExecution([NotNull] GenericSkill skillSlot)

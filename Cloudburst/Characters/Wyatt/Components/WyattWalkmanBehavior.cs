@@ -177,7 +177,7 @@ namespace Cloudburst.Wyatt.Components
 
         public void OnDamageDealtServer(DamageReport damageReport)
         {
-            if (damageReport.damageInfo?.inflictor == base.gameObject && flowing == false)
+            if (flowing == false && R2API.DamageAPI.HasModdedDamageType(damageReport.damageInfo, WyattDamageTypes.applyGroove))
             {
                 TriggerBehaviorInternal(1);
             }

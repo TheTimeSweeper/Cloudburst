@@ -206,7 +206,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: BroomFinisherType
+  - m_Name: BroomFinisherSpike
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: BroomSpike.playbackRate
+    m_Type: 1
+    m_DefaultFloat: 1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: BroomSpike.active
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -2311,7 +2323,7 @@ AnimatorState:
   m_Motion: {fileID: -812374244306802122, guid: d83d65bcc2e13054588d9fefbb895398,
     type: 3}
   m_Tag: 
-  m_SpeedParameter: forwardSpeed
+  m_SpeedParameter: BroomSpike.playbackRate
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -2570,7 +2582,7 @@ AnimatorStateMachine:
     m_Position: {x: 336, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102339482791137676}
-    m_Position: {x: 384, y: -24, z: 0}
+    m_Position: {x: 380, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102571209953859052}
     m_Position: {x: 672, y: -24, z: 0}
@@ -2872,6 +2884,6 @@ BlendTree:
   m_BlendParameterY: forwardSpeed
   m_MinThreshold: 0
   m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0

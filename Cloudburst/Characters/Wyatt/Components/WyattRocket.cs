@@ -93,67 +93,69 @@ namespace Cloudburst.Wyatt.Components
         private void BigExplode(Vector3 position)
         {
             SetToEmpty();
-
-            EffectManager.SpawnEffect(WyattEffects.bigZapEffectPrefabArea,// Effects.wyattSlam, 
-                                      new EffectData
-                                      {
-                                          scale = 30,
-                                          rotation = Quaternion.identity,
-                                          origin = position,
-                                      },
-                                      true);
-
-            /*EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleQueenDeathImpact")/*Effects.wyattSlam/*BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam"), new EffectData
+            if (Util.HasEffectiveAuthority(gameObject))
             {
-                scale = 1,
-                rotation = Quaternion.identity,
-                origin = hitGroundInfo.position,
-            }, true);
-            EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam")/*Effects.wyattSlam/*BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam"), new EffectData
-            {
-                scale = 1,
-                rotation = Quaternion.identity,
-                origin = hitGroundInfo.position,
-            }, true);*/
 
-            BlastAttack blast = new BlastAttack
-            {
-                position = position,
-                //baseForce = 3000,
-                attacker = base.gameObject,
-                inflictor = gameObject,
-                teamIndex = characterBody.teamComponent.teamIndex,
-                baseDamage = characterBody.damage * WyattConfig.M4SlamDamage.Value,
-                attackerFiltering = default,
-                //bonusForce = new Vector3(0, -3000, 0),
-                damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
-                crit = characterBody.RollCrit(),
-                damageColorIndex = DamageColorIndex.WeakPoint,
-                falloffModel = BlastAttack.FalloffModel.None,
-                //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
-                procCoefficient = 0,
-                radius = 30
-            };
-            R2API.DamageAPI.AddModdedDamageType(blast, WyattDamageTypes.antiGravDamage2);
-            blast.Fire();
+                EffectManager.SpawnEffect(WyattEffects.bigZapEffectPrefabArea,// Effects.wyattSlam, 
+                                          new EffectData
+                                          {
+                                              scale = 30,
+                                              rotation = Quaternion.identity,
+                                              origin = position,
+                                          },
+                                          true);
 
-            List<CharacterBody> hitBodies = HG.CollectionPool<CharacterBody, List<CharacterBody>>.RentCollection();
-            CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, 30, LayerIndex.CommonMasks.bullet);
-            
-            for (int i = 0; i < hitBodies.Count; i++)
-            {
-                CharacterBody cb = hitBodies[i];
-
-                bool canHit = CCUtilities.ShouldKnockup(cb, characterBody.teamComponent.teamIndex);
-                if (canHit && cb != characterBody)
+                /*EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleQueenDeathImpact")/*Effects.wyattSlam/*BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam"), new EffectData
                 {
-                    networkCombat.ApplyKnockupAuthority(cb.gameObject, WyattConfig.M4SlamLiftForce.Value);
-                    //AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 10, transform.position, 25, 5, false);
-                    //CCUtilities.AddUpwardForceToBody(cb.gameObject, 10);
-                }
-            }
-            HG.CollectionPool<CharacterBody, List<CharacterBody>>.ReturnCollection(hitBodies);
+                    scale = 1,
+                    rotation = Quaternion.identity,
+                    origin = hitGroundInfo.position,
+                }, true);
+                EffectManager.SpawnEffect(BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam")/*Effects.wyattSlam/*BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/BeetleGuardGroundSlam"), new EffectData
+                {
+                    scale = 1,
+                    rotation = Quaternion.identity,
+                    origin = hitGroundInfo.position,
+                }, true);*/
 
+                BlastAttack blast = new BlastAttack
+                {
+                    position = position,
+                    //baseForce = 3000,
+                    attacker = base.gameObject,
+                    inflictor = gameObject,
+                    teamIndex = characterBody.teamComponent.teamIndex,
+                    baseDamage = characterBody.damage * WyattConfig.M4SlamDamage.Value,
+                    attackerFiltering = default,
+                    //bonusForce = new Vector3(0, -3000, 0),
+                    damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
+                    crit = characterBody.RollCrit(),
+                    damageColorIndex = DamageColorIndex.WeakPoint,
+                    falloffModel = BlastAttack.FalloffModel.None,
+                    //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
+                    procCoefficient = 0,
+                    radius = 30
+                };
+                R2API.DamageAPI.AddModdedDamageType(blast, WyattDamageTypes.antiGravDamage2);
+                blast.Fire();
+
+                List<CharacterBody> hitBodies = HG.CollectionPool<CharacterBody, List<CharacterBody>>.RentCollection();
+                CCUtilities.CharacterOverlapSphereAll(ref hitBodies, transform.position, 30, LayerIndex.CommonMasks.bullet);
+
+                for (int i = 0; i < hitBodies.Count; i++)
+                {
+                    CharacterBody cb = hitBodies[i];
+
+                    bool canHit = CCUtilities.ShouldKnockup(cb, characterBody.teamComponent.teamIndex);
+                    if (canHit && cb != characterBody)
+                    {
+                        networkCombat.ApplyKnockupAuthority(cb.gameObject, WyattConfig.M4SlamLiftForce.Value);
+                        //AddExplosionForce(cb.characterMotor, cb.characterMotor.mass * 10, transform.position, 25, 5, false);
+                        //CCUtilities.AddUpwardForceToBody(cb.gameObject, 10);
+                    }
+                }
+                HG.CollectionPool<CharacterBody, List<CharacterBody>>.ReturnCollection(hitBodies);
+            }
             Destroy(this);
         }
 
