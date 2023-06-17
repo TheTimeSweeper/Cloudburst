@@ -106,9 +106,16 @@ namespace Cloudburst.CEntityStates.Wyatt
             {//
              //   base.activatorSkillSlot.skillDef.baseRechargeInterval = 5;
             }
+            Log.Warning("nip");
             base.activatorSkillSlot.DeductStock(1);
+            blaseballManager.OnRetrival -= BlaseballManager_OnRetrival;
         }
 
+        public override void OnExit()
+        {
+            base.OnExit();
+            blaseballManager.OnRetrival -= BlaseballManager_OnRetrival;
+        }
         public void FireProjectile()
         {
             var aimRay = base.GetAimRay();

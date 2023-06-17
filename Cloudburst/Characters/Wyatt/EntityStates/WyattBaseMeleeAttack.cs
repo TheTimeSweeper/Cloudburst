@@ -112,15 +112,14 @@ namespace Cloudburst.CEntityStates.Wyatt
 
             this.procCoefficient = 1f;
             this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
-            this.shorthopVelocityFromHit = 3;
-            if (isComboFinisher) shorthopVelocityFromHit = 5f;
+            this.shorthopVelocityFromHit = 4;
+            if (isComboFinisher) shorthopVelocityFromHit = 10f;
 
             swingEffectPrefab = WyattEffects.notMercSlashEffect;// BandaidConvert.Resources.Load<GameObject>("prefabs/effects/GrandparentGroundSwipeTrailEffect");
             if (isComboFinisher) swingEffectPrefab = WyattEffects.notMercSlashEffectThicc;
             hitEffectPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/effects/omnieffect/omniimpactvfxmedium");
 
             beginSwingSoundString = "Play_Wyatt_Whoosh";
-
             impactSound = WyattAssets.hitSound;
 
 
@@ -211,7 +210,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                         CharacterMotor motor = hurtBox.healthComponent.body.characterMotor;
                         if (!motor || (motor && !motor.isGrounded))
                         {
-                            networkCombat.ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 1);
+                            networkCombat.ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 2);
                         }
                     }
                 }

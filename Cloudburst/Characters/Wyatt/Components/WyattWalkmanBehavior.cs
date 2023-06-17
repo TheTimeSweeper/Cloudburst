@@ -38,8 +38,6 @@ namespace Cloudburst.Wyatt.Components
         #region network Effects
         private void PlayGrooveEffectServer()
         {
-            grooveEffect2.Play();
-            grooveEffect.Play();
             RpcPlayGrooveEFfect();
         }
         [ClientRpc]
@@ -51,7 +49,6 @@ namespace Cloudburst.Wyatt.Components
         
         private void PlayFlowEffectServer()
         {
-            flowEffect.Play();
             RpcPlayFlowEFfect();
         }
         [ClientRpc]
@@ -62,7 +59,6 @@ namespace Cloudburst.Wyatt.Components
 
         private void StopFlowEffectServer()
         {
-            flowEffect.Stop();
             RpcPStopFlowEFfect();
         }
         [ClientRpc]
@@ -75,10 +71,22 @@ namespace Cloudburst.Wyatt.Components
         private void Start()
         {
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
+            On.RoR2.GenericSkill.RunRecharge += GenericSkill_RunRecharge;
+        }
+
+        private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge orig, GenericSkill self, float dt)
+        {
+            if(self && self.characterBody && self.characterBody.HasBuff(WyattSurvivor.instance.wyattFlowBuffDef))
+            {
+                dt *= 1 + WyattConfig.M3FlowCDR.Value;
+            }
+
+            orig(self, dt);
         }
 
         void OnDestroy() {
             On.RoR2.CharacterBody.OnBuffFinalStackLost -= CharacterBody_OnBuffFinalStackLost;
+            On.RoR2.GenericSkill.RunRecharge -= GenericSkill_RunRecharge;
         }
 
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)

@@ -32,6 +32,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             base.OnEnter();
             tracker = base.gameObject.GetComponent<GenericCursorEnemyTracker>();
+            base.gameObject.layer = LayerIndex.fakeActor.intVal;
             _winch = null;
             if (characterBody)
             {
@@ -183,9 +184,11 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.OnExit();
             Object.Destroy(_winch);
             characterMotor.velocity = Vector3.zero;
-            if(stage != ActionStage.HitTarget)
+
+            if (stage != ActionStage.HitTarget)
             {
-                PlayAnimation("BufferEmpty", "FullBody, Override");
+                base.gameObject.layer = LayerIndex.defaultLayer.intVal;
+                PlayAnimation("FullBody, Override", "BufferEmpty");
             }
             base.characterBody.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
         }

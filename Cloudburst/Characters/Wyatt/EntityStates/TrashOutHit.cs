@@ -49,28 +49,29 @@ namespace Cloudburst.CEntityStates.Wyatt
                 CharacterMotor motor = hurtBox.healthComponent.body.characterMotor;
                 if (!motor || (motor && !motor.isGrounded))
                 {
-                    networkCombat.ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 2);
+                    networkCombat.ApplyBasedAuthority(hurtBox.healthComponent.body.gameObject, gameObject, 5);
                 }
             }
         }
 
-        //public override void OnExit()
-        //{
-        //    base.OnExit();
-        //    if (!target.healthComponent.body)
-        //        return;
-        //    if (target.healthComponent.GetComponent<SpikingComponent>())
-        //        return;
+        public override void OnExit()
+        {
+            base.OnExit();
+            base.gameObject.layer = LayerIndex.defaultLayer.intVal;
+            //if (!target.healthComponent.body)
+            //    return;
+            //if (target.healthComponent.GetComponent<SpikingComponent>())
+            //    return;
 
-        //    if ((target.healthComponent.GetComponent<CharacterMotor>() && !target.healthComponent.body.characterMotor.isGrounded))
-        //    {
-        //        GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1);
-        //    }
+            //if ((target.healthComponent.GetComponent<CharacterMotor>() && !target.healthComponent.body.characterMotor.isGrounded))
+            //{
+            //    GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1);
+            //}
 
-        //    else if (target.healthComponent.GetComponent<RigidbodyMotor>())
-        //    {
-        //        GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1.5f);
-        //    }
-        //}
+            //else if (target.healthComponent.GetComponent<RigidbodyMotor>())
+            //{
+            //    GetComponent<WyattNetworkCombat>().ApplyBasedAuthority(target.healthComponent.gameObject, gameObject, 1.5f);
+            //}
+        }
     }
 }

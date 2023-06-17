@@ -33,8 +33,8 @@ namespace Cloudburst.Characters.Wyatt
             crosshair = Assets.LoadCrosshair("Standard"),
             podPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
 
-            maxHealth = 110f,
-            healthRegen = 1.5f,
+            maxHealth = 120f,
+            healthRegen = 2.5f,
             armor = 20f,
 
             jumpCount = 1,
@@ -167,7 +167,8 @@ namespace Cloudburst.Characters.Wyatt
 
             if (sender.HasBuff(wyattFlowBuffDef))
             {
-                args.cooldownMultAdd -= WyattConfig.M3FlowCDR.Value;// 0.3f;
+                //moved to wyattwalkman behaviour
+                //args.cooldownMultAdd -= WyattConfig.M3FlowCDR.Value;// 0.3f;
                 args.armorAdd += WyattConfig.M3FlowArmorBase.Value + WyattConfig.M3FlowArmorPerStack.Value * sender.GetBuffCount(wyattGrooveBuffDef);
             }
 
@@ -233,7 +234,7 @@ namespace Cloudburst.Characters.Wyatt
             wyattFlowBuffDef = Buffs.AddNewBuff(
                 "CloudburstWyattFlowBuff",
                 Assets.LoadAsset<Sprite>("WyattVelocity"),
-                CCUtilities.HexToColor("#37323e"),
+                CCUtilities.HexToColor("69FFC2"),
                 false,
                 false);
 
@@ -280,8 +281,7 @@ namespace Cloudburst.Characters.Wyatt
 
         public override void InitializeUnlockables()
         {
-            //uncomment this when you have a mastery skin. when you do, make sure you have an icon too
-            //masterySkinUnlockableDef = Modules.Unlockables.AddUnlockable<Modules.Achievements.MasteryAchievement>();
+            WyattUnlockables.Init();
         }
 
         public override void InitializeHitboxes()
@@ -325,7 +325,7 @@ namespace Cloudburst.Characters.Wyatt
 
             //R2API.LanguageAPI.Add(passive.keywordToken, "<style=cKeywordName>Groove</style><style=cSub>Increases movement speed by X%.</style>");
             R2API.LanguageAPI.Add(passive.skillNameToken, "Walkman");
-            R2API.LanguageAPI.Add(passive.skillDescriptionToken, "On hit, gain a stack of <style=cIsUtility>Groove</style>, granting <style=cIsUtility>30% move speed</style> per stack. Diminishes out of combat.");
+            R2API.LanguageAPI.Add(passive.skillDescriptionToken, "On hit, gain a stack of <style=cIsUtility>Groove</style>, granting <style=cIsUtility>20% move speed</style> per stack. Diminishes out of combat.");
 
             bodyPrefab.GetComponent<SkillLocator>().passiveSkill = passive;
         }
@@ -345,18 +345,9 @@ namespace Cloudburst.Characters.Wyatt
             primarySkillDef.keywordTokens = new string[] {
                  "KEYWORD_AGILE",
                  "KEYWORD_WEIGHTLESS",
-                 "KEYWORD_SPIKED",
             };
             primarySkillDef.stepCount = 3;
             primarySkillDef.stepGraceDuration = 0.2f;
-
-            R2API.LanguageAPI.Add(primarySkillDef.skillNameToken, "G22 Grav-Broom");
-            R2API.LanguageAPI.Add(primarySkillDef.skillDescriptionToken, 
-                "<style=cIsUtility>Agile</style>. Swing twice for <style=cIsDamage>2x90% damage</style>, and finish for <style=cIsDamage>120% damage</style>." +
-                "\nWhile on ground, finisher applies <style=cIsUtility>Weightless</style>." +
-                "\nwhile in the air, finisher <style=cIsDamage>Spikes</style>");
-            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[1], "<style=cKeywordName>Weightless</style><style=cSub>Slows and removes gravity from target.</style>");
-            R2API.LanguageAPI.Add(primarySkillDef.keywordTokens[2], "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to travel downwards, causing a shockwave if they impact terrain, dealing <style=cIsDamage>300% damage</style>.</style>");
 
             Skills.AddPrimarySkills(bodyPrefab, primarySkillDef);
         }
@@ -372,7 +363,7 @@ namespace Cloudburst.Characters.Wyatt
                 activationState = new SerializableEntityStateType(typeof(TrashOut)),
                 activationStateMachineName = "Weapon",
                 baseMaxStock = 2,
-                baseRechargeInterval = 5f,
+                baseRechargeInterval = 7f,
                 beginSkillCooldownOnSkillEnd = true,
                 canceledFromSprinting = false,
                 forceSprintDuringState = true,
@@ -387,9 +378,6 @@ namespace Cloudburst.Characters.Wyatt
                 stockToConsume = 1,
                 keywordTokens = new string[] { "KEYWORD_SPIKED" }
             });
-
-            R2API.LanguageAPI.Add(secondarySkillDef.skillNameToken, "Trash Out");
-            R2API.LanguageAPI.Add(secondarySkillDef.skillDescriptionToken, "<s>Deploy a winch</s> Magically fly towards an enemy, and <style=cIsDamage>Spike</style> them for for <style=cIsDamage>300%</style> damage.");
 
             Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
         }
@@ -418,13 +406,8 @@ namespace Cloudburst.Characters.Wyatt
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_FLOW", }
+                keywordTokens = new string[] { "KEYWORD_FLOW" }
             });
-
-            R2API.LanguageAPI.Add(utilitySkillDef.skillNameToken, "Flow");
-            R2API.LanguageAPI.Add(utilitySkillDef.skillDescriptionToken, "Activate <style=cIsDamage>Flow</style> for 4 seconds + 0.4s for each stack of <style=cIsUtility>Groove</style>, gaining <style=cIsDamage>Armor, a Double Jump, and Cooldown Reduction</style>. During <style=cIsDamage>Flow</style>, you are unable to lose or gain <style=cIsUtility>Groove</style>. After <style=cIsDamage>Flow</style> ends, lose all stacks <style=cIsUtility>Groove</style>.");
-            R2API.LanguageAPI.Add("KEYWORD_FLOW", "<style=cKeywordName>Flow</style><style=cSub>Gain <style=cIsDamage>30 Armor + 5</style> for each stack of <style=cIsUtility>Groove</style>.\nGain a <style=cIsUtility>Double Jump</style>.\nGain <style=cIsUtility>+30% Cooldown Reduction.</style></style>");
-
             Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef);
         }
 
@@ -451,16 +434,9 @@ namespace Cloudburst.Characters.Wyatt
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 0,
-                keywordTokens = new string[]
-                {
-                    "KEYWORD_WEIGHTLESS"
-                }
+                stockToConsume = 0, 
+                keywordTokens = new string[] { "KEYWORD_WEIGHTLESS" }
             });
-
-            R2API.LanguageAPI.Add(specialSkillDef.skillNameToken, "M88 MAID");
-            R2API.LanguageAPI.Add(specialSkillDef.skillDescriptionToken, "<style=cIsUtility>Weightless</style>. Send your <style=cIsUtility>MAID</style> unit barreling through enemies for <style=cIsDamage>300% damage</style> before stopping briefly and returning to you. Activate again to reel toward the <style=cIsUtility>MAID</style> and explode for <style=cIsDamage>500% damage</style>.");
-
             Skills.AddSpecialSkills(bodyPrefab, specialSkillDef);
         }
         #endregion skills
@@ -474,59 +450,45 @@ namespace Cloudburst.Characters.Wyatt
             List<SkinDef> skins = new List<SkinDef>();
 
             #region DefaultSkin
-            //this creates a SkinDef with all default fields
             SkinDef defaultSkin = Skins.CreateSkinDef("DEFAULT_SKIN",
                 Assets.LoadAsset<Sprite>("texIconWyattSkinDefault"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject);
 
-            //these are your Mesh Replacements. The order here is based on your CustomRendererInfos from earlier
-            //pass in meshes as they are named in your assetbundle
-            //defaultSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
-            //    "meshHenrySword",
-            //    "meshHenryGun",
-            //    "meshHenry");
+            defaultSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
+                "WyattMesh",
+                "WyattBroom");
 
-            //add new skindef to our list of skindefs. this is what we'll be passing to the SkinController
             skins.Add(defaultSkin);
             #endregion
 
-            //uncomment this when you have a mastery skin
             #region MasterySkin
-            /*
-            //creating a new skindef as we did before
-            SkinDef masterySkin = Modules.Skins.CreateSkinDef(HenryPlugin.DEVELOPER_PREFIX + "_HENRY_BODY_MASTERY_SKIN_NAME",
-                Assets.mainAssetBundle.LoadAsset<Sprite>("texMasteryAchievement"),
+            
+            SkinDef masterySkin = Modules.Skins.CreateSkinDef(WYATT_PREFIX + "CLASSIC_SKIN",
+                Assets.LoadAsset<Sprite>("texIconWyattSkinClassic"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject,
-                masterySkinUnlockableDef);
+                WyattUnlockables.masteryUnlockable);
 
-            //adding the mesh replacements as above. 
-            //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
-            masterySkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
-                "meshHenrySwordAlt",
-                null,//no gun mesh replacement. use same gun mesh
-                "meshHenryAlt");
+            //masterySkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
+            //    "meshHenrySwordAlt",
+            //    null,//no gun mesh replacement. use same gun mesh
+            //    "meshHenryAlt");
 
-            //masterySkin has a new set of RendererInfos (based on default rendererinfos)
-            //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
-            masterySkin.rendererInfos[0].defaultMaterial = Modules.Materials.CreateHopooMaterial("matHenryAlt");
-            masterySkin.rendererInfos[1].defaultMaterial = Modules.Materials.CreateHopooMaterial("matHenryAlt");
-            masterySkin.rendererInfos[2].defaultMaterial = Modules.Materials.CreateHopooMaterial("matHenryAlt");
+            masterySkin.rendererInfos[0].defaultMaterial = Modules.Materials.CreateHopooMaterial("matWyattClassic");
+            masterySkin.rendererInfos[1].defaultMaterial = Modules.Materials.CreateHopooMaterial("matWyattClassic_Broom");
 
-            //here's a barebones example of using gameobjectactivations that could probably be streamlined or rewritten entirely, truthfully, but it works
-            masterySkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
-            {
-                new SkinDef.GameObjectActivation
-                {
-                    gameObject = childLocator.FindChildGameObject("GunModel"),
-                    shouldActivate = false,
-                }
-            };
-            //simply find an object on your child locator you want to activate/deactivate and set if you want to activate/deacitvate it with this skin
+            //masterySkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            //{
+            //    new SkinDef.GameObjectActivation
+            //    {
+            //        gameObject = childLocator.FindChildGameObject("GunModel"),
+            //        shouldActivate = false,
+            //    }
+            //};
 
             skins.Add(masterySkin);
-            */
+            
             #endregion
 
             skinController.skins = skins.ToArray();

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1382783738
+CRC: 1660333794
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 430cca18e243676813253631ba59e1da
+    Hash: 0a05be05bf2256217b5368b3148015ea
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1d088837c1fe65717ad985df10c85799
+    Hash: 2ab3f04fe4f0824ac7dc549917a5e9d9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,6 +40,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 733712478, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: eb968ea025eecaa49a3b688ed588cc06, type: 3}
 - Class: 114
   Script: {fileID: -2119659324, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -52,11 +54,7 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -335047464, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
-  Script: {fileID: -960361785, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
   Script: {fileID: 511512695, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1294804675, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -90,6 +88,7 @@ Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Maid/Textures/texWyattMaid_Normal.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2DefaultBroom.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattDefault.mat
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSkinClassic.png
 - Assets/Survivors/Wyatt/WyattBundle/Maid/matWyattMaid.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSpecial.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSpecial2.png
@@ -97,11 +96,13 @@ Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/WyattSpikeEffect.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/maskWyattGroovy.mask
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconBuffAntiGrav.png
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2ClassicBroom_Emission.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattPrimary.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/animWyatt.controller
 - Assets/Survivors/Wyatt/WyattBundle/Maid/Anim/animWyattMaid.controller
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/WyattHitEffect.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/mdlWyatt.prefab
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattClassic_Broom.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/MAIDCleanEffect.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattClassic.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/TracerCaptainDefenseMatrix.prefab
@@ -110,13 +111,16 @@ Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Maid/WyattMaidGhost.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2DefaultBroom_Emission.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/WyattMeme.prefab
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Mesh/WyattBroom.mesh
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattPassive.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyatt.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/animWyattDisplay.controller
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2ClassicBroom.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSkinDefault.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattDefault_Broom.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/maskWyattGesture.mask
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2Default.png
 - Assets/Survivors/Wyatt/WyattBundle/Maid/Textures/texWyattMaid.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSecondary.png
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Mesh/WyattMesh.mesh
 Dependencies: []

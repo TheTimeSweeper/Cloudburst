@@ -5,6 +5,21 @@ using UnityEngine;
 using Cloudburst.Modules.Characters;
 
 namespace Cloudburst.Modules {
+
+    public static class Unlockables
+    {
+        public static UnlockableDef CreateUnlockableDef(string unlockName, string nameToken, Sprite achievementIcon)
+        {
+            UnlockableDef unlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+            unlockableDef.cachedName = unlockName;
+            unlockableDef.nameToken = nameToken;
+            unlockableDef.achievementIcon = achievementIcon;
+
+            ContentAddition.AddUnlockableDef(unlockableDef);
+            return unlockableDef;
+        }
+    }
+
     // module for creating body prefabs and whatnot
     // recommended to simply avoid touching this unless you REALLY need to
 
