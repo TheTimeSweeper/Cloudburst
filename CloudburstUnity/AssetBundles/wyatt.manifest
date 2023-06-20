@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1660333794
+CRC: 576653079
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0a05be05bf2256217b5368b3148015ea
+    Hash: a56d51dcd45c3f60e739e4c3eb8dc786
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2ab3f04fe4f0824ac7dc549917a5e9d9
+    Hash: fd3ec95599138eda35f509709010e982
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -54,15 +54,21 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -335047464, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 1788389205, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 511512695, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1294804675, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 296141222, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -1630511094, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -517518216, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -565067572, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1561644061, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1904172584, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 115
@@ -87,6 +93,7 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Maid/Textures/texWyattMaid_Normal.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2DefaultBroom.png
+- Assets/Survivors/Wyatt/WyattBundle/Wyatt/Effects/AntiGravEffect.prefab
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattDefault.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSkinClassic.png
 - Assets/Survivors/Wyatt/WyattBundle/Maid/matWyattMaid.mat

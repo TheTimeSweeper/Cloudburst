@@ -44,10 +44,10 @@ namespace Cloudburst.Modules
             return newTracer;
         }
 
-        public static GameObject CloneAndColorEffect(string addressablesPath, Color color, string name)
+        public static GameObject CloneAndColorEffect(string addressablesPath, Color color, string name, bool network = true)
         {
 
-            GameObject MercSwordSlash = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(addressablesPath).WaitForCompletion(), name);
+            GameObject MercSwordSlash = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(addressablesPath).WaitForCompletion(), name, network);
 
             recolorEffects(color, MercSwordSlash);
 

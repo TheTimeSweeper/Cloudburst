@@ -31,6 +31,8 @@ public class MaterialSwapper : MonoBehaviour
         _nameToAddressable["matBaubleEffect"] = "RoR2/Base/SlowOnHit/matBaubleEffect.mat";
         _nameToAddressable["matCleanseCore"] = "RoR2/Base/Cleanse/matCleanseCore.mat";
         _nameToAddressable["matCleanseWater"] = "RoR2/Base/Cleanse/matCleanseWater.mat";
+        
+        _nameToAddressable["matTracerBright"] = "RoR2/Base/Common/VFX/matTracerBright.mat";
     }
 
     public static void RunSwappers(GameObject gob)

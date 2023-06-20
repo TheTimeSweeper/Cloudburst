@@ -13,7 +13,7 @@ namespace Cloudburst.Characters.Wyatt
             masteryUnlockable = Unlockables.CreateUnlockableDef(
                 "cloudburst.skins.wyatt.mastery",
                 WyattSurvivor.WYATT_PREFIX + "MASTERY_SKIN",
-                Assets.LoadAsset<Sprite>("texIconSkinWyattClassic"));
+                Assets.LoadAsset<Sprite>("texIconWyattSkinClassic"));
         }
     }
 }

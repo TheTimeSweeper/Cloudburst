@@ -20,7 +20,7 @@ namespace Cloudburst.Characters.Wyatt
 
         public const string WYATT_PREFIX = "CLOUDBURST_WYATT_";
         public override string survivorTokenPrefix => WYATT_PREFIX;
-
+        
         public override BodyInfo bodyInfo { get; set; } = new BodyInfo
         {
             bodyName = "WyattBody",
@@ -29,7 +29,7 @@ namespace Cloudburst.Characters.Wyatt
 
             characterPortrait = Assets.LoadAsset<Texture>("texIconWyatt"),
             bodyColor = Color.white,
-
+            
             crosshair = Assets.LoadCrosshair("Standard"),
             podPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
 
@@ -63,12 +63,7 @@ namespace Cloudburst.Characters.Wyatt
 
         private static UnlockableDef masterySkinUnlockableDef;
 
-        public BuffDef wyattGrooveBuffDef;
-        public BuffDef wyattFlowBuffDef;
-        public BuffDef wyattAntiGravBuffDef;
-
         public static SerializableEntityStateType DeployMaidState = new SerializableEntityStateType(typeof(DeployMaid));
-
 
         public override void Initialize()
         {
@@ -90,7 +85,7 @@ namespace Cloudburst.Characters.Wyatt
             WyattAssets.InitAss();
             WyattDamageTypes.InitDamageTypes();
             WyattLanguageTokens.AddLanguageTokens(WYATT_PREFIX);
-            CreateBuffs();
+            WyattBuffs.Init();
 
             WyattEntityStates.AddEntityStates();
 
@@ -149,30 +144,27 @@ namespace Cloudburst.Characters.Wyatt
             orig(self, damageInfo);
             if(R2API.DamageAPI.HasModdedDamageType(damageInfo, WyattDamageTypes.antiGravDamage))
             {
-                self.body.AddTimedBuff(wyattAntiGravBuffDef, WyattConfig.M1AntiGravDuration.Value);// 1.5f);
+                self.body.AddTimedBuff(WyattBuffs.wyattAntiGravBuffDef, WyattConfig.M1AntiGravDuration.Value);
             }
             if (R2API.DamageAPI.HasModdedDamageType(damageInfo, WyattDamageTypes.antiGravDamage2))
             {
-                self.body.AddTimedBuff(wyattAntiGravBuffDef, WyattConfig.M4SlamAntiGravDuration.Value);// 3f);
+                self.body.AddTimedBuff(WyattBuffs.wyattAntiGravBuffDef, WyattConfig.M4SlamAntiGravDuration.Value);
             }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, R2API.RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (sender.HasBuff(wyattGrooveBuffDef))
+            if (sender.HasBuff(WyattBuffs.wyattGrooveBuffDef))
             {
-                args.moveSpeedMultAdd += /*0.3f*/WyattConfig.M3GrooveSpeedMultiplierPerStack.Value * sender.GetBuffCount(wyattGrooveBuffDef);
-                //args.armorAdd += 20;
+                args.moveSpeedMultAdd += WyattConfig.M3GrooveSpeedMultiplierPerStack.Value * sender.GetBuffCount(WyattBuffs.wyattGrooveBuffDef);
             }
 
-            if (sender.HasBuff(wyattFlowBuffDef))
+            if (sender.HasBuff(WyattBuffs.wyattFlowBuffDef))
             {
-                //moved to wyattwalkman behaviour
-                //args.cooldownMultAdd -= WyattConfig.M3FlowCDR.Value;// 0.3f;
-                args.armorAdd += WyattConfig.M3FlowArmorBase.Value + WyattConfig.M3FlowArmorPerStack.Value * sender.GetBuffCount(wyattGrooveBuffDef);
+                args.armorAdd += WyattConfig.M3FlowArmorBase.Value + WyattConfig.M3FlowArmorPerStack.Value * sender.GetBuffCount(WyattBuffs.wyattGrooveBuffDef);
             }
 
-            if (sender.HasBuff(wyattAntiGravBuffDef))
+            if (sender.HasBuff(WyattBuffs.wyattAntiGravBuffDef))
             {
                 args.attackSpeedMultAdd -= 0.5f;
                 args.moveSpeedMultAdd -= 0.5f;
@@ -183,12 +175,12 @@ namespace Cloudburst.Characters.Wyatt
         {
             orig(self);
 
-            if (self && self.HasBuff(wyattFlowBuffDef))
+            if (self && self.HasBuff(WyattBuffs.wyattFlowBuffDef))
             {
                 self.maxJumpCount+= WyattConfig.M3FlowExtraJumps.Value;
             }
 
-            //if (self & self.HasBuff(wyattAntiGravBuffDef))
+            //if (self & self.HasBuff(WyattBuffs.wyattAntiGravBuffDef))
             //{
             //    if (self.characterMotor)
             //    {
@@ -200,7 +192,7 @@ namespace Cloudburst.Characters.Wyatt
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
         {
             orig(self, buffDef);
-            if (buffDef == wyattAntiGravBuffDef)
+            if (buffDef == WyattBuffs.wyattAntiGravBuffDef)
             {
                 if (self.characterMotor)
                 {
@@ -212,7 +204,7 @@ namespace Cloudburst.Characters.Wyatt
         private void CharacterBody_OnBuffFirstStackGained(On.RoR2.CharacterBody.orig_OnBuffFirstStackGained orig, CharacterBody self, BuffDef buffDef)
         {
             orig(self, buffDef);
-            if (buffDef == wyattAntiGravBuffDef)
+            if (buffDef == WyattBuffs.wyattAntiGravBuffDef)
             {
                 if (self.characterMotor)
                 {
@@ -221,31 +213,6 @@ namespace Cloudburst.Characters.Wyatt
             }
         }
 #endregion hooks
-
-        private void CreateBuffs()
-        {
-            wyattGrooveBuffDef = Buffs.AddNewBuff(
-                "CloudburstWyattCombatBuff",
-                Assets.LoadAsset<Sprite>("WyattVelocity"),
-                new Color(1f, 0.7882353f, 0.05490196f),
-                true,
-                false);
-
-            wyattFlowBuffDef = Buffs.AddNewBuff(
-                "CloudburstWyattFlowBuff",
-                Assets.LoadAsset<Sprite>("WyattVelocity"),
-                CCUtilities.HexToColor("69FFC2"),
-                false,
-                false);
-
-            wyattAntiGravBuffDef = Buffs.AddNewBuff(
-                "CloudburstWyattAntiGravBuff",
-                Assets.LoadAsset<Sprite>("texIconBuffAntiGrav"),
-                new Color(0.6784314f, 0.6117647f, 0.4117647f),
-                false,
-                true);
-        }
-
         public void AlterStatemachines()
         {
             SetStateOnHurt setStateOnHurt = bodyPrefab.GetComponent<SetStateOnHurt>();

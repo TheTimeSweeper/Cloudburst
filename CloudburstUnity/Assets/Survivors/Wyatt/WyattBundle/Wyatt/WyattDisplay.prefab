@@ -19,6 +19,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 801936903176481756, guid: 57f7d0d5f555d2a46915e61f4387744f,
         type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 801936903176481756, guid: 57f7d0d5f555d2a46915e61f4387744f,
+        type: 3}
       propertyPath: EmissionModule.enabled
       value: 1
       objectReference: {fileID: 0}
@@ -140,6 +145,11 @@ PrefabInstance:
     - target: {fileID: 1139924365388106678, guid: 57f7d0d5f555d2a46915e61f4387744f,
         type: 3}
       propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139924365388106678, guid: 57f7d0d5f555d2a46915e61f4387744f,
+        type: 3}
+      propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1139924365388106678, guid: 57f7d0d5f555d2a46915e61f4387744f,

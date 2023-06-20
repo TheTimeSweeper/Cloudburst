@@ -103,10 +103,9 @@ namespace Cloudburst.CEntityStates.Wyatt
             }
 
             //else
-            {//
+            //{
              //   base.activatorSkillSlot.skillDef.baseRechargeInterval = 5;
-            }
-            Log.Warning("nip");
+            //}
             base.activatorSkillSlot.DeductStock(1);
             blaseballManager.OnRetrival -= BlaseballManager_OnRetrival;
         }

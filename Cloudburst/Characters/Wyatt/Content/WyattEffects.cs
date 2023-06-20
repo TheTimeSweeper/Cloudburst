@@ -9,6 +9,7 @@ using System.Linq;
 using R2API;
 using System;
 using Cloudburst.Modules;
+using UnityEngine.AddressableAssets;
 
 namespace Cloudburst.Characters.Wyatt
 {
@@ -36,6 +37,8 @@ namespace Cloudburst.Characters.Wyatt
         public static GameObject notMercSlashEffect;
         public static GameObject notMercSlashEffectThicc;
 
+        public static GameObject antiGravEffect;
+
         public static void OnLoaded()
         {
             CreateNewEffects();
@@ -54,17 +57,36 @@ namespace Cloudburst.Characters.Wyatt
             maidCleanseEffect = CreateAsset("MAIDCleanEffect", false, false, true, "", false, VFXAttributes.VFXIntensity.Medium, VFXAttributes.VFXPriority.Always);
 
             createMercSlashesIMean();
+
+            CreateAntiGravTempVisualEffect();
         }
 
+        private static void CreateAntiGravTempVisualEffect()
+        {
+
+            antiGravEffect = Modules.Assets.LoadAsset<GameObject>("AntiGravEffect");
+            MaterialSwapper.RunSwappers(antiGravEffect);
+            Texture texSlowDownTime = Addressables.LoadAssetAsync<Texture>("RoR2/Base/Common/ColorRamps/texRampSlowDownTime2.png").WaitForCompletion();
+            antiGravEffect.transform.Find("SwingTrail").GetComponent<ParticleSystemRenderer>().material.SetTexture("_RemapTex", texSlowDownTime);
+            R2API.TempVisualEffectAPI.AddTemporaryVisualEffect(
+                antiGravEffect, 
+                new TempVisualEffectAPI.EffectCondition((characterBody) =>
+                {
+                    return characterBody.HasBuff(WyattBuffs.wyattAntiGravBuffDef);
+                }),
+                true);
+        }
+        
         private static void createMercSlashesIMean()
         {
-            notMercSlashEffect = Assets.CloneAndColorEffect("RoR2/Base/Merc/MercSwordSlash.prefab", new Color(1, 0.015f, 0), "OrangeWyattMercSwordSlash");
+            notMercSlashEffect = Assets.CloneAndColorEffect("RoR2/Base/Merc/MercSwordSlash.prefab", new Color(1, 0.015f, 0), "OrangeWyattMercSwordSlash", false);
             notMercSlashEffect.transform.Find("SwingTrail").localScale = new Vector3(1.5f, 1.7f, 3);
-            ContentAddition.AddEffect(notMercSlashEffect);
+            //sword swing effects use object.instasntiate so I guess don't need to add them?
+            //ContentAddition.AddEffect(notMercSlashEffect);
 
             notMercSlashEffectThicc = PrefabAPI.InstantiateClone(notMercSlashEffect, "OrangeWyattMercSwordSlashThicc", false);
             notMercSlashEffectThicc.transform.Find("SwingTrail").localScale = new Vector3(2, 2, 10);
-            ContentAddition.AddEffect(notMercSlashEffectThicc);
+            //ContentAddition.AddEffect(notMercSlashEffectThicc);
         }
 
         protected static void CreateNewEffects()

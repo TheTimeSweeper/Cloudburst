@@ -25,14 +25,16 @@ namespace Cloudburst.Modules
                 switch (contentPack.identifier)
                 {
                     case "RoR2.BaseContent":
-                        //only need items for monsters
                         vanillaItems = contentPack.itemDefs.ToArray();
+                        vanillaItems = vanillaItems.Concat(contentPack.equipmentDefs.ToArray()).ToArray();
                         break;
                     case "RoR2.DLC1":
                         dlc1Items = contentPack.itemDefs.ToArray();
+                        dlc1Items = dlc1Items.Concat(contentPack.equipmentDefs.ToArray()).ToArray();
                         break;
                     case "RoR2.Junk":
                         junkItems = contentPack.itemDefs.ToArray();
+                        junkItems = junkItems.Concat(contentPack.equipmentDefs.ToArray()).ToArray();
                         break;
                 }
             }
@@ -45,10 +47,14 @@ namespace Cloudburst.Modules
                 //    return (item1 as ItemDef).tier.CompareTo((item2 as ItemDef).tier);
                 //}
 
-                //sort itemdefs by assetname
+                //sort by assetname
                 if (item1 is ItemDef && item2 is ItemDef)
                 {
                     return (item1 as ItemDef).name.CompareTo((item2 as ItemDef).name);
+                }
+                if (item1 is EquipmentDef && item2 is EquipmentDef)
+                {
+                    return (item1 as EquipmentDef).name.CompareTo((item2 as EquipmentDef).name);
                 }
                 //sort equipmentedefs last
                 if (item1 is ItemDef && item2 is EquipmentDef)
@@ -177,7 +183,8 @@ namespace Cloudburst.Modules
                          $"                    \"{firstCompatibleChild}\",\n" +
                           "                    new Vector3(2, 2, 2),\n" +
                           "                    new Vector3(0, 0, 0),\n" +
-                          "                    new Vector3(1, 1, 1))";
+                          "                    new Vector3(1, 1, 1)\n" +
+                          "                )";
             }
             newRule += "));";
             return newRule;

@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using RoR2;
-using System;
 
 public class EditorAddRagdoll {
 

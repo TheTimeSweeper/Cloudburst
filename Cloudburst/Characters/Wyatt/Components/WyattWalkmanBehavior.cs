@@ -76,7 +76,7 @@ namespace Cloudburst.Wyatt.Components
 
         private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge orig, GenericSkill self, float dt)
         {
-            if(self && self.characterBody && self.characterBody.HasBuff(WyattSurvivor.instance.wyattFlowBuffDef))
+            if(self && self.characterBody && self.characterBody.HasBuff(WyattBuffs.wyattFlowBuffDef))
             {
                 dt *= 1 + WyattConfig.M3FlowCDR.Value;
             }
@@ -91,10 +91,10 @@ namespace Cloudburst.Wyatt.Components
 
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
         {
-            if (flowing && NetworkServer.active && characterBody == self && buffDef == WyattSurvivor.instance.wyattFlowBuffDef)
+            if (flowing && NetworkServer.active && characterBody == self && buffDef == WyattBuffs.wyattFlowBuffDef)
             {
                 //flowing has stopped
-                CCUtilities.SafeRemoveAllOfBuff(WyattSurvivor.instance.wyattGrooveBuffDef, characterBody);
+                CCUtilities.SafeRemoveAllOfBuff(WyattBuffs.wyattGrooveBuffDef, characterBody);
                 flowing = false;
                 StopFlowEffectServer();
             }
@@ -121,7 +121,7 @@ namespace Cloudburst.Wyatt.Components
                     drainTimer += Time.fixedDeltaTime;
                     if (drainTimer >= 0.5f)
                     {
-                        CCUtilities.SafeRemoveBuffs(WyattSurvivor.instance.wyattGrooveBuffDef, characterBody, 2);
+                        CCUtilities.SafeRemoveBuffs(WyattBuffs.wyattGrooveBuffDef, characterBody, 2);
                         drainTimer = 0;
                     }
                 }
@@ -133,7 +133,7 @@ namespace Cloudburst.Wyatt.Components
         private void TriggerBehaviorInternal(float stacks)
         {
             var cap = 9 + stacks;
-            if (characterBody && characterBody.GetBuffCount(WyattSurvivor.instance.wyattGrooveBuffDef) < cap)
+            if (characterBody && characterBody.GetBuffCount(WyattBuffs.wyattGrooveBuffDef) < cap)
             {
                 PlayGrooveEffectServer();
                 /*EffectManager.SpawnEffect(Effects.wyattGrooveEffect, new EffectData()
@@ -141,7 +141,7 @@ namespace Cloudburst.Wyatt.Components
                     scale = 1,
                     origin = grooveEffect.transform.position
                 }, true);*/
-                characterBody.AddBuff(WyattSurvivor.instance.wyattGrooveBuffDef);
+                characterBody.AddBuff(WyattBuffs.wyattGrooveBuffDef);
                 //characterBody.AddTimedBuff(Custodian.instance.wyattCombatDef, 3);
             }
             stopwatch = 0;
@@ -168,7 +168,7 @@ namespace Cloudburst.Wyatt.Components
         [Server]
         private void ActivateFlowInternal()
         {
-            int grooveCount = characterBody.GetBuffCount(WyattSurvivor.instance.wyattGrooveBuffDef);
+            int grooveCount = characterBody.GetBuffCount(WyattBuffs.wyattGrooveBuffDef);
             float duration = WyattConfig.M3FlowDurationBase.Value;// 4;
 
             for (int i = 0; i < grooveCount; i++)
@@ -177,7 +177,7 @@ namespace Cloudburst.Wyatt.Components
                 duration += WyattConfig.M3FlowDurationPerStack.Value;// 0.4f;
             }
 
-            characterBody.AddTimedBuff(WyattSurvivor.instance.wyattFlowBuffDef, duration);
+            characterBody.AddTimedBuff(WyattBuffs.wyattFlowBuffDef, duration);
             flowing = true;
 
             PlayFlowEffectServer();
