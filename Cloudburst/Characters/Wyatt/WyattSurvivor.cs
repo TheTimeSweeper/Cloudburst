@@ -84,10 +84,18 @@ namespace Cloudburst.Characters.Wyatt
             WyattEffects.OnLoaded();
             WyattAssets.InitAss();
             WyattDamageTypes.InitDamageTypes();
-            WyattLanguageTokens.AddLanguageTokens(WYATT_PREFIX);
+            WyattLanguageTokens.AddLanguageTokens();
             WyattBuffs.Init();
-
+            WyattCompat.Init();
             WyattEntityStates.AddEntityStates();
+
+            FinishSettingUpBody();
+
+            SetHooks();
+        }
+
+        private void FinishSettingUpBody()
+        {
 
             bodyPrefab.AddComponent<WyattMAIDManager>();
             bodyPrefab.AddComponent<WyattNetworkCombat>();
@@ -116,8 +124,39 @@ namespace Cloudburst.Characters.Wyatt
             tracker.indicatorPrefab = indicatorPrefab;
 
             AlterStatemachines();
+        }
 
-            SetHooks();
+        public void AlterStatemachines()
+        {
+            SetStateOnHurt setStateOnHurt = bodyPrefab.GetComponent<SetStateOnHurt>();
+            NetworkStateMachine networkStateMachine = bodyPrefab.GetComponent<NetworkStateMachine>();
+
+            EntityStateMachine maidMachine = bodyPrefab.AddComponent<EntityStateMachine>();
+            maidMachine.customName = "MAID";
+            maidMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
+            maidMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
+
+            int idleLength = setStateOnHurt.idleStateMachine.Length;
+            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            setStateOnHurt.idleStateMachine[idleLength] = maidMachine;
+
+            int networkStateMachinesLength = networkStateMachine.stateMachines.Length;
+            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            networkStateMachine.stateMachines[networkStateMachinesLength] = maidMachine;
+
+
+            EntityStateMachine marioJumpMachine = bodyPrefab.AddComponent<EntityStateMachine>();
+            marioJumpMachine.customName = "SuperMarioJump";
+            marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
+            marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
+
+            idleLength = setStateOnHurt.idleStateMachine.Length;
+            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
+            setStateOnHurt.idleStateMachine[idleLength] = marioJumpMachine;
+
+            networkStateMachinesLength = networkStateMachine.stateMachines.Length;
+            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
+            networkStateMachine.stateMachines[networkStateMachinesLength] = marioJumpMachine;
         }
 
         #region hooks
@@ -213,38 +252,6 @@ namespace Cloudburst.Characters.Wyatt
             }
         }
 #endregion hooks
-        public void AlterStatemachines()
-        {
-            SetStateOnHurt setStateOnHurt = bodyPrefab.GetComponent<SetStateOnHurt>();
-            NetworkStateMachine networkStateMachine = bodyPrefab.GetComponent<NetworkStateMachine>();
-
-            EntityStateMachine maidMachine = bodyPrefab.AddComponent<EntityStateMachine>();
-            maidMachine.customName = "MAID";
-            maidMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
-            maidMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
-
-            int idleLength = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
-            setStateOnHurt.idleStateMachine[idleLength] = maidMachine;
-
-            int networkStateMachinesLength = networkStateMachine.stateMachines.Length;
-            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
-            networkStateMachine.stateMachines[networkStateMachinesLength] = maidMachine;
-
-
-            EntityStateMachine marioJumpMachine = bodyPrefab.AddComponent<EntityStateMachine>();
-            marioJumpMachine.customName = "SuperMarioJump";
-            marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
-            marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
-
-            idleLength = setStateOnHurt.idleStateMachine.Length;
-            Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
-            setStateOnHurt.idleStateMachine[idleLength] = marioJumpMachine;
-
-            networkStateMachinesLength = networkStateMachine.stateMachines.Length;
-            Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
-            networkStateMachine.stateMachines[networkStateMachinesLength] = marioJumpMachine;
-        }
 
         public override void InitializeUnlockables()
         {
@@ -284,15 +291,10 @@ namespace Cloudburst.Characters.Wyatt
             SkillLocator.PassiveSkill passive = new SkillLocator.PassiveSkill
             {
                 enabled = true,
-                skillNameToken = "WYATT_PASSIVE_NAME",
-                skillDescriptionToken = "WYATT_PASSIVE_DESCRIPTION",
-                //keywordToken = "KEYWORD_VELOCITY",
+                skillNameToken = WYATT_PREFIX + "PASSIVE_NAME",
+                skillDescriptionToken = WYATT_PREFIX + "PASSIVE_DESCRIPTION",
                 icon = Assets.LoadAsset<Sprite>("texIconWyattPassive")
             };
-
-            //R2API.LanguageAPI.Add(passive.keywordToken, "<style=cKeywordName>Groove</style><style=cSub>Increases movement speed by X%.</style>");
-            R2API.LanguageAPI.Add(passive.skillNameToken, "Walkman");
-            R2API.LanguageAPI.Add(passive.skillDescriptionToken, "On hit, gain a stack of <style=cIsUtility>Groove</style>, granting <style=cIsUtility>20% move speed</style> per stack. Diminishes out of combat.");
 
             bodyPrefab.GetComponent<SkillLocator>().passiveSkill = passive;
         }
@@ -367,7 +369,7 @@ namespace Cloudburst.Characters.Wyatt
                 fullRestockOnAssign = false,
                 interruptPriority = InterruptPriority.Skill,
                 resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
+                isCombatSkill = false,
                 mustKeyPress = false,
                 cancelSprintingOnActivation = false,
                 rechargeStock = 1,

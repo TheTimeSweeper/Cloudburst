@@ -93,7 +93,7 @@ namespace Cloudburst
             FabinhoruDagger.Setup();
             GlassHarvester.Setup();
             JapesCloak.Setup();
-            RiftBubble.Setup();
+            //RiftBubble.Setup();
         }
 
         public void GetBundle()

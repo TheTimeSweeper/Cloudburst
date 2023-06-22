@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cloudburst.Characters.Wyatt.Achievements
 {
-    [RegisterAchievement("CloudburstWyattClearGameMonsoon", "Skins.HANDOverclocked.Mastery", null, null)]
+    [RegisterAchievement("CloudburstWyattClearGameMonsoon", "cloudburst.skins.wyatt.mastery", null, null)]
     public class WyattMasteryAchievement : BasePerSurvivorClearGameMonsoonAchievement
     {
         public override BodyIndex LookUpRequiredBodyIndex()

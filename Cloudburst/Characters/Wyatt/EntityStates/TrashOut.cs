@@ -184,6 +184,7 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.OnExit();
             Object.Destroy(_winch);
             characterMotor.velocity = Vector3.zero;
+            characterMotor.Motor.ForceUnground();
 
             if (stage != ActionStage.HitTarget)
             {

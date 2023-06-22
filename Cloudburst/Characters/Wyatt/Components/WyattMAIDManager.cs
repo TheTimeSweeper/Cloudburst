@@ -49,7 +49,6 @@ namespace Cloudburst.Wyatt.Components
         {
             if (startReel == true && maid && Util.HasEffectiveAuthority(gameObject))
             {
-                body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
                 Vector3 lossyScale = maid.transform.lossyScale;
                 var volume = lossyScale.x * 2f * (lossyScale.y * 2f) * (lossyScale.z * 2f);
 
@@ -58,14 +57,16 @@ namespace Cloudburst.Wyatt.Components
                 Vector3 velocity = (maid.transform.position - base.transform.position).normalized * 120f;
 
                 characterMotor.velocity = velocity;
+                //Log.Warning("set velocity " + velocity.magnitude);
                 characterDirection.forward = characterMotor.velocity.normalized;
                 //float distance = volume;
 
-                if (_stopwatch > 5)
+                if (_stopwatch > 3)
                 {
                     DestroymaidAuthority();
                     Destroy(winch);
                     body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
+                    characterMotor.Motor.ForceUnground();
                     characterMotor.velocity = Vector3.zero;
                     sunset.Invoke();
                     //RpcSetDeploy(true);
@@ -77,7 +78,9 @@ namespace Cloudburst.Wyatt.Components
                     DestroymaidAuthority();
                     Destroy(winch);
                     body.bodyFlags &= ~CharacterBody.BodyFlags.IgnoreFallDamage;
+                    characterMotor.Motor.ForceUnground();
                     characterMotor.velocity = Vector3.up * 30f;
+                    //Log.Warning("set velocity up catrch");
                     // RpcSetDeploy(false);
                 }
             }
@@ -167,6 +170,8 @@ namespace Cloudburst.Wyatt.Components
 
                 _stopwatch = 0;
                 startReel = true;
+                body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
+                characterMotor.Motor.ForceUnground();
 
                 var modelAnimator = base.GetComponent<ModelLocator>().modelTransform.GetComponent<Animator>();
                 int layerIndex = modelAnimator.GetLayerIndex("Fullbody, Override");

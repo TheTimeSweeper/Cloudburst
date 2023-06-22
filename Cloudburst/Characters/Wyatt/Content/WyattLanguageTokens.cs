@@ -4,8 +4,10 @@ namespace Cloudburst.Characters.Wyatt
 {
     public class WyattLanguageTokens
     {
-        public static void AddLanguageTokens(string WYATT_PREFIX)
+        public static void AddLanguageTokens()
         {
+            string WYATT_PREFIX = WyattSurvivor.WYATT_PREFIX;
+
             #region body
             R2API.LanguageAPI.Add(WYATT_PREFIX + "NAME", "Custodian");
             R2API.LanguageAPI.Add(WYATT_PREFIX + "SUBTITLE", "Lean, Mean, Cleaning Machines");
@@ -43,6 +45,9 @@ She'll love this, I know.
             R2API.LanguageAPI.Add("KEYWORD_WEIGHTLESS", "<style=cKeywordName>Weightless</style><style=cSub><style=cIsUtility>Removes gravity</style> from target and <style=cIsUtility>Slows movement and attack speed</style>.</style>");
             R2API.LanguageAPI.Add("KEYWORD_SPIKED", "<style=cKeywordName>Spiking</style><style=cSub>Forces an enemy to fall downwards, causing a <style=cIsDamage>shockwave</style> if they impact terrain, dealing <style=cIsDamage>200% damage</style> + <style=cIsDamage>30% damage</style> per meter fallen.</style>");
             R2API.LanguageAPI.Add("KEYWORD_FLOW", "<style=cKeywordName>Flow</style><style=cSub>Gain <style=cIsDamage>30 armor</style> + <style=cIsDamage>5 armor</style> for each stack of <style=cIsUtility>Groove</style>.\nGain a <style=cIsUtility>Double Jump</style>.\nGain <style=cIsUtility>+30% Cooldown Reduction.</style></style>");
+            
+            R2API.LanguageAPI.Add(WYATT_PREFIX + "PASSIVE_NAME", "Walkman");
+            R2API.LanguageAPI.Add(WYATT_PREFIX + "PASSIVE_DESCRIPTION", "On hit, gain a stack of <style=cIsUtility>Groove</style>, granting <style=cIsUtility>20% move speed</style> per stack. Diminishes out of combat.");
 
             R2API.LanguageAPI.Add(WYATT_PREFIX + "PRIMARY_COMBO_NAME", "G22 Grav-Broom");
             R2API.LanguageAPI.Add(WYATT_PREFIX + "PRIMARY_COMBO_DESCRIPTION", "<style=cIsUtility>Agile</style>. Swing your broom for <style=cIsDamage>100% damage</style>. Every third hit deals <style=cIsDamage>200% damage</style> and applies <style=cIsUtility>weightless</style>.");

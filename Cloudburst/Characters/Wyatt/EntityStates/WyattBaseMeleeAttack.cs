@@ -99,10 +99,10 @@ namespace Cloudburst.CEntityStates.Wyatt
             this.hitBoxGroupName = "HitboxSwing";
             if (isComboFinisher) this.hitBoxGroupName = "HitboxSwingLarge";
             this.mecanimHitboxActiveParameter = stepMecanimActiveParameter;
-
+            
             this.baseDuration = WyattConfig.M1AttackDuration.Value;// 0.5f;
             if (isComboFinisher) baseDuration = WyattConfig.M1AttackDurationFinisher.Value;// 0.8f;
-            this.duration = this.baseDuration / base.attackSpeedStat;
+            //this.duration = this.baseDuration / base.attackSpeedStat;
 
             this.hitPauseDuration = 0.02f;
             if (isComboFinisher) hitPauseDuration = 0.1f;
@@ -111,7 +111,6 @@ namespace Cloudburst.CEntityStates.Wyatt
             if (isComboFinisher) damageCoefficient = WyattConfig.M1DamageFinisher.Value;// 2f;
 
             this.procCoefficient = 1f;
-            this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
             this.shorthopVelocityFromHit = 4;
             if (isComboFinisher) shorthopVelocityFromHit = 10f;
 
@@ -131,6 +130,14 @@ namespace Cloudburst.CEntityStates.Wyatt
             base.OnEnter();
 
             R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
+        }
+
+        public override float CalcDuration()
+        {
+            float duration = base.CalcDuration();
+
+            this.durationBeforeInterruptable = percentDurationBeforeInterruptable * duration;
+            return duration;
         }
 
         public override void FixedUpdate()

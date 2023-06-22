@@ -126,7 +126,7 @@ namespace Cloudburst.Wyatt.Components
                     inflictor = gameObject,
                     teamIndex = characterBody.teamComponent.teamIndex,
                     baseDamage = characterBody.damage * WyattConfig.M4SlamDamage.Value,
-                    attackerFiltering = default,
+                    attackerFiltering  = AttackerFiltering.NeverHitSelf,
                     //bonusForce = new Vector3(0, -3000, 0),
                     damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
                     crit = characterBody.RollCrit(),
