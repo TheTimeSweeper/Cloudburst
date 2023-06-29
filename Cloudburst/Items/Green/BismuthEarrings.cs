@@ -15,7 +15,7 @@ namespace Cloudburst.Items.Green
         public static void Setup()
         {
             bismuthEarringsItem = ScriptableObject.CreateInstance<ItemDef>();
-            bismuthEarringsItem.tier = ItemTier.Tier1;
+            bismuthEarringsItem.tier = ItemTier.Tier2;
             bismuthEarringsItem.name = "itembarriercrit";
             bismuthEarringsItem.nameToken = "ITEM_BARRIERONCRIT_NAME";
             bismuthEarringsItem.descriptionToken = "ITEM_BARRIERONCRIT_DESCRIPTION";
