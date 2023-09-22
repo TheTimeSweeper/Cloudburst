@@ -123,10 +123,13 @@ namespace Cloudburst.Items.Green
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
             orig(self, damageInfo, victim);
+
+            CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
-            if (victimBody)
+            
+            if (victimBody && attackerBody)
             {
-                if(victimBody.inventory && victimBody.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
+                if(attackerBody.inventory && attackerBody.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
                 {
                     int itemCount = victimBody.inventory.GetItemCount(fabinhorusDaggerItem);
                     if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))

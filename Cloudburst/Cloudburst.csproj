@@ -15,11 +15,15 @@
   <ItemGroup>
     <None Remove="Assets\cloudburst" />
     <None Remove="Assets\oldcloudburst" />
+    <None Remove="Assets\wyatt" />
+    <None Remove="Assets\WyattBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\cloudburst" />
     <EmbeddedResource Include="Assets\oldcloudburst" />
+    <EmbeddedResource Include="Assets\wyatt" />
+    <EmbeddedResource Include="Assets\WyattBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CustomEmotesAPI">
+      <HintPath>libs\CustomEmotesAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Facepunch.Steamworks">
       <HintPath>libs\Facepunch.Steamworks.dll</HintPath>
       <Private>false</Private>
@@ -69,6 +76,9 @@
       <HintPath>libs\Rewired_Windows_Lib.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="RiskOfOptions">
+      <HintPath>libs\RiskOfOptions.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleJSON">
       <HintPath>libs\SimpleJSON.dll</HintPath>
       <Private>false</Private>
@@ -78,5 +88,13 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)Assets&quot;&#xD;&#xA;copy /y &quot;$(ProjectDir)..\CloudburstWwise\GeneratedSoundBanks\Windows\WyattBank.bnk&quot; &quot;$(ProjectDir)Assets&quot;" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\..\Release&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; mkdir &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
+  </Target>
 
 </Project>
