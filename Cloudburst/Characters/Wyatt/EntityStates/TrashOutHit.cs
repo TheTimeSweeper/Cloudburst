@@ -25,6 +25,12 @@ namespace Cloudburst.CEntityStates.Wyatt
             impactSound = WyattAssets.hitWhipSound;
             base.OnEnter();
             base.PlayAnimation("FullBody, Override", "kickSwing");
+        }
+
+        public override void AuthorityModifyOverlapAttack(OverlapAttack overlapAttack)
+        {
+            base.AuthorityModifyOverlapAttack(overlapAttack);
+
             R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
         }
 

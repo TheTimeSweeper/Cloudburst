@@ -128,8 +128,6 @@ namespace Cloudburst.CEntityStates.Wyatt
             }, false);*/
 
             base.OnEnter();
-
-            R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
         }
 
         public override float CalcDuration()
@@ -163,7 +161,11 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void AuthorityModifyOverlapAttack(OverlapAttack overlapAttack)
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
+
+            R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
+
             //despite what the animation is playing, decided I want to decide when it lands what the hit does
+            //wait this isn't when it lands is it
             if (this.isComboFinisher && isUppercut)
             {
                 //overlapAttack.damageType = DamageTypeCore.antiGrav | DamageType.Generic;
