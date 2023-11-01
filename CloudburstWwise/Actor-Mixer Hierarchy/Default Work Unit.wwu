@@ -563,6 +563,140 @@
 								</BlendContainer>
 							</ChildrenList>
 						</ActorMixer>
+						<ActorMixer Name="Groovy" ID="{86899875-F0EF-4511-9FAE-5B7B2C771C6C}" ShortID="395022107">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41A78A60-6AB7-483B-B1EB-3964CF5B5617}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CCF514C5-0343-4C84-89C6-9C0BEB08CFDC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="groove_end" ID="{9DC23501-7758-4DEE-A45E-A1470BD287E3}" ShortID="561831518">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41A78A60-6AB7-483B-B1EB-3964CF5B5617}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CCF514C5-0343-4C84-89C6-9C0BEB08CFDC}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="groove_end" ID="{B9FDD0BD-ECEA-481A-B561-F0117BE4B2ED}">
+											<Language>SFX</Language>
+											<AudioFile>groove_end.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="987077860"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="groove_end" ID="{B9FDD0BD-ECEA-481A-B561-F0117BE4B2ED}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="groove_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" ShortID="651001931">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41A78A60-6AB7-483B-B1EB-3964CF5B5617}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CCF514C5-0343-4C84-89C6-9C0BEB08CFDC}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="groove_loop" ID="{E5E2861C-DFE7-4B1C-A98D-7485D8393664}">
+											<Language>SFX</Language>
+											<AudioFile>groove_loop.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="474031988"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="groove_loop" ID="{E5E2861C-DFE7-4B1C-A98D-7485D8393664}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="groove_CSS" ID="{2116FAFC-E194-46C1-AB35-C83BBDBCD544}" ShortID="1057713167">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{E3E697A3-3B62-437E-8D10-EBCC95A9A8F6}" ShortID="257126433">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="FadeOut" ID="{F7EC2406-1866-4446-9DA7-6385BCA9A0DC}" WorkUnitID="{805880C2-8A62-4CFB-BD60-A85E1A919C22}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{82CDB9C4-5002-4B36-9B67-6E6F9FCD5714}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-0.04512</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>1.30585</XPos>
+																<YPos>-0.8222</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>2.85883</XPos>
+																<YPos>-13.91783</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>9</XPos>
+																<YPos>-200</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="New Attenuation" ID="{52CDD179-4B69-4B61-AF3E-A12605F64ADB}" WorkUnitID="{6C688033-6A6F-468E-8B06-0B2C1DCF9FF1}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41A78A60-6AB7-483B-B1EB-3964CF5B5617}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CCF514C5-0343-4C84-89C6-9C0BEB08CFDC}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="groove_loop" ID="{E3024263-1E64-460A-BD09-908A7CD160D8}">
+											<Language>SFX</Language>
+											<AudioFile>groove_loop.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="474031988"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="groove_loop" ID="{E3024263-1E64-460A-BD09-908A7CD160D8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</ActorMixer>
 					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>

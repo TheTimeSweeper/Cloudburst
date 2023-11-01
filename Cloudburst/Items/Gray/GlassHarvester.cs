@@ -28,6 +28,7 @@ namespace Cloudburst.Items.Gray
             LanguageAPI.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
             LanguageAPI.Add("ITEM_EXPONHIT_PICKUP", "Gain experience on hit.");
             LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
+            LanguageAPI.Add("ITEM_EXPONHIT_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
         }

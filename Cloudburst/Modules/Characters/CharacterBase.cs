@@ -9,7 +9,7 @@ namespace Cloudburst.Modules.Characters
     {
         public static T instance;
 
-        public abstract string prefabBodyName { get; }
+        public abstract string characterName { get; }
 
         public abstract BodyInfo bodyInfo { get; set; }
 
@@ -23,7 +23,7 @@ namespace Cloudburst.Modules.Characters
         public virtual GameObject bodyPrefab { get; set; }
         public virtual CharacterBody prefabCharacterBody { get; set; }
         public virtual CharacterModel prefabCharacterModel { get; set; }
-        public string fullBodyName => prefabBodyName + "Body";
+        public string fullBodyName => characterName + "Body";
 
         public virtual void Initialize()
         {
@@ -54,7 +54,7 @@ namespace Cloudburst.Modules.Characters
 
         protected virtual void InitializeCharacterBodyAndModel()
         {
-            bodyPrefab = Modules.Prefabs.CreateBodyPrefab(prefabBodyName + "Body", "mdl" + prefabBodyName, bodyInfo);
+            bodyPrefab = Modules.Prefabs.CreateBodyPrefab(characterName + "Body", "mdl" + characterName, bodyInfo);
             prefabCharacterBody = bodyPrefab.GetComponent<CharacterBody>();
             InitializeCharacterModel();
         }
@@ -92,7 +92,7 @@ namespace Cloudburst.Modules.Characters
         public virtual void InitializeItemDisplays()
         {
             ItemDisplayRuleSet itemDisplayRuleSet = ScriptableObject.CreateInstance<ItemDisplayRuleSet>();
-            itemDisplayRuleSet.name = "idrs" + prefabBodyName;
+            itemDisplayRuleSet.name = "idrs" + characterName;
 
             prefabCharacterModel.itemDisplayRuleSet = itemDisplayRuleSet;
 

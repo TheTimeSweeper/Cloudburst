@@ -21,8 +21,6 @@ namespace Cloudburst.CEntityStates.Wyatt
             PlayAnimation("LeftArm, Override", "Groovy");
         }
 
- 
-
         public override void FixedUpdate()
         {
             base.FixedUpdate();

@@ -18,14 +18,38 @@ namespace Cloudburst.Items.Green
             japesCloakItem.name = "itempickupbuff";
             japesCloakItem.nameToken = "ITEM_PICKUPBUFF_NAME";
             japesCloakItem.descriptionToken = "ITEM_PICKUPBUFF_DESCRIPTION";
+            japesCloakItem.pickupToken = "ITEM_PICKUPBUFF_PICKUP";
             japesCloakItem.loreToken = "ITEM_PICKUPBUFF_LORE";
             japesCloakItem.requiredExpansion = Cloudburst.cloudburstExpansion;
-            japesCloakItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texJapesCloak");
+            japesCloakItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("Assets/Cloudburst/Items/Cloak/JapeIcon.png");
             japesCloakItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLCloak");
 
-            //ContentAddition.AddItemDef(japesCloakItem);
+            ContentAddition.AddItemDef(japesCloakItem);
 
             LanguageAPI.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");
+            LanguageAPI.Add("ITEM_PICKUPBUFF_PICKUP", "Gain a buff that grants armor and healing on item pickup.");
+            LanguageAPI.Add("ITEM_PICKUPBUFF_DESCRIPTION", "Gain a buff that grants you <style=cIsUtility>+5 armor</style> and <style=cIsHealing>30% healing</style> when picking up an item. Maximum cap of 3 buffs <style=cStack>(+2 per stack)</style>.");
+            LanguageAPI.Add("ITEM_PICKUPBUFF_LORE", @"""Quartermaster’s log. 17 days after the crash.
+
+It has been more than half a month since we’ve nearly burnt ourselves into smoldering black paste during our unwilling introduction to the atmosphere of this murder-planet. Due to the nature of our arrival, that being escape from a collapsing cargo ship that had been ripped out of warp travel, our supply of necessities has been dwindling from an already dangerously low base count. We have been forced to ration what little food and water we have. To keep in check of this, I have been elected as Quartermaster of our outpost. 
+Our supplies are as follows:
+
+-Enough food and water for around 1 week and a half.
+-3 and a half cardboard boxes full of salvaged metal and circuitry from destroyed drones and sentries.
+-4 bags of medical equipment 
+-2 keychains, each with 13 rusted keys? (This must be an error, Juarez says it was brought in alongside the rest of the haul that those three blokes brought in 2 days ago, are they printing these or something?)
+-6 boxes full of ammunition (potentially dwindling at an exponential rate)
+
+Something isn’t lining up. The bulletin board we put up to track how much supplies everyone’s been taking isn’t covering all of it. While this may be just simple miscommunication on everyone’s part, the chance of somebody taking more than what they need is steadily increasing with each day. I don’t have any evidence to point towards this exactly, but it is a (very frightening) possibility. 
+
+
+If it’s just one person taking it all, then at the rates that have been shown... 
+They just might be more prepared than the rest of us.
+
+End log.
+
+
+Addendum: WHO. IN GOD ABOVE’S HOLY NAME. TOOK. MY. CIGARETTES??”""");
 
             On.RoR2.GenericPickupController.AttemptGrant += GenericPickupController_AttemptGrant;
 

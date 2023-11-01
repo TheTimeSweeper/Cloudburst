@@ -37,7 +37,15 @@
     <PackageReference Include="MMHOOK.RoR2" Version="2022.9.20">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="R2API" Version="4.3.5" />
+	  <PackageReference Include="R2API.Core" />
+	  <PackageReference Include="R2API.Prefab" />
+	  <PackageReference Include="R2API.RecalculateStats" />
+	  <PackageReference Include="R2API.Language" />
+	  <PackageReference Include="R2API.Unlockable" />
+	  <PackageReference Include="R2API.DamageType" />
+	  <PackageReference Include="R2API.Items" />
+	  <PackageReference Include="R2API.Sound" />
+	  <PackageReference Include="R2API.TempVisualEffect" />
   </ItemGroup>
 
   <ItemGroup>

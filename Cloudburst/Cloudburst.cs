@@ -24,7 +24,6 @@ namespace Cloudburst
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
-    //[R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI))]
     public class Cloudburst : BaseUnityPlugin
     {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
@@ -47,7 +46,7 @@ namespace Cloudburst
         public void Awake()
         {
             instance = this;
-
+            
             Log.Init(Logger);
 
             GetBundle();
@@ -69,10 +68,12 @@ namespace Cloudburst
             SetupItems();
 
             Modules.ItemDisplays.PopulateDisplays();
-
+            
             new WyattSurvivor().Initialize();
 
             Log.Info(nameof(Awake) + " done.");
+            
+            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
         }
 
         private void GetSoundBank()
@@ -87,6 +88,15 @@ namespace Cloudburst
 
         public void SetupItems()
         {
+            bool items = Modules.Config.BindAndOptions<bool>("Uh items",
+                "Enable Items",
+                true,
+                "set false to disable all cloudburs items. individual disables coming probably not soon",
+                true).Value;
+
+            if (!items)
+                return;
+
             //BlastBoot.Setup();
             BismuthEarrings.Setup();
             EnigmaticKeycard.Setup();

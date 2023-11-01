@@ -55,6 +55,8 @@ namespace Cloudburst.Wyatt.Components
         private void RpcPlayFlowEFfect()
         {
             flowEffect.Play();
+
+            Util.PlaySound("Play_Wyatt_Groove_Loop", gameObject);
         }
 
         private void StopFlowEffectServer()
@@ -65,6 +67,9 @@ namespace Cloudburst.Wyatt.Components
         private void RpcPStopFlowEFfect()
         {
             flowEffect.Stop();
+
+            Util.PlaySound("Stop_Wyatt_Groove_Loop", gameObject);
+            Util.PlaySound("Play_Wyatt_Groove_End", gameObject);
         }
         #endregion
 

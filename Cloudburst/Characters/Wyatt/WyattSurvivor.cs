@@ -16,7 +16,7 @@ namespace Cloudburst.Characters.Wyatt
 {
     public class WyattSurvivor : SurvivorBase<WyattSurvivor>
     {
-        public override string prefabBodyName => "Wyatt";
+        public override string characterName => "Wyatt";
 
         public const string WYATT_PREFIX = "CLOUDBURST_WYATT_";
         public override string survivorTokenPrefix => WYATT_PREFIX;
@@ -149,7 +149,7 @@ namespace Cloudburst.Characters.Wyatt
             marioJumpMachine.customName = "SuperMarioJump";
             marioJumpMachine.initialStateType = new SerializableEntityStateType(typeof(Idle));
             marioJumpMachine.mainStateType = new SerializableEntityStateType(typeof(Idle));
-
+            
             idleLength = setStateOnHurt.idleStateMachine.Length;
             Array.Resize(ref setStateOnHurt.idleStateMachine, idleLength + 1);
             setStateOnHurt.idleStateMachine[idleLength] = marioJumpMachine;
@@ -157,6 +157,12 @@ namespace Cloudburst.Characters.Wyatt
             networkStateMachinesLength = networkStateMachine.stateMachines.Length;
             Array.Resize(ref networkStateMachine.stateMachines, networkStateMachinesLength + 1);
             networkStateMachine.stateMachines[networkStateMachinesLength] = marioJumpMachine;
+        }
+
+        protected override void InitializeCharacterBodyAndModel()
+        {
+            base.InitializeCharacterBodyAndModel();
+            displayPrefab.AddComponent<FunnyCSSSoundComponent>();
         }
 
         #region hooks

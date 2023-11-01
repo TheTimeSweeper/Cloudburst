@@ -38,6 +38,67 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_Wyatt_Groove_Loop" ID="{89CAEB47-EEB6-45FE-8A85-562FB6B7739F}">
+							<ChildrenList>
+								<Action Name="" ID="{AC814DD5-7ABC-4D4E-BF9B-C0A2C6D09067}" ShortID="305588441">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Groove_CSS" ID="{5B01ED90-90E4-4C5D-B9EF-9ED7AD067BE8}">
+							<ChildrenList>
+								<Action Name="" ID="{A27CF85E-F34C-4FAA-B59B-1F3D2A2E7B2F}" ShortID="973925901">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_CSS" ID="{2116FAFC-E194-46C1-AB35-C83BBDBCD544}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Wyatt_Groove_Loop" ID="{D6CA7066-A00A-4477-ADC2-22B848BCBA7B}">
+							<ChildrenList>
+								<Action Name="" ID="{EB7ED5E3-E33B-4B79-AC15-F0E5886D0C1C}" ShortID="743329840">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Groove_End" ID="{F8921CAC-45E0-4B79-92D0-D60D66204E86}">
+							<ChildrenList>
+								<Action Name="" ID="{AF0301CD-520E-49A5-AA55-CA748727480E}" ShortID="181296708">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_end" ID="{9DC23501-7758-4DEE-A45E-A1470BD287E3}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Wyatt_Groove_CSS" ID="{85B326ED-CE3E-4D10-8CBD-C33A0564AECE}">
+							<ChildrenList>
+								<Action Name="" ID="{2B08DB91-A8BC-4113-BC30-061DB6D1D555}" ShortID="160056810">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_CSS" ID="{2116FAFC-E194-46C1-AB35-C83BBDBCD544}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

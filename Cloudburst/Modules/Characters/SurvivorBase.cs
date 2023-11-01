@@ -44,7 +44,7 @@ namespace Cloudburst.Modules.Survivors
 
         protected virtual void InitializeDisplayPrefab()
         {
-            displayPrefab = Modules.Prefabs.CreateDisplayPrefab(prefabBodyName + "Display", bodyPrefab, bodyInfo);
+            displayPrefab = Modules.Prefabs.CreateDisplayPrefab(characterName + "Display", bodyPrefab, bodyInfo);
         }
         public virtual void InitializeUnlockables()
         {

@@ -19,6 +19,10 @@ namespace Cloudburst.Items.Green
 
         public static GameObject orbitalOrbProjectile;
         public static GameObject orbitalImpactEffect;
+
+        public static float Chance = 4;
+        public static float BaseDamage = 1.4f;
+
         public static void Setup()
         {
             enigmaticKeycardItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -30,13 +34,14 @@ namespace Cloudburst.Items.Green
             enigmaticKeycardItem.loreToken = "ITEM_ENIGMATICKEYCARD_LORE";
             enigmaticKeycardItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             enigmaticKeycardItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLPricard.prefab");
-            //enigmaticKeycardItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBismuthEarring");
+            enigmaticKeycardItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("Assets/Cloudburst/Items/UESKeycard/icon.png");
 
             ContentAddition.AddItemDef(enigmaticKeycardItem);
 
             LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_NAME", "Enigmatic Keycard");
-            //LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_PICKUP", "Critical strikes grant temporary barrier");
-            //LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_DESCRIPTION", "On Critical Strike, grant a small amount of temporary barrier.");
+            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_PICKUP", "Chance to spawn an orb on hit that follows and hurts enemies.");
+            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_DESCRIPTION", Chance + "% chance on hit to spawn a <style=cIsDamage>seeking orb</style> that hits nearby enemies for <style=cIsDamage>" + (BaseDamage * 100) + "% base damage <style=cStack>(+" + (BaseDamage/*StackingDamage.Value*/ * 100) + "% per stack)</style></style> on impact.");
+            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_LORE", "No keycard will ever be able to open Enigma's fuckin brain");
 
             CreateProjectile();
 
@@ -121,7 +126,7 @@ namespace Cloudburst.Items.Green
                     CharacterMaster master = body.master;
 
                     int itemCount = body.inventory.GetItemCount(enigmaticKeycardItem);
-                    if (itemCount > 0 && victim && Util.CheckRoll(4 * damageInfo.procCoefficient, master))
+                    if (itemCount > 0 && victim && Util.CheckRoll(EnigmaticKeycard.Chance * damageInfo.procCoefficient, master))
                     {
                         
                         if(victimBody.mainHurtBox)
@@ -144,7 +149,7 @@ namespace Cloudburst.Items.Green
                             FireProjectileInfo _info = new FireProjectileInfo()
                             {
                                 crit = false,
-                                damage = body.damage * (1.4f + itemCount),
+                                damage = body.damage * (EnigmaticKeycard.BaseDamage + itemCount),
                                 damageColorIndex = RoR2.DamageColorIndex.Default,
                                 damageTypeOverride = DamageType.Generic,
                                 force = 0,

@@ -10,6 +10,8 @@ namespace Cloudburst.Items.Green
     internal class BismuthEarrings
     {
         public static ItemDef bismuthEarringsItem;
+        public static float BaseBarrier = 5;
+        public static float StackingBarrier = 3;
 
         //public static Material
         public static void Setup()
@@ -19,6 +21,7 @@ namespace Cloudburst.Items.Green
             bismuthEarringsItem.name = "itembarriercrit";
             bismuthEarringsItem.nameToken = "ITEM_BARRIERONCRIT_NAME";
             bismuthEarringsItem.descriptionToken = "ITEM_BARRIERONCRIT_DESCRIPTION";
+            bismuthEarringsItem.pickupToken = "ITEM_BARRIERONCRIT_PICKUP";
             bismuthEarringsItem.loreToken = "ITEM_BARRIERONCRIT_LORE";
             bismuthEarringsItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             bismuthEarringsItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLBismuthRings");
@@ -27,6 +30,9 @@ namespace Cloudburst.Items.Green
             ContentAddition.AddItemDef(bismuthEarringsItem);
 
             LanguageAPI.Add("ITEM_BARRIERONCRIT_NAME", "Bismuth Earrings");
+            LanguageAPI.Add("ITEM_BARRIERONCRIT_DESCRIPTION", "Gain a <style=cIsHealing>temporary barrier</style> on critical hits for <style=cIsHealing>" + BaseBarrier + " health</style> <style=cStack>(+" + StackingBarrier + " per stack)</style>. Also gain <style=cIsDamage>5% critical hit chance</style>.");
+            LanguageAPI.Add("ITEM_BARRIERONCRIT_PICKUP", "Gain barrier on critical hits");
+            LanguageAPI.Add("ITEM_BARRIERONCRIT_LORE", "The Earrings are Bismuth or something idk.");
 
             On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -53,7 +59,7 @@ namespace Cloudburst.Items.Green
                 int earringCount = body.inventory.GetItemCount(bismuthEarringsItem);
                 if (earringCount > 0)
                 {
-                    body.healthComponent.AddBarrier(5 + (earringCount - 1) * 3);
+                    body.healthComponent.AddBarrier(BaseBarrier + (earringCount - 1) * StackingBarrier);
                 }
             }
         }

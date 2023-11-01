@@ -79,7 +79,7 @@ namespace Cloudburst.Wyatt.Components
         void Motor_onHitGround(ref CharacterMotor.HitGroundInfo hitGroundInfo)
         {
             Vector3 position = hitGroundInfo.position;
-
+            
             bigSlam(position);
 
             characterMotor.onHitGroundServer -= Motor_onHitGround;
@@ -94,7 +94,7 @@ namespace Cloudburst.Wyatt.Components
             {
                 float amountFell = initialPositionY - transform.position.y;
                 float blastDamage = WyattConfig.SpikeDamage.Value + amountFell * WyattConfig.SpikeDamagePerMeterFell.Value;
-                Log.Warning("amountFell: " + amountFell + "damage: " + blastDamage);
+                //Log.Warning("amountFell: " + amountFell + "damage: " + blastDamage);
 
                 EffectManager.SpawnEffect(WyattEffects.tiredOfTheDingDingDing, new EffectData
                 {
