@@ -6,6 +6,7 @@ using RoR2;
 using RoR2.Projectile;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Networking;
 
 namespace Cloudburst.Items.Green
 {
@@ -117,54 +118,41 @@ namespace Cloudburst.Items.Green
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
             orig(self, damageInfo, victim);
-            if(damageInfo.attacker && victim)
+            if (!damageInfo.attacker || !victim) return;
+
+            CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
+            CharacterBody victimBody = victim.GetComponent<CharacterBody>();
+
+            if(!attackerBody || !victimBody && attackerBody.inventory) return;
+
+            Inventory inventory = attackerBody.inventory;
+            int itemCount = attackerBody.inventory.GetItemCount(enigmaticKeycardItem);
+            if(itemCount > 0)
             {
-                CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
-                CharacterBody victimBody = victim.GetComponent<CharacterBody>();
-                if (victimBody && body && body.inventory)
+                CharacterMaster master = attackerBody.master;
+                bool proc = Util.CheckRoll(EnigmaticKeycard.Chance * damageInfo.procCoefficient, master);
+                if(proc && victimBody.mainHurtBox)
                 {
-                    CharacterMaster master = body.master;
-
-                    int itemCount = body.inventory.GetItemCount(enigmaticKeycardItem);
-                    if (itemCount > 0 && victim && Util.CheckRoll(EnigmaticKeycard.Chance * damageInfo.procCoefficient, master))
+                    float radius = 15;
+                    Vector3 origin = victimBody.mainHurtBox.transform.position + (UnityEngine.Random.insideUnitSphere * radius);
+                    EffectManager.SpawnEffect(NullifierSpawnEffect, new EffectData
                     {
-                        
-                        if(victimBody.mainHurtBox)
-                        {
-                            float radius = 15f;
-                            var originPoint = victimBody.mainHurtBox.transform.position + 
-                                new Vector3(
-                                    UnityEngine.Random.Range(-radius, radius), 
-                                    UnityEngine.Random.Range(-radius, radius), 
-                                    UnityEngine.Random.Range(-radius, radius));
+                        rotation = Quaternion.Euler(victimBody.transform.forward),
+                        scale = 1,
+                        origin = origin
+                    }, false);
 
-                            EffectData data = new EffectData()
-                            {
-                                rotation = Quaternion.Euler(victimBody.transform.forward),
-                                scale = 1,
-                                origin = originPoint,
-                            };
-
-                            EffectManager.SpawnEffect(NullifierSpawnEffect, data, true);
-                            FireProjectileInfo _info = new FireProjectileInfo()
-                            {
-                                crit = false,
-                                damage = body.damage * (EnigmaticKeycard.BaseDamage + itemCount),
-                                damageColorIndex = RoR2.DamageColorIndex.Default,
-                                damageTypeOverride = DamageType.Generic,
-                                force = 0,
-                                owner = body.gameObject,
-                                position = originPoint,
-                                procChainMask = default,
-                                projectilePrefab = orbitalOrbProjectile,
-                                rotation = Util.QuaternionSafeLookRotation(victimBody.transform.position),
-                                target = victim,
-                                useFuseOverride = false,
-                                useSpeedOverride = true,
-                                _speedOverride = 100
-                            };
-                            ProjectileManager.instance.FireProjectile(_info);
-                        }
+                    if(NetworkServer.active)
+                    {
+                        ProjectileManager.instance.FireProjectile(
+                            orbitalOrbProjectile,
+                            origin,
+                            Util.QuaternionSafeLookRotation(victimBody.transform.position - origin),
+                            attackerBody.gameObject,
+                            attackerBody.damage * (EnigmaticKeycard.BaseDamage + itemCount),
+                            0,
+                            false,
+                            DamageColorIndex.Item);
                     }
                 }
             }
