@@ -79,7 +79,7 @@ namespace Cloudburst.Items.Green
             explosion.lifetimeRandomOffset = 0;
             explosion.blastRadius = 8;
             explosion.blastDamageCoefficient = 5;
-            explosion.blastProcCoefficient = 0;
+            explosion.blastProcCoefficient = 0.7f;
             explosion.blastAttackerFiltering = AttackerFiltering.Default;
             explosion.childrenCount = 0;
             explosion.transformSpace = ProjectileImpactExplosion.TransformSpace.World;
@@ -90,7 +90,7 @@ namespace Cloudburst.Items.Green
             orb.attackRange = 50;
             orb.minAngleFilter = 0;
             orb.maxAngleFilter = 180;
-            orb.procCoefficient = 0.3f;
+            orb.procCoefficient = 0.2f;
             orb.damageCoefficient = 1;
             orb.bounces = 0;
             orb.inheritDamageType = false;
