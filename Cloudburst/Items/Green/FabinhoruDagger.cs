@@ -124,6 +124,9 @@ namespace Cloudburst.Items.Green
         {
             orig(self, damageInfo, victim);
 
+            if (damageInfo.attacker == null)
+                return;
+
             CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
             
