@@ -90,7 +90,7 @@ namespace Cloudburst.Items.Green
             orb.attackRange = 50;
             orb.minAngleFilter = 0;
             orb.maxAngleFilter = 180;
-            orb.procCoefficient = 0.2f;
+            orb.procCoefficient = 0.1f;
             orb.damageCoefficient = 1;
             orb.bounces = 0;
             orb.inheritDamageType = false;
