@@ -30,24 +30,16 @@ namespace Cloudburst.Items.Gray
             LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
             LanguageAPI.Add("ITEM_EXPONHIT_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
 
-            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
-        private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
+        private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            orig(self, damageInfo, victim);
-            if (damageInfo.attacker)
+            if(sender && sender.inventory)
             {
-                CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
-                if (body && body.inventory)
-                {
-                    int harvesterCount = body.inventory.GetItemCount(glassHarvesterItem);
-                    if (harvesterCount > 0)
-                    {
-                        int expAmount = 3 + (harvesterCount - 1) * 2;
-                        TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)(expAmount * Run.instance.compensatedDifficultyCoefficient));
-                    }
-                }
+                int itemCount = sender.inventory.GetItemCount(glassHarvesterItem);
+                args.critAdd += itemCount > 0 ? 5 : 0;
+                args.critDamageMultAdd += itemCount > 0 ? itemCount * 30 + 10 : 0;
             }
         }
 
