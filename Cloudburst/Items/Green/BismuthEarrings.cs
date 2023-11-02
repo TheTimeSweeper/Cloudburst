@@ -34,23 +34,42 @@ namespace Cloudburst.Items.Green
             LanguageAPI.Add("ITEM_BARRIERONCRIT_PICKUP", "Gain barrier on critical hits");
             LanguageAPI.Add("ITEM_BARRIERONCRIT_LORE", "The Earrings are Bismuth or something idk.");
 
+            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
             On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
         }
 
-        private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
-            if (sender.inventory)
+            orig(self, damageInfo, victim);
+            if (damageInfo.attacker == null) return;
+
+            CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
+            if(attackerBody == null) return;
+
+            Inventory inventory = attackerBody.inventory;
+            if(inventory)
             {
-                int itemCount = sender.inventory.GetItemCount(bismuthEarringsItem);
-                if (itemCount > 0)
+                int itemCount = inventory.GetItemCount(bismuthEarringsItem);
+                if(damageInfo.damageType.HasFlag(DamageType.BleedOnHit))
                 {
-                    args.critAdd += 5;
+                    attackerBody.healthComponent?.AddBarrier((itemCount * 10) + 5);
                 }
             }
-
         }
 
+        private static void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        {
+            orig(self);
+            if (self.inventory)
+            {
+                if (self.inventory.GetItemCount(bismuthEarringsItem) > 0)
+                {
+                    self.bleedChance += 5;
+                }
+            }
+        }
+            
         private static void GlobalEventManager_OnCrit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo damageInfo, CharacterMaster master, float procCoefficient, ProcChainMask procChainMask)
         {
             orig(self, body, damageInfo, master, procCoefficient, procChainMask);
