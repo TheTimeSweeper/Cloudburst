@@ -124,25 +124,25 @@ namespace Cloudburst.Items.Green
         {
             orig(self, damageInfo, victim);
 
-            if (damageInfo.attacker == null)
-                return;
+            if (damageInfo.attacker == null) return;
 
             CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
-            
-            if (victimBody && attackerBody)
+
+            if(!attackerBody || !victimBody) return;
+
+            Inventory inventory = attackerBody.inventory;
+            int itemCount = inventory.GetItemCount(fabinhorusDaggerItem);
+
+            if (inventory && inventory.GetItemCount(fabinhorusDaggerItem) > 0)
             {
-                if(attackerBody.inventory && attackerBody.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
+                if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
-                    int itemCount = victimBody.inventory.GetItemCount(fabinhorusDaggerItem);
-                    if (victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
+                    victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
+                    EffectManager.SpawnEffect(FabProc, new EffectData()
                     {
-                        victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
-                        EffectManager.SpawnEffect(FabProc, new EffectData()
-                        {
-                            origin = damageInfo.position
-                        }, false);
-                    }
+                        origin = damageInfo.position
+                    }, false);
                 }
             }
         }
