@@ -1,0 +1,8 @@
+{
+  strings: {
+    "ITEM_EXPONHIT_NAME":  "Glass Harvester",
+    "ITEM_EXPONHIT_PICKUP": "Your 'Critical Strikes' deal an additional 40% damage.",
+    "ITEM_EXPONHIT_DESCRIPTION": "<style=cIsDamage>Critical Strikes</style> deal an additional <style=cIsDamage>40% damage</style> <style=cStack>(+30% per stack)</style>",
+    "ITEM_EXPONHIT_LORE": "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"
+  }
+}

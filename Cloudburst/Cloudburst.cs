@@ -12,6 +12,7 @@ using RoR2.ExpansionManagement;
 using RoR2.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -74,6 +75,17 @@ namespace Cloudburst
             Log.Info(nameof(Awake) + " done.");
             
             On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            Language.collectLanguageRootFolders += Language_collectLanguageRootFolders;
+        }
+
+        private void Language_collectLanguageRootFolders(List<string> obj)
+        {
+            string path = System.IO.Path.Combine(Directory.GetParent(Info.Location).FullName, "Language");
+            if(Directory.Exists(path))
+            {
+                obj.Add(path);
+            }
+            
         }
 
         private void GetSoundBank()
