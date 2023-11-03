@@ -139,10 +139,12 @@ namespace Cloudburst.Items.Green
                 if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
+                    /*
                     EffectManager.SpawnEffect(FabProc, new EffectData()
                     {
                         origin = damageInfo.position
                     }, false);
+                    */
                 }
             }
         }
