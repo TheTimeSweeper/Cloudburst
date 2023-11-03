@@ -53,21 +53,19 @@ namespace Cloudburst.Items.Gray
 
         private static void Test(HealthComponent self)
         {
-            Debug.Log("Hit");
             int itemCount = self.body.inventory.GetItemCount(glassHarvesterItem);
 
             if (itemCount > 0 && self.isHealthLow)
             {
-                Debug.Log("Has Harvester and health");
                 self.body.inventory.RemoveItem(glassHarvesterItem, itemCount);
                 self.body.inventory.GiveItem(glassHarvesterConsumedItem, itemCount);
                 if (self.body.teamComponent)
                 {
-                    Debug.Log("When the body is ERURIJ");
                     TeamIndex teamIndex = self.body.teamComponent.teamIndex;
                     ulong expNeed = TeamManager.instance.GetTeamNextLevelExperience(teamIndex) - TeamManager.instance.GetTeamCurrentLevelExperience(teamIndex);
                     expNeed = (ulong)(expNeed * 0.15f);
                     TeamManager.instance.GiveTeamExperience(teamIndex, expNeed);
+                    CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, glassHarvesterItem.itemIndex, glassHarvesterConsumedItem.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
             }
         }
