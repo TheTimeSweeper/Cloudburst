@@ -56,7 +56,10 @@ namespace Cloudburst.Wyatt.Components
         {
             flowEffect.Play();
 
-            Util.PlaySound("Play_Wyatt_Groove_Loop", gameObject);
+            if (WyattConfig.M3FlowPlayMusic.Value)
+            {
+                Util.PlaySound("Play_Wyatt_Groove_Loop", gameObject);
+            }
         }
 
         private void StopFlowEffectServer()
@@ -68,8 +71,11 @@ namespace Cloudburst.Wyatt.Components
         {
             flowEffect.Stop();
 
-            Util.PlaySound("Stop_Wyatt_Groove_Loop", gameObject);
-            Util.PlaySound("Play_Wyatt_Groove_End", gameObject);
+            if (WyattConfig.M3FlowPlayMusic.Value)
+            {
+                Util.PlaySound("Stop_Wyatt_Groove_Loop", gameObject);
+                Util.PlaySound("Play_Wyatt_Groove_End", gameObject);
+            }
         }
         #endregion
 

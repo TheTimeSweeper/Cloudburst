@@ -574,6 +574,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="groove_end" ID="{9DC23501-7758-4DEE-A45E-A1470BD287E3}" ShortID="561831518">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41A78A60-6AB7-483B-B1EB-3964CF5B5617}"/>
@@ -598,9 +605,14 @@
 								<Sound Name="groove_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" ShortID="651001931">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>23</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-4</Value>
+												<Value>-13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -631,7 +643,7 @@
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-4</Value>
+												<Value>-8</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{E3E697A3-3B62-437E-8D10-EBCC95A9A8F6}" ShortID="257126433">

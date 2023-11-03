@@ -123,8 +123,9 @@ namespace Cloudburst.Items.Green
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
         {
             orig(self, damageInfo, victim);
-
+            
             if (damageInfo.attacker == null) return;
+            if (victim == null) return;
 
             CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
@@ -139,12 +140,10 @@ namespace Cloudburst.Items.Green
                 if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
-                    /*
                     EffectManager.SpawnEffect(FabProc, new EffectData()
                     {
                         origin = damageInfo.position
                     }, false);
-                    */
                 }
             }
         }
