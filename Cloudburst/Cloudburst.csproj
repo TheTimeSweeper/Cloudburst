@@ -102,7 +102,7 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)\..\Release\plugins\&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; mkdir &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy &quot;$(TargetPath)&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
+    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\Release\plugins\&quot;&#xD;&#xA;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
   </Target>
 
 </Project>

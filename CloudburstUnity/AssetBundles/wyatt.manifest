@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 710325374
+CRC: 1079699655
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 94cde1c7f8dc52765665f491bd88f0b7
+    Hash: 95f05a4d3235795e450637059bca9d03
   TypeTreeHash:
     serializedVersion: 2
     Hash: fd3ec95599138eda35f509709010e982
@@ -126,6 +126,7 @@ Assets:
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSkinDefault.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Materials/matWyattDefault_Broom.mat
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Anim/maskWyattGesture.mask
+- Assets/Items/Bundled/GlassHarvester/Textures/iconGlassHarvesterBroken.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Textures/texWyatt2Default.png
 - Assets/Survivors/Wyatt/WyattBundle/Maid/Textures/texWyattMaid.png
 - Assets/Survivors/Wyatt/WyattBundle/Wyatt/Icons/texIconWyattSecondary.png
