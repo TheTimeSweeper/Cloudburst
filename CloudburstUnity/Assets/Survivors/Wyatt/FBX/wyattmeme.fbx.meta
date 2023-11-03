@@ -114,102 +114,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'WyattRig|Ascend' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'WyattRig|Descend'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'WyattRig|Groovy' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Thumb1.L'
-      has translation animation that will be discarded.\n\nClip 'WyattRig|Icon' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Collar.L' has
-      translation animation that will be discarded.\n\t'Ring1.L' has translation
-      animation that will be discarded.\n\t'P1.L' has translation animation that
-      will be discarded.\n\t'Collar.R' has translation animation that will be discarded.\n\nClip
-      'WyattRig|Idle01' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.R'
-      has translation animation that will be discarded.\n\t'Hips' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|idleIn'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thumb1.L'
-      has translation animation that will be discarded.\n\t'Index1.L' has translation
-      animation that will be discarded.\n\t'Mid1.L' has translation animation that
-      will be discarded.\n\t'Ring1.L' has translation animation that will be discarded.\n\t'P1.L'
-      has translation animation that will be discarded.\n\t'Collar.R' has translation
-      animation that will be discarded.\n\t'Index1.R' has translation animation that
-      will be discarded.\n\t'Mid1.R' has translation animation that will be discarded.\n\t'Ring1.R'
-      has translation animation that will be discarded.\n\t'P1.R' has translation
-      animation that will be discarded.\n\nClip 'WyattRig|JogIdle' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Hips' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|JogW'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperLeg.R'
-      has translation animation that will be discarded.\n\nClip 'WyattRig|M1Swing'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
-      has translation animation that will be discarded.\n\t'Hips' has translation
-      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M1Swing01'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'WyattRig|M1Swing02' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'LowerBody'
-      has translation animation that will be discarded.\n\t'UpperBody' has translation
-      animation that will be discarded.\n\t'Hips' has translation animation that
-      will be discarded.\n\t'Hips' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\nClip 'WyattRig|M1Swing03Frankenstein'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'LowerBody'
-      has translation animation that will be discarded.\n\t'Collar.R' has translation
-      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M2Swing01'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.R'
-      has translation animation that will be discarded.\n\t'Hips' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'WyattRig|M3End'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
-      has translation animation that will be discarded.\n\t'Index1.L' has translation
-      animation that will be discarded.\n\t'Mid1.L' has translation animation that
-      will be discarded.\n\t'Ring1.L' has translation animation that will be discarded.\n\t'P1.L'
-      has translation animation that will be discarded.\n\t'Collar.R' has translation
-      animation that will be discarded.\n\t'Index1.R' has translation animation that
-      will be discarded.\n\t'Mid1.R' has translation animation that will be discarded.\n\t'Ring1.R'
-      has translation animation that will be discarded.\n\t'P1.R' has translation
-      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'WyattRig|M3Idle'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Index1.R'
-      has translation animation that will be discarded.\n\t'Mid1.R' has translation
-      animation that will be discarded.\n\t'Ring1.R' has translation animation that
-      will be discarded.\n\t'P1.R' has translation animation that will be discarded.\n\t'Hips'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'WyattRig|M3Start' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'UpperBody'
-      has translation animation that will be discarded.\n\t'Collar.L' has translation
-      animation that will be discarded.\n\t'Collar.R' has translation animation that
-      will be discarded.\n\t'Hips' has translation animation that will be discarded.\n\t'Hips'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'WyattRig|M4' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Collar.L'
-      has translation animation that will be discarded.\n\t'Ring1.L' has translation
-      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'WyattRig|pelv'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'WyattRig|RunE' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Hips'
-      has translation animation that will be discarded.\n\nClip 'WyattRig|RunW' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Hips' has translation
-      animation that will be discarded.\n\t'Hips' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1394,7 +1299,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.3178716
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -1849,7 +1754,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: WyattBroom
       parentName: wyattmeme(Clone)
-      position: {x: 3.8452568, y: 3.6118898, z: -0.51666754}
+      position: {x: 1.2222979, y: 1.1481172, z: -0.16423394}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}
     - name: WyattMesh
@@ -1864,368 +1769,368 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bone
       parentName: WyattRig
-      position: {x: 0.000000053085387, y: 0.5818503, z: -0.033374533}
+      position: {x: 0.000000016874337, y: 0.18495369, z: -0.0106088165}
       rotation: {x: 0.70710665, y: -0, z: 0.7071069, w: 0}
       scale: {x: 0.9999999, y: 1.0000001, z: 1}
     - name: Pelvis
       parentName: Bone
-      position: {x: 4.425141, y: 0.10713352, z: -0.010174535}
+      position: {x: 1.4066266, y: 0.034054704, z: -0.0032341958}
       rotation: {x: 0.5142887, y: -0.48529074, z: 0.5142888, w: 0.48529065}
       scale: {x: 0.9999999, y: 1.0000002, z: 1.0000004}
     - name: LowerBody
       parentName: Pelvis
-      position: {x: -0.0000000027939677, y: -0.00000058218524, z: 0.0000000987784}
+      position: {x: -8.88123e-10, y: -0.00000018506016, z: 0.000000031398848}
       rotation: {x: -0.9971369, y: 0.000000089406974, z: -0.000000044703487, w: -0.07561732}
       scale: {x: 0.99999994, y: 1.0000005, z: 1.0000062}
     - name: UpperBody
       parentName: LowerBody
-      position: {x: 0.000000003259629, y: 0.79662365, z: -0.000000029656803}
+      position: {x: 0.0000000010361435, y: 0.25322405, z: -0.000000009427056}
       rotation: {x: -0.058984574, y: 0.00000012777211, z: -0.000000037630596, w: 0.9982589}
       scale: {x: 0.9999998, y: 1.0000002, z: 0.99999946}
     - name: Neck
       parentName: UpperBody
-      position: {x: 0.0000000055879354, y: 0.8961981, z: 0.0000000018626451}
+      position: {x: 0.000000001776246, y: 0.28487593, z: 5.92082e-10}
       rotation: {x: 0.16657878, y: -0.00000011422508, z: 0.00000002774088, w: 0.9860282}
       scale: {x: 0.9999999, y: 1.0000007, z: 0.9999991}
     - name: Head
       parentName: Neck
-      position: {x: -0.000000040978193, y: 0.47192106, z: 0.0000006314367}
+      position: {x: -0.0000000130258035, y: 0.1500103, z: 0.0000002007158}
       rotation: {x: 0.0000000024443243, y: 0.7493306, z: 0.6621961, w: 0.00000008425827}
       scale: {x: 0.99999964, y: 0.99999934, z: 1.0000054}
     - name: Zipper
       parentName: UpperBody
-      position: {x: 0.0065336544, y: 0.09546877, z: 0.51707315}
+      position: {x: 0.002076863, y: 0.030346809, z: 0.16436288}
       rotation: {x: 0.99989146, y: -0.0000001276748, z: 0.00000014742493, w: 0.014736271}
       scale: {x: 1, y: 1.0000006, z: 1.0000008}
     - name: Collar.L
       parentName: UpperBody
-      position: {x: -0.31474856, y: 0.6309693, z: 0.20387594}
+      position: {x: -0.10004963, y: 0.20056722, z: 0.06480637}
       rotation: {x: -0.5511674, y: 0.32728323, z: 0.50860953, w: 0.57481873}
       scale: {x: 0.99999946, y: 1.0000002, z: 1.0000004}
     - name: UpperArm.L
       parentName: Collar.L
-      position: {x: 0.00000016391277, y: 0.6370722, z: -0.00000017881393}
+      position: {x: 0.000000052103214, y: 0.20250717, z: -0.000000056839873}
       rotation: {x: 0.090972014, y: -0.053920947, z: 0.13073434, w: 0.9857612}
       scale: {x: 0.9999973, y: 0.9999998, z: 1.0000027}
     - name: LowerArm.L
       parentName: UpperArm.L
-      position: {x: 0.00000029802322, y: 1.1440909, z: 0.0000002682209}
+      position: {x: 0.00000009473312, y: 0.363674, z: 0.000000085259806}
       rotation: {x: 0.0112870345, y: -0.005347014, z: 0.035833295, w: 0.99927974}
       scale: {x: 1.0000015, y: 0.99999744, z: 1.0000004}
     - name: Hand.L
       parentName: LowerArm.L
-      position: {x: 0.00000019744039, y: 1.0162857, z: -0.00000013038516}
+      position: {x: 0.00000006276069, y: 0.32304835, z: -0.00000004144574}
       rotation: {x: -0.11927871, y: 0.004440461, z: -0.20664583, w: 0.97110784}
       scale: {x: 1.0000005, y: 1.0000006, z: 1.0000044}
     - name: Thumb1.L
       parentName: Hand.L
-      position: {x: -0.2538542, y: 0.3651979, z: -0.06462842}
+      position: {x: -0.08069304, y: 0.11608604, z: -0.02054354}
       rotation: {x: 0.026409924, y: -0.110969014, z: -0.4834476, w: -0.86790943}
       scale: {x: 0.99999803, y: 1.0000057, z: 1}
     - name: Thumb2.L
       parentName: Thumb1.L
-      position: {x: -0.00000013411045, y: 0.14263758, z: 0.000000029802322}
+      position: {x: -0.000000042629903, y: 0.045340437, z: 0.000000009473312}
       rotation: {x: 0.033858817, y: -0.015104866, z: -0.010378541, w: 0.9992586}
       scale: {x: 0.9999998, y: 1.0000046, z: 0.99999636}
     - name: Thumb3.L
       parentName: Thumb2.L
-      position: {x: 0.000000059604645, y: 0.14259565, z: -0.000000007450581}
+      position: {x: 0.000000018946624, y: 0.04532711, z: -0.000000002368328}
       rotation: {x: -0.09555513, y: 0.0013734427, z: 0.04437046, w: -0.9944338}
       scale: {x: 1.0000005, y: 1.000003, z: 0.9999984}
     - name: Index1.L
       parentName: Hand.L
-      position: {x: -0.2934865, y: 0.5778213, z: 0.08974019}
+      position: {x: -0.09329102, y: 0.18367298, z: 0.028525857}
       rotation: {x: 0.0562594, y: -0.719688, z: -0.08756395, w: -0.6864522}
       scale: {x: 0.999996, y: 1.0000075, z: 0.99999875}
     - name: Index2.L
       parentName: Index1.L
-      position: {x: 0.000000044703484, y: 0.14279187, z: -0.00000008940697}
+      position: {x: 0.000000014209968, y: 0.04538948, z: -0.000000028419937}
       rotation: {x: -0.011167995, y: -0.0039226706, z: -0.03743606, w: 0.9992289}
       scale: {x: 1.0000017, y: 0.999999, z: 1.0000005}
     - name: Index3.L
       parentName: Index2.L
-      position: {x: 0.000000052154064, y: 0.13581237, z: -0.000000044703484}
+      position: {x: 0.000000016578296, y: 0.043170895, z: -0.000000014209968}
       rotation: {x: 0.016132249, y: -0.0069085974, z: -0.047924712, w: 0.9986968}
       scale: {x: 0.99999994, y: 1.0000014, z: 1.000001}
     - name: Mid1.L
       parentName: Hand.L
-      position: {x: -0.19920829, y: 0.60299534, z: 0.0792945}
+      position: {x: -0.063322656, y: 0.1916751, z: 0.02520547}
       rotation: {x: 0.10761835, y: -0.7157866, z: -0.080762476, w: -0.6852338}
       scale: {x: 0.99999565, y: 1.000009, z: 0.9999996}
     - name: Mid2.L
       parentName: Mid1.L
-      position: {x: -0.000000055879354, y: 0.14983273, z: -0.00000010430813}
+      position: {x: -0.00000001776246, y: 0.04762757, z: -0.000000033156592}
       rotation: {x: 0.0006447285, y: -0.0006478428, z: -0.04132617, w: 0.99914527}
       scale: {x: 1.0000031, y: 0.9999967, z: 1.0000001}
     - name: Mid3.L
       parentName: Mid2.L
-      position: {x: -0.00000025331974, y: 0.14119105, z: 0.00000008195639}
+      position: {x: -0.00000008052315, y: 0.044880625, z: 0.000000026051607}
       rotation: {x: 0.030300373, y: 0.0013455808, z: -0.083929375, w: 0.99601007}
       scale: {x: 1.0000004, y: 1.0000006, z: 1.0000004}
     - name: Ring1.L
       parentName: Hand.L
-      position: {x: -0.11305166, y: 0.6338612, z: 0.06977287}
+      position: {x: -0.035935912, y: 0.20148647, z: 0.022178814}
       rotation: {x: 0.08336685, y: -0.71738803, z: -0.07328699, w: -0.68777424}
       scale: {x: 0.99999565, y: 1.0000079, z: 0.9999992}
     - name: Ring2.L
       parentName: Ring1.L
-      position: {x: -0.000000037252903, y: 0.15293676, z: 0.000000059604645}
+      position: {x: -0.00000001184164, y: 0.048614252, z: 0.000000018946624}
       rotation: {x: -0.000774011, y: 0.004700244, z: -0.0399463, w: 0.9991905}
       scale: {x: 1.0000031, y: 0.9999977, z: 1.0000011}
     - name: Ring3.L
       parentName: Ring2.L
-      position: {x: -0.00000023841858, y: 0.11040935, z: 0.00000011920929}
+      position: {x: -0.000000075786495, y: 0.035095997, z: 0.000000037893248}
       rotation: {x: 0.0050558937, y: -0.0035772058, z: -0.046504818, w: 0.9988989}
       scale: {x: 0.9999996, y: 1.0000019, z: 1.0000004}
     - name: P1.L
       parentName: Hand.L
-      position: {x: -0.01296813, y: 0.6394634, z: 0.07767767}
+      position: {x: -0.0041222004, y: 0.20326726, z: 0.024691524}
       rotation: {x: 0.090671904, y: -0.717426, z: -0.07472641, w: -0.6866547}
       scale: {x: 0.9999961, y: 1.0000075, z: 0.99999875}
     - name: P2.L
       parentName: P1.L
-      position: {x: -0.000000074505806, y: 0.12930554, z: -0.00000008940697}
+      position: {x: -0.00000002368328, y: 0.04110256, z: -0.000000028419937}
       rotation: {x: -0.0154223405, y: 0.0052548037, z: -0.036216438, w: 0.9992112}
       scale: {x: 1.0000026, y: 0.99999875, z: 1.0000008}
     - name: P3.L
       parentName: P2.L
-      position: {x: 0.000000044703484, y: 0.10716829, z: 0}
+      position: {x: 0.000000014209968, y: 0.034065753, z: 0}
       rotation: {x: 0.0055263215, y: -0.00065481226, z: -0.038683016, w: 0.99923605}
       scale: {x: 1.0000002, y: 1.000001, z: 1.0000007}
     - name: Collar.R
       parentName: UpperBody
-      position: {x: 0.3147268, y: 0.6309786, z: 0.20395465}
+      position: {x: 0.10004271, y: 0.20057017, z: 0.06483139}
       rotation: {x: -0.55212855, y: -0.32871372, z: -0.5074805, w: 0.5740775}
       scale: {x: 0.99999946, y: 0.99999994, z: 1.0000002}
     - name: UpperArm.R
       parentName: Collar.R
-      position: {x: -0.000000346452, y: 0.62035596, z: -0.00000068359077}
+      position: {x: -0.00000011012725, y: 0.19719355, z: -0.00000021729409}
       rotation: {x: -0.09080704, y: -0.059273873, z: 0.13048327, w: -0.9855023}
       scale: {x: 0.99999493, y: 0.99999946, z: 1.0000038}
     - name: LowerArm.R
       parentName: UpperArm.R
-      position: {x: -0.00000029057264, y: 1.1440904, z: -0.00000032037497}
+      position: {x: -0.00000009236479, y: 0.36367387, z: -0.000000101838104}
       rotation: {x: 0.013888666, y: 0.014751183, z: -0.035471067, w: 0.9991653}
       scale: {x: 1.0000048, y: 0.9999954, z: 1.0000004}
     - name: Hand.R
       parentName: LowerArm.R
-      position: {x: 0.00000010430813, y: 1.0202998, z: 0.00000016391277}
+      position: {x: 0.000000033156592, y: 0.32432434, z: 0.000000052103214}
       rotation: {x: -0.12970617, y: -0.012946374, z: 0.20446858, w: 0.97015536}
       scale: {x: 0.99999756, y: 1.0000122, z: 0.9999979}
     - name: Thumb1.R
       parentName: Hand.R
-      position: {x: 0.25864124, y: 0.3636235, z: -0.06267232}
+      position: {x: 0.082214706, y: 0.11558558, z: -0.01992175}
       rotation: {x: -0.019925803, y: -0.115890466, z: -0.50184375, w: 0.8569279}
       scale: {x: 0.9999942, y: 0.9999977, z: 1.0000083}
     - name: Thumb2.R
       parentName: Thumb1.R
-      position: {x: -0.00000008940697, y: 0.14263809, z: 0.00000010430813}
+      position: {x: -0.000000028419937, y: 0.045340598, z: 0.000000033156592}
       rotation: {x: 0.03385428, y: 0.015104046, z: 0.010377554, w: 0.99925876}
       scale: {x: 1.0000021, y: 0.9999977, z: 1.0000014}
     - name: Thumb3.R
       parentName: Thumb2.R
-      position: {x: -0.0000002682209, y: 0.14259607, z: 0.0000002682209}
+      position: {x: -0.000000085259806, y: 0.04532724, z: 0.000000085259806}
       rotation: {x: 0.09555946, y: 0.0013735984, z: 0.044370536, w: 0.99443346}
       scale: {x: 1.0000024, y: 0.99999744, z: 1.0000015}
     - name: Index1.R
       parentName: Hand.R
-      position: {x: 0.30336037, y: 0.53548217, z: 0.101189196}
+      position: {x: 0.096429646, y: 0.17021458, z: 0.032165173}
       rotation: {x: -0.058170915, y: -0.7192332, z: -0.09679328, w: 0.6855297}
       scale: {x: 1.0000019, y: 1.0000017, z: 0.99999744}
     - name: Index2.R
       parentName: Index1.R
-      position: {x: -0.00000023841858, y: 0.14279199, z: -0.000000059604645}
+      position: {x: -0.000000075786495, y: 0.04538952, z: -0.000000018946624}
       rotation: {x: -0.011167235, y: 0.003923237, z: 0.037436217, w: 0.99922895}
       scale: {x: 1.0000035, y: 0.99999887, z: 1}
     - name: Index3.R
       parentName: Index2.R
-      position: {x: -0.000000014901161, y: 0.13581268, z: -0.00000028312206}
+      position: {x: -0.000000004736656, y: 0.043170996, z: -0.00000008999646}
       rotation: {x: 0.016132304, y: 0.0069085583, z: 0.047924604, w: 0.99869686}
       scale: {x: 1.0000008, y: 0.9999991, z: 1.000001}
     - name: Mid1.R
       parentName: Hand.R
-      position: {x: 0.20954594, y: 0.56272316, z: 0.091893345}
+      position: {x: 0.066608705, y: 0.17887372, z: 0.029210284}
       rotation: {x: -0.10302401, y: -0.71664315, z: -0.10090389, w: 0.6823688}
       scale: {x: 1.000004, y: 1.0000008, z: 0.9999977}
     - name: Mid2.R
       parentName: Mid1.R
-      position: {x: -0.0000004172325, y: 0.14983201, z: 0.00000014901161}
+      position: {x: -0.00000013262637, y: 0.04762734, z: 0.00000004736656}
       rotation: {x: 0.000644855, y: 0.0006479023, z: 0.04132368, w: 0.9991454}
       scale: {x: 1.0000013, y: 0.9999985, z: 0.9999998}
     - name: Mid3.R
       parentName: Mid2.R
-      position: {x: -0.00000011920929, y: 0.14119084, z: 0.0000001937151}
+      position: {x: -0.000000037893248, y: 0.044880558, z: 0.00000006157653}
       rotation: {x: 0.03030046, y: -0.0013455701, z: 0.08392942, w: 0.99601}
       scale: {x: 1.0000007, y: 0.9999979, z: 1.0000015}
     - name: Ring1.R
       parentName: Hand.R
-      position: {x: 0.12464169, y: 0.5920235, z: 0.07534091}
+      position: {x: 0.039620053, y: 0.18818745, z: 0.023948736}
       rotation: {x: -0.08221734, y: -0.7174486, z: -0.096508704, w: 0.6849773}
       scale: {x: 1.0000032, y: 1.0000002, z: 0.99999756}
     - name: Ring2.R
       parentName: Ring1.R
-      position: {x: -0, y: 0.15293676, z: -0.0000003874302}
+      position: {x: -0, y: 0.048614252, z: -0.00000012315306}
       rotation: {x: -0.0007736236, y: -0.004700095, z: 0.039943483, w: 0.9991906}
       scale: {x: 1.0000017, y: 0.999999, z: 1.0000005}
     - name: Ring3.R
       parentName: Ring2.R
-      position: {x: 0.00000016391277, y: 0.11040883, z: 0.00000008940697}
+      position: {x: 0.000000052103214, y: 0.03509583, z: 0.000000028419937}
       rotation: {x: 0.0050557987, y: 0.003576974, z: 0.04650498, w: 0.9988989}
       scale: {x: 1.0000008, y: 0.9999996, z: 1.0000007}
     - name: P1.R
       parentName: Hand.R
-      position: {x: 0.022830486, y: 0.5934042, z: 0.09127541}
+      position: {x: 0.007257163, y: 0.18862633, z: 0.029013861}
       rotation: {x: -0.09464092, y: -0.7166911, z: -0.057483044, w: 0.688544}
       scale: {x: 1.0000024, y: 1.000001, z: 0.9999973}
     - name: P2.R
       parentName: P1.R
-      position: {x: 0.000000029802322, y: 0.12930629, z: 0.00000029802322}
+      position: {x: 0.000000009473312, y: 0.041102797, z: 0.00000009473312}
       rotation: {x: -0.03334038, y: -0.0052399337, z: 0.07829991, w: 0.9963585}
       scale: {x: 1.0000025, y: 1.0000001, z: 0.9999996}
     - name: P3.R
       parentName: P2.R
-      position: {x: -0.000000020489097, y: 0.107168004, z: -0.000000074505806}
+      position: {x: -0.0000000065129018, y: 0.034065664, z: -0.00000002368328}
       rotation: {x: 0.005526247, y: 0.0006549338, z: 0.038683254, w: 0.9992361}
       scale: {x: 1.0000004, y: 1.0000001, z: 1.0000008}
     - name: Broom1
       parentName: Hand.R
-      position: {x: -0.21274361, y: 0.67676544, z: -0.043705136}
+      position: {x: -0.06762515, y: 0.21512452, z: -0.013892622}
       rotation: {x: -0.070683375, y: -0.07560907, z: 0.97335196, w: 0.20462924}
       scale: {x: 1.0000087, y: 0.9999966, z: 0.99999475}
     - name: Smear1
       parentName: Broom1
-      position: {x: 0.08786495, y: -3.0489318, z: 0.00000051781535}
+      position: {x: 0.027929772, y: -0.96916884, z: 0.00000016459879}
       rotation: {x: 0.00000641495, y: 0.000002026558, z: -0.9998963, w: 0.014405035}
       scale: {x: 1.0000004, y: 1.0000005, z: 0.99999994}
     - name: Smear2
       parentName: Smear1
-      position: {x: 0.000000029802322, y: 2.8648148, z: 0.0000003501773}
+      position: {x: 0.000000009473312, y: 0.9106433, z: 0.000000111311415}
       rotation: {x: -0, y: -0, z: -4.440892e-16, w: 1}
       scale: {x: 1.0000004, y: 1, z: 1.0000001}
     - name: Smear3
       parentName: Smear2
-      position: {x: 0.000000014901161, y: 1.9919341, z: -0.000000074505806}
+      position: {x: 0.000000004736656, y: 0.63317925, z: -0.00000002368328}
       rotation: {x: 0.000000044800334, y: -0.0052322447, z: -0.000000022585889, w: 0.99998635}
       scale: {x: 1.0000002, y: 1.000001, z: 1.0000008}
     - name: broom4
       parentName: Smear2
-      position: {x: -0.049153253, y: 4.7732997, z: -0.25166023}
+      position: {x: -0.0156244235, y: 1.5172964, z: -0.07999564}
       rotation: {x: 0.000000022448601, y: -0.005232215, z: -0.00000008591582, w: 0.99998635}
       scale: {x: 1.0000955, y: 0.71126485, z: 1.0000149}
     - name: HeadFront
       parentName: broom4
-      position: {x: -0.90506995, y: 0.45000595, z: 0.30018014}
+      position: {x: -0.28769603, y: 0.14304411, z: 0.095418744}
       rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
       scale: {x: 1.0000006, y: 0.99999976, z: 1}
     - name: HeadMiddle1
       parentName: broom4
-      position: {x: -0.09250052, y: 0.45000708, z: 0.29167604}
+      position: {x: -0.02940329, y: 0.14304447, z: 0.09271553}
       rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
       scale: {x: 1.0000006, y: 0.99999994, z: 1.0000001}
     - name: HeadMiddle2
       parentName: broom4
-      position: {x: 0.20357502, y: 0.4500062, z: 0.28857785}
+      position: {x: 0.064710714, y: 0.14304419, z: 0.09173071}
       rotation: {x: -0.00000005221153, y: 0.0052321553, z: 0.000000093522225, w: 0.99998635}
       scale: {x: 1.0000006, y: 0.99999994, z: 1.0000001}
     - name: HeadMiddle3
       parentName: broom4
-      position: {x: 0.48665357, y: 0.45000595, z: 0.2856161}
+      position: {x: 0.15469335, y: 0.14304411, z: 0.09078924}
       rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
       scale: {x: 1.0000006, y: 0.99999994, z: 1}
     - name: HeadBack
       parentName: broom4
-      position: {x: 0.742798, y: 0.45000616, z: 0.28293526}
+      position: {x: 0.23611438, y: 0.14304417, z: 0.08993708}
       rotation: {x: -0.000000029801615, y: 0.0052321255, z: 0.000000104581, w: 0.99998635}
       scale: {x: 1.0000006, y: 0.99999994, z: 1}
     - name: IK-Hand.L
       parentName: Pelvis
-      position: {x: -1.2503451, y: 0.1622995, z: -0.6729486}
+      position: {x: -0.3974492, y: 0.0515904, z: -0.21391125}
       rotation: {x: 0.065888904, y: 0.7180566, z: -0.068622656, w: -0.68945223}
       scale: {x: 0.9999998, y: 1.0000006, z: 1.0000004}
     - name: Elbow.L
       parentName: IK-Hand.L
-      position: {x: 0.8394866, y: -1.0875623, z: -0.25479645}
+      position: {x: 0.26684895, y: -0.34570518, z: -0.08099256}
       rotation: {x: 0.032172993, y: 0.054883175, z: -0.75169575, w: 0.6564345}
       scale: {x: 1.0000008, y: 1.0000008, z: 1.0000006}
     - name: MAID_Handle
       parentName: IK-Hand.L
-      position: {x: 0.049288966, y: 0.36997414, z: -0.0020040572}
+      position: {x: 0.015667563, y: 0.11760427, z: -0.00063703285}
       rotation: {x: -0.000000063329935, y: -0.00000023841858, z: 0.00000016018748,
         w: 1}
       scale: {x: -0, y: 0, z: 0}
     - name: IK-Hand.R
       parentName: Pelvis
-      position: {x: 1.3000095, y: -0.48441508, z: -0.9324228}
+      position: {x: 0.4132361, y: -0.1539818, z: -0.29639074}
       rotation: {x: -0.06588913, y: 0.7180566, z: -0.06862255, w: 0.68945223}
       scale: {x: 0.99999994, y: 1.000001, z: 0.99999994}
     - name: Elbow.R
       parentName: IK-Hand.R
-      position: {x: 0.014201514, y: -0.40962952, z: 0.4209234}
+      position: {x: 0.004514258, y: -0.1302096, z: 0.1337996}
       rotation: {x: -0.03217292, y: 0.054883093, z: -0.75169593, w: -0.6564343}
       scale: {x: 0.99999994, y: 0.9999997, z: 1.0000004}
     - name: Hips
       parentName: Pelvis
-      position: {x: -0.0000000018626451, y: -0.0046572904, z: -0.08018555}
+      position: {x: -5.92082e-10, y: -0.0014804204, z: -0.025488708}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1.0000005, z: 1.0000002}
     - name: UpperLeg.L
       parentName: Hips
-      position: {x: -0.40715227, y: 0.8164631, z: 0.23237744}
+      position: {x: -0.12942214, y: 0.25953043, z: 0.07386619}
       rotation: {x: -0.034079324, y: -0.70246464, z: 0.07074097, w: 0.7073738}
       scale: {x: 0.99999994, y: 1, z: 1.0000004}
     - name: LowerLeg.L
       parentName: UpperLeg.L
-      position: {x: -0.00000016391277, y: 1.6496369, z: -0.000000007450581}
+      position: {x: -0.000000052103214, y: 0.5243727, z: -0.000000002368328}
       rotation: {x: -0.015096232, y: -0.00451392, z: -0.12319837, w: 0.992257}
       scale: {x: 1.0000005, y: 1.0000007, z: 1.0000007}
     - name: Foot.L
       parentName: LowerLeg.L
-      position: {x: -0.000000059604645, y: 1.4964423, z: 0.00000007171184}
+      position: {x: -0.000000018946624, y: 0.4756765, z: 0.000000022795156}
       rotation: {x: 0.004699556, y: 0.0069651045, z: -0.45763195, w: -0.88910204}
       scale: {x: 1.0000005, y: 1.0000002, z: 1}
     - name: Toe.L
       parentName: Foot.L
-      position: {x: -0.000000029802322, y: 0.52970433, z: -0.000000022351742}
+      position: {x: -0.000000009473312, y: 0.16837797, z: -0.000000007104984}
       rotation: {x: 0.007970056, y: 0.0000004768373, z: 0.3403739, w: 0.9402564}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: UpperLeg.R
       parentName: Hips
-      position: {x: 0.38932997, y: 0.8164633, z: 0.2323776}
+      position: {x: 0.12375694, y: 0.25953048, z: 0.07386624}
       rotation: {x: -0.034079522, y: 0.7024647, z: -0.070740804, w: 0.70737386}
       scale: {x: 1, y: 1.0000001, z: 1.0000006}
     - name: LowerLeg.R
       parentName: UpperLeg.R
-      position: {x: 0.00000020861626, y: 1.6496372, z: 0.00000008195639}
+      position: {x: 0.000000066313184, y: 0.5243728, z: 0.000000026051607}
       rotation: {x: -0.015096055, y: 0.0045140386, z: 0.12319839, w: 0.992257}
       scale: {x: 1.0000002, y: 1.0000007, z: 1.0000002}
     - name: Foot.R
       parentName: LowerLeg.R
-      position: {x: 0.00000023469329, y: 1.4964422, z: 0.000000074505806}
+      position: {x: 0.00000007460233, y: 0.47567648, z: 0.00000002368328}
       rotation: {x: -0.0046997014, y: 0.006964966, z: -0.45763204, w: 0.88910204}
       scale: {x: 1.0000008, y: 1.0000002, z: 1.0000005}
     - name: Toe.R
       parentName: Foot.R
-      position: {x: 0.000000052154064, y: 0.5297042, z: -0.000000044703484}
+      position: {x: 0.000000016578296, y: 0.16837792, z: -0.000000014209968}
       rotation: {x: 0.007969994, y: -0.00000061001623, z: -0.340374, w: 0.94025636}
       scale: {x: 0.9999998, y: 1.0000001, z: 1}
     - name: IK-Leg.L
       parentName: Bone
-      position: {x: 1.6780887, y: 0.67053777, z: -0.7606554}
+      position: {x: 0.53341675, y: 0.21314491, z: -0.24179076}
       rotation: {x: 0.71203893, y: -0.7021228, z: 0.0034982562, w: 0.00344643}
       scale: {x: 1.0000006, y: 1.0000013, z: 1.0000008}
     - name: Knee.L
       parentName: IK-Leg.L
-      position: {x: -1.0266249, y: -1.2362229, z: -0.5648776}
+      position: {x: -0.3263349, y: -0.39296013, z: -0.17955856}
       rotation: {x: -0.0048164083, y: 0.011752466, z: -0.7074458, w: -0.70665354}
       scale: {x: 0.9999998, y: 0.9999997, z: 1}
     - name: IK-Leg.R
       parentName: Bone
-      position: {x: 2.2678304, y: -0.1084333, z: 0.6138044}
+      position: {x: 0.7208789, y: -0.034467865, z: 0.19511099}
       rotation: {x: 0.0034950676, y: -0.0034496784, z: 0.71203905, w: 0.7021227}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
     - name: Knee.R
       parentName: IK-Leg.R
-      position: {x: 1.100871, y: -1.4237232, z: -0.67901874}
+      position: {x: 0.34993562, y: -0.45256117, z: -0.21584077}
       rotation: {x: 0.0048193624, y: 0.01175544, z: -0.7074458, w: 0.7066534}
       scale: {x: 1.0000001, y: 0.9999999, z: 1.0000002}
     armTwist: 0.5
@@ -2235,7 +2140,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.3178716
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1

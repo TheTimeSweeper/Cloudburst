@@ -28,6 +28,7 @@ namespace Cloudburst.Wyatt.Components
         private List<Rigidbody> bodies;
         private Vector3 distance;
         private Animator animator;
+        private bool outroPlayed;
 
         public void Awake()
         {
@@ -120,6 +121,11 @@ namespace Cloudburst.Wyatt.Components
             {
                 stopwatch += Time.fixedDeltaTime;
                 body.velocity = Vector3.zero;
+                if(stopwatch >= 1 && !outroPlayed)
+                {
+                    PlayOutroAnimation();
+                    outroPlayed = true;
+                }
                 if (stopwatch >= 2)
                 {
                     Unpause();
@@ -140,6 +146,12 @@ namespace Cloudburst.Wyatt.Components
                 //owner.gameObject?.GetComponent<SkillLocator>()?.special?.SetSkillOverride(this, Custodian.throwPrimary, GenericSkill.SkillOverridePriority.Contextual); ; }
             }
         }
+
+        public void PlayOutroAnimation()
+        {
+            animator.Play("Return");
+        }
+
         public void Unpause()
         {
             pause = false;
@@ -148,7 +160,6 @@ namespace Cloudburst.Wyatt.Components
                 beamer.enabled = false;
             boomer.enabled = true;
 
-            animator.Play("Zoom");
             transform.LookAt(controller.owner.transform);
         }
 

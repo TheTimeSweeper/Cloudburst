@@ -29,7 +29,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "0.3.1";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -73,7 +73,7 @@ namespace Cloudburst
 
             Log.Info(nameof(Awake) + " done.");
             
-            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            //On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
         }
 
         private void GetSoundBank()
@@ -91,7 +91,7 @@ namespace Cloudburst
             bool items = Modules.Config.BindAndOptions<bool>("Uh items",
                 "Enable Items",
                 true,
-                "set false to disable all cloudburs items. individual disables coming probably not soon",
+                "set false to disable all cloudburst items. individual disables coming probably not soon",
                 true).Value;
 
             if (!items)

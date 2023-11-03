@@ -1,11 +1,18 @@
 ﻿{
-	"author": "CloudBurstTeam",
 	"name": "Cloudburst",
-	"version_number": "0.1.1",
-	"website_url": "",
-	"description": "Cockburst real",
+	"version_number": "0.3.0",
+	"website_url": "https://github.com/NotSomeoneElse/Cloudburst/",
+	"description": "A content mod with a new survivor (fully multiplayer compatible), and a handful of items",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.2113",
-		"tristanmcpherson-R2API-5.0.5"
+		"RiskofThunder-R2API_Core-5.0.3",
+		"RiskofThunder-R2API_Prefab-1.0.1",
+		"RiskofThunder-R2API_RecalculateStats-1.0.0",
+		"RiskofThunder-R2API_Language-1.0.0",
+		"RiskofThunder-R2API_Unlockable-1.0.0",
+		"RiskofThunder-R2API_DamageType-1.0.0",
+		"RiskofThunder-R2API_Items-1.0.0",
+		"RiskofThunder-R2API_Sound-1.0.0",
+		"RiskofThunder-R2API_TempVisualEffect-1.0.0"
 	]
 }
