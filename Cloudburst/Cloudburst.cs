@@ -63,14 +63,20 @@ namespace Cloudburst
 
             ContentAddition.AddExpansionDef(cloudburstExpansion);
 
-            LanguageAPI.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
-            LanguageAPI.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the 'Cloudburst' mod to the game.");
+            Modules.Language.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
+            Modules.Language.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the mod 'Cloudburst' to the game.");
+
+            Modules.Language.PrintOutput("Cloudburst");
 
             SetupItems();
+
+            Modules.Language.PrintOutput("Items");
 
             Modules.ItemDisplays.PopulateDisplays();
             
             new WyattSurvivor().Initialize();
+
+            Modules.Language.PrintOutput("Wyatt");
 
             Log.Info(nameof(Awake) + " done.");
             

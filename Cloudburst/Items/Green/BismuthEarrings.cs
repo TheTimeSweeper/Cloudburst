@@ -29,13 +29,13 @@ namespace Cloudburst.Items.Green
 
             ContentAddition.AddItemDef(bismuthEarringsItem);
 
-            LanguageAPI.Add("ITEM_BARRIERONCRIT_NAME", "Bismuth Earrings");
-            LanguageAPI.Add("ITEM_BARRIERONCRIT_DESCRIPTION", "Gain a <style=cIsHealing>temporary barrier</style> on critical hits for <style=cIsHealing>" + BaseBarrier + " health</style> <style=cStack>(+" + StackingBarrier + " per stack)</style>. Also gain <style=cIsDamage>5% critical hit chance</style>.");
-            LanguageAPI.Add("ITEM_BARRIERONCRIT_PICKUP", "Gain barrier on critical hits");
-            LanguageAPI.Add("ITEM_BARRIERONCRIT_LORE", "The Earrings are Bismuth or something idk.");
+            Modules.Language.Add("ITEM_BARRIERONCRIT_NAME", "Bismuth Earrings");
+            Modules.Language.Add("ITEM_BARRIERONCRIT_DESCRIPTION", "Gain <style=cIsDamage>5% bleed chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on applying bleed for <style=cIsHealing>" + BaseBarrier + " health</style> <style=cStack>(+" + StackingBarrier + " per stack)</style>.");
+            Modules.Language.Add("ITEM_BARRIERONCRIT_PICKUP", "Gain barrier on applying bleed");
+            Modules.Language.Add("ITEM_BARRIERONCRIT_LORE", "The Earrings are Bismuth or something idk.");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
-            On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
+            //On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
         }
 

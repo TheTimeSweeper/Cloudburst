@@ -31,8 +31,8 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 # Items
 | Icon | Name | Description | Tier |
 | - | - | - | - |
-| ![](https://i.imgur.com/3CQySKC.png)    |Glass Harvester |Gain experience on hit |Common |
-| ![](https://i.imgur.com/qk3a28Z.png)    |Bismuth Earrings| Gain barrier on critical hits| Rare |
+| ![](https://i.imgur.com/3CQySKC.png)    |Glass Harvester | Gain experience on hit |Common |
+| ![](https://i.imgur.com/qk3a28Z.png)    |Bismuth Earrings| Gain barrier on applying bleed | Rare |
 | ![](https://i.imgur.com/FJRILzB.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
 | ![](https://i.imgur.com/15l7dNB.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
 | ![](https://i.imgur.com/l3m9Hqp.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
@@ -45,20 +45,24 @@ Realistically this may very well be the only update this mod gets in a long whil
 
 # Credits
 - Enigma - original creator
-- Dotflare - original modeler texturer and animator
+- Dotflare - models textures and animation
 - Box - concept and design
 - f4uxx - concept and design
 - Tiltedhat - concept and design
-- SomeoneElse - recreating the mod. without him this update wouldn't have happened
-- TheTimesweeper - nu-custodian. without him, this mod would have been uploaded 8 months ago
+- Hyperinvox - concept and design
+- SomeoneElse - recreating the mod. without him, this return wouldn't have happened
+- TheTimesweeper - nu-custodian. without him, this mod would have returned 8 months earlier
 - unknownglaze - custodian jingle
+- Spanish Space Inquisition - MAID animations
 
 # Changelog
 `0.3.1`
-- fixed error with fabinhoru's dagger
+- added animations for MAID
+- added config to disable jingle when activating flow
 - fixed wyatt becoming eldritch aboniation when emoting
-- tweaked bismuth earrings numbers
-- "fixed" enigma card proccing itself
+- fixed issues with fabinhoru's dagger visuals
+- fixed error caused fabinhoru's dagger and/or enigmatic keycard
+- Bismuth Earrings reworked
 
 `0.3.0`
 - redid the whole fuckin thing.

@@ -25,12 +25,16 @@ namespace Cloudburst.Items.Gray
             
             ContentAddition.AddItemDef(glassHarvesterItem);
 
-            LanguageAPI.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
-            LanguageAPI.Add("ITEM_EXPONHIT_PICKUP", "Gain experience on hit.");
-            LanguageAPI.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
-            LanguageAPI.Add("ITEM_EXPONHIT_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
+            Modules.Language.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
+            Modules.Language.Add("ITEM_EXPONHIT_PICKUP", "Gain experience on hit.");
+            Modules.Language.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
+            Modules.Language.Add("ITEM_EXPONHIT_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
 
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            //temporarily keeping old behavior until breaking mechanic is implemented
+            //RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+
+            //old behavior, changing soon
+            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -43,5 +47,22 @@ namespace Cloudburst.Items.Gray
             }
         }
 
+        private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
+        {
+            orig(self, damageInfo, victim);
+            if (damageInfo.attacker)
+            {
+                CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
+                if (body && body.inventory)
+                {
+                    int harvesterCount = body.inventory.GetItemCount(glassHarvesterItem);
+                    if (harvesterCount > 0)
+                    {
+                        int expAmount = 3 + (harvesterCount - 1) * 2;
+                        TeamManager.instance.GiveTeamExperience(TeamComponent.GetObjectTeam(damageInfo.attacker), (uint)(expAmount * Run.instance.compensatedDifficultyCoefficient));
+                    }
+                }
+            }
+        }
     }
 }

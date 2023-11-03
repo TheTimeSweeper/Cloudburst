@@ -39,10 +39,10 @@ namespace Cloudburst.Items.Green
 
             ContentAddition.AddItemDef(enigmaticKeycardItem);
 
-            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_NAME", "Enigmatic Keycard");
-            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_PICKUP", "Chance to spawn an orb on hit that follows and hurts enemies.");
-            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_DESCRIPTION", Chance + "% chance on hit to spawn a <style=cIsDamage>seeking orb</style> that hits nearby enemies for <style=cIsDamage>" + (BaseDamage * 100) + "% base damage <style=cStack>(+" + (BaseDamage/*StackingDamage.Value*/ * 100) + "% per stack)</style></style> on impact.");
-            LanguageAPI.Add("ITEM_ENIGMATICKEYCARD_LORE", "No keycard will ever be able to open Enigma's fuckin brain");
+            Modules.Language.Add("ITEM_ENIGMATICKEYCARD_NAME", "Enigmatic Keycard");
+            Modules.Language.Add("ITEM_ENIGMATICKEYCARD_PICKUP", "Chance to spawn an orb on hit that follows and hurts enemies.");
+            Modules.Language.Add("ITEM_ENIGMATICKEYCARD_DESCRIPTION", Chance + "% chance on hit to spawn a <style=cIsDamage>seeking orb</style> that hits nearby enemies for <style=cIsDamage>" + (BaseDamage * 100) + "% base damage <style=cStack>(+" + (BaseDamage/*StackingDamage.Value*/ * 100) + "% per stack)</style></style> on impact.");
+            Modules.Language.Add("ITEM_ENIGMATICKEYCARD_LORE", "No keycard will ever be able to open Enigma's fuckin brain");
 
             CreateProjectile();
 
@@ -125,7 +125,6 @@ namespace Cloudburst.Items.Green
 
             if(!attackerBody || !victimBody && attackerBody.inventory) return;
 
-            Inventory inventory = attackerBody.inventory;
             int itemCount = attackerBody.inventory.GetItemCount(enigmaticKeycardItem);
             if(itemCount > 0)
             {

@@ -30,7 +30,7 @@ namespace Cloudburst.Items.Gray.BlastBoot
             ContentAddition.AddItemDef(blastBootItem);
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
 
-            LanguageAPI.Add("ITEM_BARRIERONCRIT_NAME", "Blast Boot");
+            Modules.Language.Add("ITEM_BARRIERONCRIT_NAME", "Blast Boot");
         }
 
         public static void CreateProjectile()

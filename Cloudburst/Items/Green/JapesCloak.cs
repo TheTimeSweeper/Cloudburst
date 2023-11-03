@@ -14,7 +14,7 @@ namespace Cloudburst.Items.Green
         public static void Setup()
         {
             japesCloakItem = ScriptableObject.CreateInstance<ItemDef>();
-            japesCloakItem.tier = ItemTier.Tier1;
+            japesCloakItem.tier = ItemTier.Tier2;
             japesCloakItem.name = "itempickupbuff";
             japesCloakItem.nameToken = "ITEM_PICKUPBUFF_NAME";
             japesCloakItem.descriptionToken = "ITEM_PICKUPBUFF_DESCRIPTION";
@@ -26,10 +26,10 @@ namespace Cloudburst.Items.Green
 
             ContentAddition.AddItemDef(japesCloakItem);
 
-            LanguageAPI.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");
-            LanguageAPI.Add("ITEM_PICKUPBUFF_PICKUP", "Gain a buff that grants armor and healing on item pickup.");
-            LanguageAPI.Add("ITEM_PICKUPBUFF_DESCRIPTION", "Gain a buff that grants you <style=cIsUtility>+5 armor</style> and <style=cIsHealing>30% healing</style> when picking up an item. Maximum cap of 3 buffs <style=cStack>(+2 per stack)</style>.");
-            LanguageAPI.Add("ITEM_PICKUPBUFF_LORE", @"""Quartermaster’s log. 17 days after the crash.
+            Modules.Language.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");
+            Modules.Language.Add("ITEM_PICKUPBUFF_PICKUP", "Gain a buff that grants armor and healing on item pickup.");
+            Modules.Language.Add("ITEM_PICKUPBUFF_DESCRIPTION", "Gain a buff that grants you <style=cIsUtility>+5 armor</style> and <style=cIsHealing>30% healing</style> when picking up an item. Maximum cap of 3 buffs <style=cStack>(+2 per stack)</style>.");
+            Modules.Language.Add("ITEM_PICKUPBUFF_LORE", @"""Quartermaster’s log. 17 days after the crash.
 
 It has been more than half a month since we’ve nearly burnt ourselves into smoldering black paste during our unwilling introduction to the atmosphere of this murder-planet. Due to the nature of our arrival, that being escape from a collapsing cargo ship that had been ripped out of warp travel, our supply of necessities has been dwindling from an already dangerously low base count. We have been forced to ration what little food and water we have. To keep in check of this, I have been elected as Quartermaster of our outpost. 
 Our supplies are as follows:
