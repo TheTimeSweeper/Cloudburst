@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Cloudburst",
-	"version_number": "0.3.0",
+	"version_number": "0.3.1",
 	"website_url": "https://github.com/NotSomeoneElse/Cloudburst/",
 	"description": "A content mod with a new survivor (fully multiplayer compatible), and a handful of items",
 	"dependencies": [

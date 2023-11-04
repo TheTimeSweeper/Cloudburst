@@ -31,7 +31,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="BepInEx.Core" Version="5.4.19" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="RiskOfRain2.GameLibs" Version="1.2.4-r.0" />
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.26" />
     <PackageReference Include="MMHOOK.RoR2" Version="2022.9.20">
@@ -102,7 +102,7 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\Release\plugins\&quot;&#xD;&#xA;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;$(TargetPath)&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;REM if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y&quot;$(ProjectDir)..\Release\plugins\&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
+    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\Release\plugins&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
   </Target>
 
 </Project>
