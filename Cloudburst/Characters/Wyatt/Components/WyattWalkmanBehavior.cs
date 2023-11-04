@@ -87,7 +87,9 @@ namespace Cloudburst.Wyatt.Components
 
         private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge orig, GenericSkill self, float dt)
         {
-            if(self && self.characterBody && self.characterBody.HasBuff(WyattBuffs.wyattFlowBuffDef))
+            if (self == null && self.characterBody == null) return;
+
+            if (self.characterBody.HasBuff(WyattBuffs.wyattFlowBuffDef))
             {
                 dt *= 1 + WyattConfig.M3FlowCDR.Value;
             }
@@ -118,7 +120,6 @@ namespace Cloudburst.Wyatt.Components
             {
                 //fixedupdate but only on server
                 ServerFixedUpdate();
-
             }
         }
 
