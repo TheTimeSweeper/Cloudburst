@@ -1,4 +1,6 @@
-﻿using RoR2;
+﻿using HarmonyLib;
+using RoR2;
+using RoR2.ContentManagement;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,9 +25,17 @@ namespace Cloudburst.Items
             itemDef.AutoPopulateTokens();
         }
 
-        public ItemDef Return()
+        public void Return(ContentPack contentPack)
         {
-            return itemDef;
+            if(itemDef)
+            {
+                AddToContentPack(contentPack);
+            }
+        }
+
+        protected virtual void AddToContentPack(ContentPack contentPack)
+        {
+            contentPack.itemDefs.AddItem(itemDef);
         }
     }
 }

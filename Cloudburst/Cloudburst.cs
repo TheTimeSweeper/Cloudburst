@@ -1,10 +1,6 @@
 using BepInEx;
 using Cloudburst.Characters;
 using Cloudburst.Characters.Wyatt;
-using Cloudburst.Items.Gray;
-using Cloudburst.Items.Gray.BlastBoot;
-using Cloudburst.Items.Gray.RiftBubble;
-using Cloudburst.Items.Green;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -118,25 +114,6 @@ namespace Cloudburst
             }
         }
 
-        public void SetupItems()
-        {
-            bool items = Modules.Config.BindAndOptions<bool>("Uh items",
-                "Enable Items",
-                true,
-                "set false to disable all cloudburst items. individual disables coming probably not soon",
-                true).Value;
-
-            if (!items)
-                return;
-
-            //BlastBoot.Setup();
-            BismuthEarrings.Setup();
-            EnigmaticKeycard.Setup();
-            FabinhoruDagger.Setup();
-            GlassHarvesterOld.Setup();
-            JapesCloak.Setup();
-            //RiftBubble.Setup();
-        }
 
         public void GetBundle()
         {

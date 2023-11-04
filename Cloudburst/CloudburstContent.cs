@@ -36,11 +36,8 @@ namespace Cloudburst
             loadHelper.AddContentPackLoadOperation(contentPack);
             loadHelper.AddGenericOperation(delegate
             {
-                contentPack.itemDefs.Add(new ItemDef[]
-                {
-                    new FragileCritDamageItem().Return(),
-                    new FragileCritDamageConsumedItem().Return(),
-                }.Where(x => x != null).ToArray());
+                new FragileCritDamageItem().Return(contentPack);
+                new FragileCritDamageConsumedItem().Return(contentPack);
             });
             loadHelper.AddGenericOperation(delegate
             {
