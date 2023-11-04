@@ -36,6 +36,10 @@ namespace Cloudburst.Items.Green
             enigmaticKeycardItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             enigmaticKeycardItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLPricard.prefab");
             enigmaticKeycardItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("Assets/Cloudburst/Items/UESKeycard/icon.png");
+            enigmaticKeycardItem.tags = new ItemTag[]
+            {
+                ItemTag.Damage
+            };
 
             ContentAddition.AddItemDef(enigmaticKeycardItem);
 

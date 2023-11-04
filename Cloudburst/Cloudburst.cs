@@ -144,7 +144,8 @@ namespace Cloudburst
                 "Toggles the Jape's Cloak item.", true).Value)
             {
                 JapesCloak.Setup();
-            }            //RiftBubble.Setup();
+            }            
+            //RiftBubble.Setup();
         }
 
         public void GetBundle()

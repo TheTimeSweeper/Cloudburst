@@ -26,6 +26,10 @@ namespace Cloudburst.Items.Green
             bismuthEarringsItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             bismuthEarringsItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLBismuthRings");
             bismuthEarringsItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBismuthEarring");
+            bismuthEarringsItem.tags = new ItemTag[]
+            {
+                ItemTag.Healing
+            };
 
             ContentAddition.AddItemDef(bismuthEarringsItem);
 

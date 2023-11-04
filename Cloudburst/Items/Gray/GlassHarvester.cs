@@ -23,7 +23,12 @@ namespace Cloudburst.Items.Gray
             glassHarvesterItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texGlassHarvester");
             glassHarvesterItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLHarvester");
             glassHarvesterItem.requiredExpansion = Cloudburst.cloudburstExpansion;
-
+            glassHarvesterItem.tags = new ItemTag[]
+            {
+                ItemTag.Damage,
+                ItemTag.LowHealth,
+            }
+            ;
             glassHarvesterConsumedItem = ScriptableObject.CreateInstance<ItemDef>();
             glassHarvesterConsumedItem.tier = ItemTier.NoTier;
             glassHarvesterConsumedItem.deprecatedTier = ItemTier.NoTier;

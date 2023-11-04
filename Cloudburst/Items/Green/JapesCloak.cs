@@ -23,6 +23,11 @@ namespace Cloudburst.Items.Green
             japesCloakItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             japesCloakItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("Assets/Cloudburst/Items/Cloak/JapeIcon.png");
             japesCloakItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLCloak");
+            japesCloakItem.tags = new ItemTag[]
+            {
+                ItemTag.InteractableRelated,
+                ItemTag.Utility
+            };
 
             ContentAddition.AddItemDef(japesCloakItem);
 

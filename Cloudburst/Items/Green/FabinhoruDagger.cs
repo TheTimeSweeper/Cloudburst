@@ -27,6 +27,10 @@ namespace Cloudburst.Items.Green
             fabinhorusDaggerItem.descriptionToken = "ITEM_BLEEDCRIPPLE_DESCRIPTION";
             fabinhorusDaggerItem.loreToken = "ITEM_BLEEDCRIPPLE_LORE";
             fabinhorusDaggerItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texFabDagger");
+            fabinhorusDaggerItem.tags = new ItemTag[]
+            {
+                ItemTag.Damage
+            };
 
             GameObject PickupPrefab = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerPickup");
             Material mat = PickupPrefab.GetComponentInChildren<Renderer>().material;
