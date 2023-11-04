@@ -1,6 +1,7 @@
 using BepInEx;
 using Cloudburst.Characters;
 using Cloudburst.Characters.Wyatt;
+using Cloudburst.Content;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -46,55 +47,17 @@ namespace Cloudburst
             Log.Init(Logger);
 
             instance = this;
+
+            AddMiscContent();
             ContentManager.collectContentPackProviders += (provider) =>
             {
                 provider(new CloudburstContent());
             };
-            /*
+        }
 
-
-
-
-
-
-
-            instance = this;
-            
-            
-
-            GetBundle();
-            GetSoundBank();
-
-            Modules.Compat.Init();
-
-            cloudburstExpansion = ScriptableObject.CreateInstance<ExpansionDef>();
-            cloudburstExpansion.nameToken = "EXPANSION_CLOUDBURST_NAME";
-            cloudburstExpansion.descriptionToken = "EXPANSION_CLOUDBURST_DESCRIPTION";
-            cloudburstExpansion.iconSprite = CloudburstAssets.LoadAsset<Sprite>("CloudburstExpansionIcon");
-            cloudburstExpansion.disabledIconSprite = dlc1.disabledIconSprite;
-
-            ContentAddition.AddExpansionDef(cloudburstExpansion);
-
-            Modules.Language.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
-            Modules.Language.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the mod 'Cloudburst' to the game.");
-
-            Modules.Language.PrintOutput("Cloudburst");
-
-            SetupItems();
-
-            Modules.Language.PrintOutput("Items");
-
-            Modules.ItemDisplays.PopulateDisplays();
-            
-            new WyattSurvivor().Initialize();
-
-            Modules.Language.PrintOutput("Wyatt");
-
-            Log.Info(nameof(Awake) + " done.");
-            
-            //On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
-            Language.collectLanguageRootFolders += Language_collectLanguageRootFolders;
-            */
+        private void AddMiscContent()
+        {
+            new TarRiverMain();
         }
 
         private void Language_collectLanguageRootFolders(List<string> obj)
