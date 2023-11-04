@@ -6,6 +6,7 @@ using MonoMod.Cil;
 using R2API;
 using RoR2;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Cloudburst.Items.Gray
 {
@@ -27,6 +28,7 @@ namespace Cloudburst.Items.Gray
             (glassHarvesterConsumedItem as ScriptableObject).name = "GlassHarvesterConsumed";
 
             glassHarvesterConsumedItem.tier = ItemTier.NoTier;
+            glassHarvesterConsumedItem.deprecatedTier = ItemTier.NoTier;
             glassHarvesterConsumedItem.name = "itemexponhitconsumed";
             glassHarvesterConsumedItem.AutoPopulateTokens();
             glassHarvesterConsumedItem.pickupIconSprite = Cloudburst.WyattAssetBundle.LoadAsset<Sprite>("iconGlassHarvesterBroken");
