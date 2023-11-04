@@ -1,0 +1,28 @@
+{
+    strings:
+    {
+    "ITEM_BARRIERONCRIT_NAME" : "Brincos de Bismuto",
+    "ITEM_BARRIERONCRIT_DESCRIPTION" : "Ganhe <style=cIsDamage>5% de chance de causar sangramento</style>. Ganha uma <style=cIsHealing>barreira temporária</style> de <style=cIsHealing>15 de saúde</style> <style=cStack>(+10 por acúmulo) ao aplicar sangramento</style>.",
+    "ITEM_BARRIERONCRIT_PICKUP" : "Ganhe uma barreira ao aplicar sangramento",
+    "ITEM_BARRIERONCRIT_LORE" : "Os Brincos são de Bismuto, ou sei lá.",
+    "ITEM_ENIGMATICKEYCARD_NAME" : "Cartão de Acesso Enigmático",
+    "ITEM_ENIGMATICKEYCARD_PICKUP" : "Chance de gerar um orbe ao golpear que segue e ataca inimigos.",
+    "ITEM_ENIGMATICKEYCARD_DESCRIPTION" : "4% de chance de gerar um <style=cIsDamage>orb seguidos</style> ao golpear que ataca inimigos próximos, causando <style=cIsDamage>140% de dano base <style=cStack>(+140% por acúmulo)</style></style> no impacto.",
+    "ITEM_ENIGMATICKEYCARD_LORE" : "Nenhum cartão de acesso vai conseguir abrir a droga do cérebro do Enigma",
+    "ITEM_BLEEDCRIPPLE_NAME" : "Adage de Fabinhoru",
+    "ITEM_BLEEDCRIPPLE_PICKUP" : "Reduz a armadura dos inimigos sangrando após golpeá-los.",
+    "ITEM_BLEEDCRIPPLE_DESCRIPTION" : "Ganhe <style=cIsDamage>5%</style> de chance de causar <style=cIsDamage>sangramento</style> ao golpear um inimigo. <style=cIsDamage>Golpear</style> inimigos enquanto estiverem <style=cIsDamage>sangrando</style> reduz sua <style=cIsDamage>armadura</style> em <style=cIsDamage>30</style> <style=cStack>(+15 por acúmulo)</style>.",
+    "ITEM_BLEEDCRIPPLE_LORE" : "she fabin my dagger til i horu",
+    "ITEM_GLASSHARVESTER_NAME" : "Colheitadeira de Vidro",
+    "ITEM_GLASSHARVESTER_PICKUP" : "Seus 'Acertos Críticos' causam 40% de dano adicional. Quebra com pouca saúde, gerando experiência.",
+    "ITEM_GLASSHARVESTER_DESC" : "Ganhe <style=cIsDamage>5% de chance de acerto crítico</style>. <style=cIsDamage>Acertos Críticos</style> causam <style=cIsDamage>40% damage</style><style=cStack>(+30% por acúmulo)</style> de dano adicional. TReceber dano com menos de <style=cIsHealth>25% de saúde</style> <style=cIsUtility>quebra</style> este item e garante 15% da <style=cIsUtility>experiência</style> do seu nível atual.",
+    "ITEM_GLASSHARVESTER_LORE" : "Isso colhe vidro ou isso colhe com vidro?\nEu não sei e eu não ligo, agora cai fora da minhaa casa!",
+    "ITEM_GLASSHARVESTERCONSUMED_NAME" : "Colheitadeira de Vidro (Quebrado)",
+    "ITEM_GLASSHARVESTERCONSUMED_PICKUP" : "Colheita colhida. Valeu a experiência?",
+    "ITEM_GLASSHARVESTERCONSUMED_DESC" : "Um item usado sem nenhum poder restante.",
+    "ITEM_PICKUPBUFF_NAME" : "Manto de Jape",
+    "ITEM_PICKUPBUFF_PICKUP" : "Ganha um bônus que garante armadura e cura ao coletar um item.",
+    "ITEM_PICKUPBUFF_DESCRIPTION" : "Ganha um bônus que garante a você <style=cIsUtility>+5 de armadura</style> e <style=cIsHealing>30% de cura</style> ao coletar um item. Máximo de 3 acúmulos de bônus <style=cStack>(+2 por acúmulo)</style>.",
+    "ITEM_PICKUPBUFF_LORE" : ""Registro do Intendente. 17 dias após o incidente.\n\nJá se passaram mais meio mês desde que quase nos transformamos em uma pasta negra e ardente durante nossa introdução involuntária à atmosfera deste planeta assassino. Devido à natureza de nossa chegada, que foi uma fuga de uma nave de carga em colapso que foi arrancada da viagem em dobra,nosso suprimento de necessidades tem diminuído a partir de uma contagem de base já perigosamente baixa. Fomos forçados a racionar a pouca comida e água que temos. Para manter isso sob controle, fui eleito como Intendente de nosso posto avançado. \nNossos suprimentos são os seguintes:\n\n-Comida e água suficientes para durar 1 semana e meia.\n-3 e meia caixas de papelão cheias de metal e componentes eletrônicos dos drones e sentinelas destruídos.\n-4 sacos de equipamento médico. \n-2 chaveiros, cada um com 13 chaves enferrujadas? (Deve ser um erro, Juarez disse que isso foi trazido junto com o resto da carga que aqueles três sujeitos trouxeram há 2 dias, eles devem estar produzindo essas coisas ou algo assim?)\n-6 caixas cheias de munição (potencialmente diminuindo a uma taxa exponencial)\n\nAlgo não está se encaixando. O quadro de avisos que colocamos para acompanhar a quantidade de suprimentos que todos têm usado não está cobrindo tudo. Embora isso possa ser apenas uma simples falta de comunicação por parte de todos, a chance de alguém pegar mais do que precisa está aumentando constantemente a cada dia. Não tenho evidências para apontar exatamente isso, mas é uma (assustadora) possibilidade. \n\n\nSe for apenas uma pessoa pegando tudo, então pelas taxas que foram mostradas... \nEles provavelmente estão mais preparados que o resto de nós.\n\nFim do registro.\n\n\nAdendo: QUEM, PELO NOME SANTO DE DEUS ACIMA, PEGOU. MEUS. CIGARROS??”"",
+    }
+}
