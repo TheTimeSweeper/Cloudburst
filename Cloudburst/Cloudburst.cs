@@ -44,6 +44,8 @@ namespace Cloudburst
         public void Awake()
         {
             Log.Init(Logger);
+
+            instance = this;
             ContentManager.collectContentPackProviders += (provider) =>
             {
                 provider(new CloudburstContent());
