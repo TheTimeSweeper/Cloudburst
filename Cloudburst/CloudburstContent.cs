@@ -4,6 +4,7 @@ using RoR2.ContentManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static RoR2.DLC1Content;
 
@@ -39,7 +40,7 @@ namespace Cloudburst
                 {
                     new FragileCritDamageItem().Return(),
                     new FragileCritDamageConsumedItem().Return(),
-                });
+                }.Where(x => x != null).ToArray());
             });
             loadHelper.AddGenericOperation(delegate
             {
