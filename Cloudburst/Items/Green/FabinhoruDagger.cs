@@ -58,15 +58,6 @@ namespace Cloudburst.Items.Green
                 "Gain <style=cIsDamage>5%</style> chance to <style=cIsDamage>bleed</style> an enemy on hit. <style=cIsDamage>Striking</style> enemies while they are <style=cIsDamage>bleeding</style> reduces their <style=cIsDamage>armor</style> by <style=cIsDamage>30</style> <style=cStack>(+15 per stack)</style>.");
             Modules.Language.Add("ITEM_BLEEDCRIPPLE_LORE", "she fabin my dagger til i horu");
 
-           FabProc = Cloudburst.CloudburstAssets.LoadAsset<GameObject>("FabDaggerIndicator");
-            LightIntensityCurve curve = FabProc.transform.GetChild(1).gameObject.AddComponent<LightIntensityCurve>();
-            curve.curve = AnimationCurve.EaseInOut(0, 1, 1, 0);
-            curve.timeMax = 0.75f;
-            
-            FabProc.AddComponent<DestroyOnParticleEnd>().ps = FabProc.transform.GetChild(0).GetComponent<ParticleSystem>();
-            EffectComponent effect = FabProc.AddComponent<EffectComponent>();
-            ContentAddition.AddEffect(FabProc);
-
             matFabCripple = Cloudburst.CloudburstAssets.LoadAsset<Material>("matFabCripple");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
@@ -133,6 +124,8 @@ namespace Cloudburst.Items.Green
             if(!attackerBody || !victimBody) return;
 
             Inventory inventory = attackerBody.inventory;
+            if (!inventory) return;
+
             int itemCount = inventory.GetItemCount(fabinhorusDaggerItem);
 
             if (inventory && inventory.GetItemCount(fabinhorusDaggerItem) > 0)
@@ -140,10 +133,6 @@ namespace Cloudburst.Items.Green
                 if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
                     victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
-                    EffectManager.SpawnEffect(FabProc, new EffectData()
-                    {
-                        origin = damageInfo.position
-                    }, false);
                 }
             }
         }
