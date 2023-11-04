@@ -25,8 +25,6 @@ namespace Cloudburst.Items.Gray
             glassHarvesterItem.requiredExpansion = Cloudburst.cloudburstExpansion;
 
             glassHarvesterConsumedItem = ScriptableObject.CreateInstance<ItemDef>();
-            (glassHarvesterConsumedItem as ScriptableObject).name = "GlassHarvesterConsumed";
-
             glassHarvesterConsumedItem.tier = ItemTier.NoTier;
             glassHarvesterConsumedItem.deprecatedTier = ItemTier.NoTier;
             glassHarvesterConsumedItem.name = "itemexponhitconsumed";
@@ -42,12 +40,13 @@ namespace Cloudburst.Items.Gray
             ContentAddition.AddItemDef(glassHarvesterItem);
             ContentAddition.AddItemDef(glassHarvesterConsumedItem);
 
-            Modules.Language.Add("ITEM_EXPONHIT_NAME", "Glass Harvester");
-            Modules.Language.Add("ITEM_EXPONHIT_PICKUP", "Gain experience on hit.");
-            Modules.Language.Add("ITEM_EXPONHIT_DESCRIPTION", "Gain 3 <style=cStack>(+2 per stack)</style> points of <style=cIsUtility>experience</style> on hit.");
-            Modules.Language.Add("ITEM_EXPONHIT_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
-            Modules.Language.Add("ITEM_EXPONHITCONSUMED_NAME", "Glass Harvester");
-            Modules.Language.Add("ITEM_EXPONHITCONSUMED_PICKUP", "Gain experience on hit.");
+            Modules.Language.Add("ITEM_GLASSHARVESTER_NAME", "Glass Harvester");
+            Modules.Language.Add("ITEM_GLASSHARVESTER_PICKUP", "Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience.");
+            Modules.Language.Add("ITEM_GLASSHARVESTER_DESC", "Gain <style=cIsDamage>5% critical strike chance</style>. <style=cIsDamage>Critical Strikes</style> deal an additional <style=cIsDamage>40% damage</style><style=cStack>(+30% per stack)</style>. Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>breaks</style> this item and grants 15% of your current level's <style=cIsUtility>experience</style>.");
+            Modules.Language.Add("ITEM_GLASSHARVESTER_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
+            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_NAME", "Glass Harvester (Broken)");
+            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_PICKUP", "Harvest Reaped. Was it worth the experience?");
+            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_DESC", "A spent item with no remaining power.");
 
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             IL.RoR2.HealthComponent.UpdateLastHitTime += HealthComponent_UpdateLastHitTime;
@@ -60,14 +59,21 @@ namespace Cloudburst.Items.Gray
             if (itemCount > 0 && self.isHealthLow)
             {
                 self.body.inventory.RemoveItem(glassHarvesterItem, itemCount);
-                self.body.inventory.GiveItem(glassHarvesterConsumedItem, itemCount);
+                self.body.inventory.GiveItem(glassHarvesterConsumedItem, itemCount); 
+
+                CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, glassHarvesterItem.itemIndex, glassHarvesterConsumedItem.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+            }
+
+            // apply experience one by one so new levels get proper amount
+            while (itemCount > 0 && self.isHealthLow)
+            {
+                itemCount--;
                 if (self.body.teamComponent)
                 {
                     TeamIndex teamIndex = self.body.teamComponent.teamIndex;
                     ulong expNeed = TeamManager.instance.GetTeamNextLevelExperience(teamIndex) - TeamManager.instance.GetTeamCurrentLevelExperience(teamIndex);
                     expNeed = (ulong)(expNeed * 0.15f);
                     TeamManager.instance.GiveTeamExperience(teamIndex, expNeed);
-                    CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, glassHarvesterItem.itemIndex, glassHarvesterConsumedItem.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
             }
         }
@@ -80,12 +86,12 @@ namespace Cloudburst.Items.Gray
             {
                 ilCursor.Index += 3;
                 ilCursor.Emit(OpCodes.Ldarg_0);
-                ilCursor.EmitDelegate(Test);
-                Debug.Log("TESSST");
+                ilCursor.EmitDelegate<Action<HealthComponent>>((healthComponent) => { Test(healthComponent); });
+                //Log.Warning ("TESSST");
             }
             else
             {
-                Debug.Log("SKI BODY");
+                //Log.Warning("SKI BODY");
             }
         }
 
@@ -95,7 +101,7 @@ namespace Cloudburst.Items.Gray
             {
                 int itemCount = sender.inventory.GetItemCount(glassHarvesterItem);
                 args.critAdd += itemCount > 0 ? 5 : 0;
-                args.critDamageMultAdd += itemCount > 0 ? itemCount * 30 + 10 : 0;
+                args.critDamageMultAdd += itemCount > 0 ? itemCount * 0.30f + 0.10f : 0;
             }
         }
     }

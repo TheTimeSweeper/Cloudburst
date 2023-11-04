@@ -10,8 +10,8 @@ namespace Cloudburst.Items.Green
     internal class BismuthEarrings
     {
         public static ItemDef bismuthEarringsItem;
-        public static float BaseBarrier = 5;
-        public static float StackingBarrier = 3;
+        public static float BaseBarrier = 15;
+        public static float StackingBarrier = 10;
 
         //public static Material
         public static void Setup()

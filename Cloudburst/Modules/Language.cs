@@ -2,6 +2,8 @@
 using Zio.FileSystems;
 using System.Linq;
 using System;
+using System.IO;
+using BepInEx;
 
 namespace Cloudburst.Modules {
 
@@ -11,11 +13,25 @@ namespace Cloudburst.Modules {
 
         public static bool printingEnabled => false;
 
+        public static PluginInfo Info;
+
+        internal static void Init(PluginInfo info)
+        {
+            Info = info;
+        }
+
         public static void PrintOutput(string preface = "")
         {
             if (!printingEnabled) return;
+            string strings = $"{{\n    strings:\n    {{{TokensOutput}\n    }}\n}}";
+            Log.Warning($"{preface}: \n{strings}");
 
-            Log.Warning($"{preface}\n{{\n    strings:\n    {{{TokensOutput}\n    }}\n}}");
+            if (!string.IsNullOrEmpty(preface))
+            {
+                string path = Path.Combine(Directory.GetParent(Info.Location).FullName, "Language", "en", preface);
+                File.WriteAllText(path, strings);
+            }
+            
             TokensOutput = "";
         }
 

@@ -54,6 +54,7 @@ namespace Cloudburst
             GetSoundBank();
 
             Modules.Compat.Init();
+            Modules.Language.Init(Info);
 
             cloudburstExpansion = ScriptableObject.CreateInstance<ExpansionDef>();
             cloudburstExpansion.nameToken = "EXPANSION_CLOUDBURST_NAME";
@@ -66,17 +67,17 @@ namespace Cloudburst
             Modules.Language.Add("EXPANSION_CLOUDBURST_NAME", "Cloudburst");
             Modules.Language.Add("EXPANSION_CLOUDBURST_DESCRIPTION", "Adds content from the mod 'Cloudburst' to the game.");
 
-            Modules.Language.PrintOutput("Cloudburst");
+            Modules.Language.PrintOutput("Cloudburst.txt");
 
             SetupItems();
 
-            Modules.Language.PrintOutput("Items");
+            Modules.Language.PrintOutput("Items.txt");
 
             Modules.ItemDisplays.PopulateDisplays();
             
             new WyattSurvivor().Initialize();
 
-            Modules.Language.PrintOutput("Wyatt");
+            Modules.Language.PrintOutput("Wyatt.txt");
 
             Log.Info(nameof(Awake) + " done.");
             
