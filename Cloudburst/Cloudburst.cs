@@ -116,12 +116,35 @@ namespace Cloudburst
                 return;
 
             //BlastBoot.Setup();
-            BismuthEarrings.Setup();
-            EnigmaticKeycard.Setup();
-            FabinhoruDagger.Setup();
-            GlassHarvester.Setup();
-            JapesCloak.Setup();
-            //RiftBubble.Setup();
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Bismuth Earrings", true,
+                "Toggles the Bismuth Earrings item.", true).Value)
+            {
+                BismuthEarrings.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Enigmatic Keycard", true,
+                "Toggles the Enigmatic Keycard item.", true).Value)
+            {
+                EnigmaticKeycard.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Fabinhoru Dagger", true,
+                "Toggles the Fabinhoru Dagger item.", true).Value)
+            {
+                FabinhoruDagger.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Glass Harvester", true,
+                "Toggles the Glass Harvester item.", true).Value)
+            {
+                GlassHarvester.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Jape's Cloak", true,
+                "Toggles the Jape's Cloak item.", true).Value)
+            {
+                JapesCloak.Setup();
+            }            //RiftBubble.Setup();
         }
 
         public void GetBundle()
