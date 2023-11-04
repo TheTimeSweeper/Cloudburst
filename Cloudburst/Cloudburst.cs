@@ -30,7 +30,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.3.1";
+        public const string PluginVersion = "0.3.2";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -106,10 +106,10 @@ namespace Cloudburst
 
         public void SetupItems()
         {
-            bool items = Modules.Config.BindAndOptions<bool>("Uh items",
+            bool items = Modules.Config.BindAndOptions<bool>("Content",
                 "Enable Items",
                 true,
-                "set false to disable all cloudburst items. individual disables coming probably not soon",
+                "set false to disable all cloudburst items.",
                 true).Value;
 
             if (!items)
@@ -139,12 +139,12 @@ namespace Cloudburst
             {
                 GlassHarvester.Setup();
             }
-
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Jape's Cloak", true,
+            
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Japes Cloak", true,
                 "Toggles the Jape's Cloak item.", true).Value)
             {
                 JapesCloak.Setup();
-            }            
+            }
             //RiftBubble.Setup();
         }
 

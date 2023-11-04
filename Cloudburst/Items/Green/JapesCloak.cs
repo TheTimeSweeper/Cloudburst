@@ -14,7 +14,7 @@ namespace Cloudburst.Items.Green
         public static void Setup()
         {
             japesCloakItem = ScriptableObject.CreateInstance<ItemDef>();
-            japesCloakItem.tier = ItemTier.Tier2;
+            japesCloakItem.deprecatedTier = ItemTier.Tier2;
             japesCloakItem.name = "itempickupbuff";
             japesCloakItem.nameToken = "ITEM_PICKUPBUFF_NAME";
             japesCloakItem.descriptionToken = "ITEM_PICKUPBUFF_DESCRIPTION";
@@ -28,7 +28,7 @@ namespace Cloudburst.Items.Green
                 ItemTag.InteractableRelated,
                 ItemTag.Utility
             };
-
+                        
             ContentAddition.AddItemDef(japesCloakItem);
 
             Modules.Language.Add("ITEM_PICKUPBUFF_NAME", "Jape's Cloak");

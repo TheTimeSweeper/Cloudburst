@@ -56,6 +56,11 @@ Realistically this may very well be the only update this mod gets in a long whil
 - Spanish Space Inquisition - MAID animations
 
 # Changelog
+`0.3.2`
+- all items are now in their proper tiers
+  - including broken glass harvester, removing it from the item pool
+- added per-item configs
+
 `0.3.1`
 - added animations for MAID
 - added config to disable jingle when activating flow

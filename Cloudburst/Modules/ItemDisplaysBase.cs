@@ -8,7 +8,7 @@ namespace Cloudburst.Modules.Characters
         public void SetItemDisplays(ItemDisplayRuleSet itemDisplayRuleSet)
         {
             List<ItemDisplayRuleSet.KeyAssetRuleGroup> itemDisplayRules = new List<ItemDisplayRuleSet.KeyAssetRuleGroup>();
-
+            
             SetItemDisplayRules(itemDisplayRules);
 
             itemDisplayRuleSet.keyAssetRuleGroups = itemDisplayRules.ToArray();

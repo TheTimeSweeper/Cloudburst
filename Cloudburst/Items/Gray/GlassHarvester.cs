@@ -18,6 +18,7 @@ namespace Cloudburst.Items.Gray
         {
             glassHarvesterItem = ScriptableObject.CreateInstance<ItemDef>();
             glassHarvesterItem.tier = ItemTier.Tier1;
+            glassHarvesterItem.deprecatedTier = ItemTier.Tier1;
             (glassHarvesterItem as ScriptableObject).name = "GlassHarvester";
             glassHarvesterItem.AutoPopulateTokens();
             glassHarvesterItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texGlassHarvester");
