@@ -16,7 +16,7 @@ namespace Cloudburst.Items
 
         public ItemBase() 
         {
-            if (Modules.Config.BindAndOptions<bool>("Items", $"Enable {name}", true, $"Determines whether or not the {name} item should be enabled.").Value) return;
+            if (!Modules.Config.BindAndOptions<bool>("Items", $"Enable {name}", true, $"Determines whether or not the {name} item should be enabled.").Value) return;
 
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             (itemDef as ScriptableObject).name = name;
