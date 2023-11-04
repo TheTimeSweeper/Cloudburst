@@ -86,11 +86,11 @@ namespace Cloudburst.Items.Gray
                 ilCursor.Index += 3;
                 ilCursor.Emit(OpCodes.Ldarg_0);
                 ilCursor.EmitDelegate<Action<HealthComponent>>((healthComponent) => { Test(healthComponent); });
-                Log.Warning ("TESSST");
+                //Log.Warning ("TESSST");
             }
             else
             {
-                Log.Warning("SKI BODY");
+                //Log.Warning("SKI BODY");
             }
         }
 
