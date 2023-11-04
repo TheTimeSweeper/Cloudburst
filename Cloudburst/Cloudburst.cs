@@ -8,6 +8,7 @@ using Cloudburst.Items.Green;
 using R2API;
 using R2API.Utils;
 using RoR2;
+using RoR2.ContentManagement;
 using RoR2.ExpansionManagement;
 using RoR2.UI;
 using System;
@@ -46,9 +47,22 @@ namespace Cloudburst
 
         public void Awake()
         {
+            Log.Init(Logger);
+            ContentManager.collectContentPackProviders += (provider) =>
+            {
+                provider(new CloudburstContent());
+            };
+            /*
+
+
+
+
+
+
+
             instance = this;
             
-            Log.Init(Logger);
+            
 
             GetBundle();
             GetSoundBank();
@@ -82,6 +96,7 @@ namespace Cloudburst
             
             //On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             Language.collectLanguageRootFolders += Language_collectLanguageRootFolders;
+            */
         }
 
         private void Language_collectLanguageRootFolders(List<string> obj)
@@ -118,7 +133,7 @@ namespace Cloudburst
             BismuthEarrings.Setup();
             EnigmaticKeycard.Setup();
             FabinhoruDagger.Setup();
-            GlassHarvester.Setup();
+            GlassHarvesterOld.Setup();
             JapesCloak.Setup();
             //RiftBubble.Setup();
         }
