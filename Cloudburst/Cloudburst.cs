@@ -30,7 +30,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.3.2";
+        public const string PluginVersion = "0.3.3";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -41,7 +41,7 @@ namespace Cloudburst
         public static List<AssetBundle> AssetBundles = new List<AssetBundle>();
 
         public static ExpansionDef cloudburstExpansion;
-
+        
         public static Cloudburst instance;
 
         public void Awake()
