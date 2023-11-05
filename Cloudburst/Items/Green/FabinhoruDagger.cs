@@ -61,7 +61,7 @@ namespace Cloudburst.Items.Green
             Modules.Language.Add("ITEM_BLEEDCRIPPLE_DESCRIPTION",
                 "Gain <style=cIsDamage>5%</style> chance to <style=cIsDamage>bleed</style> an enemy on hit. <style=cIsDamage>Striking</style> enemies while they are <style=cIsDamage>bleeding</style> reduces their <style=cIsDamage>armor</style> by <style=cIsDamage>30</style> <style=cStack>(+15 per stack)</style>.");
             Modules.Language.Add("ITEM_BLEEDCRIPPLE_LORE", "she fabin my dagger til i horu");
-
+            
             matFabCripple = Cloudburst.CloudburstAssets.LoadAsset<Material>("matFabCripple");
 
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;

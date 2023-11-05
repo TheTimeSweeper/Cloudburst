@@ -60,7 +60,9 @@ namespace Cloudburst.Items.Gray
 
         private static void Test(HealthComponent self)
         {
+            if (self == null) return;
             if (self.body == null) return;
+            if (self.body.master == null) return;
             if (self.body.inventory == null) return;
 
             int itemCount = self.body.inventory.GetItemCount(glassHarvesterItem);

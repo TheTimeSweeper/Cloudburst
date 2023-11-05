@@ -127,8 +127,10 @@ namespace Cloudburst.Items.Green
             CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             CharacterBody victimBody = victim.GetComponent<CharacterBody>();
 
-            if(!attackerBody || !victimBody) return;
-            if (attackerBody && (attackerBody.bodyFlags & CharacterBody.BodyFlags.Masterless) == CharacterBody.BodyFlags.Masterless) return;
+            if (!victimBody) return;
+            if (!attackerBody) return;
+            if ((attackerBody.bodyFlags & CharacterBody.BodyFlags.Masterless) == CharacterBody.BodyFlags.Masterless) return;
+            if (attackerBody.inventory == null) return;
 
             int itemCount = attackerBody.inventory.GetItemCount(enigmaticKeycardItem);
             if(itemCount > 0)

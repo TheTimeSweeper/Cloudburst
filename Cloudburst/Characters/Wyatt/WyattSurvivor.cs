@@ -175,13 +175,19 @@ namespace Cloudburst.Characters.Wyatt
             On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
 
-            On.RoR2.Projectile.BoomerangProjectile.FixedUpdate += BoomerangProjectile_FixedUpdate;
+            On.RoR2.GenericSkill.RunRecharge += GenericSkill_RunRecharge;
         }
 
-        private void BoomerangProjectile_FixedUpdate(On.RoR2.Projectile.BoomerangProjectile.orig_FixedUpdate orig, RoR2.Projectile.BoomerangProjectile self)
+        private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge orig, GenericSkill self, float dt)
         {
-            orig(self);
-            //Log.Warning($"state: {self.boomerangState} newtork: {self.NetworkboomerangState}");
+            if (self == null && self.characterBody == null) return;
+
+            if (self.characterBody.HasBuff(WyattBuffs.wyattFlowBuffDef))
+            {
+                dt *= 1 + WyattConfig.M3FlowCDR.Value;
+            }
+
+            orig(self, dt);
         }
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)

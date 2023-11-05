@@ -13,6 +13,24 @@ namespace Cloudburst.Items.Green
         public static float BaseBarrier = 15;
         public static float StackingBarrier = 10;
 
+        private static List<BuffDef> _bleedBuffs = null;
+        public static List<BuffDef> bleedBuffs
+        {
+            get
+            {
+                if(_bleedBuffs == null)
+                {
+                    _bleedBuffs = new List<BuffDef>
+                    {
+                        RoR2Content.Buffs.Bleeding,
+                        RoR2Content.Buffs.SuperBleed
+                   };
+                }
+
+                return _bleedBuffs;
+            }
+        } 
+
         //public static Material
         public static void Setup()
         {
@@ -38,9 +56,29 @@ namespace Cloudburst.Items.Green
             Modules.Language.Add("ITEM_BARRIERONCRIT_PICKUP", "Gain barrier on applying bleed");
             Modules.Language.Add("ITEM_BARRIERONCRIT_LORE", "The Earrings are Bismuth or something idk.");
 
-            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
+            //On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
             //On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+
+            On.RoR2.DotController.AddDot += DotController_AddDot;
+        }
+
+        private static void DotController_AddDot(On.RoR2.DotController.orig_AddDot orig, DotController self, GameObject attackerObject, float duration, DotController.DotIndex dotIndex, float damageMultiplier, uint? maxStacksFromAttacker, float? totalDamage, DotController.DotIndex? preUpgradeDotIndex)
+        {
+            orig(self, attackerObject, duration, dotIndex, damageMultiplier, maxStacksFromAttacker, totalDamage, preUpgradeDotIndex);
+
+            if (attackerObject == null) return;
+            CharacterBody attackerBody = attackerObject.GetComponent<CharacterBody>();
+            if (attackerBody == null) return;
+            if (attackerBody.inventory == null) return;
+            
+            int itemCount = attackerBody.inventory.GetItemCount(bismuthEarringsItem);
+            if (itemCount <= 0)
+                return;
+            if (bleedBuffs.Contains(DotController.dotDefs[(int)dotIndex].associatedBuff))
+            {
+                attackerBody.healthComponent?.AddBarrier(BaseBarrier + StackingBarrier * (itemCount - 1));
+            }
         }
 
         private static void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
@@ -50,15 +88,19 @@ namespace Cloudburst.Items.Green
 
             CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
             if(attackerBody == null) return;
-
+            
             Inventory inventory = attackerBody.inventory;
             if(inventory)
             {
-                int itemCount = inventory.GetItemCount(bismuthEarringsItem);
-                if(damageInfo.damageType.HasFlag(DamageType.BleedOnHit))
+                int itemCount = inventory.GetItemCount(bismuthEarringsItem) - 1;
+                if (victim.GetComponent<CharacterBody>().HasBuff(RoR2Content.Buffs.Bleeding))
                 {
-                    attackerBody.healthComponent?.AddBarrier((itemCount * 10) + 5);
+                    attackerBody.healthComponent?.AddBarrier(BaseBarrier + StackingBarrier * itemCount);
                 }
+                //if(damageInfo.damageType.HasFlag(DamageType.BleedOnHit))
+                //{
+                //    attackerBody.healthComponent?.AddBarrier(BaseBarrier + StackingBarrier * itemCount);
+                //}
             }
         }
 
