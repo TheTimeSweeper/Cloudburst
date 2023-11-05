@@ -1,0 +1,27 @@
+{
+    strings:
+    {
+    "CLOUDBURST_WYATT_NAME" : "Zelador",
+    "CLOUDBURST_WYATT_SUBTITLE" : "Máquinas de Limpeza Eficazes",
+    "CLOUDBURST_WYATT_OUTRO_FLAVOR" : "... e assim ele se foi, um trabalho bem feito.",
+    "CLOUDBURST_WYATT_OUTRO_FAILURE" : "... e assim ele desapareceu, deixando uma bagunça desde onde começou.",
+    "CLOUDBURST_WYATT_DESCRIPTION" : "O Zelador é um mestre da guerra de zeladoria que manipula a gravidade de seus inimigos a seu favor.<color=#CCD3E0>\n\n< ! > Encadeie combos com a Grav-Vaassoura para elevar os inimigos cada vez mais alto.\n\n< ! > Crave inimigos com Lixo pra Fora depois que eles tenham sido levantados no ar com a Grav-Vassoura e use CRIADA para uma grande quantia de dano!\n\n< ! > Use o pulo duplo com Fluxo para realizar combos no ar, ou use a armadura para sair de situações perigosas.\n\n< ! > Utilize a Criada para levanter inimigos no ar e reposicione-se para golpeá-los ainda mais.\n\n",
+    "CLOUDBURST_WYATT_LORE" : "Não posso parar agora. Não posso parar agora. Cada passo que dou é um passo que não posso voltar. Venha o que vier, eu vou encontrá-lo.\n\nÉ tudo ritmo, apenas ritmo. Cada vez que piso fora da linha é uma punição. Eu vou obedecer ao ritmo. Nada pode me parar agora.\n\nCada cicatriz vale a pena. Posso sentir, estou me aproximando. Eu vou tê-lo, e ele será meu.\n\nNão importa o sangue derramado, vale a pena. Eu vou encontrar o que eu quero e voltarei para casa.\n\nNão importa quantos eu matei, ele será meu... Não pode se esconder de mim para sempre.\n\nEstá aqui, eu posso sentir. Este baú de segurança, ele o tem. Eu o abro, e eu o encontro.\n\nEle... finalmente é meu. Eu o seguro em minhas mãos machucadas. Será que realmente se passaram anos? \n\nEla vai amar isso, eu sei.\n\n",
+    "KEYWORD_WEIGHTLESS" : "<style=cKeywordName>Leveza</style><style=cSub><style=cIsUtility>Remove a gravidade</style> do alvo e <style=cIsUtility>desacelera seu movimento e sua velocidade de ataque</style>.</style>",
+    "KEYWORD_SPIKED" : "<style=cKeywordName>Cravar</style><style=cSub>Força um inimigo a cair para baixo, causando uma <style=cIsDamage>onda de choque</style> caso colidam com o terreno, causando <style=cIsDamage>200% de dano</style> + <style=cIsDamage>30% de dano</style> por metro caído.</style>",
+    "KEYWORD_FLOW" : "<style=cKeywordName>Fluxo</style><style=cSub>Ganhe <style=cIsDamage>30 de armadura</style> + <style=cIsDamage>5 de armadura</style> para cada acúmulo de <style=cIsUtility>Ritmo</style>.\nGanhe um <style=cIsUtility>Pulo Adicional</style>.\nGanhe <style=cIsUtility>+30% de Redução do Tempo de Recarga.</style></style>",
+    "CLOUDBURST_WYATT_PASSIVE_NAME" : "Walkman",
+    "CLOUDBURST_WYATT_PASSIVE_DESCRIPTION" : "Ao golpear, ganhe um acúmulo de <style=cIsUtility>Ritmo</style>, garantindo <style=cIsUtility>20% de velocidade de movimento</style> por acúmulo. Diminui fora de combate.",
+    "CLOUDBURST_WYATT_PRIMARY_COMBO_NAME" : "G22 Grav-Vassoura",
+    "CLOUDBURST_WYATT_PRIMARY_COMBO_DESCRIPTION" : "<style=cIsUtility>Ágil</style>. Balance sua vassoura para causar <style=cIsDamage>100% de dano</style>. O terceiro acerto causa <style=cIsDamage>200% de dano</style> e aplica <style=cIsUtility>Leveza</style>.",
+    "CLOUDBURST_WYATT_SECONDARY_TRASHOUT_NAME" : "Lixo pra Fora",
+    "CLOUDBURST_WYATT_SECONDARY_TRASHOUT_DESCRIPTION" : "<s>Implante um guincho</s> Voa magicamante a um inimigo, golpeando-os por <style=cIsDamage>300%</style> de dano e <style=cIsDamage>cravando</style> eles.",
+    "CLOUDBURST_WYATT_UTILITY_FLOW_NAME" : "Fluxo",
+    "CLOUDBURST_WYATT_UTILITY_FLOW_DESCRIPTION" : "Ativa <style=cIsDamage>Fluxo</style> por <style=cIsUtility>4 segundos</style> + <style=cIsUtility>0.4 segundos</style> para cada acúmulo de <style=cIsUtility>Ritmo</style>, ganhando <style=cIsDamage>armadura, um pulo adicional, e redução de tempo de recarga</style>. Durante o <style=cIsDamage>Fluxo</style>, você não pode perder ou ganhar <style=cIsUtility>Ritmo</style>. Após o término de <style=cIsDamage>Fluxo</style>, perca todos os acúmulos de <style=cIsUtility>Ritmo</style>.",
+    "CLOUDBURST_WYATT_SPECIAL_MAID_NAME" : "CRIADA M88",
+    "CLOUDBURST_WYATT_SPECIAL_MAID_DESCRIPTION" : "Envia sua unidade <style=cIsUtility>CRIADA</style>, atravessando inimigos e causando <style=cIsDamage>300% de dano</style> antes de parar brevemente e retornar a você. Ative novamente para avançar em direção à <style=cIsUtility>CRIADA</style> e explodir, causando <style=cIsDamage>500% de dano</style>, aplicando <style=cIsUtility>Leveza</style>.",
+    "CLOUDBURST_WYATT_CLASSIC_SKIN" : "Clássico",
+    "ACHIEVEMENT_CLOUDBURSTWYATTCLEARGAMEMONSOON_NAME" : "Zelador: Domínio",
+    "ACHIEVEMENT_CLOUDBURSTWYATTCLEARGAMEMONSOON_DESCRIPTION" : "Como Zelador, vença o jogo ou aniquile em Monção.",
+    }
+}
