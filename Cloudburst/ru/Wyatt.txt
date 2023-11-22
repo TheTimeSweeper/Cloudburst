@@ -1,0 +1,27 @@
+{
+    strings:
+    {
+    "CLOUDBURST_WYATT_NAME" : "Хранитель",
+    "CLOUDBURST_WYATT_SUBTITLE" : "Бережливые, средние, чистящие машины",
+    "CLOUDBURST_WYATT_OUTRO_FLAVOR" : "...и они ушли, работа сделана отлично",
+    "CLOUDBURST_WYATT_OUTRO_FAILURE" : "...и они исчезли, оставив после себя еще больший беспорядок, чем когда он начался",
+    "CLOUDBURST_WYATT_DESCRIPTION" : "Хранитель — мастер ведения войны, который манипулирует гравитацией врагов в своих интересах.<color=#CCD3E0>\n\n< ! > Цепные комбо Грави-швабры поднимают врагов все выше и выше.\n\n< ! > Пронзите врагов с помощью Выноса мусора после того, как они были подняты в воздух с помощью Грави-швабры и ГОРНИЧНОЙ, чтобы нанести серьезный урон!\n\n< ! > Используйте двойной прыжок из Течения, чтобы делать комбо на врагах в воздухе, или используйте броню, чтобы выйти из затруднительной ситуации.\n\n< ! > Используйте ГОРНИЧНУЮ, чтобы поднимать врагов в воздух и менять положение, чтобы комбинировать врагов дальше.\n\n",
+    "CLOUDBURST_WYATT_LORE" : "Не могу остановиться сейчас. Не могу остановиться сейчас. Каждый мой шаг — это шаг, который я не могу сделать назад. Будь то ад или паводок, я найду его.\n\nЭто всё ритм, просто ритм. Каждый раз, когда я перехожу черту, это наказание. Я буду подчиняться ритму. Теперь меня ничто не сможет остановить.\n\nКаждый шрам того стоит. Я чувствую это, я приближаюсь к этому. Я получу это, и оно будет моим.\n\nНезависимо от крови, оно того стоит. Я найду то, что хочу, и приду домой.\n\nСколько бы я ни прибил, оно будет моим... Оно не сможет скрываться от меня вечно.\n\nОно здесь, я чувствую это. Этот сундук безопасности, оно в нем есть. Я открываю его и нахожу.\n\nОно... наконец-то моё. Я держу его в своих израненных руках. Неужели прошли годы? \n\nЕй это понравится, я знаю.\n\n",
+    "KEYWORD_WEIGHTLESS" : "<style=cKeywordName>Невесомый</style><style=cSub><style=cIsUtility>Убирает гравитацию</style> с цели и <style=cIsUtility>замедляет движение и скорость атаки.</style>.</style>",
+    "KEYWORD_SPIKED" : "<style=cKeywordName>Пронзание</style><style=cSub>Заставляет врага упасть вниз, создавая <style=cIsDamage>ударную волну</style> если они столкнутся с землёй, нанося <style=cIsDamage>200% урона</style> + <style=cIsDamage>30% урона</style> за метр падения.</style>",
+    "KEYWORD_FLOW" : "<style=cKeywordName>Поток</style><style=cSub>Даёт <style=cIsDamage>30 брони</style> + <style=cIsDamage>5 брони</style> за каждый <style=cIsUtility>ритм</style>.\nДаёт <style=cIsUtility>двойной прыжок</style>.\nДаёт <style=cIsUtility>+30% уменьшения откатов.</style></style>",
+    "CLOUDBURST_WYATT_PASSIVE_NAME" : "Плеер",
+    "CLOUDBURST_WYATT_PASSIVE_DESCRIPTION" : "При ударе получите <style=cIsUtility>ритм</style>, предоставляя <style=cIsUtility>20% скорости передвижения</style> за шт. Уменьшается вне боя.",
+    "CLOUDBURST_WYATT_PRIMARY_COMBO_NAME" : "Г22 Грави-швабра",
+    "CLOUDBURST_WYATT_PRIMARY_COMBO_DESCRIPTION" : "<style=cIsUtility>Подвижность</style>. Взмахните метлой чтобы нанести <style=cIsDamage>100% урона.</style>. Каждый третий удар наносит <style=cIsDamage>200% урона</style> и наносит <style=cIsUtility>невесомость</style>.",
+    "CLOUDBURST_WYATT_SECONDARY_TRASHOUT_NAME" : "Вынос мусора",
+    "CLOUDBURST_WYATT_SECONDARY_TRASHOUT_DESCRIPTION" : "<s>Выпустите лебёдку</s> Волшебным образом летите к врагу и наносите ему <style=cIsDamage>300%</style> урона и <style=cIsDamage>пронзите</style> их.",
+    "CLOUDBURST_WYATT_UTILITY_FLOW_NAME" : "Поток",
+    "CLOUDBURST_WYATT_UTILITY_FLOW_DESCRIPTION" : "Активируйте <style=cIsDamage>поток</style> на <style=cIsUtility>4 секунды</style> + <style=cIsUtility>0.4 секунды</style> за каждый <style=cIsUtility>ритм</style>, давая <style=cIsDamage>броню, двойной прыжок, и уменьшение откатов</style>. Во время <style=cIsDamage>потока</style>, вы не способны потерять или получить <style=cIsUtility>ритм</style>. После того как <style=cIsDamage>поток</style> кончится, вы теряете весь <style=cIsUtility>ритм</style>.",
+    "CLOUDBURST_WYATT_SPECIAL_MAID_NAME" : "М88 ГОРНИЧНАЯ",
+    "CLOUDBURST_WYATT_SPECIAL_MAID_DESCRIPTION" : "Отправьте свой аппарат <style=cIsUtility>ГОРНИЧНАЯ</style> прорываться сквозь врагов нанося <style=cIsDamage>300% урона</style> прежде чем ненадолго остановиться и вернуться к вам. Активируйте ещё раз чтобы подлететь к <style=cIsUtility>ГОРНИЧНОЙ</style> и взорваться нанеся <style=cIsDamage>500% урона</style>, нанося <style=cIsUtility>невесомость</style>.",
+    "CLOUDBURST_WYATT_CLASSIC_SKIN" : "Классика",
+    "ACHIEVEMENT_CLOUDBURSTWYATTCLEARGAMEMONSOON_NAME" : "Хранитель: Мастерство",
+    "ACHIEVEMENT_CLOUDBURSTWYATTCLEARGAMEMONSOON_DESCRIPTION" : "Играя за Хранителя, пройдите игру или уничтожьтесь на уровне сложности «Сезон дождей».",
+    }
+}
