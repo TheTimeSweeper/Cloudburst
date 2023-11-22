@@ -30,7 +30,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.3.3";
+        public const string PluginVersion = "0.3.5";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -51,7 +51,6 @@ namespace Cloudburst
             Log.Init(Logger);
 
             GetBundle();
-            GetSoundBank();
 
             Modules.Compat.Init();
             Modules.Language.Init(Info);
@@ -85,9 +84,14 @@ namespace Cloudburst
             Language.collectLanguageRootFolders += Language_collectLanguageRootFolders;
         }
 
+        void Start()
+        {
+            GetSoundBank();
+        }
+
         private void Language_collectLanguageRootFolders(List<string> obj)
         {
-            string path = System.IO.Path.Combine(Directory.GetParent(Info.Location).FullName, "Language");
+            string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Info.Location), "Language");
             if(Directory.Exists(path))
             {
                 obj.Add(path);
@@ -96,11 +100,29 @@ namespace Cloudburst
 
         private void GetSoundBank()
         {
-            using (var manifestResourceStream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Cloudburst.Assets.WyattBank.bnk"))
+            if (Application.isBatchMode) return;
+
+            AKRESULT akResult = AkSoundEngine.AddBasePath(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Info.Location), "SoundBanks"));
+
+            if (akResult == AKRESULT.AK_Success) {
+                Log.Info("Added bank base path ");
+            } else {
+                Log.Error(
+                    "Error adding base path :" +
+                    $"Error code : {akResult}");
+            }
+            
+            akResult = AkSoundEngine.LoadBank("WyattBank.bnk", out _);
+
+            if (akResult == AKRESULT.AK_Success)
             {
-                byte[] array = new byte[manifestResourceStream2.Length];
-                manifestResourceStream2.Read(array, 0, array.Length);
-                SoundAPI.SoundBanks.Add(array);
+                Log.Info("Added bank ");
+            }
+            else
+            {
+                Log.Error(
+                    "Error adding base :" +
+                    $"Error code : {akResult}");
             }
         }
 
@@ -154,9 +176,9 @@ namespace Cloudburst
             {
                 try
                 {
-                    CloudburstAssets = LoadAssetBundle("Cloudburst.Assets.cloudburst");
-                    WyattAssetBundle = LoadAssetBundle("Cloudburst.Assets.wyatt");
-                    OldCloudburstAssets = LoadAssetBundle("Cloudburst.Assets.oldcloudburst");
+                    CloudburstAssets = LoadAssetBundle("cloudburst");
+                    WyattAssetBundle = LoadAssetBundle("wyatt");
+                    OldCloudburstAssets = LoadAssetBundle("oldcloudburst");
                 }
                 catch
                 {
@@ -173,13 +195,10 @@ namespace Cloudburst
             }
         }
 
-        private static AssetBundle LoadAssetBundle(string name)
+        private AssetBundle LoadAssetBundle(string name)
         {
             AssetBundle assetBundle;
-            using (var assetStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name))
-            {
-                assetBundle = AssetBundle.LoadFromStream(assetStream);
-            }
+            assetBundle = AssetBundle.LoadFromFile(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Info.Location), "AssetBundles", name));
 
             AssetBundles.Add(assetBundle);
 

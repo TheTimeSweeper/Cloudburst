@@ -27,6 +27,7 @@ namespace Cloudburst.Characters.Wyatt
         public static ConfigEntry<int> M3FlowExtraJumps;
 
         public static ConfigEntry<bool> M3FlowPlayMusic;
+        public static ConfigEntry<float> M3FlowMusicVolume;
 
         public static ConfigEntry<float> M4MaidProjectileDamage;
         public static ConfigEntry<float> M4MaidImpactDamageMultiplier;
@@ -184,6 +185,14 @@ namespace Cloudburst.Characters.Wyatt
                 "M3 - M3FlowPlayMusic",
                 true,
                 "set false to disable jingle during flow",
+                false);
+            M3FlowMusicVolume = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M3 - M3FlowMusicVolume",
+                50,
+                "value",
+                0f,
+                100,
                 false);
             #endregion m3
 

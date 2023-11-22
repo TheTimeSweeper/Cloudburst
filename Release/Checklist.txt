@@ -1,4 +1,4 @@
-- no funny debug code
+- no funny debug code (network, language, etc)
 - manifest version
 - mod dll version
 - readme changelog

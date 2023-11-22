@@ -25,6 +25,11 @@
 								<Value Platform="Windows">0</Value>
 							</ValueList>
 						</Property>
+						<Property Name="SRConversionQuality" Type="int32">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
 						<Property Name="SampleRate" Type="int32">
 							<ValueList>
 								<Value Platform="Windows">0</Value>
@@ -33,7 +38,7 @@
 					</PropertyList>
 					<ConversionPluginInfoList>
 						<ConversionPluginInfo Platform="Windows">
-							<ConversionPlugin Name="" ID="{6DF2F873-E6DF-4B8F-8821-8EDDD00C08F5}" PluginName="PCM" CompanyID="0" PluginID="1"/>
+							<ConversionPlugin Name="" ID="{CD52DDA7-F9D0-49E0-AD94-6530E40BCF9F}" PluginName="Opus" CompanyID="0" PluginID="19"/>
 						</ConversionPluginInfo>
 					</ConversionPluginInfoList>
 				</Conversion>

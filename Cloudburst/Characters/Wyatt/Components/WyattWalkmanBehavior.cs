@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cloudburst.Characters.Wyatt;
 using RoR2;
 using RoR2.Stats;
@@ -19,6 +20,53 @@ namespace Cloudburst.Wyatt.Components
         private float stopwatch = 0;
 
         private float drainTimer = 0;
+
+        private string _currentStage = "Default";
+
+        public static Dictionary<string, string> sceneToStageName = new Dictionary<string, string>()
+        {
+            {"golemplains", "TitanicPlains"}  ,
+            {"golemplains2", "TitanicPlains"} ,
+            {"itgolemplains", "TitanicPlains"},
+            {"blackbeach", "DistantRoost"}    ,
+            {"blackbeach2", "DistantRoost"}   ,
+            {"snowyforest", "SiphonedForest"}   ,
+
+            {"goolake", "AbandonedAqueduct"}   ,
+            {"itgoolake", "AbandonedAqueduct"}   ,
+            {"foggyswamp", "WetlandAspect"}   ,
+            {"ancientloft", "AphelianSanctuary"}   ,
+
+            {"frozenwall", "RallypointDelta"}   ,
+            {"itfrozenwall", "RallypointDelta"}   ,
+            {"wispgraveyard", "ScorchedAcres"}   ,
+            {"sulfurpools", "SulfurPools"}   ,
+
+            {"dampcavesimple", "AbyssalDepths" },
+            {"itdampcave", "AbyssalDepths" },
+            {"shipgraveyard", "SirensCall" },
+            {"rootjungle", "SunderedGrove" },
+
+            {"skymeadow", "SkyMeadow" },
+            {"itskymeadow", "SkyMeadow" },
+
+            {"moon", "Moon" },
+            {"moon2", "Moon" },
+            {"itmoon", "Moon" },
+
+            {"mithrix", "Mithrix" },
+
+            {"arena", "VoidFields" },
+            {"voidstage", "VoidLocus" },
+            {"voidraid", "ThePlanetarium" },
+
+            {"artifactworld", "BulwarksAmbry" },
+            {"bazaar", "Bazaar" },
+            {"goldshores", "GildedCoast" },
+            {"limbo", "AMomentWhole" },
+            {"mysteryspace", "AMomentFractured" },
+        };
+
 
         [SyncVar]
         public bool flowing = false;
@@ -56,12 +104,14 @@ namespace Cloudburst.Wyatt.Components
         {
             flowEffect.Play();
 
+            AkSoundEngine.SetRTPCValue("Wyatt_Groove_Volume", WyattConfig.M3FlowMusicVolume.Value);
             if (WyattConfig.M3FlowPlayMusic.Value)
             {
-                Util.PlaySound("Play_Wyatt_Groove_Loop", gameObject);
+                SetCurrentStage();
+                Util.PlaySound($"Play_Groove_{_currentStage}_Loop", gameObject);
             }
         }
-
+        
         private void StopFlowEffectServer()
         {
             RpcPStopFlowEFfect();
@@ -73,8 +123,8 @@ namespace Cloudburst.Wyatt.Components
 
             if (WyattConfig.M3FlowPlayMusic.Value)
             {
-                Util.PlaySound("Stop_Wyatt_Groove_Loop", gameObject);
-                Util.PlaySound("Play_Wyatt_Groove_End", gameObject);
+                Util.PlaySound($"Stop_Groove_{_currentStage}_Loop", gameObject);
+                Util.PlaySound($"Play_Groove_{_currentStage}_End", gameObject);
             }
         }
         #endregion
@@ -82,10 +132,17 @@ namespace Cloudburst.Wyatt.Components
         private void Start()
         {
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
+            BossGroup.onBossGroupStartServer += BossGroup_onBossGroupStartServer;
         }
 
         void OnDestroy() {
             On.RoR2.CharacterBody.OnBuffFinalStackLost -= CharacterBody_OnBuffFinalStackLost;
+            BossGroup.onBossGroupStartServer -= BossGroup_onBossGroupStartServer;
+
+            if (NetworkServer.active)
+            {
+                StopFlowEffectServer();
+            }
         }
 
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
@@ -98,6 +155,11 @@ namespace Cloudburst.Wyatt.Components
                 StopFlowEffectServer();
             }
             orig(self, buffDef);
+        }
+
+        private void BossGroup_onBossGroupStartServer(BossGroup bossGroup)
+        {
+
         }
 
         public void FixedUpdate()
@@ -188,5 +250,54 @@ namespace Cloudburst.Wyatt.Components
                 TriggerBehaviorInternal(1);
             }
         }
+
+
+        private void SetCurrentStage()
+        {
+            //maybe check moon man first
+            //check for bosses regardless of stage (linkin park for henry)
+
+            string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            if (sceneToStageName.ContainsKey(scene))
+            {
+                _currentStage = sceneToStageName[scene];
+            }
+            if(scene == "moon" || scene == "moon2")
+            {
+                //_currentStage = "Mithrix";
+            }
+            
+            for (int i = 0; i < 10; i++)
+            {
+                if (Input.GetKey($"[{i}]"))
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            _currentStage = "Default";
+                            break;
+                        case 1:
+                            _currentStage = "TitanicPlainsOld";
+                            break;
+                        case 2:
+                            _currentStage = "TitanicPlains";
+                            break;
+                        case 3:
+                            _currentStage = "DistantRoost";
+                            break;
+                        case 4:
+                            _currentStage = "SiphonedForest";
+                            break;
+                        case 5:
+                            _currentStage = "WetlandAspect";
+                            break;
+                        case 6:
+                            _currentStage = "AbandonedAqueduct";
+                            break;
+                    }
+                }
+            }
+        }
+
     }
 }
