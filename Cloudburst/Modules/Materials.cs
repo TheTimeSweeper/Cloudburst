@@ -19,7 +19,7 @@ namespace Cloudburst.Modules
             if (tempMat)
                 return tempMat;
 
-            tempMat = Assets.LoadAsset<Material>(materialName);
+            tempMat = Asset.LoadAsset<Material>(materialName);
 
             if (!tempMat)
             {

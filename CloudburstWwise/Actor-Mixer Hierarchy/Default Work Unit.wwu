@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}" SchemaVersion="97">
+<WwiseDocument Type="WorkUnit" ID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}" SchemaVersion="119">
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}" PersistMode="Standalone">
 			<ChildrenList>
@@ -574,32 +574,6 @@
 									<ValueList>
 										<Value>-2</Value>
 									</ValueList>
-									<RTPCList>
-										<RTPC Name="" ID="{CCA1A8C2-0E6F-4C1F-9111-3F6C085563E4}" ShortID="98586208">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Wyatt_Groove_Volume" ID="{55DD05F6-818C-452A-AB7B-18A9D23A86DA}" WorkUnitID="{CD37FE92-0B7A-430F-B456-3EB1E05AB6CC}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{73BB2C38-76FC-47F3-ABC5-DFF4FB7D043D}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-20.13608</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>9.58755</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -619,42 +593,6 @@
 											<ValueList>
 												<Value>-7</Value>
 											</ValueList>
-											<RTPCList>
-												<RTPC Name="" ID="{E3E697A3-3B62-437E-8D10-EBCC95A9A8F6}" ShortID="257126433">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="FadeOut" ID="{F7EC2406-1866-4446-9DA7-6385BCA9A0DC}" WorkUnitID="{805880C2-8A62-4CFB-BD60-A85E1A919C22}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{82CDB9C4-5002-4B36-9B67-6E6F9FCD5714}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="3"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>-0.04512</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>1.30585</XPos>
-																<YPos>-0.8222</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>2.85883</XPos>
-																<YPos>-13.91783</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>9</XPos>
-																<YPos>-200</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -677,6 +615,55 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="RTPC">
+											<Reference>
+												<Local>
+													<RTPC Name="" ID="{E3E697A3-3B62-437E-8D10-EBCC95A9A8F6}" ShortID="257126433">
+														<PropertyList>
+															<Property Name="PropertyName" Type="string" Value="Volume"/>
+														</PropertyList>
+														<ReferenceList>
+															<Reference Name="ControlInput">
+																<ObjectRef Name="FadeOut" ID="{F7EC2406-1866-4446-9DA7-6385BCA9A0DC}" WorkUnitID="{805880C2-8A62-4CFB-BD60-A85E1A919C22}"/>
+															</Reference>
+															<Reference Name="Curve">
+																<Custom>
+																	<Curve Name="" ID="{82CDB9C4-5002-4B36-9B67-6E6F9FCD5714}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="3"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>-0.04512</YPos>
+																				<Flags>5</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>1.30585</XPos>
+																				<YPos>-0.8222</YPos>
+																				<Flags>0</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>2.85883</XPos>
+																				<YPos>-13.91783</YPos>
+																				<Flags>0</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>9</XPos>
+																				<YPos>-200</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</Custom>
+															</Reference>
+														</ReferenceList>
+													</RTPC>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
 									<ActiveSourceList>
 										<ActiveSource Name="groove_loop" ID="{E3024263-1E64-460A-BD09-908A7CD160D8}" Platform="Linked"/>
 									</ActiveSourceList>
@@ -1717,6 +1704,45 @@
 								<Folder Name="Hidden Realms" ID="{BD82F176-E855-494B-9A88-C2611BC20D88}" ShortID="924498924"/>
 								<Folder Name="Modded" ID="{1F03512B-F95D-461F-BF8F-C875620813B2}" ShortID="850965243"/>
 							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{CCA1A8C2-0E6F-4C1F-9111-3F6C085563E4}" ShortID="98586208">
+												<PropertyList>
+													<Property Name="PropertyName" Type="string" Value="Volume"/>
+												</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<ObjectRef Name="Wyatt_Groove_Volume" ID="{55DD05F6-818C-452A-AB7B-18A9D23A86DA}" WorkUnitID="{CD37FE92-0B7A-430F-B456-3EB1E05AB6CC}"/>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{73BB2C38-76FC-47F3-ABC5-DFF4FB7D043D}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-20.13608</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>9.58755</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 						</ActorMixer>
 					</ChildrenList>
 				</ActorMixer>

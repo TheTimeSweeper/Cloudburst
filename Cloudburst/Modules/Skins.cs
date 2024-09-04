@@ -110,7 +110,7 @@ namespace Cloudburst.Modules
                 new SkinDef.MeshReplacement
                 {
                     renderer = defaultRendererInfos[i].renderer,
-                    mesh = Assets.LoadAsset<Mesh>(meshes[i])
+                    mesh = Asset.LoadAsset<Mesh>(meshes[i])
                 });
             }
 

@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{496F3381-490E-4E05-BB51-D11A9D28012C}" SchemaVersion="97">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{496F3381-490E-4E05-BB51-D11A9D28012C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Events" ID="{B5887BEF-116F-46D3-B0EB-83FBB0757C20}" ShortID="271086073">
+					<ChildrenList>
+						<Event Name="Play_Wyatt_Hit" ID="{15A33A1B-926A-4631-B3D6-849E8EAFBC4D}">
+							<ChildrenList>
+								<Action Name="" ID="{FC7C55FD-0736-49E1-BC66-FA4F64D9256B}" ShortID="2423497">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="HitRandom" ID="{26D0367A-6B2D-4331-AFE7-72453A67A78D}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Whip" ID="{59922EB3-B2B2-473B-B7FA-547FA9D6E233}">
+							<ChildrenList>
+								<Action Name="" ID="{B5A70C7C-08CC-49F1-B829-CDED8446A912}" ShortID="201561662">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WhipMix" ID="{0E052E7A-EB03-4965-ABAA-23EA43D3E3AE}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Whoosh" ID="{3E12A6D6-DE3E-485E-9187-32203A6792E3}">
+							<ChildrenList>
+								<Action Name="" ID="{C712AB3B-BA44-4B0D-8AEF-D2F886CA6AAA}" ShortID="160972063">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WhooshRandom" ID="{0DDFE2FC-8988-4846-A290-7B4636B85572}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Wyatt_Groove_CSS" ID="{5B01ED90-90E4-4C5D-B9EF-9ED7AD067BE8}">
+							<ChildrenList>
+								<Action Name="" ID="{A27CF85E-F34C-4FAA-B59B-1F3D2A2E7B2F}" ShortID="973925901">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_CSS" ID="{2116FAFC-E194-46C1-AB35-C83BBDBCD544}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Wyatt_Groove_CSS" ID="{85B326ED-CE3E-4D10-8CBD-C33A0564AECE}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{2B08DB91-A8BC-4113-BC30-061DB6D1D555}" ShortID="160056810">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="groove_CSS" ID="{2116FAFC-E194-46C1-AB35-C83BBDBCD544}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Groove" ID="{D88BDD83-91B7-40D4-9DE0-1943F22633F3}" ShortID="312017583">
+							<ChildrenList>
+								<Folder Name="Stage 1" ID="{965B8CDF-8F56-46B3-AA8E-D6A4A19931CD}" ShortID="162919245">
+									<ChildrenList>
+										<Event Name="Play_Groove_DistantRoost_Loop" ID="{BEEC55CB-FF33-450A-A425-FAA0D94DFE37}">
+											<ChildrenList>
+												<Action Name="" ID="{DC8ED41F-A6FE-4B76-9A99-81276493E691}" ShortID="869686817">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_DistantRoost_Loop" ID="{CA66AAF2-F91A-4DE0-96FB-05A5C95C736E}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_DistantRoost_End" ID="{F0A936D6-551D-4DBC-B486-88A3247298F2}">
+											<ChildrenList>
+												<Action Name="" ID="{BF286365-51C0-4489-8310-6EB380FA684B}" ShortID="722787472">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_DistantRoost_End" ID="{A15F0D37-1D57-4CD1-B6A4-3018991D8E53}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_TitanicPlains_Loop" ID="{0AA0D5A7-C18B-4E24-9F17-084FEE64AE1A}">
+											<ChildrenList>
+												<Action Name="" ID="{ACCDD74B-3BD8-4CA8-965C-06E6874908BB}" ShortID="283073474">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlains_Loop" ID="{6BBB6269-6413-4F49-9DAF-19CCA0C7C097}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_TitanicPlains_End" ID="{DDF4CE14-946F-4C17-9163-9E6DF1C6A77B}">
+											<ChildrenList>
+												<Action Name="" ID="{3B5EAD3B-E2DB-4C33-8CAD-A2DBC03FF4DB}" ShortID="618165918">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlains_End" ID="{1E54D0FA-7D1B-41E0-AB89-E7F033E19B70}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SiphonedForest_Loop" ID="{E65B2296-F7C2-4F83-86FB-3E12ABE76F6F}">
+											<ChildrenList>
+												<Action Name="" ID="{BCE23FC6-B9AE-45D8-9B88-CCE64EF273C6}" ShortID="849710925">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SiphonedForest_Loop" ID="{DAE9E8D1-59B4-40E8-BC40-9403E2632331}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SiphonedForest_End" ID="{61DB9A72-5E49-4B20-A6A7-1BD4AAF73A6D}">
+											<ChildrenList>
+												<Action Name="" ID="{5C1C7845-036D-4096-8088-01F6C1BBF322}" ShortID="373804564">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SiphonedForest_End" ID="{BAE7E8B1-3C69-49B4-A21A-94201FB2DB55}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_SiphonedForest_Loop" ID="{78804F92-D944-4408-93C7-FA120C08EDC7}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{F44CC043-0FAC-4702-A455-BF467338CB6B}" ShortID="801467789">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SiphonedForest_Loop" ID="{DAE9E8D1-59B4-40E8-BC40-9403E2632331}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_DistantRoost_Loop" ID="{0213D354-573A-4206-BC1A-171DF7782550}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{CB392716-328C-4344-A06A-9527E73B17AF}" ShortID="965491014">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_DistantRoost_Loop" ID="{CA66AAF2-F91A-4DE0-96FB-05A5C95C736E}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_TitanicPlains_Loop" ID="{EA43B1A4-2A1A-458F-91FB-17C19CDE4636}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{7949F3AA-5D77-408A-AAFB-0CFB2F12D241}" ShortID="581682741">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlains_Loop" ID="{6BBB6269-6413-4F49-9DAF-19CCA0C7C097}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Dev" ID="{D6CF817C-556F-4A7C-9BBC-4BD59E9EBABE}" ShortID="290899452">
+									<ChildrenList>
+										<Event Name="Play_Groove_Default_End" ID="{F8921CAC-45E0-4B79-92D0-D60D66204E86}">
+											<ChildrenList>
+												<Action Name="" ID="{AF0301CD-520E-49A5-AA55-CA748727480E}" ShortID="181296708">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="groove_default_end" ID="{9DC23501-7758-4DEE-A45E-A1470BD287E3}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_Default_Loop" ID="{89CAEB47-EEB6-45FE-8A85-562FB6B7739F}">
+											<ChildrenList>
+												<Action Name="" ID="{AC814DD5-7ABC-4D4E-BF9B-C0A2C6D09067}" ShortID="305588441">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="groove_default_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_TitanicPlainsOld_End" ID="{191594E1-4B47-4344-B0CE-73651160C411}">
+											<ChildrenList>
+												<Action Name="" ID="{1607D1A6-6D5C-42DE-BF03-82E491AC1184}" ShortID="987426632">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlainsOld_End" ID="{E63FF8A2-E63B-4018-9F6C-48169347A42F}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_TitanicPlainsOld_Loop" ID="{AA187EDE-8A47-496B-A8F2-F3C964D30C08}">
+											<ChildrenList>
+												<Action Name="" ID="{8B14FAFE-7616-4D15-8000-C2F147D3F27D}" ShortID="78943655">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlainsOld_Loop" ID="{14E9643C-DD4F-4DF8-964C-D7E94B09FB3A}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_TitanicPlainsOld_Loop" ID="{E39F978E-933D-49A4-8018-B66F3AD0C253}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{8E344637-880B-4A4D-9CB0-C91D2AA71C55}" ShortID="546865399">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_TitanicPlainsOld_Loop" ID="{14E9643C-DD4F-4DF8-964C-D7E94B09FB3A}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_Default_Loop" ID="{3CDFF5C1-10B6-4B54-AE8D-C71AA8C6D1CB}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{9A47F6BE-6CE6-4503-9648-81E0DDDF779D}" ShortID="57336128">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="groove_default_loop" ID="{95054EA4-086A-43A9-929E-35973C3ADCC1}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Stage 2" ID="{7F4FA1DF-FBFF-42DF-8332-A92B7CA4CB47}" ShortID="955115136">
+									<ChildrenList>
+										<Event Name="Play_Groove_WetlandAspect_End" ID="{30081E34-5EFB-48BD-8481-0197A4D98102}">
+											<ChildrenList>
+												<Action Name="" ID="{BB862D9A-84BE-49CE-A987-06357EFB7011}" ShortID="543260150">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_WetlandAspect_End" ID="{81FA340E-6623-41AA-88C6-B277CB514642}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_WetlandAspect_Loop" ID="{A266D0E7-1515-4160-8512-4C10AA5442D4}">
+											<ChildrenList>
+												<Action Name="" ID="{0D32F078-5B56-45ED-80F5-E77FB99747BD}" ShortID="200645289">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_WetlandAspect_Loop" ID="{8BB857DB-3D83-4414-94F3-3320E2784B59}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_WetlandAspect_Loop" ID="{D6833978-6F52-4322-8398-C65F6F0E1FBB}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{A33D69CA-016E-4F91-9506-85E043DEF989}" ShortID="258167958">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_WetlandAspect_Loop" ID="{8BB857DB-3D83-4414-94F3-3320E2784B59}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AbandonedAqueduct_End" ID="{57002BB9-A30B-4F94-BACB-0B9070E584F1}">
+											<ChildrenList>
+												<Action Name="" ID="{82EAC215-4AED-47A5-8C1F-24BBF09B9ED3}" ShortID="622235046">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbandonedAqueduct_end" ID="{A6C0EC8F-E4F8-4B29-A203-AC6BEFD7D04B}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AbandonedAqueduct_Loop" ID="{E7034E87-E02A-4809-8F0C-1C8E46E22FCF}">
+											<ChildrenList>
+												<Action Name="" ID="{A2D86F48-F55A-4140-8141-DA8C8AAFF341}" ShortID="364759098">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbandonedAqueduct_loop" ID="{3D4780A4-B06C-43D8-A00F-81BB27A0FFE8}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_AbandonedAqueduct_Loop" ID="{F2B5CB40-C7F3-467B-B39E-112EABE0D9E8}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{2907076E-083A-4664-9D61-A686EECB5C20}" ShortID="954968217">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbandonedAqueduct_loop" ID="{3D4780A4-B06C-43D8-A00F-81BB27A0FFE8}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AphelianSanctuary_End" ID="{C53407F2-35C6-4650-87FF-E7F528987F38}">
+											<ChildrenList>
+												<Action Name="" ID="{FD70E665-01B7-4C6B-99CC-F52C85E71D44}" ShortID="206852762">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AphelianSanctuary_End" ID="{22CD4F95-D27D-48A7-92DF-344ECF5961A7}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AphelianSanctuary_Loop" ID="{8AFA84F0-C66C-4651-8A78-60A8ADE61261}">
+											<ChildrenList>
+												<Action Name="" ID="{9BD28706-A6BE-4C3C-A081-7F4C8BCC5237}" ShortID="530402734">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AphelianSanctuary_Loop" ID="{68F25B1E-EE5D-4581-894A-FC1EAB6AF329}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_AphelianSanctuary_Loop" ID="{57116CF6-F6D3-412E-A6AC-9A897114B534}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{503897F1-EEE3-4D3F-A03C-9E938AE9D293}" ShortID="190707878">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AphelianSanctuary_Loop" ID="{68F25B1E-EE5D-4581-894A-FC1EAB6AF329}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Stage 3" ID="{40254AA2-19A1-4E87-8B50-36BE23462D82}" ShortID="66605513">
+									<ChildrenList>
+										<Event Name="Stop_Groove_RallypointDelta_Loop" ID="{5028E458-162E-44F1-B6F4-AE9D92329034}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{24150993-74FE-44E0-8EAD-A66243F4DB4B}" ShortID="1000893047">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_RallypointDelta_Loop" ID="{9AF8B54A-CE66-4EC9-B6A3-E8E3929AA56C}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_RallypointDelta_Loop" ID="{56BB661A-104C-446A-898D-4E8A075144FC}">
+											<ChildrenList>
+												<Action Name="" ID="{10474DEC-6FD9-4616-866B-F04F7DFD6416}" ShortID="1035553939">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_RallypointDelta_Loop" ID="{9AF8B54A-CE66-4EC9-B6A3-E8E3929AA56C}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_RallypointDelta_End" ID="{E7C76071-2911-4337-86BE-8D396437F8E2}">
+											<ChildrenList>
+												<Action Name="" ID="{7B33125D-F424-46B9-91FF-C1ECCCC2D7EA}" ShortID="636968200">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_RallypointDelta_End" ID="{71FEDEA5-7C6B-44AB-B48E-7A148F8F9005}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_SulfurPools_loop" ID="{E0ADD9FA-1C1C-4675-8109-1DE9CD6F44F3}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{973BB236-D6F3-415C-866E-0BBD8974D97E}" ShortID="269198237">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SulfurPools_loop" ID="{7BAFEC96-0AC3-424C-83A2-58C5CDE656B9}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_ScorchedAcres_Loop" ID="{148CC8B7-438D-42D1-822E-DE43735EDBE7}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{61BA62AC-E325-45C5-8A21-CBD8EE4E9C73}" ShortID="569269147">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_ScorchedAcres_Loop" ID="{05A43847-40E7-4020-BF5F-388D8AA905B2}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_ScorchedAcres_End" ID="{B7C6EE53-B7B5-481D-86DE-EC3672A02FDD}">
+											<ChildrenList>
+												<Action Name="" ID="{677C2D72-2B78-4740-AF10-75361ADFC43A}" ShortID="818897810">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_ScorchedAcres_End" ID="{5117C4DC-41A4-4D6D-B210-EBFDBC529387}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SulfurPools_loop" ID="{AD248BAC-BB5B-4BAC-BB3A-B6EF63C23C28}">
+											<ChildrenList>
+												<Action Name="" ID="{DF130070-EA9D-41E1-9E69-AA3DEF20C25C}" ShortID="1031952175">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SulfurPools_loop" ID="{7BAFEC96-0AC3-424C-83A2-58C5CDE656B9}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_ScorchedAcres_Loop" ID="{07ABC55E-E3D4-4629-89DC-B1DE85A61963}">
+											<ChildrenList>
+												<Action Name="" ID="{06FCB64D-4D86-47C6-8C50-F6249F9347B8}" ShortID="953308552">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_ScorchedAcres_Loop" ID="{05A43847-40E7-4020-BF5F-388D8AA905B2}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SulfurPools_End" ID="{0F2CD398-4042-4A02-B832-BF4F641C7E11}">
+											<ChildrenList>
+												<Action Name="" ID="{8A23D5F5-7395-48D2-9C1D-3CBBB140BF3A}" ShortID="555497618">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SulfurPools_End" ID="{2DAB51C8-E4FB-49D8-BB26-CF09EC8BAB0C}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Stage 4" ID="{31D7793A-E657-4917-A896-0FEC37B99693}" ShortID="765712598">
+									<ChildrenList>
+										<Event Name="Play_Groove_SirensCall_Loop" ID="{C16C9124-8C6A-4700-8954-908A5DD5D54D}">
+											<ChildrenList>
+												<Action Name="" ID="{559B4020-DD7B-4E91-A960-769C9AB99332}" ShortID="762760810">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SirensCall_Loop" ID="{37679C66-7822-4006-9649-F023A2296896}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_SirensCall_Loop" ID="{0A506952-E062-4DA2-8681-E6DDF77D0D86}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{7FC2EFC2-E521-41F1-A4D7-2975AA79BE6C}" ShortID="40524383">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SirensCall_Loop" ID="{37679C66-7822-4006-9649-F023A2296896}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_AbyssalDepths_Loop" ID="{33D342FB-829A-472A-95C8-99831F0B0A52}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{1008A27E-BF7C-40D6-B8CE-A24B386F35C7}" ShortID="647729693">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbyssalDepths_Loop" ID="{FAE0B9EB-11DD-43DC-8A18-7309DDC8F772}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AbyssalDepths_Loop" ID="{10516874-1598-4601-B795-E5DA31F21A7B}">
+											<ChildrenList>
+												<Action Name="" ID="{D498B707-01B0-4EA3-8134-BE50ADFEF345}" ShortID="908889462">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbyssalDepths_Loop" ID="{FAE0B9EB-11DD-43DC-8A18-7309DDC8F772}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_AbyssalDepths_End" ID="{79905BFA-00D1-4286-9A40-8C2742F439A7}">
+											<ChildrenList>
+												<Action Name="" ID="{1845338E-D97E-42D1-B734-57885E8FE3AF}" ShortID="384608032">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_AbyssalDepths_End" ID="{4FE47822-6215-425D-B9F2-F31AF1E33EA9}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SirensCall_End" ID="{35B9C85A-3B57-414B-B7A7-5A7A066B973C}">
+											<ChildrenList>
+												<Action Name="" ID="{ACECFC74-89D1-4EF3-8934-41EFACE76D98}" ShortID="1018079127">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SirensCall_End" ID="{540C2644-CD54-41BF-84AB-DEAF986ED512}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SunderedGrove_Loop" ID="{C446403C-AAC6-495E-B8BC-FFA7F135E40F}">
+											<ChildrenList>
+												<Action Name="" ID="{E04F2826-F17A-4E31-AD09-F796C6EC00A0}" ShortID="143784630">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SunderedGrove_Loop" ID="{017B6915-577A-41FF-B243-F87F5A0709C5}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SunderedGrove_End" ID="{872F7C09-34A4-4937-B86C-622847D9CE1B}">
+											<ChildrenList>
+												<Action Name="" ID="{ADB85E64-71B8-441E-A33D-D73B08519070}" ShortID="72778832">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SunderedGrove_End" ID="{CB41665E-C3FD-4C58-AECF-5B411CE727F7}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_SunderedGrove_Loop" ID="{22749828-096B-4DD0-A7FA-EF99C444CFDF}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{81C8AAB9-8303-4BD7-945E-3AD644CF9372}" ShortID="1028722868">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SunderedGrove_Loop" ID="{017B6915-577A-41FF-B243-F87F5A0709C5}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Moon" ID="{DDCE57AC-6CB3-44B6-87DF-667DA92955C3}" ShortID="630614259">
+									<ChildrenList>
+										<Event Name="Stop_Groove_Mithrix_Loop" ID="{34DD890B-7A11-4240-AD34-A5364F0922A3}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{00C3F9B8-A2EC-4D48-849F-2EB1F346FD91}" ShortID="26649080">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Mithrix_Loop" ID="{96C8545C-80C4-4A8E-A5C6-EAACEAD05F75}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_Mithrix_End" ID="{7C67A4D3-8EDF-43A2-9546-3A53694741FD}">
+											<ChildrenList>
+												<Action Name="" ID="{57C57EB0-355C-4BC7-8432-D7B9AE9A92F4}" ShortID="858051924">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Mithrix_End" ID="{A00BD566-4CC9-411D-AB1C-80E29518AB45}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_Mithrix_Loop" ID="{6E76138B-7592-44C9-B465-DA5072258F88}">
+											<ChildrenList>
+												<Action Name="" ID="{66B6D5BE-93AA-485B-86E8-D1A1144BA945}" ShortID="349055519">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Mithrix_Loop" ID="{96C8545C-80C4-4A8E-A5C6-EAACEAD05F75}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_Commencement_Loop" ID="{6C7B9E68-B221-4E6D-85FD-45B492003C23}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{8D42C6A3-5D84-43EA-9DE9-5834C3535C8D}" ShortID="878844565">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Commencement_Loop" ID="{F24D9247-0EFB-49E1-9226-4842BD8B6EFF}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_Commencement_End" ID="{5DBDAF63-0C32-4C3C-A674-475586FBF862}">
+											<ChildrenList>
+												<Action Name="" ID="{287AF123-7AE6-4AC6-B836-59BC83A7546B}" ShortID="520686621">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Commencement_End" ID="{F30E0BB3-34D0-4B8B-A77B-BF169D09E4B6}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_Commencement_Loop" ID="{249A7E8E-1566-4B51-B861-A1EB860F0809}">
+											<ChildrenList>
+												<Action Name="" ID="{5CEFFF39-410A-4DFB-A3EC-6CAE015E9CB2}" ShortID="176817800">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_Commencement_Loop" ID="{F24D9247-0EFB-49E1-9226-4842BD8B6EFF}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Stage 5" ID="{20A8F0FB-8500-4BD6-8EA9-219F7BE0C262}" ShortID="755562602">
+									<ChildrenList>
+										<Event Name="Play_Groove_SkyMeadow_Loop" ID="{69DA1608-31CD-48F2-9A35-07AD0A734F05}">
+											<ChildrenList>
+												<Action Name="" ID="{7EC8AC89-C6AC-490B-B379-AB5EE37DE538}" ShortID="668533948">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SkyMeadow_Loop" ID="{1478A91C-F9FF-4BF1-BEFD-F441965A7176}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Play_Groove_SkyMeadow_End" ID="{0B6D68CF-FCD5-4780-BEF7-AC0AAFF648BD}">
+											<ChildrenList>
+												<Action Name="" ID="{B7AB541E-FD22-4D58-BE37-FFA957D57BF5}" ShortID="436936210">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SkyMeadow_End" ID="{4C9A9F25-D82B-4FEB-A85E-661FFA33CE0F}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="Stop_Groove_SkyMeadow_Loop" ID="{D240733E-A9A9-4C1C-84DF-FF83BB85263A}">
+											<PropertyList>
+												<Property Name="Color" Type="int16" Value="10"/>
+												<Property Name="OverrideColor" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<Action Name="" ID="{0F1AE73D-AC55-4294-983E-A65F8483E430}" ShortID="621844141">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Groove_SkyMeadow_Loop" ID="{1478A91C-F9FF-4BF1-BEFD-F441965A7176}" WorkUnitID="{4BC52840-4F4C-48F7-BB19-16644EF419CA}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Hidden Realms" ID="{4A5F5BD6-3B3B-4EF0-B10D-D67B0466AE69}" ShortID="259360711"/>
+								<Folder Name="Void" ID="{D7F92E2C-F0EC-4D3A-B8CB-D7F3B6F12EE2}" ShortID="642058428"/>
+								<Folder Name="Modded" ID="{5E5AA295-431C-4281-B578-F18C88F7296E}" ShortID="518422822"/>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

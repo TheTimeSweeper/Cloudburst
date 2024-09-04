@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{CD37FE92-0B7A-430F-B456-3EB1E05AB6CC}" SchemaVersion="97">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{CD37FE92-0B7A-430F-B456-3EB1E05AB6CC}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="Wyatt_Groove_Volume" ID="{55DD05F6-818C-452A-AB7B-18A9D23A86DA}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

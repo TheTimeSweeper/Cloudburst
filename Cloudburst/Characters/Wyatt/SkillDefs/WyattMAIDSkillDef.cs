@@ -20,9 +20,9 @@ namespace Cloudburst.Wyatt.Components
 
         private MAIDState MAID = MAIDState.None;
 
-        public override void OnFixedUpdate([NotNull] GenericSkill skillSlot)
+        public override void OnFixedUpdate([NotNull] GenericSkill skillSlot, float deltaTime)
         {
-            base.OnFixedUpdate(skillSlot);
+            base.OnFixedUpdate(skillSlot, deltaTime);
             //FUCK HOPOO
             //FUCK YOUR WACK ASS SKILL SYSTEM
             var data = (InstanceData)skillSlot.skillInstanceData;

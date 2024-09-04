@@ -64,7 +64,7 @@ namespace Cloudburst.Characters.Wyatt
         private static void CreateAntiGravTempVisualEffect()
         {
 
-            antiGravEffect = Modules.Assets.LoadAsset<GameObject>("AntiGravEffect");
+            antiGravEffect = Modules.Asset.LoadAsset<GameObject>("AntiGravEffect");
             MaterialSwapper.RunSwappers(antiGravEffect);
             Texture texSlowDownTime = Addressables.LoadAssetAsync<Texture>("RoR2/Base/Common/ColorRamps/texRampSlowDownTime2.png").WaitForCompletion();
             antiGravEffect.transform.Find("SwingTrail").GetComponent<ParticleSystemRenderer>().material.SetTexture("_RemapTex", texSlowDownTime);
@@ -79,7 +79,7 @@ namespace Cloudburst.Characters.Wyatt
         
         private static void createMercSlashesIMean()
         {
-            notMercSlashEffect = Assets.CloneAndColorEffect("RoR2/Base/Merc/MercSwordSlash.prefab", new Color(1, 0.015f, 0), "OrangeWyattMercSwordSlash", false);
+            notMercSlashEffect = Asset.CloneAndColorEffect("RoR2/Base/Merc/MercSwordSlash.prefab", new Color(1, 0.015f, 0), "OrangeWyattMercSwordSlash", false);
             notMercSlashEffect.transform.Find("SwingTrail").localScale = new Vector3(1.5f, 1.7f, 3);
             //sword swing effects use object.instasntiate so I guess don't need to add them?
             //ContentAddition.AddEffect(notMercSlashEffect);
@@ -129,7 +129,7 @@ namespace Cloudburst.Characters.Wyatt
 
         public static GameObject CreateEffect(string name)
         {
-            GameObject obj = Modules.Assets.LoadAsset<GameObject>(name);
+            GameObject obj = Modules.Asset.LoadAsset<GameObject>(name);
             MaterialSwapper.RunSwappers(obj);
 
             ContentAddition.AddEffect(obj);
@@ -138,7 +138,7 @@ namespace Cloudburst.Characters.Wyatt
 
         public static GameObject CreateAsset(string name, bool positionAtReferencedTransform, bool parentToReferencedTransform, bool applyScale, string soundName, bool disregardZScale, VFXAttributes.VFXIntensity intensity, VFXAttributes.VFXPriority priority)
         {
-            GameObject obj = Modules.Assets.LoadAsset<GameObject>(name);
+            GameObject obj = Modules.Asset.LoadAsset<GameObject>(name);
             MaterialSwapper.RunSwappers(obj);
             EffectComponent effectComponent = obj.AddComponent<EffectComponent>();
             VFXAttributes attributes = obj.AddComponent<VFXAttributes>();

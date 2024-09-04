@@ -17,7 +17,7 @@ namespace Cloudburst.Characters.Wyatt
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         private static void SurvivorCatalog_Init(On.RoR2.SurvivorCatalog.orig_Init orig)
         {
-            GameObject skele = Assets.LoadAsset<GameObject>("WyattMeme");
+            GameObject skele = Asset.LoadAsset<GameObject>("WyattMeme");
             EmotesAPI.CustomEmotesAPI.ImportArmature(WyattSurvivor.instance.bodyPrefab, skele, false);
             //skele.GetComponentInChildren<BoneMapper>().scale = 1.5f;
 

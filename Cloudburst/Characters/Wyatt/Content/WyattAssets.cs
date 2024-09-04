@@ -23,9 +23,9 @@ namespace Cloudburst.Characters.Wyatt
         public static void InitAss()
         {
             CreateProjectiles();
-            MaidSprite2 = Assets.LoadAsset<Sprite>("texIconWyattSpecial2");
-            hitSound = Assets.CreateNetworkSoundEventDef("Play_Wyatt_Hit");
-            hitWhipSound = Assets.CreateNetworkSoundEventDef("Play_Wyatt_Whip");
+            MaidSprite2 = Asset.LoadAsset<Sprite>("texIconWyattSpecial2");
+            hitSound = Asset.CreateNetworkSoundEventDef("Play_Wyatt_Hit");
+            hitWhipSound = Asset.CreateNetworkSoundEventDef("Play_Wyatt_Whip");
         }
 
         private static void CreateProjectiles()
@@ -80,8 +80,8 @@ namespace Cloudburst.Characters.Wyatt
             }
 
 
-            var goost = Modules.Assets.LoadAsset<GameObject>("WyattMaidGhost");
-            Modules.Assets.ConvertAllRenderersToHopooShader(maidProjectilePrefab);
+            var goost = Modules.Asset.LoadAsset<GameObject>("WyattMaidGhost");
+            Modules.Asset.ConvertAllRenderersToHopooShader(maidProjectilePrefab);
             //MaterialSwapper.RunSwappers(goost);
 
             goost.AddComponent<ProjectileGhostController>();
@@ -102,7 +102,7 @@ namespace Cloudburst.Characters.Wyatt
 
             GameObject maidCleanEffect = WyattEffects.maidCleanseEffect;
 
-            Modules.Assets.AddNewEffectDef(maidCleanEffect);
+            Modules.Asset.AddNewEffectDef(maidCleanEffect);
 
             maidProjectilePrefab.GetComponent<ProjectileDotZone>().impactEffect = maidCleanEffect;
 

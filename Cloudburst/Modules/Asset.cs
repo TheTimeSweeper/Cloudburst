@@ -11,7 +11,7 @@ using UnityEngine.AddressableAssets;
 
 namespace Cloudburst.Modules
 {
-    internal static class Assets
+    internal static class Asset
     {
         public static T LoadAsset<T>(string assetName) where T : UnityEngine.Object {
             for (int i = 0; i < Cloudburst.AssetBundles.Count; i++) {
@@ -162,7 +162,7 @@ namespace Cloudburst.Modules
 
         public static GameObject LoadEffect(string resourceName, string soundName, bool parentToTransform)
         {
-            GameObject newEffect = Assets.LoadAsset<GameObject>(resourceName);
+            GameObject newEffect = Asset.LoadAsset<GameObject>(resourceName);
 
             if (!newEffect)
             {

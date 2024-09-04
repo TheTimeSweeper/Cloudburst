@@ -27,10 +27,10 @@ namespace Cloudburst.Characters.Wyatt
             bodyNameToken = WYATT_PREFIX + "NAME",
             subtitleNameToken = WYATT_PREFIX + "SUBTITLE",
 
-            characterPortrait = Assets.LoadAsset<Texture>("texIconWyatt"),
+            characterPortrait = Asset.LoadAsset<Texture>("texIconWyatt"),
             bodyColor = Color.white,
             
-            crosshair = Assets.LoadCrosshair("Standard"),
+            crosshair = Asset.LoadCrosshair("Standard"),
             podPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
 
             maxHealth = 120f,
@@ -115,7 +115,7 @@ namespace Cloudburst.Characters.Wyatt
 
             GameObject indicatorPrefab = R2API.PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/EngiShieldRetractIndicator"), "WyattTrackerIndicator", false);
             SpriteRenderer indicator = indicatorPrefab.transform.Find("Holder").GetComponent<SpriteRenderer>(); //
-            indicator.sprite = Assets.LoadAsset<Sprite>("texWyattIndicator");
+            indicator.sprite = Asset.LoadAsset<Sprite>("texWyattIndicator");
             indicator.color = CCUtilities.HexToColor("00A86B");
 
             tracker.maxTrackingAngle = 20;
@@ -305,7 +305,7 @@ namespace Cloudburst.Characters.Wyatt
                 enabled = true,
                 skillNameToken = WYATT_PREFIX + "PASSIVE_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "PASSIVE_DESCRIPTION",
-                icon = Assets.LoadAsset<Sprite>("texIconWyattPassive")
+                icon = Asset.LoadAsset<Sprite>("texIconWyattPassive")
             };
 
             bodyPrefab.GetComponent<SkillLocator>().passiveSkill = passive;
@@ -319,7 +319,7 @@ namespace Cloudburst.Characters.Wyatt
                     "wyatt_primary_combo",
                     WYATT_PREFIX + "PRIMARY_COMBO_NAME",
                     WYATT_PREFIX + "PRIMARY_COMBO_DESCRIPTION",
-                    Assets.LoadAsset<Sprite>("texIconWyattPrimary"),
+                    Asset.LoadAsset<Sprite>("texIconWyattPrimary"),
                     new SerializableEntityStateType(typeof(WyattBaseMeleeAttack)),
                     "Weapon",
                     true));
@@ -340,7 +340,7 @@ namespace Cloudburst.Characters.Wyatt
                 skillName = "wyatt_secondary_trashout",
                 skillNameToken = WYATT_PREFIX + "SECONDARY_TRASHOUT_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "SECONDARY_TRASHOUT_DESCRIPTION",
-                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattSecondary"),
+                skillIcon = Asset.LoadAsset<Sprite>("texIconWyattSecondary"),
                 activationState = new SerializableEntityStateType(typeof(TrashOut)),
                 activationStateMachineName = "Weapon",
                 baseMaxStock = 2,
@@ -370,7 +370,7 @@ namespace Cloudburst.Characters.Wyatt
                 skillName = "wyatt_utility_flow",
                 skillNameToken = WYATT_PREFIX + "UTILITY_FLOW_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "UTILITY_FLOW_DESCRIPTION",
-                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattUtility"),
+                skillIcon = Asset.LoadAsset<Sprite>("texIconWyattUtility"),
                 activationState = new SerializableEntityStateType(typeof(ActivateFlow)),
                 activationStateMachineName = "SuperMarioJump",
                 baseMaxStock = 1,
@@ -399,7 +399,7 @@ namespace Cloudburst.Characters.Wyatt
                 skillName = "wyatt_special_maid",
                 skillNameToken = WYATT_PREFIX + "SPECIAL_MAID_NAME",
                 skillDescriptionToken = WYATT_PREFIX + "SPECIAL_MAID_DESCRIPTION",
-                skillIcon = Assets.LoadAsset<Sprite>("texIconWyattSpecial"),
+                skillIcon = Asset.LoadAsset<Sprite>("texIconWyattSpecial"),
                 activationState = DeployMaidState,
                 activationStateMachineName = "MAID",
                 baseMaxStock = 1,
@@ -432,7 +432,7 @@ namespace Cloudburst.Characters.Wyatt
 
             #region DefaultSkin
             SkinDef defaultSkin = Skins.CreateSkinDef("DEFAULT_SKIN",
-                Assets.LoadAsset<Sprite>("texIconWyattSkinDefault"),
+                Asset.LoadAsset<Sprite>("texIconWyattSkinDefault"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject);
 
@@ -446,7 +446,7 @@ namespace Cloudburst.Characters.Wyatt
             #region MasterySkin
             
             SkinDef masterySkin = Modules.Skins.CreateSkinDef(WYATT_PREFIX + "CLASSIC_SKIN",
-                Assets.LoadAsset<Sprite>("texIconWyattSkinClassic"),
+                Asset.LoadAsset<Sprite>("texIconWyattSkinClassic"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject,
                 WyattUnlockables.masteryUnlockable);

@@ -142,7 +142,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             base.FixedUpdate();
 
-            theDevilHasSomeHardToReadFinePrint += Time.fixedDeltaTime;
+            theDevilHasSomeHardToReadFinePrint += Time.deltaTime;
             if (base.isAuthority && base.IsKeyDownAuthority() && solarEclipse == false && unstable == false && theDevilHasSomeHardToReadFinePrint > 0.3f)
             {
                 characterBody.isSprinting = true;

@@ -84,45 +84,12 @@ namespace Cloudburst
             Language.collectLanguageRootFolders += Language_collectLanguageRootFolders;
         }
 
-        void Start()
-        {
-            GetSoundBank();
-        }
-
         private void Language_collectLanguageRootFolders(List<string> obj)
         {
             string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Info.Location), "Language");
             if(Directory.Exists(path))
             {
                 obj.Add(path);
-            }
-        }
-
-        private void GetSoundBank()
-        {
-            if (Application.isBatchMode) return;
-
-            AKRESULT akResult = AkSoundEngine.AddBasePath(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Info.Location), "SoundBanks"));
-
-            if (akResult == AKRESULT.AK_Success) {
-                Log.Info("Added bank base path ");
-            } else {
-                Log.Error(
-                    "Error adding base path :" +
-                    $"Error code : {akResult}");
-            }
-            
-            akResult = AkSoundEngine.LoadBank("WyattBank.bnk", out _);
-
-            if (akResult == AKRESULT.AK_Success)
-            {
-                Log.Info("Added bank ");
-            }
-            else
-            {
-                Log.Error(
-                    "Error adding base :" +
-                    $"Error code : {akResult}");
             }
         }
 
