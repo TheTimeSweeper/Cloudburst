@@ -7,49 +7,73 @@ using UnityEngine;
 
 namespace Cloudburst.Items.Gray.BlastBoot
 {
-    internal class BlastBootBehavior : CharacterBody.ItemBehavior
+    public class BlastBootBehavior : CharacterBody.ItemBehavior
     {
         public float timer = 3;
 
         public SkillLocator skillLocator;
 
+
+        public void Awake()
+        {
+            base.enabled = false;
+        }
+
         public void OnEnable()
         {
-            skillLocator = body.skillLocator;
-            
-            body.onSkillActivatedServer += Body_onSkillActivatedServer;
+            if (body)
+            {
+                skillLocator = body.skillLocator;
+                body.onSkillActivatedServer += Body_onSkillActivatedServer;
+            }
         }
 
         public void OnDisable()
         {
-            body.onSkillActivatedServer -= Body_onSkillActivatedServer;
-        }
-        private void Body_onSkillActivatedServer(GenericSkill obj)
-        {
-            if(skillLocator.secondary == obj)
+            skillLocator = null;
+            if (body)
             {
-                if(body.characterMotor && body.characterMotor.isGrounded)
+                body.onSkillActivatedServer -= Body_onSkillActivatedServer;
+            }
+        }
+        private void Body_onSkillActivatedServer(GenericSkill skill)
+        {
+            if (((skillLocator != null) ? skillLocator.secondary : null) == skill && body.characterMotor && !body.characterMotor.isGrounded && timer >= 3)
+            {
+                Vector3 aimer = Vector3.down;
+                for (int j = 0; j < 3 + (stack * 1); j++)
                 {
-                    body.characterMotor.ApplyForce(new Vector3(0, body.jumpPower * 600f, 0), true);
+                    body.characterMotor.velocity.y += body.jumpPower * .3f;
                     body.characterMotor.Motor.ForceUnground();
 
-                    Vector3 aimDirection = Vector3.down;
-
-                    for (int i = 0; i < 3; i++)
-                    {
-                        float theta = UnityEngine.Random.Range(0, 6.28f);
-                        float x = Mathf.Cos(theta);
-                        float z = Mathf.Sin(theta);
-                        float c = i * 0.3777f;
-                        c *= (1f / 12f);
-                        aimDirection.x += c * x;
-                        aimDirection.z += c * z;
-
-                        ProjectileManager.instance.FireProjectile(BlastBoot.firework, transform.position, Util.QuaternionSafeLookRotation(aimDirection),
-                            gameObject, 0.5f + (0.5f * stack), 500, body.RollCrit(), DamageColorIndex.Item);
-                    }
+                    float theta = UnityEngine.Random.Range(0.0f, 6.28f);
+                    float x = Mathf.Cos(theta);
+                    float z = Mathf.Sin(theta);
+                    float c = j * 0.3777f;
+                    c *= (1f / 12f);
+                    aimer.x += c * x;
+                    aimer.z += c * z;
+                    float damage = CCUtilities.GenericFlatStackingFloat(1f, stack, 0.5f);
+                    ProjectileManager.instance.FireProjectile(BlastBoot.fireworkPrefab,
+                        base.transform.position,
+                        Util.QuaternionSafeLookRotation(aimer),
+                        body.gameObject,
+                        damage * body.damage,
+                        500f,
+                        body.RollCrit(),
+                        DamageColorIndex.Item,
+                        null,
+                        -1
+                        );
+                    aimer = Vector3.down;
+                    timer = 0;
                 }
             }
+        }
+
+        public void FixedUpdate()
+        {
+            timer += Time.fixedDeltaTime;
         }
     }
 }

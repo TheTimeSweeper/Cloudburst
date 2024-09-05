@@ -104,7 +104,7 @@ namespace Cloudburst
             if (!items)
                 return;
 
-            //BlastBoot.Setup();
+            BlastBoot.Setup();
             if (Modules.Config.BindAndOptions<bool>("Items", "Enable Bismuth Earrings", true,
                 "Toggles the Bismuth Earrings item.", true).Value)
             {
