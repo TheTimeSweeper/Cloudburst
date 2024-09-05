@@ -83,12 +83,4 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)Assets&quot;&#xD;&#xA;copy /y &quot;$(ProjectDir)..\CloudburstWwise\GeneratedSoundBanks\Windows\WyattBank.bnk&quot; &quot;$(ProjectDir)Assets&quot;" />
-  </Target>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\Release\plugins&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)..\Release\plugins\AssetBundles&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; copy /y &quot;$(ProjectDir)..\CloudburstWwise\GeneratedSoundBanks\Windows\WyattBank.bnk&quot; &quot;$(ProjectDir)..\Release\plugins\Soundbanks&quot;&#xD;&#xA;if exist &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.sound&quot; ( del &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.sound&quot; )&#xD;&#xA;ren &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.bnk&quot; WyattBank.sound&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;E:\r2Profiles\uh help\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;&#xD;&#xA;if &quot;$(Username)&quot; == &quot;Erikbir&quot; Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;C:\EnforcerBuild\plugins\TeamCloudburst-Cloudburst&quot;" />
-  </Target>
-
 </Project>
