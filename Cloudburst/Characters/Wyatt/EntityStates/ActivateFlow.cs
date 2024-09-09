@@ -12,7 +12,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void OnEnter()
         {
             base.OnEnter();
-
+            
             walkman = GetComponent<WyattWalkmanBehavior>();
             if (walkman.flowing == false)
             {

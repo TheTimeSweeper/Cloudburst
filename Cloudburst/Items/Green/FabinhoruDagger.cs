@@ -136,7 +136,16 @@ namespace Cloudburst.Items.Green
             {
                 if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
-                    victimBody.AddTimedBuff(fabinhorusBuff, 2.5f + (2.5f * itemCount));
+                    int buffCount = victimBody.GetBuffCount(fabinhorusBuff);
+                    while(buffCount > 0)
+                    {
+                        victimBody.RemoveOldestTimedBuff(fabinhorusBuff);
+                        buffCount--;
+                    }
+                    for (int i = 0; i < itemCount; i++)
+                    {
+                        victimBody.AddTimedBuff(fabinhorusBuff, 2.5f);
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using System.IO;
 using BepInEx;
+using R2API;
 
 namespace Cloudburst.Modules {
 
@@ -14,7 +15,7 @@ namespace Cloudburst.Modules {
         public static bool printingEnabled => false;
 
         public static PluginInfo Info;
-
+        
         internal static void Init(PluginInfo info)
         {
             Info = info;
@@ -22,6 +23,8 @@ namespace Cloudburst.Modules {
 
         public static void Add(string token, string text)
         {
+            LanguageAPI.Add(token, text, "en");
+
             if (!printingEnabled) return;
 
             //add a token formatted to language file

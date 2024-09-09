@@ -121,6 +121,49 @@ namespace Cloudburst.Characters.Wyatt
                 0f,
                 10,
                 false);
+
+            SpikeDamage = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M2 - SpikeDamage",
+                2f,
+                "value",
+                0,
+                10,
+                false);
+            SpikeDamagePerMeterFell = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M2 - SpikeDamagePerMeterFell",
+                0.36f,
+                "value",
+                0,
+                10,
+                false);
+            SpikeImpactLiftForce = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M2 - SpikeImpactLiftForce",
+                0f,
+                "value",
+                0,
+                100,
+                false);
+
+            SpikeInitialSpeed = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M2 - SpikeInitialSpeed",
+                20f,
+                "value",
+                0,
+                200,
+                false);
+
+            SpikeSpeedGrowth = Config.BindAndOptionsSlider(
+                sectionWyatt,
+                "M2 - SpikeSpeedGrowth",
+                50f,
+                "value",
+                0,
+                100,
+                false);
             #endregion m2
 
             #region m3
@@ -253,52 +296,6 @@ namespace Cloudburst.Characters.Wyatt
                 10,
                 false);
             #endregion m4
-
-            #region misc
-            SpikeDamage = Config.BindAndOptionsSlider(
-                sectionWyatt,
-                "Misc - SpikeDamage",
-                2f,
-                "value",
-                0,
-                10,
-                false);
-            SpikeDamagePerMeterFell = Config.BindAndOptionsSlider(
-                sectionWyatt,
-                "Misc - SpikeDamagePerMeterFell",
-                0.32f,
-                "value",
-                0,
-                10,
-                false);
-            SpikeImpactLiftForce = Config.BindAndOptionsSlider(
-                sectionWyatt,
-                "Misc - SpikeImpactLiftForce",
-                0f,
-                "value",
-                0,
-                100,
-                false);
-
-            SpikeInitialSpeed = Config.BindAndOptionsSlider(
-                sectionWyatt,
-                "Misc - SpikeInitialSpeed",
-                20f,
-                "value",
-                0,
-                200,
-                false);
-
-            SpikeSpeedGrowth = Config.BindAndOptionsSlider(
-                sectionWyatt,
-                "Misc - SpikeSpeedGrowth",
-                50f,
-                "value",
-                0,
-                100,
-                false);
-
-            #endregion
 
         }
     }

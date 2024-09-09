@@ -4,11 +4,14 @@ using System.Runtime.CompilerServices;
 using RiskOfOptions;
 using RiskOfOptions.Options;
 using RiskOfOptions.OptionConfigs;
+using System.IO;
 
 namespace Cloudburst.Modules
 {
     public static class Config
     {
+        private static bool loadedIcon;
+
         public static ConfigEntry<T> BindAndOptions<T>(string section, string name, T defaultValue, string description = "", bool restartRequired = false)
         {
             if (string.IsNullOrEmpty(description))
@@ -44,6 +47,18 @@ namespace Cloudburst.Modules
             if (entry is ConfigEntry<bool>)
             {
                 ModSettingsManager.AddOption(new CheckBoxOption(entry as ConfigEntry<bool>, restartRequired));
+            }
+            if (!loadedIcon)
+            {
+                loadedIcon = true;
+                try
+                {
+                    ModSettingsManager.SetModIcon(LoadSpriteFromModFolder("icon.png"));
+                }
+                catch (System.Exception e)
+                {
+                    Log.Error("error adding ROO mod icon\n" + e);
+                }
             }
         }
 
@@ -85,6 +100,31 @@ namespace Cloudburst.Modules
                 }
             }
             return Input.GetKeyDown(entry.Value.MainKey);
+        }
+
+
+        internal static Sprite LoadSpriteFromModFolder(string fileName, bool pointFilter = false)
+        {
+            string fullFilePath = Path.Combine(Path.GetDirectoryName(Cloudburst.instance.Info.Location), fileName);
+
+            Texture2D texture2D = new Texture2D(2, 2);
+            byte[] data = File.ReadAllBytes(fullFilePath);
+            texture2D.LoadImage(data);
+            texture2D.filterMode = (pointFilter ? FilterMode.Point : FilterMode.Bilinear);
+            texture2D.Apply();
+            if (pointFilter)
+            {
+                texture2D.filterMode = FilterMode.Point;
+                texture2D.Apply();
+            }
+
+            texture2D.name = fileName;
+            texture2D.filterMode = FilterMode.Point;
+            texture2D.Apply();
+            Rect rect = new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height);
+            Sprite sprite = Sprite.Create(texture2D, rect, new Vector2(0.5f, 0.5f), 16f);
+            sprite.name = fileName;
+            return sprite;
         }
     }
 }

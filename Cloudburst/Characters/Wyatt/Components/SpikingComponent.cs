@@ -46,7 +46,7 @@ namespace Cloudburst.Wyatt.Components
                 characterMotor.velocity = Vector3.zero;
                 characterMotor.disableAirControlUntilCollision = true;
 
-                characterMotor.onHitGroundServer += Motor_onHitGround;
+                characterMotor.onHitGroundAuthority += Motor_onHitGround;
             }
 
             initialPositionY = transform.position.y;
@@ -56,7 +56,7 @@ namespace Cloudburst.Wyatt.Components
         {
             if (characterMotor)
             {
-                characterMotor.onHitGroundServer -= Motor_onHitGround;
+                characterMotor.onHitGroundAuthority -= Motor_onHitGround;
             }
         }
 
@@ -82,7 +82,7 @@ namespace Cloudburst.Wyatt.Components
             
             bigSlam(position);
 
-            characterMotor.onHitGroundServer -= Motor_onHitGround;
+            characterMotor.onHitGroundAuthority -= Motor_onHitGround;
 
             Destroy(this);
         }
@@ -116,7 +116,7 @@ namespace Cloudburst.Wyatt.Components
                     damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
                     crit = spikerBody.RollCrit(),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    falloffModel = BlastAttack.FalloffModel.None,
+                    falloffModel = BlastAttack.FalloffModel.SweetSpot,
                     //impactEffect = BandaidConvert.Resources.Load<GameObject>("prefabs/effects/impacteffects/PulverizedEffect").GetComponent<EffectIndex>(),
                     procCoefficient = 1,
                     radius = blastRadius

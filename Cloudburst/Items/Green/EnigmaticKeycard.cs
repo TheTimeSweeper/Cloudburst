@@ -108,13 +108,12 @@ namespace Cloudburst.Items.Green
             orbitalImpactEffect = ParentSlamEffect.InstantiateClone("OrbitalImpactEffect", false);
 
             var particleParent = orbitalImpactEffect.transform.Find("Particles");
-            var debris = particleParent.Find("Debris, 3D");
-            var debris2 = particleParent.Find("Debris");
-            var sphere = particleParent.Find("Nova Sphere");
-
-            debris.gameObject.SetActive(false);
-            debris2.gameObject.SetActive(false);
-            sphere.gameObject.SetActive(false);
+            particleParent.transform.localScale = Vector3.one* 0.3f;
+            particleParent.Find("Debris, 3D").gameObject.SetActive(false);
+            particleParent.Find("Debris").gameObject.SetActive(false);
+            particleParent.Find("Nova Sphere").gameObject.SetActive(false);
+            particleParent.Find("Dust").gameObject.SetActive(false);
+;
 
             ContentAddition.AddEffect(orbitalImpactEffect);
         }
@@ -141,12 +140,12 @@ namespace Cloudburst.Items.Green
                 {
                     float radius = 15;
                     Vector3 origin = victimBody.mainHurtBox.transform.position + (UnityEngine.Random.insideUnitSphere * radius);
-                    EffectManager.SpawnEffect(NullifierSpawnEffect, new EffectData
-                    {
-                        rotation = Quaternion.Euler(victimBody.transform.forward),
-                        scale = 1,
-                        origin = origin
-                    }, false);
+                    //EffectManager.SpawnEffect(NullifierSpawnEffect, new EffectData
+                    //{
+                    //    rotation = Quaternion.Euler(victimBody.transform.forward),
+                    //    scale = 1,
+                    //    origin = origin
+                    //}, false);
 
                     if(NetworkServer.active)
                     {

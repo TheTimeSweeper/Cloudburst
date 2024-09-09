@@ -1,7 +1,0 @@
-{
-    strings:
-    {
-    "EXPANSION_CLOUDBURST_NAME" : "Cloudburst",
-    "EXPANSION_CLOUDBURST_DESCRIPTION" : "Adds content from the mod 'Cloudburst' to the game.",
-    }
-}

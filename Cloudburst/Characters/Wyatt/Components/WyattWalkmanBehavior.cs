@@ -21,7 +21,7 @@ namespace Cloudburst.Wyatt.Components
 
         private float drainTimer = 0;
 
-        private string _currentStage = "Default";
+        private string _currentStageMusic = "Default";
 
         public static Dictionary<string, string> sceneToStageName = new Dictionary<string, string>()
         {
@@ -31,6 +31,10 @@ namespace Cloudburst.Wyatt.Components
             {"blackbeach", "DistantRoost"}    ,
             {"blackbeach2", "DistantRoost"}   ,
             {"snowyforest", "SiphonedForest"}   ,
+            {"lakes", "SiphonedForest"/*"VerdantFalls"*/}   ,
+            {"lakesnight", "SiphonedForest"/*"VerdantFalls"*/}   ,
+            {"village", "AbyssalDepths"/*"ShatteredAbodes"*/}   ,
+            {"villagenight", "AbyssalDepths"/*"ShatteredAbodes"*/}   ,
 
             {"goolake", "AbandonedAqueduct"}   ,
             {"itgoolake", "AbandonedAqueduct"}   ,
@@ -49,10 +53,11 @@ namespace Cloudburst.Wyatt.Components
 
             {"skymeadow", "SkyMeadow" },
             {"itskymeadow", "SkyMeadow" },
+            {"helminthroost", "SkyMeadow"/*"HelminthHatchery"*/ },
 
-            {"moon", "Moon" },
-            {"moon2", "Moon" },
-            {"itmoon", "Moon" },
+            {"moon", "Commencement" },
+            {"moon2", "Commencement" },
+            {"itmoon", "Commencement" },
 
             {"mithrix", "Mithrix" },
 
@@ -60,11 +65,21 @@ namespace Cloudburst.Wyatt.Components
             {"voidstage", "VoidLocus" },
             {"voidraid", "ThePlanetarium" },
 
-            {"artifactworld", "BulwarksAmbry" },
-            {"bazaar", "Bazaar" },
-            {"goldshores", "GildedCoast" },
-            {"limbo", "AMomentWhole" },
+            {"artifactworld", "SirensCall"/*"BulwarksAmbry"*/ },
+            {"artifactworld01", "SirensCall"/*"BulwarksAmbry"*/ },
+            {"artifactworld02", "SirensCall"/*"BulwarksAmbry"*/ },
+            {"artifactworld03", "SirensCall"/*"BulwarksAmbry"*/ },
+            {"bazaar", "AMomentFractured"/*"Bazaar"*/ },
+            {"goldshores", "RallypointDelta"/*"GildedCoast"*/ },
+            {"limbo", "AMomentFractured"/*"AMomentWhole"*/ },
             {"mysteryspace", "AMomentFractured" },
+
+            {"habitat", "AbandonedAqueduct"/*"TreebornColony"*/ },
+            {"habitatfall", "AbandonedAqueduct"/*"TreebornColony"*/ },
+            {"lemuriantemple", "SulfurPools"/*"ReformedAltar"*/ },
+            {"meridian", "Commencement"/*"PrimeMeridian"*/ },
+
+            {"falseSon", "Mithrix"/*"FalseSon"*/ },
         };
 
 
@@ -107,8 +122,8 @@ namespace Cloudburst.Wyatt.Components
             AkSoundEngine.SetRTPCValue("Wyatt_Groove_Volume", WyattConfig.M3FlowMusicVolume.Value);
             if (WyattConfig.M3FlowPlayMusic.Value)
             {
-                SetCurrentStage();
-                Util.PlaySound($"Play_Groove_{_currentStage}_Loop", gameObject);
+                SetCurrentStageMusic();
+                Util.PlaySound($"Play_Groove_{_currentStageMusic}_Loop", gameObject);
             }
         }
         
@@ -119,30 +134,33 @@ namespace Cloudburst.Wyatt.Components
         [ClientRpc]
         private void RpcPStopFlowEFfect()
         {
-            flowEffect.Stop();
+            StopFlow();
+        }
 
+        private void StopFlow()
+        {
+            if (flowEffect != null)
+            {
+                flowEffect.Stop();
+            }
             if (WyattConfig.M3FlowPlayMusic.Value)
             {
-                Util.PlaySound($"Stop_Groove_{_currentStage}_Loop", gameObject);
-                Util.PlaySound($"Play_Groove_{_currentStage}_End", gameObject);
+                Util.PlaySound($"Stop_Groove_{_currentStageMusic}_Loop", gameObject);
             }
         }
         #endregion
-
-        private void Start()
+         
+        void OnEnable()
         {
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
             BossGroup.onBossGroupStartServer += BossGroup_onBossGroupStartServer;
         }
 
-        void OnDestroy() {
+        void OnDisable() {
             On.RoR2.CharacterBody.OnBuffFinalStackLost -= CharacterBody_OnBuffFinalStackLost;
             BossGroup.onBossGroupStartServer -= BossGroup_onBossGroupStartServer;
 
-            if (NetworkServer.active)
-            {
-                StopFlowEffectServer();
-            }
+            StopFlow();
         }
 
         private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
@@ -252,21 +270,28 @@ namespace Cloudburst.Wyatt.Components
         }
 
 
-        private void SetCurrentStage()
+        private void SetCurrentStageMusic()
         {
             //maybe check moon man first
             //check for bosses regardless of stage (linkin park for henry)
 
-            string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-            if (sceneToStageName.ContainsKey(scene))
+            if (MusicController.Instance.currentTrack.cachedName == "muSong25")
             {
-                _currentStage = sceneToStageName[scene];
+                _currentStageMusic = sceneToStageName["mithrix"];
             }
-            if(scene == "moon" || scene == "moon2")
+            else if (MusicController.Instance.currentTrack.cachedName == "muSong_MeridianFSB")
             {
-                //_currentStage = "Mithrix";
+                _currentStageMusic = sceneToStageName["falseSon"];
             }
-            
+            else
+            {
+                string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+                if (sceneToStageName.ContainsKey(scene))
+                {
+                    _currentStageMusic = sceneToStageName[scene];
+                }
+            }
+
             for (int i = 0; i < 10; i++)
             {
                 if (Input.GetKey($"[{i}]"))
@@ -274,25 +299,25 @@ namespace Cloudburst.Wyatt.Components
                     switch (i)
                     {
                         case 0:
-                            _currentStage = "Default";
+                            _currentStageMusic = "Default";
                             break;
                         case 1:
-                            _currentStage = "TitanicPlainsOld";
+                            _currentStageMusic = "TitanicPlainsOld";
                             break;
                         case 2:
-                            _currentStage = "TitanicPlains";
+                            _currentStageMusic = "TitanicPlains";
                             break;
                         case 3:
-                            _currentStage = "DistantRoost";
+                            _currentStageMusic = "DistantRoost";
                             break;
                         case 4:
-                            _currentStage = "SiphonedForest";
+                            _currentStageMusic = "SiphonedForest";
                             break;
                         case 5:
-                            _currentStage = "WetlandAspect";
+                            _currentStageMusic = "WetlandAspect";
                             break;
                         case 6:
-                            _currentStage = "AbandonedAqueduct";
+                            _currentStageMusic = "AbandonedAqueduct";
                             break;
                     }
                 }

@@ -162,7 +162,7 @@ namespace Cloudburst.Characters.Wyatt
         protected override void InitializeCharacterBodyAndModel()
         {
             base.InitializeCharacterBodyAndModel();
-            displayPrefab.AddComponent<FunnyCSSSoundComponent>();
+            displayPrefab.AddComponent<FunnyCSSMenuSoundComponent>();
         }
 
         #region hooks
@@ -217,7 +217,7 @@ namespace Cloudburst.Characters.Wyatt
 
             if (sender.HasBuff(WyattBuffs.wyattAntiGravBuffDef))
             {
-                args.attackSpeedMultAdd -= 0.5f;
+                args.attackSpeedMultAdd -= 0.1f;
                 args.moveSpeedMultAdd -= 0.5f;
             }
         }

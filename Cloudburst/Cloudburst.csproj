@@ -83,4 +83,8 @@
     </Reference>
   </ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if &quot;$(Username)&quot; == &quot;Erikbir&quot; set build=true&#xD;&#xA;&#xD;&#xA;if defined build (&#xD;&#xA;&#xD;&#xA;call weave.bat&#xD;&#xA;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\Release\plugins&quot;&#xD;&#xA;&#xD;&#xA;copy /y &quot;$(ProjectDir)..\CloudBurstUnity\AssetBundles\wyatt&quot; &quot;$(ProjectDir)..\Release\plugins\AssetBundles&quot;&#xD;&#xA;copy /y &quot;$(ProjectDir)..\CloudburstWwise\GeneratedSoundBanks\Windows\WyattBank.bnk&quot; &quot;$(ProjectDir)..\Release\plugins\Soundbanks&quot;&#xD;&#xA;if exist &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.sound&quot; ( del &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.sound&quot; )&#xD;&#xA;ren &quot;$(ProjectDir)..\Release\plugins\Soundbanks\WyattBank.bnk&quot; WyattBank.sound&#xD;&#xA;&#xD;&#xA;Xcopy /E /I /Y &quot;$(ProjectDir)..\Release\plugins&quot; &quot;E:\r2Profiles\Blinx Returns\BepInEx\plugins\TeamCloudburst-Cloudburst&quot;&#xD;&#xA;)" />
+	</Target>
+
 </Project>

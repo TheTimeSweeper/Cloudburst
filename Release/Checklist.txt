@@ -1,6 +1,6 @@
 - no funny debug code (network, language, etc)
 - manifest version
 - mod dll version
-- readme changelog
-- package: plugins, icon, manifest, README
+- changelog
+- package: plugins, icon, manifest, README, CHANGELOG
 - TeamCloudburst upload

@@ -20,11 +20,12 @@ namespace Cloudburst.Items.Gray.BlastBoot
             blastBootItem = ScriptableObject.CreateInstance<ItemDef>();
             blastBootItem.tier = ItemTier.Tier1;
             blastBootItem.deprecatedTier = ItemTier.Tier1;
-            blastBootItem.name = "Blast Boot";
-            blastBootItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("texBlastBoot");
+            blastBootItem.name = "BlastBoot";
+            blastBootItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("blastboots");
             //blastBootItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLBoot");
             blastBootItem.nameToken = "ITEM_SECONDARYBOOST_NAME";
             blastBootItem.descriptionToken = "ITEM_SECONDARYBOOST_DESCRIPTION";
+            blastBootItem.pickupToken = "ITEM_SECONDARYBOOST_PICKUP";
             blastBootItem.loreToken = "ITEM_SECONDARYBOOST_LORE";
             blastBootItem.requiredExpansion = Cloudburst.cloudburstExpansion;
             blastBootItem.tags = new ItemTag[]
@@ -33,7 +34,6 @@ namespace Cloudburst.Items.Gray.BlastBoot
                 ItemTag.Utility
             };
 
-
             CreateProjectile();
 
             ContentAddition.AddItemDef(blastBootItem);
@@ -41,8 +41,8 @@ namespace Cloudburst.Items.Gray.BlastBoot
 
             Modules.Language.Add("ITEM_SECONDARYBOOST_NAME", "Blast Boot");
             Modules.Language.Add("ITEM_SECONDARYBOOST_PICKUP", "Firework-powered double jump upon Secondary Skill activation.");
-            Modules.Language.Add("ITEM_SECONDARYBOOST_DESC", "Activating your Secondary skill also blasts you through the air with a flurry of 4 <style=cStack>(+1)</style> <style=cIsDamage>fireworks that deal 100% <style=cStack>(+50%)</style> damage</style>. This effect has a cooldown of 3 seconds.");
-            Modules.Language.Add("ITEM_SECONDARYBOOST_LORE", "");
+            Modules.Language.Add("ITEM_SECONDARYBOOST_DESCRIPTION", "Activating your Secondary skill also blasts you through the air with a flurry of 4 <style=cStack>(+1)</style> <style=cIsDamage>fireworks that deal 100% <style=cStack>(+50%)</style> damage</style>. This effect has a cooldown of 3 seconds.");
+            Modules.Language.Add("ITEM_SECONDARYBOOST_LORE", "she on my boot til I blast");
         }
 
         public static void CreateProjectile()
@@ -84,9 +84,8 @@ namespace Cloudburst.Items.Gray.BlastBoot
 
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-
-            self.AddItemBehavior<BlastBootBehavior>(self.inventory.GetItemCount(blastBootItem));
             orig(self);
+            self.AddItemBehavior<BlastBootBehavior>(self.inventory.GetItemCount(blastBootItem));
         }
 
         private static void Hooks(ItemDef itemDefToHooks)

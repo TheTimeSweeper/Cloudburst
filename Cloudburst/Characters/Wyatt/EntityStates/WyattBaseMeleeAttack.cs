@@ -96,6 +96,8 @@ namespace Cloudburst.CEntityStates.Wyatt
 
         public override void OnEnter()
         {
+            scaleHitPauseDurationAndVelocityWithAttackSpeed = true;
+
             this.hitBoxGroupName = "HitboxSwing";
             if (isComboFinisher) this.hitBoxGroupName = "HitboxSwingLarge";
             this.mecanimHitboxActiveParameter = stepMecanimActiveParameter;
@@ -104,8 +106,8 @@ namespace Cloudburst.CEntityStates.Wyatt
             if (isComboFinisher) baseDuration = WyattConfig.M1AttackDurationFinisher.Value;// 0.8f;
             //this.duration = this.baseDuration / base.attackSpeedStat;
 
-            this.hitPauseDuration = 0.02f;
-            if (isComboFinisher) hitPauseDuration = 0.1f;
+            this.hitPauseDuration = 0.01f;
+            if (isComboFinisher) hitPauseDuration = 0.05f;
 
             this.damageCoefficient = WyattConfig.M1Damage.Value; //1;
             if (isComboFinisher) damageCoefficient = WyattConfig.M1DamageFinisher.Value;// 2f;

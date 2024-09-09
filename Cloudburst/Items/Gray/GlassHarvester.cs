@@ -50,9 +50,9 @@ namespace Cloudburst.Items.Gray
             Modules.Language.Add("ITEM_GLASSHARVESTER_PICKUP", "Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience.");
             Modules.Language.Add("ITEM_GLASSHARVESTER_DESC", "Gain <style=cIsDamage>5% critical strike chance</style>. <style=cIsDamage>Critical Strikes</style> deal an additional <style=cIsDamage>40% damage</style><style=cStack>(+30% per stack)</style>. Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>breaks</style> this item and grants 15% of your current level's <style=cIsUtility>experience</style>.");
             Modules.Language.Add("ITEM_GLASSHARVESTER_LORE", "Does it harvest glass or does it harvest with glass?\nI don't know and I don't care get out of my house"); ;
-            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_NAME", "Glass Harvester (Broken)");
-            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_PICKUP", "Harvest Reaped. Was it worth the experience?");
-            Modules.Language.Add("ITEM_GLASSHARVESTERCONSUMED_DESC", "A spent item with no remaining power.");
+            Modules.Language.Add("ITEM_ITEMEXPONHITCONSUMED_NAME", "Glass Harvester (Broken)");
+            Modules.Language.Add("ITEM_ITEMEXPONHITCONSUMED_PICKUP", "Harvest Reaped. Was it worth the experience?");
+            Modules.Language.Add("ITEM_ITEMEXPONHITCONSUMED_DESC", "A spent item with no remaining power.");
 
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             IL.RoR2.HealthComponent.UpdateLastHitTime += HealthComponent_UpdateLastHitTime;

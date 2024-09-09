@@ -1,9 +1,8 @@
 ﻿{
-	"author": "TeamCloudburst",
 	"name": "Cloudburst",
-	"version_number": "0.3.4",
+	"version_number": "0.4.0",
 	"website_url": "https://github.com/NotSomeoneElse/Cloudburst/",
-	"description": "TEST A content mod with a new survivor, Custodian (fully multiplayer compatible), and a handful of items",
+	"description": "A content mod with a new survivor, Custodian (fully multiplayer compatible), and a handful of items",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.2113",
 		"RiskofThunder-R2API_Core-5.0.3",

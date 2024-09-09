@@ -30,7 +30,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.3.5";
+        public const string PluginVersion = "0.4.0";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -104,7 +104,11 @@ namespace Cloudburst
             if (!items)
                 return;
 
-            BlastBoot.Setup();
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Blast Boot (wip)", false,
+                "Toggles the Blast Boot item.", true).Value)
+            {
+                BlastBoot.Setup();
+            }
             if (Modules.Config.BindAndOptions<bool>("Items", "Enable Bismuth Earrings", true,
                 "Toggles the Bismuth Earrings item.", true).Value)
             {
@@ -122,7 +126,7 @@ namespace Cloudburst
             {
                 FabinhoruDagger.Setup();
             }
-
+            
             if (Modules.Config.BindAndOptions<bool>("Items", "Enable Glass Harvester", true,
                 "Toggles the Glass Harvester item.", true).Value)
             {
