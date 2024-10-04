@@ -89,8 +89,8 @@ namespace Cloudburst.Items.Green
             if (condition)
             {
                 Material[] array = model.currentOverlays;
-                num += 1;
                 array[num] = overlayMaterial;
+                num += 1;
             }
         }
         private static void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
