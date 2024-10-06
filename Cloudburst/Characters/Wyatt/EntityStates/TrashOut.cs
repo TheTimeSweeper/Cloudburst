@@ -90,7 +90,6 @@ namespace Cloudburst.CEntityStates.Wyatt
 
             if (stage == ActionStage.FoundTarget)
             {
-
                 if (base.isAuthority)
                 {
                     if (this.target)
@@ -99,6 +98,11 @@ namespace Cloudburst.CEntityStates.Wyatt
                         base.characterMotor.velocity = velocity;
                         base.characterDirection.forward = base.characterMotor.velocity.normalized;
                         float distance = Util.SphereVolumeToRadius(target.volume);
+                        if(target.volume > 10000)
+                        {
+                            //dumb hack to fix funny enemies exported from blender wrong
+                            distance *= 0.01f;
+                        }
 
                         if (_stopwatch > 2)
                         {

@@ -2,6 +2,7 @@
 using Cloudburst.Characters.Wyatt;
 using EntityStates.Merc;
 using RoR2;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,6 +11,14 @@ namespace Cloudburst.Wyatt.Components
 {
     public class SpikingComponent : MonoBehaviour
     {
+        public enum MotorType
+        {
+            NONE,
+            CHARACTERMOTOR,
+            RIGIDBODYMOTOR,
+            RIGIDBODY
+        }
+
         public CharacterBody spikerBody;
         public GameObject originalSpiker;
         public float interval = 0;
@@ -17,9 +26,12 @@ namespace Cloudburst.Wyatt.Components
 
         private CharacterMotor characterMotor;
         private RigidbodyMotor rigidMotor;
+        private Rigidbody rigidBody;
+        private MonoBehaviour disabledMotor;
+
         private WyattNetworkCombat networkCombat;
 
-        private bool useRigidBody = false;
+        private MotorType motorType = MotorType.NONE;
         private float stopwatch;
         private float initialPositionY;
         private float currentSpeed;
@@ -34,22 +46,65 @@ namespace Cloudburst.Wyatt.Components
             currentSpeed = WyattConfig.SpikeInitialSpeed.Value;
             speedGrowth = WyattConfig.SpikeSpeedGrowth.Value;
 
+            initialPositionY = transform.position.y;
+
+            CheckMotor();
+        }
+
+        private void CheckMotor()
+        {
             characterMotor = base.gameObject.GetComponent<CharacterMotor>();
-            if (characterMotor == null)
+            if (characterMotor != null)
             {
-                useRigidBody = true;
-                rigidMotor = base.gameObject.GetComponent<RigidbodyMotor>();
-                rigidMotor.moveVector = Vector3.zero;
-            }
-            if (characterMotor)
-            {
+                motorType = MotorType.CHARACTERMOTOR;
                 characterMotor.velocity = Vector3.zero;
                 characterMotor.disableAirControlUntilCollision = true;
 
                 characterMotor.onHitGroundAuthority += Motor_onHitGround;
+                return;
             }
 
-            initialPositionY = transform.position.y;
+            rigidMotor = base.gameObject.GetComponent<RigidbodyMotor>();
+            if (rigidMotor != null)
+            {
+                motorType = MotorType.RIGIDBODYMOTOR;
+                rigidMotor.moveVector = Vector3.zero;
+                return;
+            }
+
+            rigidBody = base.gameObject.GetComponent<Rigidbody>();
+            if (rigidBody != null)
+            {
+                motorType = MotorType.RIGIDBODY;
+
+                disabledMotor = FindOtherMotor();
+                if(disabledMotor != null)
+                {
+                    disabledMotor.enabled = false;
+                }
+
+                rigidBody.velocity = Vector3.zero;
+                return;
+            }
+            //no spikable motors found
+            Destroy(this);
+        }
+
+        private MonoBehaviour FindOtherMotor()
+        {
+            if(TryGetComponent(out HoverVehicleMotor hoverMotor))
+            {
+                return hoverMotor;
+            }
+            if (TryGetComponent(out WheelVehicleMotor wheelMotor))
+            {
+                return wheelMotor;
+            }
+            if (TryGetComponent(out RailMotor railMotor))
+            {
+                return railMotor;
+            }
+            return null;
         }
 
         public void OnDestroy()
@@ -57,6 +112,10 @@ namespace Cloudburst.Wyatt.Components
             if (characterMotor)
             {
                 characterMotor.onHitGroundAuthority -= Motor_onHitGround;
+            }
+            if(disabledMotor != null)
+            {
+                disabledMotor.enabled = true;
             }
         }
 
@@ -93,6 +152,8 @@ namespace Cloudburst.Wyatt.Components
             if (NetworkServer.active)
             {
                 float amountFell = initialPositionY - transform.position.y;
+                if (amountFell < 1)
+                    return;
                 float blastDamage = WyattConfig.SpikeDamage.Value + amountFell * WyattConfig.SpikeDamagePerMeterFell.Value;
                 //Log.Warning("amountFell: " + amountFell + "damage: " + blastDamage);
 
@@ -149,43 +210,17 @@ namespace Cloudburst.Wyatt.Components
         {
             stopwatch += Time.fixedDeltaTime;
 
-            if (characterMotor == null && rigidMotor == null)
-                Destroy(this);
+            //if (characterMotor == null && rigidMotor == null)
+            //    Destroy(this);
 
             if (NetworkServer.active)
             {
                 currentSpeed += speedGrowth * Time.fixedDeltaTime;
-                //if (stopwatch >= (interval - 0.001f))
-                //{
-                //    if (useRigidBody == false)
-                //    {
-                //        characterMotor.ApplyForce((direction * 62.5f * currentSpeed), true, false);
-                //    }
-                //    else
-                //    {
-                //        //rigidMotor.rigid.AddForce((direction * 62.5f * Assaulter2.speedCoefficient), ForceMode.VelocityChange);
-                //    }
-                //}
 
                 if (!hitGround)
                 {
                     Vector3 wow = (direction * 2 * currentSpeed) * Time.fixedDeltaTime;
-                    if (useRigidBody == false)
-                    {
-                        characterMotor.rootMotion += wow;
-                    }
-                    else
-                    {
-                        RaycastHit hitInfo;
-                        if (Physics.Raycast(transform.position, wow, out hitInfo, wow.magnitude * 2, LayerIndex.world.mask))
-                        {
-                            RigidBodyHitGround(hitInfo.point);
-                        }
-                        else
-                        {
-                            rigidMotor.AddDisplacement(wow);
-                        }
-                    }
+                    HandleMotorMove(wow);
                 }
             }
 
@@ -194,6 +229,31 @@ namespace Cloudburst.Wyatt.Components
                 //		protected void PlayCrossfade(string layerName, string animationStateName, float crossfadeDuration)
                 Destroy(this);
                 //base.PlayCrossfade("Fullbody, Override", "BufferEmpty", 0.5f);
+            }
+        }
+
+        private void HandleMotorMove(Vector3 wow)
+        {
+            if(motorType == MotorType.CHARACTERMOTOR)
+            {
+                characterMotor.rootMotion += wow;
+                return; 
+            }
+            RaycastHit hitInfo;
+            if (Physics.Raycast(transform.position, wow, out hitInfo, wow.magnitude * 2, LayerIndex.world.mask))
+            {
+                RigidBodyHitGround(hitInfo.point);
+                return;
+            }
+
+            if (motorType == MotorType.RIGIDBODYMOTOR)
+            {
+                rigidMotor.AddDisplacement(wow);
+            }
+
+            if (motorType == MotorType.RIGIDBODY)
+            {
+                rigidBody.MovePosition(transform.position + wow);
             }
         }
     }

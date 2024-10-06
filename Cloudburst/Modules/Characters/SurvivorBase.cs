@@ -59,7 +59,7 @@ namespace Cloudburst.Modules.Survivors
             survivorDef.bodyPrefab = bodyPrefab;
             survivorDef.displayPrefab = displayPrefab;
             survivorDef.primaryColor = charColor;
-
+            
             survivorDef.cachedName = bodyPrefab.name.Replace("Body", "");
             survivorDef.displayNameToken = tokenPrefix + "NAME";
             survivorDef.descriptionToken = tokenPrefix + "DESCRIPTION";

@@ -40,8 +40,7 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 ## What's next
 - hopefully some housekeeping to get the project workable if other people would like to step in and do stuff
 - more wyatt polish, maybe ancient scepter and all that fun stuff
-
-Realistically this may very well be the only update this mod gets in a long while. We'll see if any optimisim is in order in the coming months, but for now, enjoy
+- enemies if the enemy template happens
 
 ## Credits
 - Enigma - original creator
@@ -52,34 +51,13 @@ Realistically this may very well be the only update this mod gets in a long whil
 - Hyperinvox - concept and design
 - SomeoneElse - recreating the mod. without him, this return wouldn't have happened
 - TheTimesweeper - nu-custodian. without him, this return would have happened 8 months earlier
-- Unknownglaze - custodian jingle
+- Unknownglaze - custodian default jingle
+- NAIRB - custodian stage-specific jingles
 - Spanish Space Inquisition - MAID animations
+- Phreel - coding
 
 ### Translations
 BR Portuguese - Kauzok
 
 If you'd like to translate the mod to your language, see the language text files [here](https://github.com/NotSomeoneElse/Cloudburst/tree/main/Release/plugins/Language).  
 Thanks to those that have and in advance to those that may!
-
-## Changelog
-`0.3.3`
-- null checks galore. hopefully fixed errors from glass harvester, enigmatic keycard, and fabinhoru's dagger
-- fixed bismuth earrings not properly adding barrier on applying bleed
-- added Brazilian Portuguese translation (thanks Kauzok!)
-
-`0.3.2`
-- all items are now in their proper tiers
-  - including broken glass harvester, removing it from the item pool
-- added per-item configs
-
-`0.3.1`
-- added animations for MAID
-- added config to disable jingle when activating flow
-- Bismuth Earrings reworked
-- Glass harvester reworked
-- fixed wyatt becoming eldritch aboniation when emoting
-- fixed issues with fabinhoru's dagger visuals
-- fixed error caused fabinhoru's dagger and/or enigmatic keycard
-
-`0.3.0`
-- redid the whole fuckin thing.

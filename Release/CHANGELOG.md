@@ -1,3 +1,8 @@
+`0.4.1`
+- fixed error with fabinhoru's dagger
+- fixed errors and inconsistent behavior with Custodian m2 spiking stationary enemies
+- fixed Custodian m2 not spiking certain modded enemies (potmobile, frost wisp, probably others)
+
 `0.4.0`
 - fixed for sots
 - Custodian's flow now plays a unique jingle based on each stage
