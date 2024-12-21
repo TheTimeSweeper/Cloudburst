@@ -124,7 +124,7 @@ namespace Cloudburst.CEntityStates.Wyatt
                 //damage = (5f + (characterBody.GetBuffCount(Custodian.instance.wyattCombatDef) * .25f)) * damageStat,
                 damage = damageStat * WyattConfig.M4MaidProjectileDamage.Value,
                 damageColorIndex = RoR2.DamageColorIndex.Default,
-                damageTypeOverride = DamageType.Generic,
+                damageTypeOverride = DamageTypeCombo.GenericSpecial,
                 force = 0,
                 owner = gameObject,
                 position = aimRay.origin,

@@ -31,6 +31,8 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
 
+            overlapAttack.damageType = DamageTypeCombo.GenericPrimary;
+
             R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
         }
 

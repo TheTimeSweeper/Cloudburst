@@ -174,7 +174,7 @@ namespace Cloudburst.Wyatt.Components
                     baseDamage = spikerBody.damage * blastDamage, //3,
                     attackerFiltering = AttackerFiltering.NeverHitSelf,
                     //bonusForce = new Vector3(0, -3000, 0),
-                    damageType = DamageType.Stun1s, //| DamageTypeCore.spiked,
+                    damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Secondary), //| DamageTypeCore.spiked,
                     crit = spikerBody.RollCrit(),
                     damageColorIndex = DamageColorIndex.WeakPoint,
                     falloffModel = BlastAttack.FalloffModel.SweetSpot,

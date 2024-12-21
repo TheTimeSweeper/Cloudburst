@@ -164,6 +164,8 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             base.AuthorityModifyOverlapAttack(overlapAttack);
 
+            overlapAttack.damageType = DamageTypeCombo.GenericPrimary;
+
             R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.applyGroove);
 
             //despite what the animation is playing, decided I want to decide when it lands what the hit does
@@ -172,10 +174,11 @@ namespace Cloudburst.CEntityStates.Wyatt
             {
                 //overlapAttack.damageType = DamageTypeCore.antiGrav | DamageType.Generic;
                 R2API.DamageAPI.AddModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage); 
-            } else
-            {
-                R2API.DamageAPI.RemoveModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage);
-            }
+            } 
+            //else
+            //{
+            //    R2API.DamageAPI.RemoveModdedDamageType(overlapAttack, WyattDamageTypes.antiGravDamage);
+            //}
         }        
 
         public override void PlayAnimation()

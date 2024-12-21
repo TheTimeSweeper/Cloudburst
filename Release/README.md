@@ -58,6 +58,9 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 
 ### Translations
 BR Portuguese - Kauzok
+Chinese (simplified) - Meteorite1014
+French - StyleMyk
+Russian - HEXXEDUDE
 
 If you'd like to translate the mod to your language, see the language text files [here](https://github.com/NotSomeoneElse/Cloudburst/tree/main/Release/plugins/Language).  
 Thanks to those that have and in advance to those that may!

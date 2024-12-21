@@ -1,7 +1,13 @@
+`0.4.2`
+- damagesource fix
+
 `0.4.1`
 - fixed error with fabinhoru's dagger
 - fixed errors and inconsistent behavior with Custodian m2 spiking stationary enemies
 - fixed Custodian m2 not spiking certain modded enemies (potmobile, frost wisp, probably others)
+- added French (thanks StyleMyk!)
+- added Chinese (simpliifed) (thanks Meteorite1014!)
+- previously added Russian but never mentioned it (thanks HEXXEDUDE!)
 
 `0.4.0`
 - fixed for sots
