@@ -29,6 +29,7 @@ namespace Cloudburst.Items.Green
             fabinhorusDaggerItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texFabDagger");
             fabinhorusDaggerItem.tags = new ItemTag[]
             {
+                ItemTag.CanBeTemporary,
                 ItemTag.Damage
             };
 

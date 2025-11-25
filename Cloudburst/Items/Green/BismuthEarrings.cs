@@ -60,12 +60,12 @@ namespace Cloudburst.Items.Green
             //On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
 
-            On.RoR2.DotController.AddDot += DotController_AddDot;
+            On.RoR2.DotController.AddDot_GameObject_float_HurtBox_DotIndex_float_Nullable1_Nullable1_Nullable1 += DotController_AddDot_ForReal;
         }
 
-        private static void DotController_AddDot(On.RoR2.DotController.orig_AddDot orig, DotController self, GameObject attackerObject, float duration, DotController.DotIndex dotIndex, float damageMultiplier, uint? maxStacksFromAttacker, float? totalDamage, DotController.DotIndex? preUpgradeDotIndex)
+        private static void DotController_AddDot_ForReal(On.RoR2.DotController.orig_AddDot_GameObject_float_HurtBox_DotIndex_float_Nullable1_Nullable1_Nullable1 orig, DotController self, GameObject attackerObject, float duration, HurtBox hitHurtBox, DotController.DotIndex dotIndex, float damageMultiplier, uint? maxStacksFromAttacker, float? totalDamage, DotController.DotIndex? preUpgradeDotIndex)
         {
-            orig(self, attackerObject, duration, dotIndex, damageMultiplier, maxStacksFromAttacker, totalDamage, preUpgradeDotIndex);
+            orig(self, attackerObject, duration, hitHurtBox, dotIndex, damageMultiplier, maxStacksFromAttacker, totalDamage, preUpgradeDotIndex);
 
             if (attackerObject == null) return;
             CharacterBody attackerBody = attackerObject.GetComponent<CharacterBody>();

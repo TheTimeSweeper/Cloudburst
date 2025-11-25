@@ -31,7 +31,8 @@ namespace Cloudburst.Items.Gray.BlastBoot
             blastBootItem.tags = new ItemTag[]
             {
                 ItemTag.Damage,
-                ItemTag.Utility
+                ItemTag.Utility,
+                ItemTag.CanBeTemporary,
             };
 
             CreateProjectile();

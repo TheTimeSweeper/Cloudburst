@@ -1,3 +1,9 @@
+`0.4.3`
+- fixed for AC
+- added AC stages and bosses to walkman (re-using other tracks)
+- added canbetemporary flag to items (excluding glass harvester)
+    - any issues let me know
+
 `0.4.2`
 - damagesource fix
 

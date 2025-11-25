@@ -31,11 +31,11 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 ## Items
 | Icon | Name | Description | Tier |
 | - | - | - | - |
-| ![](https://i.imgur.com/3CQySKC.png)    |Glass Harvester | Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience. |Common |
-| ![](https://i.imgur.com/qk3a28Z.png)    |Bismuth Earrings| Gain barrier on applying bleed | Rare |
-| ![](https://i.imgur.com/FJRILzB.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
-| ![](https://i.imgur.com/15l7dNB.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
-| ![](https://i.imgur.com/l3m9Hqp.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Glass Harvester | Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience. |Common |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Bismuth Earrings| Gain barrier on applying bleed | Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
 
 ## What's next
 - hopefully some housekeeping to get the project workable if other people would like to step in and do stuff

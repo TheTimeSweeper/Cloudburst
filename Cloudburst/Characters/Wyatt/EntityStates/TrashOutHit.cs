@@ -8,6 +8,8 @@ namespace Cloudburst.CEntityStates.Wyatt
 {
     public class TrashOutHit : BasicMeleeAttack
     {
+        private bool hit;
+
         public override void OnEnter()
         {
             hitBoxGroupName = "HitboxSwingLarge";
@@ -46,6 +48,7 @@ namespace Cloudburst.CEntityStates.Wyatt
         public override void OnMeleeHitAuthority()
         {
             base.OnMeleeHitAuthority();
+            hit = true;
             WyattNetworkCombat networkCombat = GetComponent<WyattNetworkCombat>();
             for (int i = 0; i < hitResults.Count; i++)
             {
@@ -66,6 +69,11 @@ namespace Cloudburst.CEntityStates.Wyatt
         {
             base.OnExit();
             base.gameObject.layer = LayerIndex.defaultLayer.intVal;
+            //refund if we didn't hit anything
+            if (!hit)
+                skillLocator.secondary.AddOneStock();
+
+            //why is all this shit commented like bro I already redid it all
             //if (!target.healthComponent.body)
             //    return;
             //if (target.healthComponent.GetComponent<SpikingComponent>())

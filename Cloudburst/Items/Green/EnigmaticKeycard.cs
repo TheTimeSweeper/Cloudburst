@@ -38,6 +38,8 @@ namespace Cloudburst.Items.Green
             enigmaticKeycardItem.pickupIconSprite = Cloudburst.OldCloudburstAssets.LoadAsset<Sprite>("Assets/Cloudburst/Items/UESKeycard/icon.png");
             enigmaticKeycardItem.tags = new ItemTag[]
             {
+                ItemTag.CanBeTemporary,
+                ItemTag.CanBeTemporary,
                 ItemTag.Damage
             };
 

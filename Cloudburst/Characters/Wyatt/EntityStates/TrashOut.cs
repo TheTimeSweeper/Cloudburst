@@ -97,6 +97,8 @@ namespace Cloudburst.CEntityStates.Wyatt
                         Vector3 velocity = (target.transform.position - base.transform.position).normalized * 120f;
                         base.characterMotor.velocity = velocity;
                         base.characterDirection.forward = base.characterMotor.velocity.normalized;
+                        float volume = target.volume;
+
                         float distance = Util.SphereVolumeToRadius(target.volume);
                         if(target.volume > 10000)
                         {
@@ -104,13 +106,14 @@ namespace Cloudburst.CEntityStates.Wyatt
                             distance *= 0.01f;
                         }
 
-                        if (_stopwatch > 2)
-                        {
-                            this.activatorSkillSlot.AddOneStock();
-                            this.outer.SetNextStateToMain();
-                        }
+                        //don't cancel. just send it and hope
+                        //if (_stopwatch > 2)
+                        //{
+                        //    this.activatorSkillSlot.AddOneStock();
+                        //    this.outer.SetNextStateToMain();
+                        //}
 
-                        if (Vector3.Distance(base.transform.position, target.transform.position) < distance + 5f && target)
+                        if (target && (_stopwatch > 1f || Vector3.Distance(base.transform.position, target.transform.position) < distance + 5f))
                         {
                             stage = ActionStage.HitTarget;
 

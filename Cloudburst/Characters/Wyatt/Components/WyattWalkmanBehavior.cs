@@ -23,7 +23,16 @@ namespace Cloudburst.Wyatt.Components
 
         private string _currentStageMusic = "Default";
 
-        public static Dictionary<string, string> sceneToStageName = new Dictionary<string, string>()
+        public static Dictionary<string, string> bossMusicTrackDefNameToTrackName = new Dictionary<string, string>()
+        {
+            {"muSong25", "Mithrix" },
+            {"muRaidfightDLC1_07", "Mithrix" }/*"Voidling"*/,
+            {"muSong_MeridianFSB", "Mithrix" }/*"FalseSon"*/,
+            {"muGameplayDLC3_08_SH_Boss", "Mithrix"}/*"SolusWing"*/ ,
+            {"muGameplayDLC3_08_RMX_SolHeart_Boss", "Mithrix"}/*"SolusHeart"*/ ,
+        };
+
+        public static Dictionary<string, string> sceneToTrackName = new Dictionary<string, string>()
         {
             {"golemplains", "TitanicPlains"}  ,
             {"golemplains2", "TitanicPlains"} ,
@@ -42,7 +51,7 @@ namespace Cloudburst.Wyatt.Components
             {"ancientloft", "AphelianSanctuary"}   ,
 
             {"frozenwall", "RallypointDelta"}   ,
-            {"itfrozenwall", "RallypointDelta"}   ,
+            {"itfrozenwall", "RallypointDelta"}   , 
             {"wispgraveyard", "ScorchedAcres"}   ,
             {"sulfurpools", "SulfurPools"}   ,
 
@@ -58,8 +67,6 @@ namespace Cloudburst.Wyatt.Components
             {"moon", "Commencement" },
             {"moon2", "Commencement" },
             {"itmoon", "Commencement" },
-
-            {"mithrix", "Mithrix" },
 
             {"arena", "VoidFields" },
             {"voidstage", "VoidLocus" },
@@ -79,7 +86,17 @@ namespace Cloudburst.Wyatt.Components
             {"lemuriantemple", "SulfurPools"/*"ReformedAltar"*/ },
             {"meridian", "Commencement"/*"PrimeMeridian"*/ },
 
-            {"falseSon", "Mithrix"/*"FalseSon"*/ },
+            {"nest", "AbandonedAqueduct"/*"PretendersPrecipice"*/ },
+            {"ironalluvium", "SulfurPools"/*"IronAlluvium"*/ },
+            {"ironalluvium2", "SulfurPools"/*"IronAlluvium"*/ },
+            {"repurposedcrater", "RallypointDelta"/*"RepurposedCrater"*/ },
+
+            {"conduitcanyon", "SirensCall"/*"ConduitCanyon"*/ },
+            {"solutionalhaunt", "Commencement"/*"SolutionalhHaunt"*/ },
+            {"soluswing", "Mithrix"/*"SolusWing"*/ },
+
+            {"computationalexchange", "AMomentFractured"/*"Sven"*/ },
+            {"solusweb", "AMomentFractured"/*"NeuralSanctum"*/ },
         };
 
 
@@ -204,7 +221,6 @@ namespace Cloudburst.Wyatt.Components
                     }
                 }
             }
-            
         }
 
         [Server]
@@ -272,23 +288,23 @@ namespace Cloudburst.Wyatt.Components
 
         private void SetCurrentStageMusic()
         {
-            //maybe check moon man first
-            //check for bosses regardless of stage (linkin park for henry)
+            //check for bosses regardless of stage (linkin park for henry, any nemeses)
 
-            if (MusicController.Instance.currentTrack.cachedName == "muSong25")
+            bool bossOverride = false;
+
+            string musicTrackDefName = MusicController.Instance.currentTrack.cachedName;
+            if (bossMusicTrackDefNameToTrackName.ContainsKey(musicTrackDefName))
             {
-                _currentStageMusic = sceneToStageName["mithrix"];
+                _currentStageMusic = bossMusicTrackDefNameToTrackName[musicTrackDefName];
+                bossOverride = true;
             }
-            else if (MusicController.Instance.currentTrack.cachedName == "muSong_MeridianFSB")
-            {
-                _currentStageMusic = sceneToStageName["falseSon"];
-            }
-            else
+
+            if (!bossOverride)
             {
                 string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                if (sceneToStageName.ContainsKey(scene))
+                if (sceneToTrackName.ContainsKey(scene))
                 {
-                    _currentStageMusic = sceneToStageName[scene];
+                    _currentStageMusic = sceneToTrackName[scene];
                 }
             }
 

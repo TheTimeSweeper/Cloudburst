@@ -25,6 +25,7 @@ namespace Cloudburst.Items.Green
             japesCloakItem.pickupModelPrefab = Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("IMDLCloak");
             japesCloakItem.tags = new ItemTag[]
             {
+                ItemTag.CanBeTemporary,
                 ItemTag.InteractableRelated,
                 ItemTag.Utility
             };
