@@ -39,7 +39,6 @@ namespace Cloudburst.Items.Green
             enigmaticKeycardItem.tags = new ItemTag[]
             {
                 ItemTag.CanBeTemporary,
-                ItemTag.CanBeTemporary,
                 ItemTag.Damage
             };
 
@@ -133,7 +132,7 @@ namespace Cloudburst.Items.Green
             if ((attackerBody.bodyFlags & CharacterBody.BodyFlags.Masterless) == CharacterBody.BodyFlags.Masterless) return;
             if (attackerBody.inventory == null) return;
 
-            int itemCount = attackerBody.inventory.GetItemCount(enigmaticKeycardItem);
+            int itemCount = attackerBody.inventory.GetItemCountEffective(enigmaticKeycardItem);
             if(itemCount > 0)
             {
                 CharacterMaster master = attackerBody.master;

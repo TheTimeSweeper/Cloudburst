@@ -86,7 +86,7 @@ namespace Cloudburst.Items.Gray.BlastBoot
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
-            self.AddItemBehavior<BlastBootBehavior>(self.inventory.GetItemCount(blastBootItem));
+            self.AddItemBehavior<BlastBootBehavior>(self.inventory.GetItemCountEffective(blastBootItem));
         }
 
         private static void Hooks(ItemDef itemDefToHooks)

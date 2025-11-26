@@ -28,6 +28,7 @@ namespace Cloudburst.Items.Gray
             {
                 ItemTag.Damage,
                 ItemTag.LowHealth,
+                ItemTag.CanBeTemporary
             }
             ;
             glassHarvesterConsumedItem = ScriptableObject.CreateInstance<ItemDef>();
@@ -42,6 +43,7 @@ namespace Cloudburst.Items.Gray
                 ItemTag.CannotCopy,
                 ItemTag.CannotSteal,
                 ItemTag.CannotDuplicate,
+                ItemTag.CanBeTemporary
             };
             ContentAddition.AddItemDef(glassHarvesterItem);
             ContentAddition.AddItemDef(glassHarvesterConsumedItem);
@@ -65,12 +67,25 @@ namespace Cloudburst.Items.Gray
             if (self.body.master == null) return;
             if (self.body.inventory == null) return;
 
-            int itemCount = self.body.inventory.GetItemCount(glassHarvesterItem);
+            int itemCount = self.body.inventory.GetItemCountEffective(glassHarvesterItem);
 
             if (itemCount > 0 && self.isHealthLow)
             {
-                self.body.inventory.RemoveItem(glassHarvesterItem, itemCount);
-                self.body.inventory.GiveItem(glassHarvesterConsumedItem, itemCount); 
+                //self.body.inventory.RemoveItem(glassHarvesterItem, itemCount);
+                //self.body.inventory.GiveItem(glassHarvesterConsumedItem, itemCount); 
+
+                Inventory inventory = self.body.inventory;
+
+                Inventory.ItemTransformation itemTransformation = new Inventory.ItemTransformation
+                {
+                    originalItemIndex = glassHarvesterItem.itemIndex,
+                    newItemIndex = glassHarvesterConsumedItem.itemIndex
+                };
+
+                if (itemTransformation.TryTake(inventory, out Inventory.ItemTransformation.TakeResult takeResult))
+                {
+                    takeResult.GiveTakenItem(inventory, itemTransformation.newItemIndex);
+                }
 
                 CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, glassHarvesterItem.itemIndex, glassHarvesterConsumedItem.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
             }
@@ -110,7 +125,7 @@ namespace Cloudburst.Items.Gray
         {
             if(sender && sender.inventory)
             {
-                int itemCount = sender.inventory.GetItemCount(glassHarvesterItem);
+                int itemCount = sender.inventory.GetItemCountEffective(glassHarvesterItem);
                 args.critAdd += itemCount > 0 ? 5 : 0;
                 args.critDamageMultAdd += itemCount > 0 ? itemCount * 0.30f + 0.10f : 0;
             }

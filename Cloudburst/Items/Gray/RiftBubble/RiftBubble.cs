@@ -97,7 +97,7 @@ namespace Cloudburst.Items.Gray.RiftBubble
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
 
-            self.AddItemBehavior<RiftBehaviour>(self.inventory.GetItemCount(riftBubbleItem));
+            self.AddItemBehavior<RiftBehaviour>(self.inventory.GetItemCountEffective(riftBubbleItem));
             orig(self);
         }
     }

@@ -99,7 +99,7 @@ namespace Cloudburst.Items.Green
             orig(self);
             if (self.inventory)
             {
-                if (self.inventory.GetItemCount(fabinhorusDaggerItem) > 0)
+                if (self.inventory.GetItemCountEffective(fabinhorusDaggerItem) > 0)
                 {
                     self.bleedChance += 5;
                 }
@@ -131,9 +131,9 @@ namespace Cloudburst.Items.Green
             Inventory inventory = attackerBody.inventory;
             if (!inventory) return;
 
-            int itemCount = inventory.GetItemCount(fabinhorusDaggerItem);
+            int itemCount = inventory.GetItemCountEffective(fabinhorusDaggerItem);
 
-            if (inventory && inventory.GetItemCount(fabinhorusDaggerItem) > 0)
+            if (inventory && inventory.GetItemCountEffective(fabinhorusDaggerItem) > 0)
             {
                 if(victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || victimBody.HasBuff(RoR2Content.Buffs.SuperBleed))
                 {
