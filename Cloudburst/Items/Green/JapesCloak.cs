@@ -91,7 +91,7 @@ Addendum: WHO. IN GOD ABOVE’S HOLY NAME. TOOK. MY. CIGARETTES??”""");
         private static void GenericPickupController_AttemptGrant(On.RoR2.GenericPickupController.orig_AttemptGrant orig, GenericPickupController self, CharacterBody body)
         {
             orig(self, body);
-            int itemCount = body.inventory.GetItemCount(japesCloakItem);
+            int itemCount = body.inventory.GetItemCountEffective(japesCloakItem);
             if (itemCount > 0)
             {
                 int buffCount = body.GetBuffCount(japesBuff);

@@ -46,7 +46,8 @@ namespace Cloudburst.Items.Green
             bismuthEarringsItem.pickupIconSprite = Cloudburst.CloudburstAssets.LoadAsset<Sprite>("texBismuthEarring");
             bismuthEarringsItem.tags = new ItemTag[]
             {
-                ItemTag.Healing
+                ItemTag.Healing,
+                ItemTag.CanBeTemporary
             };
 
             ContentAddition.AddItemDef(bismuthEarringsItem);
@@ -72,7 +73,7 @@ namespace Cloudburst.Items.Green
             if (attackerBody == null) return;
             if (attackerBody.inventory == null) return;
             
-            int itemCount = attackerBody.inventory.GetItemCount(bismuthEarringsItem);
+            int itemCount = attackerBody.inventory.GetItemCountEffective(bismuthEarringsItem);
             if (itemCount <= 0)
                 return;
             if (bleedBuffs.Contains(DotController.dotDefs[(int)dotIndex].associatedBuff))
@@ -109,7 +110,7 @@ namespace Cloudburst.Items.Green
             orig(self);
             if (self.inventory)
             {
-                if (self.inventory.GetItemCount(bismuthEarringsItem) > 0)
+                if (self.inventory.GetItemCountEffective(bismuthEarringsItem) > 0)
                 {
                     self.bleedChance += 5;
                 }
@@ -121,7 +122,7 @@ namespace Cloudburst.Items.Green
             orig(self, body, damageInfo, master, procCoefficient, procChainMask);
             if (body.inventory)
             {
-                int earringCount = body.inventory.GetItemCount(bismuthEarringsItem);
+                int earringCount = body.inventory.GetItemCountEffective(bismuthEarringsItem);
                 if (earringCount > 0)
                 {
                     body.healthComponent.AddBarrier(BaseBarrier + (earringCount - 1) * StackingBarrier);
