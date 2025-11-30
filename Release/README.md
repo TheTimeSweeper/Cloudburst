@@ -31,11 +31,11 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 ## Items
 | Icon | Name | Description | Tier |
 | - | - | - | - |
-| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Glass Harvester | Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience. |Common |
-| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Bismuth Earrings| Gain barrier on applying bleed | Rare |
-| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
-| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
-| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/wyattscren.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/glas.png)    |Glass Harvester | Your 'Critical Strikes' deal an additional 40% damage. Breaks at low health, granting experience. |Common |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/bism.png)    |Bismuth Earrings| Gain barrier on applying bleed | Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/fab.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/jape.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
+| ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/enig.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
 
 ## What's next
 - hopefully some housekeeping to get the project workable if other people would like to step in and do stuff
@@ -57,10 +57,10 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 - Phreel - coding
 
 ### Translations
-BR Portuguese - Kauzok
-Chinese (simplified) - Meteorite1014
-French - StyleMyk
-Russian - HEXXEDUDE
+BR Portuguese - Kauzok  
+Chinese (simplified) - Meteorite1014  
+French - StyleMyk  
+Russian - HEXXEDUDE  
 
 If you'd like to translate the mod to your language, see the language text files [here](https://github.com/NotSomeoneElse/Cloudburst/tree/main/Release/plugins/Language).  
 Thanks to those that have and in advance to those that may!

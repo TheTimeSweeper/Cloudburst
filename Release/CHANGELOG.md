@@ -1,3 +1,11 @@
+`0.4.5`
+- updating code calls to getitemcounteffective
+- making glass harverster work as a temporary item
+
+`0.4.4`
+- hack fix for spiking Solus Amalgamator because the idiot who probably has a cool mustache fucke up the hurtboxes
+- fixed readme images being racist to the british
+
 `0.4.3`
 - fixed for AC
 - added AC stages and bosses to walkman (re-using other tracks)
