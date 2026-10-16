@@ -4,8 +4,8 @@ sorry it took so long or whatever, and sorry it's gonna take even longer to get 
 ## This is a BETA
 Just whatever we have developed at the time. The survivor Custodian, and a few items.
 - Custodian is fully functional and networked. Absolutely feel free to reach out in the Cloudburst server https://discord.gg/MNDh59sf2N for bugs and feedback
-- Items are small selection of what was there before, plus some reworks and new ones.
-- All other previous content is not here.
+- Items are what was there before, plus some reworks and new ones.
+- All the items and equipment from the old 0.2.8 release are back, along with the old Engineer skills. Other previous content (enemies, other survivors, stage variants) is not here.
 ### What happened?
 I wonder if there are people who don't even know about CUM right now?  
 Ages ago there were four nations that lived in harmony. Starstorm 2, Enforcer Gang, Cloudburst, and Hopoo, but everything changed when Hopoo attacked.  
@@ -34,6 +34,16 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 | ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/fab.png)    |Fabinhoru's Dagger| Striking bleeding enemies reduces their armor. | Rare |
 | ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/jape.png)    |Jape's Cloak| Gain a buff that grants armor and healing on item pickup. |Rare |
 | ![](https://raw.githubusercontent.com/NotSomeoneElse/Cloudburst/main/Release/_readme/enig.png)    |Enigmatic Keycard |Chance to spawn an orb on hit that follows and shocks enemies. |Rare |
+| ![](https://i.imgur.com/P4vrjXn.png)    |Mechanical Trinket | Increase the radius of any holdout zones and summon drones when the teleporter is activated. | Rare |
+| ![](https://i.imgur.com/30yAXvZ.png)    |Restless Rings | Every 10 seconds, gain a buff that can grant you armor, or regeneration, or attack speed. | Rare |
+| ![](https://i.imgur.com/13PVopo.png)    |Lemdog | Chance for debuffs to become beneficial buffs when applied. Also extend the duration of buffs. | Legendary |
+| ![](https://i.imgur.com/7J364nV.png)    |Extractor | Bosses have a chance to drop a boss item on death. Nearby projectiles are also destroyed, gain barrier for each destroyed projectile. *(disabled by default, enable in config)* | Legendary |
+| ![](https://i.imgur.com/bjT24jY.png)    |The Lumpkin | And his screams were Brazilian... | Equipment |
+
+## Engineer
+Two old Cloudburst Engineer skills are back (can be disabled in config):
+- **Impact Grenades** (Primary) - Fire an impact grenade from each cannon that explodes on contact.
+- **TR27 Immolator Turret** (Special) - Place a mobile flamethrower turret that ignites enemies and explodes on death. Can place up to 4.
 
 ## What's next
 - hopefully some housekeeping to get the project workable if other people would like to step in and do stuff

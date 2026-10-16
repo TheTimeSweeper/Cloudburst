@@ -5,6 +5,9 @@ using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
 using Cloudburst.Items.Gray.RiftBubble;
 using Cloudburst.Items.Green;
+using Cloudburst.Items.Green.RestlessRings;
+using Cloudburst.Items.Red;
+using Cloudburst.Items.Equipment;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -22,6 +25,7 @@ using UnityEngine.UI;
 namespace Cloudburst
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
+    [BepInDependency(DirectorAPI.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
@@ -30,7 +34,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.4.7";
+        public const string PluginVersion = "0.4.8";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -72,6 +76,18 @@ namespace Cloudburst
 
             Modules.Language.PrintOutput("Items.txt");
 
+            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Engineer Skills", true,
+                "Adds the old Cloudburst Engineer skills: Impact Grenades and the TR27 Immolator Turret.", true).Value)
+            {
+                Characters.Engineer.EngineerContent.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Clay Guardsman", false,
+                "Adds the Clay Guardsman enemy. Its spawn stages are set in the Clay Guardsman section.", true).Value)
+            {
+                Enemies.Guardsman.Guardsman.Setup();
+            }
+
             //todo dlc4 itemdisplays
             //Modules.ItemDisplays.PopulateDisplays();
             
@@ -105,7 +121,7 @@ namespace Cloudburst
             if (!items)
                 return;
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Blast Boot (wip)", false,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Blast Boot", true,
                 "Toggles the Blast Boot item.", true).Value)
             {
                 BlastBoot.Setup();
@@ -139,7 +155,42 @@ namespace Cloudburst
             {
                 JapesCloak.Setup();
             }
-            //RiftBubble.Setup();
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Mechanical Trinket", true,
+                "Toggles the Mechanical Trinket item.", true).Value)
+            {
+                MechanicalTrinket.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Restless Rings", true,
+                "Toggles the Restless Rings item.", true).Value)
+            {
+                RestlessRings.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Lemdog", true,
+                "Toggles the Lemdog item.", true).Value)
+            {
+                Lemdog.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Extractor", false,
+                "Toggles the Extractor item. Disabled by default since it overlaps heavily with Sonorous Whispers.", true).Value)
+            {
+                Extractor.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable The Lumpkin", true,
+                "Toggles The Lumpkin equipment.", true).Value)
+            {
+                Lumpkin.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Rift Bubble", true,
+                "Toggles the Rift Bubble item.", true).Value)
+            {
+                RiftBubble.Setup();
+            }
         }
 
         public void GetBundle()

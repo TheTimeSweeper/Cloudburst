@@ -1,3 +1,14 @@
+`unreleased`
+- revived the rest of the old 0.2.8 items:
+    - Mechanical Trinket (green)
+    - Restless Rings (green)
+    - Lemdog (red)
+    - Extractor (red) - disabled by default since it overlaps with Sonorous Whispers
+    - The Lumpkin (equipment)
+- revived the old Engineer skills: Impact Grenades and TR27 Immolator Turret
+- revived items have item displays for vanilla survivors
+- all new content can be toggled in config
+
 `0.4.7`
 - temp update for HC. custodian item displays disabled.
 - known issue: MAID seems to have trouble registering she has returned to you for a bit

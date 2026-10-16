@@ -10,27 +10,38 @@ namespace Cloudburst.Items.Gray.RiftBubble
     {
         public GameObject indicatorInstance;
         public BuffWard ward;
+
+        public void Awake()
+        {
+            //AddItemBehavior only sets body after AddComponent, so wait for it to enable us
+            base.enabled = false;
+        }
+
         public void OnEnable()
         {
+            //every client spawns its own bubble for the visuals, BuffWard only hands out the debuff on the server
             indicatorInstance = Instantiate(RiftBubble.riftBubbleIndicator, transform);
-            if (indicatorInstance != null)
-            {
-                ward = indicatorInstance.GetComponent<BuffWard>();
-                ward.teamFilter.teamIndex = TeamComponent.GetObjectTeam(gameObject);
-            }
+            indicatorInstance.GetComponent<TeamFilter>().teamIndex = body.teamComponent.teamIndex;
+            ward = indicatorInstance.GetComponent<BuffWard>();
+            UpdateRadius();
         }
 
         public void FixedUpdate()
         {
-            if (ward != null)
+            UpdateRadius();
+        }
+
+        private void UpdateRadius()
+        {
+            if (ward)
             {
-                ward.radius = stack * 5;
+                ward.radius = RiftBubble.BaseRadius + RiftBubble.StackingRadius * (stack - 1) + body.radius;
             }
         }
 
         public void OnDisable()
         {
-            if (indicatorInstance != null)
+            if (indicatorInstance)
             {
                 Destroy(indicatorInstance);
             }
