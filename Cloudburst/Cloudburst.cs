@@ -5,6 +5,9 @@ using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
 using Cloudburst.Items.Gray.RiftBubble;
 using Cloudburst.Items.Green;
+using Cloudburst.Items.Green.RestlessRings;
+using Cloudburst.Items.Red;
+using Cloudburst.Items.Equipment;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -72,6 +75,12 @@ namespace Cloudburst
 
             Modules.Language.PrintOutput("Items.txt");
 
+            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Engineer Skills", true,
+                "Adds the old Cloudburst Engineer skills: Impact Grenades and the TR27 Immolator Turret.", true).Value)
+            {
+                Characters.Engineer.EngineerContent.Setup();
+            }
+
             //todo dlc4 itemdisplays
             //Modules.ItemDisplays.PopulateDisplays();
             
@@ -138,6 +147,36 @@ namespace Cloudburst
                 "Toggles the Jape's Cloak item.", true).Value)
             {
                 JapesCloak.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Mechanical Trinket", true,
+                "Toggles the Mechanical Trinket item.", true).Value)
+            {
+                MechanicalTrinket.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Restless Rings", true,
+                "Toggles the Restless Rings item.", true).Value)
+            {
+                RestlessRings.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Lemdog", true,
+                "Toggles the Lemdog item.", true).Value)
+            {
+                Lemdog.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Extractor", false,
+                "Toggles the Extractor item. Disabled by default since it overlaps heavily with Sonorous Whispers.", true).Value)
+            {
+                Extractor.Setup();
+            }
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable The Lumpkin", true,
+                "Toggles The Lumpkin equipment.", true).Value)
+            {
+                Lumpkin.Setup();
             }
             //RiftBubble.Setup();
         }

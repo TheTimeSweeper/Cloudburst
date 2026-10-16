@@ -207,5 +207,56 @@ namespace Cloudburst.Modules
             };
         }
         #endregion add rule helpers
+
+        #region custom item display helpers
+
+        /// <summary>
+        /// clones an item model into a display prefab with an ItemDisplay component, for use with R2API's ItemDisplayRuleDict
+        /// </summary>
+        public static GameObject CreateItemDisplayPrefab(GameObject model, string name)
+        {
+            if (model == null)
+            {
+                Log.Error("could not create item display " + name + ", model is null");
+                return null;
+            }
+
+            GameObject display = R2API.PrefabAPI.InstantiateClone(model, name, false);
+
+            ItemDisplay itemDisplay = display.GetComponent<ItemDisplay>();
+            if (!itemDisplay)
+                itemDisplay = display.AddComponent<ItemDisplay>();
+
+            itemDisplay.rendererInfos = GatherRendererInfos(display);
+
+            return display;
+        }
+
+        public static CharacterModel.RendererInfo[] GatherRendererInfos(GameObject obj)
+        {
+            List<CharacterModel.RendererInfo> rendererInfos = new List<CharacterModel.RendererInfo>();
+
+            foreach (Renderer renderer in obj.GetComponentsInChildren<Renderer>(true))
+            {
+                if (renderer is ParticleSystemRenderer)
+                    continue;
+
+                rendererInfos.Add(new CharacterModel.RendererInfo
+                {
+                    renderer = renderer,
+                    defaultMaterial = renderer.sharedMaterial,
+                    defaultShadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On,
+                    ignoreOverlays = false
+                });
+            }
+
+            return rendererInfos.ToArray();
+        }
+
+        public static ItemDisplayRule[] CreateDisplayRuleArray(GameObject itemPrefab, string childName, Vector3 position, Vector3 rotation, Vector3 scale)
+        {
+            return new ItemDisplayRule[] { CreateDisplayRule(itemPrefab, childName, position, rotation, scale) };
+        }
+        #endregion custom item display helpers
     }
 }
