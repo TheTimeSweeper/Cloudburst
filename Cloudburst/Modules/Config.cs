@@ -48,6 +48,10 @@ namespace Cloudburst.Modules
             {
                 ModSettingsManager.AddOption(new CheckBoxOption(entry as ConfigEntry<bool>, restartRequired));
             }
+            if (entry is ConfigEntry<string>)
+            {
+                ModSettingsManager.AddOption(new StringInputFieldOption(entry as ConfigEntry<string>, restartRequired));
+            }
             if (!loadedIcon)
             {
                 loadedIcon = true;

@@ -4,6 +4,7 @@ using System.Text;
 using R2API;
 using RoR2;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using static Cloudburst.Modules.ItemDisplays;
 
 namespace Cloudburst.Items.Equipment
@@ -52,6 +53,13 @@ namespace Cloudburst.Items.Equipment
         {
             screamEffect = PrefabAPI.InstantiateClone(Cloudburst.OldCloudburstAssets.LoadAsset<GameObject>("LumpkinScreamEffect"), "LumpkinScreamEffect", false);
 
+            //the particle renderers ship with no materials, old cloudburst swapped vanilla ones in at runtime. without this they render pink
+            SetParticleMaterial("Particles/Dust (1)", "RoR2/Base/Common/VFX/matOpaqueDustLarge.mat");
+            SetParticleMaterial("Particles/StarsButReal", "RoR2/Base/Common/VFX/matStunStar.mat");
+            SetParticleMaterial("Particles/Dust", "RoR2/Base/Common/VFX/matOpaqueDustTrail.mat");
+            SetParticleMaterial("Particles/Dust,Edge", "RoR2/Base/Common/VFX/matOpaqueDustLarge.mat");
+            SetParticleMaterial("Particles/Ring", "RoR2/Base/Common/VFX/matEquipmentTrail.mat");
+
             EffectComponent effectComponent = screamEffect.AddComponent<EffectComponent>();
             effectComponent.applyScale = true;
             effectComponent.positionAtReferencedTransform = false;
@@ -75,6 +83,20 @@ namespace Cloudburst.Items.Equipment
             screamEffect.AddComponent<DestroyOnTimer>().duration = 2f;
 
             ContentAddition.AddEffect(screamEffect);
+        }
+
+        private static void SetParticleMaterial(string childPath, string materialAddress)
+        {
+            Transform child = screamEffect.transform.Find(childPath);
+            if (!child)
+            {
+                Log.Warning("Lumpkin scream effect is missing child " + childPath);
+                return;
+            }
+            Material material = Addressables.LoadAssetAsync<Material>(materialAddress).WaitForCompletion();
+            ParticleSystemRenderer renderer = child.GetComponent<ParticleSystemRenderer>();
+            renderer.sharedMaterial = material;
+            renderer.trailMaterial = material;
         }
 
         private static bool EquipmentSlot_PerformEquipmentAction(On.RoR2.EquipmentSlot.orig_PerformEquipmentAction orig, EquipmentSlot self, EquipmentDef equipmentDef)

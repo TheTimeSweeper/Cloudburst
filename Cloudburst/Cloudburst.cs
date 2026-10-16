@@ -25,6 +25,7 @@ using UnityEngine.UI;
 namespace Cloudburst
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
+    [BepInDependency(DirectorAPI.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
@@ -33,7 +34,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.4.7";
+        public const string PluginVersion = "0.4.8";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -81,6 +82,12 @@ namespace Cloudburst
                 Characters.Engineer.EngineerContent.Setup();
             }
 
+            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Clay Guardsman", false,
+                "Adds the Clay Guardsman enemy. Its spawn stages are set in the Clay Guardsman section.", true).Value)
+            {
+                Enemies.Guardsman.Guardsman.Setup();
+            }
+
             //todo dlc4 itemdisplays
             //Modules.ItemDisplays.PopulateDisplays();
             
@@ -114,7 +121,7 @@ namespace Cloudburst
             if (!items)
                 return;
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Blast Boot (wip)", false,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Blast Boot", true,
                 "Toggles the Blast Boot item.", true).Value)
             {
                 BlastBoot.Setup();
@@ -178,7 +185,12 @@ namespace Cloudburst
             {
                 Lumpkin.Setup();
             }
-            //RiftBubble.Setup();
+
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Rift Bubble", true,
+                "Toggles the Rift Bubble item.", true).Value)
+            {
+                RiftBubble.Setup();
+            }
         }
 
         public void GetBundle()

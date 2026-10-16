@@ -32,6 +32,7 @@
 	  <PackageReference Include="R2API.Items" Version="1.*" />
 	  <PackageReference Include="R2API.Sound" Version="1.*" />
 	  <PackageReference Include="R2API.TempVisualEffect" Version="1.*" />
+	  <PackageReference Include="R2API.Director" Version="3.*" />
   </ItemGroup>
 
   <ItemGroup>
