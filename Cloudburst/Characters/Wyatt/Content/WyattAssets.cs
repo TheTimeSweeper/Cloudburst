@@ -88,6 +88,7 @@ namespace Cloudburst.Characters.Wyatt
 
             ProjectileController projectileController = maidProjectilePrefab.GetComponent<ProjectileController>();
             projectileController.ghostPrefab = goost;
+            projectileController.ghostPrefabAddress = null;
             projectileController.procCoefficient = 1;
             projectileController.allowPrediction = false;
             maidProjectilePrefab.GetComponent<ProjectileDotZone>().fireFrequency = 0.5f;

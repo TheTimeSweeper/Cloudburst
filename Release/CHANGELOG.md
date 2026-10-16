@@ -1,3 +1,10 @@
+`0.4.7`
+- temp update for HC. custodian item displays disabled.
+- known issue: MAID seems to have trouble registering she has returned to you for a bit
+
+`0.4.6`
+- removed developer from credits at request
+
 `0.4.5`
 - updating code calls to getitemcounteffective
 - making glass harverster work as a temporary item

@@ -4,9 +4,7 @@ sorry it took so long or whatever, and sorry it's gonna take even longer to get 
 ## This is a BETA
 Just whatever we have developed at the time. The survivor Custodian, and a few items.
 - Custodian is fully functional and networked. Absolutely feel free to reach out in the Cloudburst server https://discord.gg/MNDh59sf2N for bugs and feedback
-- Items are incomplete and untested for networking, balance, bugs, or anything like that, but I be*lieve* they're working. 
-  - Feel free to report in the server as well about them I suppose. 
-  - You can turn them all off in the config (not individually, sorry) if there is an issue (or if you just want Custodian)
+- Items are small selection of what was there before, plus some reworks and new ones.
 - All other previous content is not here.
 ### What happened?
 I wonder if there are people who don't even know about CUM right now?  
@@ -48,13 +46,12 @@ His gameplay involves manipulating enemies' gravity to his advantage. Use your G
 - Box - concept and design
 - f4uxx - concept and design
 - Tiltedhat - concept and design
-- Hyperinvox - concept and design
 - SomeoneElse - recreating the mod. without him, this return wouldn't have happened
 - TheTimesweeper - nu-custodian. without him, this return would have happened 8 months earlier
 - Unknownglaze - custodian default jingle
 - NAIRB - custodian stage-specific jingles
 - Spanish Space Inquisition - MAID animations
-- Phreel - coding
+- Phreel - coding and fixes
 
 ### Translations
 BR Portuguese - Kauzok  

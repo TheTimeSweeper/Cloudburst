@@ -30,7 +30,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.4.5";
+        public const string PluginVersion = "0.4.7";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -72,7 +72,8 @@ namespace Cloudburst
 
             Modules.Language.PrintOutput("Items.txt");
 
-            Modules.ItemDisplays.PopulateDisplays();
+            //todo dlc4 itemdisplays
+            //Modules.ItemDisplays.PopulateDisplays();
             
             new WyattSurvivor().Initialize();
 

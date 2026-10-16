@@ -52,7 +52,7 @@ namespace Cloudburst.Items.Gray.BlastBoot
             GameObject orig = Addressables.LoadAssetAsync<GameObject>(key: "041fe0a68f990b843acd9652941f8f87").WaitForCompletion();
 
             ProjectileController controler = firework.GetComponent<ProjectileController>();
-            controler.ghostPrefab = orig.GetComponent<ProjectileController>().ghostPrefab;
+            controler.ghostPrefabAddress = orig.GetComponent<ProjectileController>().ghostPrefabAddress;
 
             foreach (var soundEvents in firework.GetComponents<AkEvent>())
             {

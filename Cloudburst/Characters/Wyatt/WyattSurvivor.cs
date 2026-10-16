@@ -58,8 +58,8 @@ namespace Cloudburst.Characters.Wyatt
         public override UnlockableDef characterUnlockableDef => null;
 
         public override Type characterMainState => typeof(GenericCharacterMain);
-
-        public override ItemDisplaysBase itemDisplays => new WyattItemDisplays();
+                                                              //todo dlc4 itemdisplays
+        public override ItemDisplaysBase itemDisplays => null;// new WyattItemDisplays();
 
         private static UnlockableDef masterySkinUnlockableDef;
 
@@ -175,10 +175,10 @@ namespace Cloudburst.Characters.Wyatt
             On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
 
-            On.RoR2.GenericSkill.RunRecharge += GenericSkill_RunRecharge;
+            On.RoR2.GenericSkill.RunRecharge_float += GenericSkill_RunRecharge;
         }
 
-        private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge orig, GenericSkill self, float dt)
+        private void GenericSkill_RunRecharge(On.RoR2.GenericSkill.orig_RunRecharge_float orig, GenericSkill self, float dt)
         {
             if (self == null && self.characterBody == null) return;
 
