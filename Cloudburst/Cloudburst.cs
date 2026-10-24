@@ -29,6 +29,7 @@ namespace Cloudburst
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.weliveinasociety.CustomEmotesAPI", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("droppod.lookingglass", BepInDependency.DependencyFlags.SoftDependency)]
     public class Cloudburst : BaseUnityPlugin
     {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
@@ -75,6 +76,12 @@ namespace Cloudburst
             SetupItems();
 
             Modules.Language.PrintOutput("Items.txt");
+
+            if (Modules.LookingGlassCompat.IsLookingGlassInstalled && Modules.Config.BindAndOptions<bool>("Mod Compatability: LookingGlass", "Enable Item Stats", true,
+                "Adds item stats to LookingGlass (if installed).", true).Value)
+            {
+                Modules.LookingGlassCompat.Init();
+            }
 
             if (Modules.Config.BindAndOptions<bool>("Content", "Enable Engineer Skills", true,
                 "Adds the old Cloudburst Engineer skills: Impact Grenades and the TR27 Immolator Turret.", true).Value)

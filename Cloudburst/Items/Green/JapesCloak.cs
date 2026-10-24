@@ -72,20 +72,17 @@ Addendum: WHO. IN GOD ABOVE’S HOLY NAME. TOOK. MY. CIGARETTES??”""");
 
         private static float HealthComponent_Heal(On.RoR2.HealthComponent.orig_Heal orig, HealthComponent self, float amount, ProcChainMask procChainMask, bool nonRegen)
         {
-            int buffCount = self.body.GetBuffCount(japesBuff);
-            if (buffCount > 0)
+            if (self.body)
             {
-                amount *= 1.3f * buffCount;
+                //30% more healing per buff
+                amount *= 1 + 0.3f * self.body.GetBuffCount(japesBuff);
             }
             return orig(self, amount, procChainMask, nonRegen);
         }
 
         private static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (sender.HasBuff(japesBuff))
-            {
-                args.armorAdd += 5;
-            }
+            args.armorAdd += 5 * sender.GetBuffCount(japesBuff);
         }
 
         private static void GenericPickupController_AttemptGrant(On.RoR2.GenericPickupController.orig_AttemptGrant orig, GenericPickupController self, CharacterBody body)
