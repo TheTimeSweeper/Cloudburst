@@ -9,10 +9,8 @@ namespace Cloudburst.Items.Gray.BlastBoot
 {
     public class BlastBootBehavior : CharacterBody.ItemBehavior
     {
-        public float timer = 3;
-
-        public SkillLocator skillLocator;
-
+        //starts charged so the boot is usable right after pickup or a new stage
+        public float timer = BlastBoot.Cooldown;
 
         public void Awake()
         {
@@ -23,51 +21,56 @@ namespace Cloudburst.Items.Gray.BlastBoot
         {
             if (body)
             {
-                skillLocator = body.skillLocator;
-                body.onSkillActivatedServer += Body_onSkillActivatedServer;
+                //authority, not server: the motor belongs to the owning client so velocity set on the host does nothing for clients
+                body.onSkillActivatedAuthority += Body_onSkillActivatedAuthority;
             }
         }
 
         public void OnDisable()
         {
-            skillLocator = null;
             if (body)
             {
-                body.onSkillActivatedServer -= Body_onSkillActivatedServer;
+                body.onSkillActivatedAuthority -= Body_onSkillActivatedAuthority;
             }
         }
-        private void Body_onSkillActivatedServer(GenericSkill skill)
-        {
-            if (((skillLocator != null) ? skillLocator.secondary : null) == skill && body.characterMotor && !body.characterMotor.isGrounded && timer >= 3)
-            {
-                Vector3 aimer = Vector3.down;
-                for (int j = 0; j < 3 + (stack * 1); j++)
-                {
-                    body.characterMotor.velocity.y += body.jumpPower * .3f;
-                    body.characterMotor.Motor.ForceUnground();
 
-                    float theta = UnityEngine.Random.Range(0.0f, 6.28f);
-                    float x = Mathf.Cos(theta);
-                    float z = Mathf.Sin(theta);
-                    float c = j * 0.3777f;
-                    c *= (1f / 12f);
-                    aimer.x += c * x;
-                    aimer.z += c * z;
-                    float damage = CCUtilities.GenericFlatStackingFloat(1f, stack, 0.5f);
-                    ProjectileManager.instance.FireProjectile(BlastBoot.fireworkPrefab,
-                        base.transform.position,
-                        Util.QuaternionSafeLookRotation(aimer),
-                        body.gameObject,
-                        damage * body.damage,
-                        500f,
-                        body.RollCrit(),
-                        DamageColorIndex.Item,
-                        null,
-                        -1
-                        );
-                    aimer = Vector3.down;
-                    timer = 0;
-                }
+        private void Body_onSkillActivatedAuthority(GenericSkill skill)
+        {
+            if (timer < BlastBoot.Cooldown || !body.skillLocator || body.skillLocator.secondary != skill)
+                return;
+
+            CharacterMotor motor = body.characterMotor;
+            if (!motor || motor.isGrounded)
+                return;
+
+            timer = 0;
+
+            //cancel the fall so the boost acts like a real double jump
+            motor.velocity.y = Mathf.Max(motor.velocity.y, 0f);
+            motor.Motor.ForceUnground();
+
+            int fireworks = BlastBoot.BaseFireworks + stack;
+            float damage = CCUtilities.GenericFlatStackingFloat(BlastBoot.BaseDamage, stack, BlastBoot.StackingDamage) * body.damage;
+            bool crit = body.RollCrit();
+            for (int i = 0; i < fireworks; i++)
+            {
+                motor.velocity.y += body.jumpPower * 0.3f;
+
+                float theta = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
+                float spread = i * 0.3777f / 12f;
+                Vector3 aim = Vector3.down + new Vector3(Mathf.Cos(theta) * spread, 0f, Mathf.Sin(theta) * spread);
+
+                ProjectileManager.instance.FireProjectile(BlastBoot.fireworkPrefab,
+                    body.footPosition,
+                    Util.QuaternionSafeLookRotation(aim),
+                    body.gameObject,
+                    damage,
+                    500f,
+                    crit,
+                    DamageColorIndex.Item,
+                    null,
+                    -1
+                    );
             }
         }
 

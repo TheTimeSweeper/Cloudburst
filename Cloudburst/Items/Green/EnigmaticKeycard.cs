@@ -83,7 +83,7 @@ namespace Cloudburst.Items.Green
             explosion.lifetimeAfterImpact = 0;
             explosion.lifetimeRandomOffset = 0;
             explosion.blastRadius = 8;
-            explosion.blastDamageCoefficient = 5;
+            explosion.blastDamageCoefficient = 1;
             explosion.blastProcCoefficient = 0.7f;
             explosion.blastAttackerFiltering = AttackerFiltering.Default;
             explosion.childrenCount = 0;
@@ -155,7 +155,7 @@ namespace Cloudburst.Items.Green
                             origin,
                             Util.QuaternionSafeLookRotation(victimBody.transform.position - origin),
                             attackerBody.gameObject,
-                            attackerBody.damage * (EnigmaticKeycard.BaseDamage + itemCount),
+                            attackerBody.damage * EnigmaticKeycard.BaseDamage * itemCount,
                             0,
                             false,
                             DamageColorIndex.Item);
