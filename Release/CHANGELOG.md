@@ -2,6 +2,7 @@
 huge thanks to Phreel for reviving efforts, possibly pushing future posibilities
 - revived the old Engineer skills: Impact Grenades and TR27 Immolator Turret
 - revived items have item displays for vanilla survivors
+- added 1 (one!) new item (previously under config): Blast boot
 - revived the rest of the old 0.2.8 items, behind beta config defaulted off:
     - Mechanical Trinket (green)
     - Restless Rings (green)
