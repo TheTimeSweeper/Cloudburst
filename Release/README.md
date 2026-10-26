@@ -1,4 +1,4 @@
-# Cloudburst exists somewhat!
+# Cloudburst exists!
 Read at the end for a little history lesson. All you need to know is there is a hip new survivor and a few fun baubles and trinkets.
 
 Let us know what you think on our discord https://discord.gg/MNDh59sf2N.
