@@ -35,7 +35,7 @@ namespace Cloudburst
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "CloudBurstTeam";
         public const string PluginName = "Cloudburst";
-        public const string PluginVersion = "0.4.8";
+        public const string PluginVersion = "0.5.0";
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -77,7 +77,7 @@ namespace Cloudburst
 
             Modules.Language.PrintOutput("Items.txt");
 
-            if (Modules.LookingGlassCompat.IsLookingGlassInstalled && Modules.Config.BindAndOptions<bool>("Mod Compatability: LookingGlass", "Enable Item Stats", true,
+            if (Modules.LookingGlassCompat.IsLookingGlassInstalled && Modules.Config.BindAndOptions<bool>("Mod Compatability", "LookingGlass", true,
                 "Adds item stats to LookingGlass (if installed).", true).Value)
             {
                 Modules.LookingGlassCompat.Init();
@@ -89,10 +89,16 @@ namespace Cloudburst
                 Characters.Engineer.EngineerContent.Setup();
             }
 
-            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Clay Guardsman", false,
-                "Adds the Clay Guardsman enemy. Its spawn stages are set in the Clay Guardsman section.", true).Value)
+            if (Modules.Config.BindAndOptions<bool>("Content", "Enable Clay Guardsman WIP", false,
+                "Very early in development. Feel free to have a peek.\nAdds the Clay Guardsman enemy. Its spawn stages are set in the Clay Guardsman section.", true).Value)
             {
                 Enemies.Guardsman.Guardsman.Setup();
+            }
+
+            var debug = base.Config.Bind("Content", "Debug", false, "Enable Debug Configs. Requires Restart");
+            if (!debug.Value)
+            {
+                Modules.Config.DisableSection("Debug");
             }
 
             //todo dlc4 itemdisplays
@@ -162,20 +168,20 @@ namespace Cloudburst
             {
                 JapesCloak.Setup();
             }
-
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Mechanical Trinket", true,
+            //beta
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Mechanical Trinket Beta", false,
                 "Toggles the Mechanical Trinket item.", true).Value)
             {
                 MechanicalTrinket.Setup();
             }
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Restless Rings", true,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Restless Rings Beta", false,
                 "Toggles the Restless Rings item.", true).Value)
             {
                 RestlessRings.Setup();
             }
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Lemdog", true,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Lemdog Beta", false,
                 "Toggles the Lemdog item.", true).Value)
             {
                 Lemdog.Setup();
@@ -187,13 +193,13 @@ namespace Cloudburst
                 Extractor.Setup();
             }
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable The Lumpkin", true,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable The Lumpkin Beta", false,
                 "Toggles The Lumpkin equipment.", true).Value)
             {
                 Lumpkin.Setup();
             }
 
-            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Rift Bubble", true,
+            if (Modules.Config.BindAndOptions<bool>("Items", "Enable Rift Bubble Beta", false,
                 "Toggles the Rift Bubble item.", true).Value)
             {
                 RiftBubble.Setup();

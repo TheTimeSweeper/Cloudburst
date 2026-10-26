@@ -1,12 +1,14 @@
-`unreleased`
-- revived the rest of the old 0.2.8 items:
+`0.5.0`
+huge thanks to Phreel for reviving efforts, possibly pushing future posibilities
+- revived the old Engineer skills: Impact Grenades and TR27 Immolator Turret
+- revived items have item displays for vanilla survivors
+- revived the rest of the old 0.2.8 items, behind beta config defaulted off:
     - Mechanical Trinket (green)
     - Restless Rings (green)
     - Lemdog (red)
     - Extractor (red) - disabled by default since it overlaps with Sonorous Whispers
     - The Lumpkin (equipment)
-- revived the old Engineer skills: Impact Grenades and TR27 Immolator Turret
-- revived items have item displays for vanilla survivors
+- revived heavily wip clay guardsman enemy, behind config defaulted off
 - all new content can be toggled in config
 
 `0.4.7`

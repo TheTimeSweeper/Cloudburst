@@ -15,6 +15,7 @@ namespace Cloudburst.Enemies.Guardsman
     internal class Guardsman
     {
         public static GameObject bodyPrefab;
+        public static CharacterBody bodyBody;
         public static GameObject masterPrefab;
         public static CharacterSpawnCard spawnCard;
 
@@ -33,6 +34,7 @@ namespace Cloudburst.Enemies.Guardsman
             stompEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Parent/ParentSlamEffect.prefab").WaitForCompletion();
 
             CreateBody();
+            Modules.Config.ConfigureBody(bodyBody, "Clay Guardsman");
             CreateSkills();
             CreateMaster();
             CreateSpawnCard();
@@ -78,22 +80,22 @@ namespace Cloudburst.Enemies.Guardsman
             direction.rootMotionAccumulator = null;
             direction.driveFromRootRotation = false;
 
-            CharacterBody body = bodyPrefab.GetComponent<CharacterBody>();
-            body.baseNameToken = "CLOUDBURST_GUARDSMAN_BODY_NAME";
-            body.subtitleNameToken = "CLOUDBURST_GUARDSMAN_BODY_SUBTITLE";
-            body.baseMaxHealth = 400;
-            body.levelMaxHealth = 120;
-            body.baseRegen = 0.6f;
-            body.levelRegen = 0.12f;
-            body.baseArmor = 20;
-            body.baseDamage = 15;
-            body.levelDamage = 3;
-            body.baseMoveSpeed = 10.5f;
-            body.baseAcceleration *= 1.5f;
-            body.baseAttackSpeed = 1.5f;
-            body.bodyFlags = CharacterBody.BodyFlags.ImmuneToExecutes;
-            body.hullClassification = HullClassification.Golem;
-            body.rootMotionInMainState = false;
+            bodyBody = bodyPrefab.GetComponent<CharacterBody>();
+            bodyBody.baseNameToken = "CLOUDBURST_GUARDSMAN_BODY_NAME";
+            bodyBody.subtitleNameToken = "CLOUDBURST_GUARDSMAN_BODY_SUBTITLE";
+            bodyBody.baseMaxHealth = 400;
+            bodyBody.levelMaxHealth = 120;
+            bodyBody.baseRegen = 0.6f;
+            bodyBody.levelRegen = 0.12f;
+            bodyBody.baseArmor = 20;
+            bodyBody.baseDamage = 15;
+            bodyBody.levelDamage = 3;
+            bodyBody.baseMoveSpeed = 10.5f;
+            bodyBody.baseAcceleration *= 1.5f;
+            bodyBody.baseAttackSpeed = 1.5f;
+            bodyBody.bodyFlags = CharacterBody.BodyFlags.ImmuneToExecutes;
+            bodyBody.hullClassification = HullClassification.Golem;
+            bodyBody.rootMotionInMainState = false;
 
             UnlockableDef logUnlockable = Modules.Unlockables.CreateUnlockableDef("Logs.CloudburstGuardsmanBody.0", "CLOUDBURST_GUARDSMAN_BODY_NAME", null);
             bodyPrefab.GetComponent<DeathRewards>().logUnlockableDef = logUnlockable;
@@ -106,7 +108,7 @@ namespace Cloudburst.Enemies.Guardsman
 
             bodyPrefab.AddComponent<RoR2.ExpansionManagement.ExpansionRequirementComponent>().requiredExpansion = Cloudburst.cloudburstExpansion;
 
-            SetupModel(model, body);
+            SetupModel(model, bodyBody);
 
             ContentAddition.AddBody(bodyPrefab);
         }

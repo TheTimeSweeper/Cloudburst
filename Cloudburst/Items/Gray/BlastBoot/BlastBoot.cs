@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Cloudburst.Modules;
 using R2API;
 using RoR2;
 using RoR2.Projectile;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using static Cloudburst.Modules.ItemDisplays;
@@ -18,11 +19,19 @@ namespace Cloudburst.Items.Gray.BlastBoot
 
         public static float Cooldown = 3;
         public static int BaseFireworks = 3;
-        public static float BaseDamage = 1;
-        public static float StackingDamage = 0.5f;
+        public static float BaseDamage = 1.2f;
+        public static float StackingDamage = 0.8f;
+
+
+        [Configure("Debug", 0.5f, min = 0, max = 100)]
+        public static ConfigEntry<float> blastbootSpread;
+        [Configure("Debug", 10f, min = 0, max = 100)]
+        public static ConfigEntry<float> blastbootRadius;
 
         public static void Setup()
         {
+            Config.InitConfigAttributes(typeof(BlastBoot));
+
             blastBootItem = ScriptableObject.CreateInstance<ItemDef>();
             blastBootItem.deprecatedTier = ItemTier.Tier1;
             blastBootItem.name = "BlastBoot";
@@ -75,6 +84,7 @@ namespace Cloudburst.Items.Gray.BlastBoot
             }
 
             firework.GetComponent<ProjectileImpactExplosion>().impactEffect = orig.GetComponent<ProjectileImpactExplosion>().impactEffect;
+            firework.GetComponent<ProjectileImpactExplosion>().blastRadius = blastbootRadius;
             firework.GetComponent<ProjectileDamage>().damageType = DamageType.Stun1s;
 
             fireworkPrefab = firework;

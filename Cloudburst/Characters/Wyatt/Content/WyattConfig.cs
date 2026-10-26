@@ -1,5 +1,4 @@
-﻿using BepInEx.Configuration;
-using Cloudburst.Modules;
+﻿using Cloudburst.Modules;
 
 namespace Cloudburst.Characters.Wyatt
 {
@@ -232,10 +231,10 @@ namespace Cloudburst.Characters.Wyatt
             M3FlowMusicVolume = Config.BindAndOptionsSlider(
                 sectionWyatt,
                 "M3 - M3FlowMusicVolume",
-                50,
+                50f,
                 "value",
                 0f,
-                100,
+                100f,
                 false);
             #endregion m3
 

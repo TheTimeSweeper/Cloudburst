@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cloudburst.Modules;
 using RoR2;
 using RoR2.Projectile;
 using UnityEngine;
@@ -57,7 +58,7 @@ namespace Cloudburst.Items.Gray.BlastBoot
                 motor.velocity.y += body.jumpPower * 0.3f;
 
                 float theta = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
-                float spread = i * 0.3777f / 12f;
+                float spread = i *  BlastBoot.blastbootSpread;
                 Vector3 aim = Vector3.down + new Vector3(Mathf.Cos(theta) * spread, 0f, Mathf.Sin(theta) * spread);
 
                 ProjectileManager.instance.FireProjectile(BlastBoot.fireworkPrefab,

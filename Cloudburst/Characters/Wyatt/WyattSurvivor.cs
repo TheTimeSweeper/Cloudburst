@@ -69,8 +69,8 @@ namespace Cloudburst.Characters.Wyatt
         {
             characterEnabledConfig =
                 Config.BindAndOptions(
-                    "Survivors",
-                    "Enable Custodian",
+                    "Content",
+                    "Custodian",
                     true,
                     "Set false to disable Custodian and as much of his content/code as possible",
                     true);

@@ -10,7 +10,7 @@ namespace Cloudburst.Characters.Engineer.EntityStates
     public class FireFlameThrower : BaseState
     {
         public static float damageCoefficient = 1f;
-        public static float bonusFireFrequency = 0.4f;
+        public static float bonusFireFrequency = 0.8f;
         public static float bonusMaxDistance = 5f;
 
         private static bool initialized;
@@ -81,6 +81,7 @@ namespace Cloudburst.Characters.Engineer.EntityStates
             if (muzzleTransform && flamethrowerEffectPrefab)
             {
                 flamethrowerEffectInstance = Object.Instantiate(flamethrowerEffectPrefab, muzzleTransform.position, muzzleTransform.rotation, muzzleTransform);
+                flamethrowerEffectInstance.transform.localScale = Vector3.Scale(flamethrowerEffectInstance.transform.localScale, new Vector3(5, 5, 3));
             }
         }
 
@@ -132,7 +133,8 @@ namespace Cloudburst.Characters.Engineer.EntityStates
                     hitEffectPrefab = Flamethrower.impactEffectPrefab,
                     isCrit = RollCrit(),
                     HitEffectNormal = false,
-                    radius = 0f,
+                    smartCollision = true,
+                    radius = 3,
                     maxDistance = maxDistance + bonusMaxDistance,
                     damageType = DamageType.IgniteOnHit
                 }.Fire();
