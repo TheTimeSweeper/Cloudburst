@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: 6c3d0526d9097fb4aa999b0bdaa57e8f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Cylinder.004
+    100002: LampBody
+    100004: //RootNode
+    100006: LampDeployed
+    100008: Tail1.1
+    100010: Tail1.2
+    100012: Tail1.3
+    100014: Tail1.4
+    100016: Tail1.5
+    100018: Tail1.6
+    100020: Tail1.6_end
+    100022: Tail1.Control
+    100024: Tail1.Control_end
+    100026: Tail2.1
+    100028: Tail2.2
+    100030: Tail2.3
+    100032: Tail2.4
+    100034: Tail2.5
+    100036: Tail2.6
+    100038: Tail2.6_end
+    100040: Tail2.Control
+    100042: Tail2.Control_end
+    100044: Tail3.1
+    100046: Tail3.2
+    100048: Tail3.3
+    100050: Tail3.4
+    100052: Tail3.5
+    100054: Tail3.6
+    100056: Tail3.6_end
+    100058: Tail3.Control
+    100060: Tail3.Control_end
+    100062: Tail4.1
+    100064: Tail4.2
+    100066: Tail4.3
+    100068: Tail4.4
+    100070: Tail4.5
+    100072: Tail4.6
+    100074: Tail4.6_end
+    100076: Tail4.Control
+    100078: Tail4.Control_end
+    100080: TopLamp1
+    100082: TopLamp1_end
+    100084: TopLamp2
+    100086: TopLamp2_end
+    100088: TopLamp3
+    100090: TopLamp3_end
+    400000: Cylinder.004
+    400002: LampBody
+    400004: //RootNode
+    400006: LampDeployed
+    400008: Tail1.1
+    400010: Tail1.2
+    400012: Tail1.3
+    400014: Tail1.4
+    400016: Tail1.5
+    400018: Tail1.6
+    400020: Tail1.6_end
+    400022: Tail1.Control
+    400024: Tail1.Control_end
+    400026: Tail2.1
+    400028: Tail2.2
+    400030: Tail2.3
+    400032: Tail2.4
+    400034: Tail2.5
+    400036: Tail2.6
+    400038: Tail2.6_end
+    400040: Tail2.Control
+    400042: Tail2.Control_end
+    400044: Tail3.1
+    400046: Tail3.2
+    400048: Tail3.3
+    400050: Tail3.4
+    400052: Tail3.5
+    400054: Tail3.6
+    400056: Tail3.6_end
+    400058: Tail3.Control
+    400060: Tail3.Control_end
+    400062: Tail4.1
+    400064: Tail4.2
+    400066: Tail4.3
+    400068: Tail4.4
+    400070: Tail4.5
+    400072: Tail4.6
+    400074: Tail4.6_end
+    400076: Tail4.Control
+    400078: Tail4.Control_end
+    400080: TopLamp1
+    400082: TopLamp1_end
+    400084: TopLamp2
+    400086: TopLamp2_end
+    400088: TopLamp3
+    400090: TopLamp3_end
+    2100000: material_atlas_50481_1
+    4300000: Cylinder.004
+    7400000: LampDeployed|Action
+    7400002: LampDeployed|Death
+    7400004: LampDeployed|Idle
+    7400006: LampDeployed|LampDeployedAction
+    7400008: LampDeployed|LampDeployedAction.001
+    7400010: LampDeployed|Spawn
+    9500000: //RootNode
+    13700000: Cylinder.004
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

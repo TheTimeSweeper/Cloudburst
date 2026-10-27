@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: 6092fcc41f4ccff4c856117e2db3dc9d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: base
+    100002: calf.L
+    100004: calf.R
+    100006: //RootNode
+    100008: CloakF.1
+    100010: CloakF.2
+    100012: CloakF.3
+    100014: CloakF.3_end
+    100016: Cube
+    100018: Cube.001
+    100020: Cube.002
+    100022: Cube.003
+    100024: Cube.004
+    100026: Cube.005
+    100028: Empty
+    100030: Empty.001
+    100032: Empty.002
+    100034: finger1.1.L
+    100036: finger1.1.R
+    100038: finger1.2.L
+    100040: finger1.2.R
+    100042: finger1.3.L
+    100044: finger1.3.L_end
+    100046: finger1.3.R
+    100048: finger1.3.R_end
+    100050: finger2.1.L
+    100052: finger2.1.R
+    100054: finger2.2.L
+    100056: finger2.2.R
+    100058: finger2.3.L
+    100060: finger2.3.L_end
+    100062: finger2.3.R
+    100064: finger2.3.R_end
+    100066: finger3.1.L
+    100068: finger3.1.R
+    100070: finger3.2.L
+    100072: finger3.2.R
+    100074: finger3.3.L
+    100076: finger3.3.L_end
+    100078: finger3.3.R
+    100080: finger3.3.R_end
+    100082: finger4.1.L
+    100084: finger4.1.R
+    100086: finger4.2.L
+    100088: finger4.2.R
+    100090: finger4.3.L
+    100092: finger4.3.L_end
+    100094: finger4.3.R
+    100096: finger4.3.R_end
+    100098: foot.L
+    100100: foot.R
+    100102: GuardsmanRig
+    100104: hand.L
+    100106: hand.R
+    100108: head
+    100110: head_end
+    100112: ik.elbow.L
+    100114: ik.elbow.L_end
+    100116: ik.elbow.R
+    100118: ik.elbow.R_end
+    100120: ik.foot.L
+    100122: ik.foot.R
+    100124: ik.hand.L
+    100126: ik.hand.R
+    100128: ik.knee.L
+    100130: ik.knee.L_end
+    100132: ik.knee.R
+    100134: ik.knee.R_end
+    100136: lower_arm.L
+    100138: lower_arm.R
+    100140: neck
+    100142: neck_end
+    100144: Plane.002
+    100146: ROOT
+    100148: shoulder.L
+    100150: shoulder.R
+    100152: spine2
+    100154: spine3
+    100156: stomach
+    100158: Sun.001
+    100160: thigh.L
+    100162: thigh.R
+    100164: thumb.1.L
+    100166: thumb.1.R
+    100168: thumb.2.L
+    100170: thumb.2.R
+    100172: thumb.3.L
+    100174: thumb.3.L_end
+    100176: thumb.3.R
+    100178: thumb.3.R_end
+    100180: toe.L
+    100182: toe.L_end
+    100184: toe.R
+    100186: toe.R_end
+    100188: upper_arm.L
+    100190: upper_arm.R
+    100192: WeaponBone.L
+    100194: WeaponBone.L_end
+    400000: base
+    400002: calf.L
+    400004: calf.R
+    400006: //RootNode
+    400008: CloakF.1
+    400010: CloakF.2
+    400012: CloakF.3
+    400014: CloakF.3_end
+    400016: Cube
+    400018: Cube.001
+    400020: Cube.002
+    400022: Cube.003
+    400024: Cube.004
+    400026: Cube.005
+    400028: Empty
+    400030: Empty.001
+    400032: Empty.002
+    400034: finger1.1.L
+    400036: finger1.1.R
+    400038: finger1.2.L
+    400040: finger1.2.R
+    400042: finger1.3.L
+    400044: finger1.3.L_end
+    400046: finger1.3.R
+    400048: finger1.3.R_end
+    400050: finger2.1.L
+    400052: finger2.1.R
+    400054: finger2.2.L
+    400056: finger2.2.R
+    400058: finger2.3.L
+    400060: finger2.3.L_end
+    400062: finger2.3.R
+    400064: finger2.3.R_end
+    400066: finger3.1.L
+    400068: finger3.1.R
+    400070: finger3.2.L
+    400072: finger3.2.R
+    400074: finger3.3.L
+    400076: finger3.3.L_end
+    400078: finger3.3.R
+    400080: finger3.3.R_end
+    400082: finger4.1.L
+    400084: finger4.1.R
+    400086: finger4.2.L
+    400088: finger4.2.R
+    400090: finger4.3.L
+    400092: finger4.3.L_end
+    400094: finger4.3.R
+    400096: finger4.3.R_end
+    400098: foot.L
+    400100: foot.R
+    400102: GuardsmanRig
+    400104: hand.L
+    400106: hand.R
+    400108: head
+    400110: head_end
+    400112: ik.elbow.L
+    400114: ik.elbow.L_end
+    400116: ik.elbow.R
+    400118: ik.elbow.R_end
+    400120: ik.foot.L
+    400122: ik.foot.R
+    400124: ik.hand.L
+    400126: ik.hand.R
+    400128: ik.knee.L
+    400130: ik.knee.L_end
+    400132: ik.knee.R
+    400134: ik.knee.R_end
+    400136: lower_arm.L
+    400138: lower_arm.R
+    400140: neck
+    400142: neck_end
+    400144: Plane.002
+    400146: ROOT
+    400148: shoulder.L
+    400150: shoulder.R
+    400152: spine2
+    400154: spine3
+    400156: stomach
+    400158: Sun.001
+    400160: thigh.L
+    400162: thigh.R
+    400164: thumb.1.L
+    400166: thumb.1.R
+    400168: thumb.2.L
+    400170: thumb.2.R
+    400172: thumb.3.L
+    400174: thumb.3.L_end
+    400176: thumb.3.R
+    400178: thumb.3.R_end
+    400180: toe.L
+    400182: toe.L_end
+    400184: toe.R
+    400186: toe.R_end
+    400188: upper_arm.L
+    400190: upper_arm.R
+    400192: WeaponBone.L
+    400194: WeaponBone.L_end
+    2100000: ClayGuardianSkin
+    2100002: ClayGuardian
+    2100004: No Name
+    2300000: Cube
+    2300002: Plane.002
+    3300000: Cube
+    3300002: Plane.002
+    4300000: Cube.001
+    4300002: Cube.003
+    4300004: Cube.004
+    4300006: Cube
+    4300008: Cube.002
+    4300010: Cube.005
+    4300012: Plane.002
+    7400000: SwingStarter
+    7400002: SwingWhirl
+    7400004: Cube|Action.002
+    7400006: Cube|Action.003
+    7400008: Cube|Plane.002Action
+    7400010: Cube|Shader NodetreeAction.001
+    7400012: Cube|Shader NodetreeAction.002
+    7400014: Cube|Shader NodetreeAction.003
+    7400016: Cube|Shader NodetreeAction.004
+    7400018: Cube|Shader NodetreeAction.005
+    7400020: GuardsmanRig|Action.002
+    7400022: GuardsmanRig|Action.003
+    7400024: GuardsmanRig|Plane.002Action
+    7400026: GuardsmanRig|Shader NodetreeAction.001
+    7400028: GuardsmanRig|Shader NodetreeAction.002
+    7400030: GuardsmanRig|Shader NodetreeAction.003
+    7400032: GuardsmanRig|Shader NodetreeAction.004
+    7400034: GuardsmanRig|Shader NodetreeAction.005
+    7400036: GuardsmanRig|SwingJab
+    7400038: Sun.001|Action.002
+    7400040: Sun.001|Action.003
+    7400042: Sun.001|Plane.002Action
+    7400044: Sun.001|Shader NodetreeAction.001
+    7400046: Sun.001|Shader NodetreeAction.002
+    7400048: Sun.001|Shader NodetreeAction.003
+    7400050: Sun.001|Shader NodetreeAction.004
+    7400052: Sun.001|Shader NodetreeAction.005
+    7400054: Plane.002|Action.002
+    7400056: Plane.002|Action.003
+    7400058: Plane.002|Plane.002Action
+    7400060: Plane.002|Shader NodetreeAction.001
+    7400062: Plane.002|Shader NodetreeAction.002
+    7400064: Plane.002|Shader NodetreeAction.003
+    7400066: Plane.002|Shader NodetreeAction.004
+    7400068: Plane.002|Shader NodetreeAction.005
+    7400070: Empty.001|Action.002
+    7400072: Empty.001|Action.003
+    7400074: Empty.001|Plane.002Action
+    7400076: Empty.001|Shader NodetreeAction.001
+    7400078: Empty.001|Shader NodetreeAction.002
+    7400080: Empty.001|Shader NodetreeAction.003
+    7400082: Empty.001|Shader NodetreeAction.004
+    7400084: Empty.001|Shader NodetreeAction.005
+    7400086: Empty.002|Action.002
+    7400088: Empty.002|Action.003
+    7400090: Empty.002|Plane.002Action
+    7400092: Empty.002|Shader NodetreeAction.001
+    7400094: Empty.002|Shader NodetreeAction.002
+    7400096: Empty.002|Shader NodetreeAction.003
+    7400098: Empty.002|Shader NodetreeAction.004
+    7400100: Empty.002|Shader NodetreeAction.005
+    9500000: //RootNode
+    10800000: Sun.001
+    13700000: Cube.001
+    13700002: Cube.002
+    13700004: Cube.003
+    13700006: Cube.004
+    13700008: Cube.005
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

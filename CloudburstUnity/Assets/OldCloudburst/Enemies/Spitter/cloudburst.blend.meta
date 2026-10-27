@@ -1,0 +1,233 @@
+fileFormatVersion: 2
+guid: bc1270bbb148e2b4aa91e451f55db440
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Area
+    100002: Arm01.L
+    100004: Arm01.L.001
+    100006: Arm01.R
+    100008: Arm01.R.001
+    100010: Arm02.L
+    100012: Arm02.L_end
+    100014: Arm02.R
+    100016: Arm02.R_end
+    100018: Armature
+    100020: Bone
+    100022: Bone.001
+    100024: Bone.002
+    100026: Bone.003
+    100028: Bone.004
+    100030: Bone.005
+    100032: Bone.006
+    100034: Bone.007
+    100036: Bone.007_end
+    100038: Camera
+    100040: //RootNode
+    100042: Cube
+    100044: Cube.002
+    100046: Cube.003
+    100048: Elbow.L
+    100050: Elbow.L_end
+    100052: Elbow.R
+    100054: Elbow.R_end
+    100056: Foot01.L
+    100058: Foot01.L_end
+    100060: Foot01.R
+    100062: Foot01.R_end
+    100064: Hand.L
+    100066: Hand.L_end
+    100068: Hand.R
+    100070: Hand.R_end
+    100072: IKHand.L
+    100074: IKHand.R
+    100076: IkLeg.L
+    100078: IkLeg.R
+    100080: Jaw.L
+    100082: Jaw.L_end
+    100084: Jaw.R
+    100086: Jaw.R_end
+    100088: Knee.L
+    100090: Knee.L_end
+    100092: Knee.R
+    100094: Knee.R_end
+    100096: Leg01.L
+    100098: Leg01.R
+    100100: Leg02.L
+    100102: Leg02.R
+    100104: Leg03.L
+    100106: Leg03.L_end
+    100108: Leg03.R
+    100110: Leg03.R_end
+    100112: Plane
+    400000: Area
+    400002: Arm01.L
+    400004: Arm01.L.001
+    400006: Arm01.R
+    400008: Arm01.R.001
+    400010: Arm02.L
+    400012: Arm02.L_end
+    400014: Arm02.R
+    400016: Arm02.R_end
+    400018: Armature
+    400020: Bone
+    400022: Bone.001
+    400024: Bone.002
+    400026: Bone.003
+    400028: Bone.004
+    400030: Bone.005
+    400032: Bone.006
+    400034: Bone.007
+    400036: Bone.007_end
+    400038: Camera
+    400040: //RootNode
+    400042: Cube
+    400044: Cube.002
+    400046: Cube.003
+    400048: Elbow.L
+    400050: Elbow.L_end
+    400052: Elbow.R
+    400054: Elbow.R_end
+    400056: Foot01.L
+    400058: Foot01.L_end
+    400060: Foot01.R
+    400062: Foot01.R_end
+    400064: Hand.L
+    400066: Hand.L_end
+    400068: Hand.R
+    400070: Hand.R_end
+    400072: IKHand.L
+    400074: IKHand.R
+    400076: IkLeg.L
+    400078: IkLeg.R
+    400080: Jaw.L
+    400082: Jaw.L_end
+    400084: Jaw.R
+    400086: Jaw.R_end
+    400088: Knee.L
+    400090: Knee.L_end
+    400092: Knee.R
+    400094: Knee.R_end
+    400096: Leg01.L
+    400098: Leg01.R
+    400100: Leg02.L
+    400102: Leg02.R
+    400104: Leg03.L
+    400106: Leg03.L_end
+    400108: Leg03.R
+    400110: Leg03.R_end
+    400112: Plane
+    2000000: Camera
+    2100000: Spitter
+    2100002: Emission_Spitter
+    2100004: OH_Outline_Material
+    2100006: shadow
+    2300000: Cube.002
+    2300002: Cube.003
+    2300004: Plane
+    3300000: Cube.002
+    3300002: Cube.003
+    3300004: Plane
+    4300000: Cube
+    4300002: Cube.002
+    4300004: Cube.003
+    4300006: Plane
+    9500000: //RootNode
+    10800000: Area
+    13700000: Cube
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material
+    second: {fileID: 2100000, guid: ca066fcff8846c045a5f09fba97a01b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Spitter
+    second: {fileID: 2100000, guid: ca066fcff8846c045a5f09fba97a01b6, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
