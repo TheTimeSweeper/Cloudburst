@@ -42,7 +42,15 @@ namespace Cloudburst.Enemies.Guardsman
 
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_NAME", "Clay Guardsman");
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_SUBTITLE", "");
-            Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_LORE", "");
+            Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_LORE", @"It started with a simple guardsman, who was patrolling across the long, endless dunes, battered and beaten by the constant winds pummelling pebbles on them. Suddenly, they had come across it, that sickening pot of tar, ichor from what could only be described as gluttony incarnate. It proposed the guardsman a deal.
+
+""Spread me across the lands, far and wide, and I'll make this life in the dunes of yours not so miserable...""
+
+The guard had deliberated in their decision, decidedly deciding to divulge the donor's ultimatum. They hesitantly lifted the jar on their head, staring at the bubbling mass before then lowering their jar, their very person hood into the mass. Their hands burnt heart pounding as they quickly stumbled back.
+
+But it was already too late. The corrosive mass spread up their body, overtaking every facet of their being. And then... The guard simply got up, grabbed the helmet they were wearing, their ax, and walked away to spread the word of the Tar
+
+The Start of the End - Remnants of Aphelia");
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_PRIMARY_NAME", "Halberd Swing");
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_SECONDARY_NAME", "Overhead Swing");
         }
