@@ -16,6 +16,7 @@ namespace Cloudburst.Items.Green
         public static float RadiusPerStack = 5;
         public static int MaxDrones = 4;
         public static float DroneLifetime = 120;
+        public static float DroneDamageMultiplier = 0.6f; //drones can't go below base damage, so early on this is closer to -25%
 
         public static GameObject droneMasterPrefab;
 
@@ -42,47 +43,48 @@ namespace Cloudburst.Items.Green
             ItemAPI.Add(new CustomItem(mechanicalTrinketItem, CreateItemDisplayRules()));
 
             Modules.Language.Add("ITEM_MECHANICALTRINKET_NAME", "Mechanical Trinket");
-            Modules.Language.Add("ITEM_MECHANICALTRINKET_PICKUP", "Increase the radius of any holdout zones and summon drones when the teleporter is activated.");
-            Modules.Language.Add("ITEM_MECHANICALTRINKET_DESCRIPTION", "Increase the radius of all holdout zones by <style=cIsUtility>" + RadiusPerStack + "m</style> <style=cStack>(+" + RadiusPerStack + "m per stack)</style>. When the teleporter is activated, summon <style=cIsUtility>1</style> <style=cStack>(+1 per stack, up to " + MaxDrones + ")</style> drone for " + DroneLifetime + " seconds with <style=cIsDamage>100% <style=cStack>(+50% per stack)</style> damage</style> and <style=cIsHealing>100% <style=cStack>(+100% per stack)</style> health</style>.");
+            Modules.Language.Add("ITEM_MECHANICALTRINKET_PICKUP", "Increase the radius of any holdout zones and summon drones when they are activated.");
+            Modules.Language.Add("ITEM_MECHANICALTRINKET_DESCRIPTION", "Increase the radius of all holdout zones by <style=cIsUtility>" + RadiusPerStack + "m</style> <style=cStack>(+" + RadiusPerStack + "m per stack)</style>. When a holdout zone is activated, summon <style=cIsUtility>1</style> <style=cStack>(+1 per stack, up to " + MaxDrones + ")</style> drone for " + DroneLifetime + " seconds with <style=cIsDamage>100% <style=cStack>(+50% per stack)</style> damage</style> and <style=cIsHealing>100% <style=cStack>(+100% per stack)</style> health</style>.");
             Modules.Language.Add("ITEM_MECHANICALTRINKET_LORE", "");
 
             droneMasterPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterMasters/DroneBackupMaster");
 
             On.RoR2.HoldoutZoneController.Start += HoldoutZoneController_Start;
-            TeleporterInteraction.onTeleporterBeginChargingGlobal += TeleporterInteraction_onTeleporterBeginChargingGlobal;
         }
 
         private static void HoldoutZoneController_Start(On.RoR2.HoldoutZoneController.orig_Start orig, HoldoutZoneController self)
         {
             self.gameObject.AddComponent<MechanicalTrinketRadiusController>();
             orig(self);
+            //holdout zones start disabled and only run Start once they get activated, so this covers the teleporter, void cells, pillars and modded zones like enforcer's rally point
+            SummonDrones(self);
         }
 
-        private static void TeleporterInteraction_onTeleporterBeginChargingGlobal(TeleporterInteraction teleporter)
+        private static void SummonDrones(HoldoutZoneController zone)
         {
             if (!NetworkServer.active || !droneMasterPrefab || !Run.instance)
                 return;
 
-            int itemCount = Util.GetItemCountForTeam(TeamIndex.Player, mechanicalTrinketItem.itemIndex, false, true);
+            int itemCount = Util.GetItemCountForTeam(zone.chargingTeam, mechanicalTrinketItem.itemIndex, false, true);
             if (itemCount <= 0)
                 return;
 
             float healthMult = (1f + Run.instance.difficultyCoefficient / 2f) * itemCount;
-            float damageMult = (1f + Run.instance.difficultyCoefficient / 8f) * Mathf.Sqrt(itemCount);
+            float damageMult = (1f + Run.instance.difficultyCoefficient / 8f) * Mathf.Sqrt(itemCount) * DroneDamageMultiplier;
 
-            float baseYaw = Quaternion.LookRotation(teleporter.transform.forward).eulerAngles.y;
+            float baseYaw = Quaternion.LookRotation(zone.transform.forward).eulerAngles.y;
             int droneCount = Mathf.Min(itemCount, MaxDrones);
             for (int i = 0; i < droneCount; i++)
             {
                 float yaw = baseYaw + 10f + i * (360f / droneCount);
-                Vector3 position = teleporter.transform.position + Quaternion.Euler(0f, yaw, 0f) * (Vector3.forward * 3f) + Vector3.up * 2f;
+                Vector3 position = zone.transform.position + Quaternion.Euler(0f, yaw, 0f) * (Vector3.forward * 3f) + Vector3.up * 2f;
 
                 CharacterMaster droneMaster = new MasterSummon
                 {
                     masterPrefab = droneMasterPrefab,
                     position = position,
                     rotation = Quaternion.Euler(0f, yaw + 180f, 0f),
-                    teamIndexOverride = TeamIndex.Player,
+                    teamIndexOverride = zone.chargingTeam,
                     ignoreTeamMemberLimit = false,
                     useAmbientLevel = true
                 }.Perform();
@@ -91,7 +93,7 @@ namespace Cloudburst.Items.Green
                 {
                     droneMaster.gameObject.AddComponent<MasterSuicideOnTimer>().lifeTimer = DroneLifetime + UnityEngine.Random.Range(0f, 3f);
                     droneMaster.inventory.GiveItemPermanent(RoR2Content.Items.BoostHp, Mathf.RoundToInt((healthMult - 1f) * 10f));
-                    droneMaster.inventory.GiveItemPermanent(RoR2Content.Items.BoostDamage, Mathf.RoundToInt((damageMult - 1f) * 10f));
+                    droneMaster.inventory.GiveItemPermanent(RoR2Content.Items.BoostDamage, Mathf.Max(0, Mathf.RoundToInt((damageMult - 1f) * 10f)));
                 }
             }
         }

@@ -4,6 +4,7 @@ using System.Text;
 using R2API;
 using RoR2;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using static Cloudburst.Modules.ItemDisplays;
 
@@ -24,8 +25,8 @@ namespace Cloudburst.Items.Green.RestlessRings
         public static Material basicMaterial;
 
         public static float BuffInterval = 10;
-        public static float ArmorPerStack = 8;
-        public static float AttackSpeedPerStack = 0.1f;
+        public static float ArmorPerStack = 30;
+        public static float AttackSpeedPerStack = 0.4f;
         public static float RegenPerStack = 0.2f;
 
         public static void Setup()
@@ -60,6 +61,10 @@ namespace Cloudburst.Items.Green.RestlessRings
             regenBuff = CreateBuff("bdRestlessRingsRegen", "RestlessCircle");
             ringBuffs = new BuffDef[] { armorBuff, attackSpeedBuff, regenBuff };
 
+            AddBuffSigil(armorBuff, new Color(1f, 0.85f, 0.2f));
+            AddBuffSigil(attackSpeedBuff, new Color(1f, 0.3f, 0.15f));
+            AddBuffSigil(regenBuff, new Color(0.3f, 1f, 0.35f));
+
             Modules.Language.Add("ITEM_RESTLESSRINGS_NAME", "Restless Rings");
             Modules.Language.Add("ITEM_RESTLESSRINGS_PICKUP", "Every " + BuffInterval + " seconds, gain a buff that can grant you armor, or regeneration, or attack speed.");
             Modules.Language.Add("ITEM_RESTLESSRINGS_DESCRIPTION", "Every " + BuffInterval + " seconds, gain a buff which can grant you one of the following:"
@@ -84,6 +89,19 @@ namespace Cloudburst.Items.Green.RestlessRings
             ContentAddition.AddBuffDef(buff);
 
             return buff;
+        }
+
+        //recolored warbanner sigil that hangs around the body while the buff is up
+        private static void AddBuffSigil(BuffDef buff, Color color)
+        {
+            GameObject sigil = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Items/WardOnLevel/WarbannerBuffEffect.prefab").WaitForCompletion(), buff.name + "Effect", false);
+            foreach (Renderer renderer in sigil.GetComponentsInChildren<Renderer>(true))
+            {
+                renderer.material.SetColor("_TintColor", color);
+                renderer.material.SetColor("_Color", color);
+                renderer.material.SetColor("_MainColor", color);
+            }
+            TempVisualEffectAPI.AddTemporaryVisualEffect(sigil, body => body.HasBuff(buff), true);
         }
 
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)

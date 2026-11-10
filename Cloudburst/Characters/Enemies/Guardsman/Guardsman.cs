@@ -6,6 +6,7 @@ using R2API;
 using RoR2;
 using RoR2.CharacterAI;
 using RoR2.Navigation;
+using RoR2.Projectile;
 using RoR2.Skills;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -19,7 +20,7 @@ namespace Cloudburst.Enemies.Guardsman
         public static GameObject masterPrefab;
         public static CharacterSpawnCard spawnCard;
 
-        public static GameObject stompEffect;
+        public static GameObject tarWaveProjectile;
 
         public static float ModelScale = 0.35f;
         public static float CapsuleHeight = 3.8f;
@@ -29,9 +30,9 @@ namespace Cloudburst.Enemies.Guardsman
         {
             ContentAddition.AddEntityState<GuardsmanSpawnState>(out _);
             ContentAddition.AddEntityState<Swing>(out _);
-            ContentAddition.AddEntityState<Stomp>(out _);
+            ContentAddition.AddEntityState<OverheadSwing>(out _);
 
-            stompEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Parent/ParentSlamEffect.prefab").WaitForCompletion();
+            CreateTarWave();
 
             CreateBody();
             Modules.Config.ConfigureBody(bodyBody, "Clay Guardsman");
@@ -43,7 +44,21 @@ namespace Cloudburst.Enemies.Guardsman
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_SUBTITLE", "");
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_BODY_LORE", "");
             Modules.Language.Add("CLOUDBURST_GUARDSMAN_PRIMARY_NAME", "Halberd Swing");
-            Modules.Language.Add("CLOUDBURST_GUARDSMAN_SECONDARY_NAME", "Stomp");
+            Modules.Language.Add("CLOUDBURST_GUARDSMAN_SECONDARY_NAME", "Overhead Swing");
+        }
+
+        //beetle guard sunder wave turned to tar, applies the clay goo slow
+        private static void CreateTarWave()
+        {
+            tarWaveProjectile = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Characters/BeetleGroup/BeetleGuard/Skills/Sunder.prefab").WaitForCompletion(), "CloudburstGuardsmanTarWave", true);
+            tarWaveProjectile.GetComponent<ProjectileDamage>().damageType = DamageType.ClayGoo;
+
+            ProjectileController projectileController = tarWaveProjectile.GetComponent<ProjectileController>();
+            GameObject ghost = PrefabAPI.InstantiateClone(projectileController.ghostPrefab, "CloudburstGuardsmanTarWaveGhost", false);
+            Modules.Asset.recolorEffects(new Color(0.1f, 0.07f, 0.05f), ghost);
+            projectileController.ghostPrefab = ghost;
+
+            ContentAddition.AddProjectile(tarWaveProjectile);
         }
 
         private static void CreateBody()
@@ -90,7 +105,7 @@ namespace Cloudburst.Enemies.Guardsman
             bodyBody.baseArmor = 20;
             bodyBody.baseDamage = 15;
             bodyBody.levelDamage = 3;
-            bodyBody.baseMoveSpeed = 10.5f;
+            bodyBody.baseMoveSpeed = 11.5f; //survivor base 7 with 3 hooves is ~9.9, he should outrun that
             bodyBody.baseAcceleration *= 1.5f;
             bodyBody.baseAttackSpeed = 1.5f;
             bodyBody.bodyFlags = CharacterBody.BodyFlags.ImmuneToExecutes;
@@ -198,18 +213,18 @@ namespace Cloudburst.Enemies.Guardsman
             });
             Modules.Skills.AddPrimarySkills(bodyPrefab, swing);
 
-            SkillDef stomp = Modules.Skills.CreateSkillDef(new Modules.SkillDefInfo
+            SkillDef overheadSwing = Modules.Skills.CreateSkillDef(new Modules.SkillDefInfo
             {
-                skillName = "CloudburstGuardsmanStomp",
+                skillName = "CloudburstGuardsmanOverheadSwing",
                 skillNameToken = "CLOUDBURST_GUARDSMAN_SECONDARY_NAME",
                 skillDescriptionToken = "",
-                activationState = new SerializableEntityStateType(typeof(Stomp)),
+                activationState = new SerializableEntityStateType(typeof(OverheadSwing)),
                 activationStateMachineName = "Body",
-                baseRechargeInterval = 4f,
+                baseRechargeInterval = 5f,
                 interruptPriority = InterruptPriority.Skill,
                 cancelSprintingOnActivation = true,
             });
-            Modules.Skills.AddSecondarySkills(bodyPrefab, stomp);
+            Modules.Skills.AddSecondarySkills(bodyPrefab, overheadSwing);
         }
 
         private static void CreateMaster()
@@ -222,18 +237,19 @@ namespace Cloudburst.Enemies.Guardsman
                 UnityEngine.Object.DestroyImmediate(driver);
             }
 
-            AISkillDriver stomp = masterPrefab.AddComponent<AISkillDriver>();
-            stomp.customName = "Stomp";
-            stomp.skillSlot = SkillSlot.Secondary;
-            stomp.requireSkillReady = true;
-            stomp.minDistance = 0f;
-            stomp.maxDistance = Stomp.blastRadius * 0.6f;
-            stomp.selectionRequiresTargetLoS = false;
-            stomp.activationRequiresAimConfirmation = false;
-            stomp.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
-            stomp.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
-            stomp.aimType = AISkillDriver.AimType.AtCurrentEnemy;
-            stomp.moveInputScale = 0f;
+            AISkillDriver overheadSwing = masterPrefab.AddComponent<AISkillDriver>();
+            overheadSwing.customName = "OverheadSwing";
+            overheadSwing.skillSlot = SkillSlot.Secondary;
+            overheadSwing.requireSkillReady = true;
+            overheadSwing.minDistance = 0f;
+            overheadSwing.maxDistance = 9f;
+            overheadSwing.selectionRequiresTargetLoS = true;
+            overheadSwing.activationRequiresTargetLoS = true;
+            overheadSwing.activationRequiresAimConfirmation = true;
+            overheadSwing.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
+            overheadSwing.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
+            overheadSwing.aimType = AISkillDriver.AimType.AtCurrentEnemy;
+            overheadSwing.moveInputScale = 0.5f;
 
             AISkillDriver swing = masterPrefab.AddComponent<AISkillDriver>();
             swing.customName = "Swing";

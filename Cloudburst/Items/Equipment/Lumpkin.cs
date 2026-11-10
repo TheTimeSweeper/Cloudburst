@@ -13,6 +13,8 @@ namespace Cloudburst.Items.Equipment
     {
         public static EquipmentDef lumpkinEquipment;
         public static GameObject screamEffect;
+        public static GameObject shoutEffect;
+        public static GameObject slamEffect;
 
         public static float DamageCoefficient = 5;
         public static float MaxHealthCoefficient = 2;
@@ -83,6 +85,12 @@ namespace Cloudburst.Items.Equipment
             screamEffect.AddComponent<DestroyOnTimer>().duration = 2f;
 
             ContentAddition.AddEffect(screamEffect);
+
+            //entity state sound strings only get filled in once the catalog loads
+            RoR2Application.onLoad += () => effectComponent.soundName = global::EntityStates.LemurianBruiserMonster.SpawnState.spawnSoundString;
+
+            shoutEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Equipment/TeamWarCry/TeamWarCryActivation.prefab").WaitForCompletion();
+            slamEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Characters/Loader/Skills/LoaderGroundSlam.prefab").WaitForCompletion();
         }
 
         private static void SetParticleMaterial(string childPath, string materialAddress)
@@ -135,6 +143,17 @@ namespace Cloudburst.Items.Equipment
             }.Fire();
 
             EffectManager.SpawnEffect(screamEffect, new EffectData
+            {
+                origin = body.footPosition,
+                scale = Radius
+            }, true);
+            EffectManager.SpawnEffect(shoutEffect, new EffectData
+            {
+                origin = body.corePosition,
+                rootObject = body.gameObject,
+                scale = body.radius
+            }, true);
+            EffectManager.SpawnEffect(slamEffect, new EffectData
             {
                 origin = body.footPosition,
                 scale = Radius
