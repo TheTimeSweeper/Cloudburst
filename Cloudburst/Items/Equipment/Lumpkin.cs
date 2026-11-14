@@ -13,6 +13,8 @@ namespace Cloudburst.Items.Equipment
     {
         public static EquipmentDef lumpkinEquipment;
         public static GameObject screamEffect;
+        public static GameObject shoutEffect;
+        public static GameObject slamEffect;
 
         public static float DamageCoefficient = 5;
         public static float MaxHealthCoefficient = 2;
@@ -83,6 +85,18 @@ namespace Cloudburst.Items.Equipment
             screamEffect.AddComponent<DestroyOnTimer>().duration = 2f;
 
             ContentAddition.AddEffect(screamEffect);
+
+            //read the elder lemurian roar straight from its state config, the static field isn't reliably filled in
+            EntityStateConfiguration bruiserSpawn = Addressables.LoadAssetAsync<EntityStateConfiguration>("RoR2/Base/LemurianBruiser/EntityStates.LemurianBruiserMonster.SpawnState.asset").WaitForCompletion();
+            foreach (var field in bruiserSpawn.serializedFieldsCollection.serializedFields)
+            {
+                if (field.fieldName == "spawnSoundString")
+                    effectComponent.soundName = field.fieldValue.stringValue;
+            }
+            Log.Info("Lumpkin scream sound: " + effectComponent.soundName);
+
+            shoutEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_TeamWarCry.TeamWarCryActivation_prefab).WaitForCompletion();
+            slamEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_Loader.LoaderGroundSlam_prefab).WaitForCompletion();
         }
 
         private static void SetParticleMaterial(string childPath, string materialAddress)
@@ -135,6 +149,17 @@ namespace Cloudburst.Items.Equipment
             }.Fire();
 
             EffectManager.SpawnEffect(screamEffect, new EffectData
+            {
+                origin = body.footPosition,
+                scale = Radius
+            }, true);
+            EffectManager.SpawnEffect(shoutEffect, new EffectData
+            {
+                origin = body.corePosition,
+                rootObject = body.gameObject,
+                scale = body.radius
+            }, true);
+            EffectManager.SpawnEffect(slamEffect, new EffectData
             {
                 origin = body.footPosition,
                 scale = Radius

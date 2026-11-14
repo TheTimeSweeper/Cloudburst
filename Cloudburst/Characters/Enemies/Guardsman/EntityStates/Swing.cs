@@ -1,5 +1,6 @@
 using EntityStates;
 using RoR2;
+using RoR2.Projectile;
 using UnityEngine;
 
 namespace Cloudburst.Enemies.Guardsman.EntityStates
@@ -10,6 +11,7 @@ namespace Cloudburst.Enemies.Guardsman.EntityStates
         public static float damageCoefficient = 3f;
         public static float procCoefficient = 1f;
         public static float pushAwayForce = 3000f;
+        public static float tarWaveDamageCoefficient = 1.5f;
         //length of the Swing clip
         public static float baseDuration = 4.17f;
         public static float attackStartFraction = 0.573f;
@@ -67,6 +69,7 @@ namespace Cloudburst.Enemies.Guardsman.EntityStates
                 {
                     hasSwung = true;
                     Util.PlaySound(global::EntityStates.ImpMonster.DoubleSlash.slashSoundString, gameObject);
+                    FireTarWave();
                 }
                 //keep firing through the window so the whole sweep can hit, OverlapAttack never hits the same target twice
                 if (isAuthority)
@@ -79,6 +82,16 @@ namespace Cloudburst.Enemies.Guardsman.EntityStates
             {
                 outer.SetNextStateToMain();
             }
+        }
+
+        private void FireTarWave()
+        {
+            if (!isAuthority)
+                return;
+
+            Vector3 forward = characterDirection ? characterDirection.forward : transform.forward;
+            forward.y = 0f;
+            ProjectileManager.instance.FireProjectile(Guardsman.tarWaveProjectile, characterBody.footPosition + Vector3.up + forward.normalized * 2f, Util.QuaternionSafeLookRotation(forward), gameObject, tarWaveDamageCoefficient * damageStat, 0f, RollCrit());
         }
 
         private void StopMoving()

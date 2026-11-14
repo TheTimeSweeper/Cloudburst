@@ -3,7 +3,7 @@ using Cloudburst.Characters;
 using Cloudburst.Characters.Wyatt;
 using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
-using Cloudburst.Items.Gray.RiftBubble;
+using Cloudburst.Items.Green.RiftBubble;
 using Cloudburst.Items.Green;
 using Cloudburst.Items.Green.RestlessRings;
 using Cloudburst.Items.Red;
@@ -21,6 +21,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+// lets RoR2 find [ConCommand]s in this assembly
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
 
 namespace Cloudburst
 {

@@ -1,7 +1,7 @@
 using Cloudburst.Items.Equipment;
 using Cloudburst.Items.Gray;
 using Cloudburst.Items.Gray.BlastBoot;
-using Cloudburst.Items.Gray.RiftBubble;
+using Cloudburst.Items.Green.RiftBubble;
 using Cloudburst.Items.Green;
 using Cloudburst.Items.Green.RestlessRings;
 using Cloudburst.Items.Red;
@@ -139,20 +139,19 @@ namespace Cloudburst.Modules
                 new Line("Fireworks: ", StatType.Damage, Units.Number),
                 new Line("Firework Damage: ", StatType.Damage, Units.Percentage),
                 new Line("Cooldown: ", StatType.Utility, Units.Seconds));
-
-            //the ward also adds the holder's body radius on top of this
-            AddItem(RiftBubble.riftBubbleItem, count => new List<float>
-                {
-                    Stack(RiftBubble.BaseRadius, RiftBubble.StackingRadius, count),
-                    1 - RiftBubble.KnockbackMultiplier
-                },
-                new Line("Radius: ", StatType.Utility, Units.Meters),
-                new Line("Knockback Reduction: ", StatType.Utility, Units.Percentage));
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static void RegisterGreen()
         {
+            AddItem(RiftBubble.riftBubbleItem, count => new List<float>
+                {
+                    RiftBubble.GetInterval(count),
+                    RiftBubble.GetDuration(count)
+                },
+                new Line("Bubble Interval: ", StatType.Utility, Units.Seconds),
+                new Line("Bubble Duration: ", StatType.Utility, Units.Seconds));
+
             AddItem(BismuthEarrings.bismuthEarringsItem, count => new List<float>
                 {
                     0.05f,

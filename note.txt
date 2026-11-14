@@ -1,0 +1,1 @@
+put Portraits folder into the plugin folder and ship it in the zip
