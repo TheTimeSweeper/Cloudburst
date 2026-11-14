@@ -61,7 +61,7 @@ namespace Cloudburst.Items.Green.RestlessRings
             regenBuff = CreateBuff("bdRestlessRingsRegen", "RestlessCircle");
             ringBuffs = new BuffDef[] { armorBuff, attackSpeedBuff, regenBuff };
 
-            AddBuffSigil(armorBuff, new Color(1f, 0.85f, 0.2f));
+            AddBuffSigil(armorBuff, new Color(0.25f, 0.55f, 1f), true);
             AddBuffSigil(attackSpeedBuff, new Color(1f, 0.3f, 0.15f));
             AddBuffSigil(regenBuff, new Color(0.3f, 1f, 0.35f));
 
@@ -92,16 +92,42 @@ namespace Cloudburst.Items.Green.RestlessRings
         }
 
         //recolored warbanner sigil that hangs around the body while the buff is up
-        private static void AddBuffSigil(BuffDef buff, Color color)
+        private static void AddBuffSigil(BuffDef buff, Color color, bool neutralRamp = false)
         {
             GameObject sigil = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_WardOnLevel.WarbannerBuffEffect_prefab).WaitForCompletion(), buff.name + "Effect", false);
             foreach (Renderer renderer in sigil.GetComponentsInChildren<Renderer>(true))
             {
+                //warbanner's yellow color ramp is multiplied by the tint, which can't make blue (blue * yellow = green), so use a gray copy of it
+                if (neutralRamp && renderer.material.HasProperty("_RemapTex") && renderer.material.GetTexture("_RemapTex"))
+                    renderer.material.SetTexture("_RemapTex", GrayscaleCopy(renderer.material.GetTexture("_RemapTex")));
                 renderer.material.SetColor("_TintColor", color);
                 renderer.material.SetColor("_Color", color);
                 renderer.material.SetColor("_MainColor", color);
             }
             TempVisualEffectAPI.AddTemporaryVisualEffect(sigil, body => body.HasBuff(buff), true);
+        }
+
+        //same ramp with each pixel's brightest channel as gray, alpha kept, so the sigil keeps its shape. blit because vanilla textures aren't readable
+        private static Texture2D GrayscaleCopy(Texture ramp)
+        {
+            RenderTexture rt = RenderTexture.GetTemporary(ramp.width, ramp.height, 0, RenderTextureFormat.ARGB32);
+            Graphics.Blit(ramp, rt);
+            RenderTexture previous = RenderTexture.active;
+            RenderTexture.active = rt;
+            Texture2D gray = new Texture2D(ramp.width, ramp.height, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, name = ramp.name + "Gray" };
+            gray.ReadPixels(new Rect(0, 0, ramp.width, ramp.height), 0, 0);
+            RenderTexture.active = previous;
+            RenderTexture.ReleaseTemporary(rt);
+
+            Color[] pixels = gray.GetPixels();
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                float v = Mathf.Max(pixels[i].r, pixels[i].g, pixels[i].b);
+                pixels[i] = new Color(v, v, v, pixels[i].a);
+            }
+            gray.SetPixels(pixels);
+            gray.Apply();
+            return gray;
         }
 
         private static void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)

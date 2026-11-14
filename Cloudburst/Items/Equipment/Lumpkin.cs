@@ -86,8 +86,14 @@ namespace Cloudburst.Items.Equipment
 
             ContentAddition.AddEffect(screamEffect);
 
-            //entity state sound strings only get filled in once the catalog loads
-            RoR2Application.onLoad += () => effectComponent.soundName = global::EntityStates.LemurianBruiserMonster.SpawnState.spawnSoundString;
+            //read the elder lemurian roar straight from its state config, the static field isn't reliably filled in
+            EntityStateConfiguration bruiserSpawn = Addressables.LoadAssetAsync<EntityStateConfiguration>("RoR2/Base/LemurianBruiser/EntityStates.LemurianBruiserMonster.SpawnState.asset").WaitForCompletion();
+            foreach (var field in bruiserSpawn.serializedFieldsCollection.serializedFields)
+            {
+                if (field.fieldName == "spawnSoundString")
+                    effectComponent.soundName = field.fieldValue.stringValue;
+            }
+            Log.Info("Lumpkin scream sound: " + effectComponent.soundName);
 
             shoutEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_TeamWarCry.TeamWarCryActivation_prefab).WaitForCompletion();
             slamEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_Loader.LoaderGroundSlam_prefab).WaitForCompletion();

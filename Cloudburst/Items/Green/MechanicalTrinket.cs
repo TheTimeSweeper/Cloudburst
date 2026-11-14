@@ -50,14 +50,29 @@ namespace Cloudburst.Items.Green
             droneMasterPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterMasters/DroneBackupMaster");
 
             On.RoR2.HoldoutZoneController.Start += HoldoutZoneController_Start;
+            On.RoR2.SupportBeaconController.Start += SupportBeaconController_Start;
         }
 
         private static void HoldoutZoneController_Start(On.RoR2.HoldoutZoneController.orig_Start orig, HoldoutZoneController self)
         {
-            self.gameObject.AddComponent<MechanicalTrinketRadiusController>();
+            Activate(self);
             orig(self);
-            //holdout zones start disabled and only run Start once they get activated, so this covers the teleporter, void cells, pillars and modded zones like enforcer's rally point
-            SummonDrones(self);
+        }
+
+        //enforcer's rally point beacon: vanilla fires its teleporter items (warbanner) from here, so do the same in case the zone's Start already ran
+        private static void SupportBeaconController_Start(On.RoR2.SupportBeaconController.orig_Start orig, SupportBeaconController self)
+        {
+            orig(self);
+            Activate(self.GetComponent<HoldoutZoneController>());
+        }
+
+        //holdout zones start disabled and only run Start once they get activated, so this covers the teleporter, void cells, pillars and the rally point
+        private static void Activate(HoldoutZoneController zone)
+        {
+            if (!zone || zone.GetComponent<MechanicalTrinketRadiusController>())
+                return;
+            zone.gameObject.AddComponent<MechanicalTrinketRadiusController>();
+            SummonDrones(zone);
         }
 
         private static void SummonDrones(HoldoutZoneController zone)
@@ -121,7 +136,17 @@ namespace Cloudburst.Items.Green
             private void FixedUpdate()
             {
                 stackCount = Util.GetItemCountForTeam(holdoutZoneController.chargingTeam, mechanicalTrinketItem.itemIndex, true, false);
+
+                //zones like the rally point beacon set ignoreRadiusModifiers, which throws away calcRadius and only uses baseRadius
+                if (holdoutZoneController.ignoreRadiusModifiers)
+                {
+                    float bonus = stackCount * RadiusPerStack;
+                    holdoutZoneController.baseRadius += bonus - appliedBaseBonus;
+                    appliedBaseBonus = bonus;
+                }
             }
+
+            private float appliedBaseBonus;
 
             private void ApplyRadius(ref float radius)
             {

@@ -89,6 +89,10 @@ namespace Cloudburst.Items.Green.RiftBubble
             buffWard.invertTeamFilter = true;
             buffWard.shape = BuffWard.BuffWardShape.Sphere;
 
+            //BuffWard scales the indicator to the radius, so its meshes need a radius of 1. both shipped at 0.5, which drew the bubble at half size
+            indicator.Find("Sphere").localScale *= 2f;
+            indicator.Find("Outline").localScale *= 2f;
+
             //the oddly shaped opal bubble
             indicator.Find("Sphere").GetComponent<Renderer>().sharedMaterial = Addressables.LoadAssetAsync<Material>("RoR2/DLC1/OutOfCombatArmor/matOpalShield.mat").WaitForCompletion();
 
