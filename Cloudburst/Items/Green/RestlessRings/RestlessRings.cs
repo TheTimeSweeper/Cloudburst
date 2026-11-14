@@ -94,7 +94,7 @@ namespace Cloudburst.Items.Green.RestlessRings
         //recolored warbanner sigil that hangs around the body while the buff is up
         private static void AddBuffSigil(BuffDef buff, Color color)
         {
-            GameObject sigil = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Items/WardOnLevel/WarbannerBuffEffect.prefab").WaitForCompletion(), buff.name + "Effect", false);
+            GameObject sigil = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_WardOnLevel.WarbannerBuffEffect_prefab).WaitForCompletion(), buff.name + "Effect", false);
             foreach (Renderer renderer in sigil.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.material.SetColor("_TintColor", color);

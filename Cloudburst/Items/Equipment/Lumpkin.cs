@@ -89,8 +89,8 @@ namespace Cloudburst.Items.Equipment
             //entity state sound strings only get filled in once the catalog loads
             RoR2Application.onLoad += () => effectComponent.soundName = global::EntityStates.LemurianBruiserMonster.SpawnState.spawnSoundString;
 
-            shoutEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Equipment/TeamWarCry/TeamWarCryActivation.prefab").WaitForCompletion();
-            slamEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Characters/Loader/Skills/LoaderGroundSlam.prefab").WaitForCompletion();
+            shoutEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_TeamWarCry.TeamWarCryActivation_prefab).WaitForCompletion();
+            slamEffect = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_Loader.LoaderGroundSlam_prefab).WaitForCompletion();
         }
 
         private static void SetParticleMaterial(string childPath, string materialAddress)

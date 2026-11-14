@@ -58,13 +58,16 @@ The Start of the End - Remnants of Aphelia");
         //beetle guard sunder wave turned to tar, applies the clay goo slow
         private static void CreateTarWave()
         {
-            tarWaveProjectile = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Characters/BeetleGroup/BeetleGuard/Skills/Sunder.prefab").WaitForCompletion(), "CloudburstGuardsmanTarWave", true);
+            tarWaveProjectile = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPathsBetter.RoR2_Base_BeetleGuard.Sunder_prefab).WaitForCompletion(), "CloudburstGuardsmanTarWave", true);
             tarWaveProjectile.GetComponent<ProjectileDamage>().damageType = DamageType.ClayGoo;
 
             ProjectileController projectileController = tarWaveProjectile.GetComponent<ProjectileController>();
-            GameObject ghost = PrefabAPI.InstantiateClone(projectileController.ghostPrefab, "CloudburstGuardsmanTarWaveGhost", false);
+            // vanilla projectiles now keep their ghost in ghostPrefabAddress
+            GameObject vanillaGhost = projectileController.ghostPrefab ? projectileController.ghostPrefab : Addressables.LoadAssetAsync<GameObject>(projectileController.ghostPrefabAddress).WaitForCompletion();
+            GameObject ghost = PrefabAPI.InstantiateClone(vanillaGhost, "CloudburstGuardsmanTarWaveGhost", false);
             Modules.Asset.recolorEffects(new Color(0.1f, 0.07f, 0.05f), ghost);
             projectileController.ghostPrefab = ghost;
+            projectileController.ghostPrefabAddress = null;
 
             ContentAddition.AddProjectile(tarWaveProjectile);
         }
@@ -106,6 +109,14 @@ The Start of the End - Remnants of Aphelia");
             bodyBody = bodyPrefab.GetComponent<CharacterBody>();
             bodyBody.baseNameToken = "CLOUDBURST_GUARDSMAN_BODY_NAME";
             bodyBody.subtitleNameToken = "CLOUDBURST_GUARDSMAN_BODY_SUBTITLE";
+            // rendered by the cloudburst_portraits console command
+            string portrait = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Cloudburst.instance.Info.Location), "Portraits", "CloudburstGuardsmanBody.png");
+            if (System.IO.File.Exists(portrait))
+            {
+                Texture2D portraitTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false) { name = "texCloudburstGuardsmanIcon" };
+                portraitTexture.LoadImage(System.IO.File.ReadAllBytes(portrait));
+                bodyBody.portraitIcon = portraitTexture;
+            }
             bodyBody.baseMaxHealth = 400;
             bodyBody.levelMaxHealth = 120;
             bodyBody.baseRegen = 0.6f;

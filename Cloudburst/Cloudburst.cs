@@ -22,6 +22,9 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// lets RoR2 find [ConCommand]s in this assembly
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
+
 namespace Cloudburst
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
